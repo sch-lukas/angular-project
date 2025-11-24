@@ -31,7 +31,23 @@ const tlsDir = path.resolve(RESOURCES_DIR, 'tls');
 console.debug('tlsDir = %s', tlsDir);
 
 // public/private keys und Zertifikat fuer TLS
+let key: Buffer | undefined;
+let cert: Buffer | undefined;
+try {
+    // Falls die Dateien fehlen, soll das Programm trotzdem starten (z.B. Development)
+    key = await readFile(path.resolve(tlsDir, 'key.pem')); // eslint-disable-line security/detect-non-literal-fs-filename
+    cert = await readFile(path.resolve(tlsDir, 'certificate.crt')); // eslint-disable-line security/detect-non-literal-fs-filename
+} catch (err) {
+    // eslint-disable-next-line no-console
+    console.warn(
+        'TLS-Dateien nicht gefunden. Starte ohne TLS: %s',
+        (err as Error).message,
+    );
+    key = undefined;
+    cert = undefined;
+}
+
 export const httpsOptions: HttpsOptions = {
-    key: await readFile(path.resolve(tlsDir, 'key.pem')), // eslint-disable-line security/detect-non-literal-fs-filename
-    cert: await readFile(path.resolve(tlsDir, 'certificate.crt')), // eslint-disable-line security/detect-non-literal-fs-filename
+    key,
+    cert,
 };

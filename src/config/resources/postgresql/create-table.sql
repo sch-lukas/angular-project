@@ -28,8 +28,11 @@
 --  WHERE    schemaname = 'buch'
 --  ORDER BY tablename, indexname;
 
--- https://www.postgresql.org/docs/current/manage-ag-tablespaces.html
-SET default_tablespace = buchspace;
+-- Tablespace configuration removed: some DB installations do not have
+-- the 'buchspace' tablespace. If you need a specific tablespace, create
+-- it on the DB server or add a tablespace-aware migration.
+-- Original intent:
+--   SET default_tablespace = buchspace;
 
 -- https://www.postgresql.org/docs/current/app-psql.html
 -- https://www.postgresql.org/docs/current/ddl-schemas.html

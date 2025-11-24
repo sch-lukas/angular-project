@@ -25,7 +25,7 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
-import { PrismaClient } from '../../generated/prisma/client.js';
+import { PrismaClient, type Prisma } from '../../generated/prisma/client.js';
 import { getLogger } from '../../logger/logger.js';
 import { dbDir, dbPopulate } from '../db.js';
 
@@ -91,18 +91,22 @@ export class DbPopulateService implements OnApplicationBootstrap {
         const copyStatements = await readFile(copyScript, 'utf8'); // eslint-disable-line security/detect-non-literal-fs-filename,n/no-sync
 
         await this.#prisma.$connect();
-        await this.#prisma.$transaction(async (tx) => {
-            await tx.$executeRawUnsafe(dropStatements);
-            await tx.$executeRawUnsafe(createStatements);
-        });
+        await this.#prisma.$transaction(
+            async (tx: Prisma.TransactionClient) => {
+                await tx.$executeRawUnsafe(dropStatements);
+                await tx.$executeRawUnsafe(createStatements);
+            },
+        );
         await this.#prisma.$disconnect();
 
         // COPY zum Laden von CSV-Dateien erfordert Administrationsrechte
         // https://www.postgresql.org/docs/current/sql-copy.html
         await this.#prismaAdmin.$connect();
-        await this.#prismaAdmin.$transaction(async (tx) => {
-            await tx.$executeRawUnsafe(copyStatements);
-        });
+        await this.#prismaAdmin.$transaction(
+            async (tx: Prisma.TransactionClient) => {
+                await tx.$executeRawUnsafe(copyStatements);
+            },
+        );
         await this.#prismaAdmin.$disconnect();
     }
 }

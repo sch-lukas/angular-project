@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
+import fs from 'node:fs';
 import path from 'node:path';
 import pino from 'pino';
 import { type PrettyOptions } from 'pino-pretty';
@@ -48,6 +49,23 @@ const logFile =
     logDir === undefined
         ? logFileDefault
         : path.resolve(logDir, logFileNameDefault);
+
+// Ensure that the directory for the log file exists to avoid ENOENT
+try {
+    const logFileDir = path.dirname(logFile);
+    if (!fs.existsSync(logFileDir)) {
+        fs.mkdirSync(logFileDir, { recursive: true });
+        console.debug('Created log directory: %s', logFileDir);
+    }
+} catch (err) {
+    // If directory creation fails, log a warning but continue so the app can start
+    // eslint-disable-next-line no-console
+    console.warn(
+        'Could not create log directory %s: %s',
+        logFile,
+        (err as Error).message,
+    );
+}
 const pretty = log?.pretty === true;
 
 // https://getpino.io
