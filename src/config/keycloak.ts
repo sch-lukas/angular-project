@@ -107,5 +107,5 @@ export const httpsAgent = new Agent({
     requestCert: true,
     // selbst-signiertes Zertifikat
     rejectUnauthorized: false,
-    ca: httpsOptions.cert as Buffer,
+    ca: httpsOptions.cert as Buffer | undefined,
 });

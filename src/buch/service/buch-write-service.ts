@@ -98,12 +98,14 @@ export class BuchWriteService {
 
         // Neuer Datensatz mit generierter ID
         let buchDb: BuchCreated | undefined;
-        await this.#prisma.$transaction(async (tx) => {
-            buchDb = await tx.buch.create({
-                data: buch,
-                include: { titel: true, abbildungen: true },
-            });
-        });
+        await this.#prisma.$transaction(
+            async (tx: Prisma.TransactionClient) => {
+                buchDb = await tx.buch.create({
+                    data: buch,
+                    include: { titel: true, abbildungen: true },
+                });
+            },
+        );
         await this.#sendmail({
             id: buchDb?.id ?? 'N/A',
             titel: buchDb?.titel?.titel ?? 'N/A',
@@ -138,33 +140,38 @@ export class BuchWriteService {
         // TODO Dateigroesse pruefen
 
         let buchFileCreated: BuchFileCreated | undefined;
-        await this.#prisma.$transaction(async (tx) => {
-            // Buch ermitteln, falls vorhanden
-            const buch = tx.buch.findUnique({
-                where: { id: buchId },
-            });
-            if (buch === null) {
-                this.#logger.debug('Es gibt kein Buch mit der ID %d', buchId);
-                throw new NotFoundException(
-                    `Es gibt kein Buch mit der ID ${buchId}.`,
-                );
-            }
+        await this.#prisma.$transaction(
+            async (tx: Prisma.TransactionClient) => {
+                // Buch ermitteln, falls vorhanden
+                const buch = tx.buch.findUnique({
+                    where: { id: buchId },
+                });
+                if (buch === null) {
+                    this.#logger.debug(
+                        'Es gibt kein Buch mit der ID %d',
+                        buchId,
+                    );
+                    throw new NotFoundException(
+                        `Es gibt kein Buch mit der ID ${buchId}.`,
+                    );
+                }
 
-            // evtl. vorhandene Datei löschen
-            await tx.buchFile.deleteMany({ where: { buchId } });
+                // evtl. vorhandene Datei löschen
+                await tx.buchFile.deleteMany({ where: { buchId } });
 
-            const fileType = await fileTypeFromBuffer(data);
-            const mimetype = fileType?.mime ?? null;
-            this.#logger.debug('addFile: mimetype=%s', mimetype);
+                const fileType = await fileTypeFromBuffer(data);
+                const mimetype = fileType?.mime ?? null;
+                this.#logger.debug('addFile: mimetype=%s', mimetype);
 
-            const buchFile: BuchFileCreate = {
-                filename,
-                data: data as Uint8Array<ArrayBuffer>,
-                mimetype,
-                buchId,
-            };
-            buchFileCreated = await tx.buchFile.create({ data: buchFile });
-        });
+                const buchFile: BuchFileCreate = {
+                    filename,
+                    data: data as Uint8Array<ArrayBuffer>,
+                    mimetype,
+                    buchId,
+                };
+                buchFileCreated = await tx.buchFile.create({ data: buchFile });
+            },
+        );
 
         this.#logger.debug(
             'addFile: id=%s, byteLength=%s, filename=%s, mimetype=%s',
@@ -202,12 +209,14 @@ export class BuchWriteService {
 
         buch.version = { increment: 1 };
         let buchUpdated: BuchUpdated | undefined;
-        await this.#prisma.$transaction(async (tx) => {
-            buchUpdated = await tx.buch.update({
-                data: buch,
-                where: { id },
-            });
-        });
+        await this.#prisma.$transaction(
+            async (tx: Prisma.TransactionClient) => {
+                buchUpdated = await tx.buch.update({
+                    data: buch,
+                    where: { id },
+                });
+            },
+        );
         this.#logger.debug(
             'update: buchUpdated=%s',
             JSON.stringify(buchUpdated),
@@ -233,9 +242,11 @@ export class BuchWriteService {
             return false;
         }
 
-        await this.#prisma.$transaction(async (tx) => {
-            await tx.buch.delete({ where: { id } });
-        });
+        await this.#prisma.$transaction(
+            async (tx: Prisma.TransactionClient) => {
+                await tx.buch.delete({ where: { id } });
+            },
+        );
 
         this.#logger.debug('delete');
         return true;
