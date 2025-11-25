@@ -279,4 +279,55 @@ export class BuchService {
             art === 'PAPERBACK'
         );
     }
+
+    /**
+     * Gibt Statistiken über alle Bücher zurück.
+     *
+     * @returns Promise mit Statistiken
+     */
+    async getStats() {
+        this.#logger.debug('getStats');
+
+        // Gesamtanzahl
+        const totalCount = await this.#prisma.buch.count();
+
+        // Bestes Buch (höchstes Rating)
+        const bestBookRaw = await this.#prisma.buch.findFirst({
+            where: { rating: { gt: 0 } },
+            orderBy: { rating: 'desc' },
+            include: this.#includeTitel,
+        });
+
+        // Günstigstes Buch (niedrigster Preis)
+        const cheapestBookRaw = await this.#prisma.buch.findFirst({
+            where: { preis: { gt: 0 } },
+            orderBy: { preis: 'asc' },
+            include: this.#includeTitel,
+        });
+
+        const bestBook = bestBookRaw
+            ? {
+                  id: bestBookRaw.id,
+                  titel: bestBookRaw.titel?.titel ?? 'Unbekannt',
+                  rating: bestBookRaw.rating,
+              }
+            : null;
+
+        const cheapestBook = cheapestBookRaw
+            ? {
+                  id: cheapestBookRaw.id,
+                  titel: cheapestBookRaw.titel?.titel ?? 'Unbekannt',
+                  preis: Number(cheapestBookRaw.preis),
+              }
+            : null;
+
+        const stats = {
+            totalCount,
+            bestBook,
+            cheapestBook,
+        };
+
+        this.#logger.debug('getStats: stats=%o', stats);
+        return stats;
+    }
 }

@@ -5,13 +5,296 @@
   box-sizing: border-box;
 }
 
+/* CSS-Variablen für Farben */
+:root {
+  --color-bg-light: #f3f4f6;
+  --color-bg-dark: #3a3f47;
+  --color-surface-light: #ffffff;
+  --color-surface-dark: #2d3238;
+  --color-text-light: #111827;
+  --color-text-dark: #eceff4;
+  --color-accent: #3b82f6;
+  --color-footer-bg-light: #e5e7eb;
+  --color-footer-bg-dark: #2d3238;
+  --table-bg-light: #f9fafb;
+  --table-bg-dark: #f9fafb;
+  --table-row-light: #ffffff;
+  --table-row-dark: #ffffff;
+}
+
+/* Light Theme */
+.theme-light {
+  --app-bg: var(--color-bg-light);
+  --app-surface: var(--color-surface-light);
+  --app-text: var(--color-text-light);
+  --app-footer-bg: var(--color-footer-bg-light);
+  --table-bg: var(--table-bg-light);
+  --table-row: var(--table-row-light);
+}
+
+/* Dark Theme */
+.theme-dark {
+  --app-bg: var(--color-bg-dark);
+  --app-surface: var(--color-surface-dark);
+  --app-text: var(--color-text-dark);
+  --app-footer-bg: var(--color-footer-bg-dark);
+  --table-bg: var(--table-bg-dark);
+  --table-row: var(--table-row-dark);
+}
+
 html,
 body {
   height: 100%;
-  font-family: Arial, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--app-bg);
+  color: var(--app-text);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
-body {
-  margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+/* App Shell Layout */
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--app-bg);
+  color: var(--app-text);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: var(--app-surface);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+.app-header-left {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.app-logo {
+  height: 36px;
+  width: auto;
+  transition: opacity 0.3s ease;
+}
+
+.app-logo:hover {
+  opacity: 0.85;
+}
+
+.app-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+
+.app-brand {
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  font-size: 1.25rem;
+}
+
+.app-nav {
+  display: flex;
+  gap: 0;
+  align-items: center;
+}
+
+.app-nav a {
+  display: inline-block;
+  margin-right: 16px;
+  text-decoration: none;
+  color: var(--app-text);
+  padding: 2px 0;
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.app-nav a:last-child {
+  margin-right: 0;
+}
+
+.app-nav a:hover {
+  color: var(--color-accent);
+}
+
+.app-nav a.active {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.theme-toggle {
+  margin-left: 16px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: var(--app-surface);
+  color: var(--app-text);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-accent);
+  background: var(--app-surface);
+}
+
+.theme-toggle:active {
+  opacity: 0.8;
+}
+
+.app-main {
+  flex: 1;
+  padding: 24px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.app-footer {
+  background: var(--app-footer-bg);
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.footer-links {
+  display: flex;
+  gap: 0;
+}
+
+.app-footer a {
+  color: var(--app-text);
+  text-decoration: none;
+  margin-left: 12px;
+  transition: text-decoration 0.3s ease;
+}
+
+.app-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .app-header-right {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .app-nav {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .app-nav a {
+    margin-right: 0;
+  }
+
+  .theme-toggle {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .app-footer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .app-footer a {
+    margin-left: 0;
+  }
+
+  .app-main {
+    padding: 16px;
+  }
+
+  .app-header {
+    padding: 8px 16px;
+  }
+}
+
+/* Tabellen-Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f9fafb;
+  color: #000000;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+  background: #e5e7eb;
+  color: #000000;
+}
+
+thead th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #000000;
+  border-bottom: 2px solid #d1d5db;
+}
+
+tbody tr {
+  background: #ffffff;
+  color: #000000;
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+tbody tr:hover {
+  background: #f3f4f6;
+}
+
+tbody td {
+  padding: 12px;
+  color: #000000;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
 }

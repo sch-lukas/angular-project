@@ -25,6 +25,7 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import { seedDatabase } from '../../db/seed.js';
 import { PrismaClient, type Prisma } from '../../generated/prisma/client.js';
 import { getLogger } from '../../logger/logger.js';
 import { dbDir, dbPopulate } from '../db.js';
@@ -108,6 +109,22 @@ export class DbPopulateService implements OnApplicationBootstrap {
             },
         );
         await this.#prismaAdmin.$disconnect();
+
+        // TypeScript-Seeding NACH CSV-Import ausführen
+        // Dadurch werden die CSV-Basisdaten (9 Bücher) durch zusätzliche Seed-Daten (50 Bücher) ergänzt
+        try {
+            await this.#prisma.$connect();
+            await seedDatabase(this.#prisma);
+            await this.#prisma.$disconnect();
+            this.#logger.info(
+                'TypeScript-Seeding nach CSV-Import abgeschlossen',
+            );
+        } catch (err) {
+            this.#logger.error(
+                'Fehler beim TypeScript-Seeding: %o',
+                err as object,
+            );
+        }
     }
 }
 /* eslint-enable @stylistic/quotes */
