@@ -33,10 +33,12 @@ import {
 } from '@nestjs/swagger';
 import compression from 'compression';
 // relativer Import
+import { PrismaService } from './buch/service/prisma-service.js';
 import { corsOptions } from './config/cors.js';
 import { logLevel } from './config/logger.js';
 import { nodeConfig } from './config/node.js';
 import { paths } from './config/paths.js';
+import { seedDatabase } from './db/seed.js';
 import { AppModule } from './module.js';
 import { helmetHandlers } from './security/http/helmet.js';
 
@@ -95,6 +97,19 @@ const bootstrap = async () => {
 
     // cors von Express fuer CORS (= cross origin resource sharing)
     app.enableCors(corsOptions);
+
+    // DB-Seeding: idempotent ausführen, falls noch nicht vorhanden
+    try {
+        // PrismaService ist als Provider im BuchModule registriert
+        const prismaService = app.get(PrismaService);
+        // Falls PrismaService noch nicht verbunden ist, sorgt onModuleInit() normalerweise dafür.
+        await seedDatabase(prismaService.client);
+    } catch (err) {
+        // Logging minimal halten, damit Start nicht verhindert wird.
+        // Im Fehlerfall wird weiter gestartet und der Fehler geloggt.
+        // eslint-disable-next-line no-console
+        console.error('Fehler beim DB-Seeding:', err);
+    }
 
     await app.listen(port);
 };

@@ -137,8 +137,6 @@ export class BuchWriteService {
             size,
         );
 
-        // TODO Dateigroesse pruefen
-
         let buchFileCreated: BuchFileCreated | undefined;
         await this.#prisma.$transaction(
             async (tx: Prisma.TransactionClient) => {
