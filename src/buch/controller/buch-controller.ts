@@ -140,6 +140,27 @@ export class BuchController {
     }
 
     /**
+     * Statistiken über alle Bücher in der Datenbank.
+     *
+     * @param res Response-Objekt von Express.
+     * @returns Stats als JSON.
+     */
+    @Get('stats')
+    @Public()
+    @ApiOperation({ summary: 'Statistiken über Bücher' })
+    @ApiOkResponse({
+        description: 'Statistiken (Anzahl, bestes Buch, günstigstes Buch)',
+    })
+    async getStats(@Res() res: Response): Promise<Response> {
+        this.#logger.debug('getStats');
+
+        const stats = await this.#service.getStats();
+        this.#logger.debug('getStats: stats=%o', stats);
+
+        return res.json(stats);
+    }
+
+    /**
      * Ein Buch wird asynchron anhand seiner ID als Pfadparameter gesucht.
      *
      * Falls es ein solches Buch gibt und `If-None-Match` im Request-Header

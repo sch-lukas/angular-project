@@ -121,7 +121,8 @@ export class BuchWriteController {
      * @returns Leeres Promise-Objekt.
      */
     @Post()
-    @Roles('admin', 'user')
+    @Public()
+    // @Roles('admin', 'user')
     @ApiOperation({ summary: 'Ein neues Buch anlegen' })
     @ApiCreatedResponse({ description: 'Erfolgreich neu angelegt' })
     @ApiBadRequestResponse({ description: 'Fehlerhafte Buchdaten' })

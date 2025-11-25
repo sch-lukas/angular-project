@@ -1,13 +1,600 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {
+    FormBuilder,
+    FormGroup,
+    ReactiveFormsModule,
+    Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
+import { BuchApiService, type CreateBuchPayload } from './buch-api.service';
 
 @Component({
     selector: 'app-new',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, ReactiveFormsModule],
     template: `
-        <h1>Neu anlegen (Dummy)</h1>
-        <p>Hier kommt später das Formular zum Anlegen neuer Einträge hin.</p>
+        <div class="new-book-container">
+            <h1>Neues Buch anlegen</h1>
+
+            <!-- Backend-Fehler -->
+            <div *ngIf="submitError" class="alert alert-error">
+                <strong>Fehler:</strong> {{ submitError }}
+            </div>
+
+            <!-- Erfolgs-Meldung -->
+            <div *ngIf="successMessage" class="alert alert-success">
+                {{ successMessage }}
+            </div>
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="book-form">
+                <!-- Titel -->
+                <div class="form-group">
+                    <label for="titel">Titel *</label>
+                    <input
+                        id="titel"
+                        type="text"
+                        formControlName="titel"
+                        class="form-control"
+                        [class.is-invalid]="
+                            form.get('titel')?.invalid &&
+                            form.get('titel')?.touched
+                        "
+                    />
+                    <div
+                        *ngIf="
+                            form.get('titel')?.invalid &&
+                            form.get('titel')?.touched
+                        "
+                        class="error-message"
+                    >
+                        <span *ngIf="form.get('titel')?.errors?.['required']"
+                            >Titel ist erforderlich</span
+                        >
+                        <span *ngIf="form.get('titel')?.errors?.['maxlength']"
+                            >Titel darf maximal 40 Zeichen lang sein</span
+                        >
+                    </div>
+                </div>
+
+                <!-- Untertitel -->
+                <div class="form-group">
+                    <label for="untertitel">Untertitel</label>
+                    <input
+                        id="untertitel"
+                        type="text"
+                        formControlName="untertitel"
+                        class="form-control"
+                        [class.is-invalid]="
+                            form.get('untertitel')?.invalid &&
+                            form.get('untertitel')?.touched
+                        "
+                    />
+                    <div
+                        *ngIf="
+                            form.get('untertitel')?.invalid &&
+                            form.get('untertitel')?.touched
+                        "
+                        class="error-message"
+                    >
+                        <span
+                            *ngIf="
+                                form.get('untertitel')?.errors?.['maxlength']
+                            "
+                            >Untertitel darf maximal 40 Zeichen lang sein</span
+                        >
+                    </div>
+                </div>
+
+                <!-- ISBN -->
+                <div class="form-group">
+                    <label for="isbn">ISBN-13 *</label>
+                    <input
+                        id="isbn"
+                        type="text"
+                        formControlName="isbn"
+                        class="form-control"
+                        placeholder="978-3-16-148410-0"
+                        [class.is-invalid]="
+                            form.get('isbn')?.invalid &&
+                            form.get('isbn')?.touched
+                        "
+                    />
+                    <div
+                        *ngIf="
+                            form.get('isbn')?.invalid &&
+                            form.get('isbn')?.touched
+                        "
+                        class="error-message"
+                    >
+                        <span *ngIf="form.get('isbn')?.errors?.['required']"
+                            >ISBN ist erforderlich</span
+                        >
+                        <span *ngIf="form.get('isbn')?.errors?.['pattern']"
+                            >Ungültige ISBN-13 (Format: 978-X-XX-XXXXXX-X)</span
+                        >
+                    </div>
+                </div>
+
+                <!-- Rating -->
+                <div class="form-group">
+                    <label for="rating">Rating (0-5) *</label>
+                    <input
+                        id="rating"
+                        type="number"
+                        formControlName="rating"
+                        class="form-control"
+                        min="0"
+                        max="5"
+                        [class.is-invalid]="
+                            form.get('rating')?.invalid &&
+                            form.get('rating')?.touched
+                        "
+                    />
+                    <div
+                        *ngIf="
+                            form.get('rating')?.invalid &&
+                            form.get('rating')?.touched
+                        "
+                        class="error-message"
+                    >
+                        <span *ngIf="form.get('rating')?.errors?.['required']"
+                            >Rating ist erforderlich</span
+                        >
+                        <span *ngIf="form.get('rating')?.errors?.['min']"
+                            >Rating muss mindestens 0 sein</span
+                        >
+                        <span *ngIf="form.get('rating')?.errors?.['max']"
+                            >Rating darf maximal 5 sein</span
+                        >
+                    </div>
+                </div>
+
+                <!-- Art -->
+                <div class="form-group">
+                    <label for="art">Buchart</label>
+                    <select id="art" formControlName="art" class="form-control">
+                        <option value="">-- Bitte wählen --</option>
+                        <option value="EPUB">E-Book (EPUB)</option>
+                        <option value="HARDCOVER">Hardcover</option>
+                        <option value="PAPERBACK">Paperback</option>
+                    </select>
+                </div>
+
+                <!-- Preis -->
+                <div class="form-group">
+                    <label for="preis">Preis (€) *</label>
+                    <input
+                        id="preis"
+                        type="number"
+                        formControlName="preis"
+                        class="form-control"
+                        step="0.01"
+                        min="0"
+                        [class.is-invalid]="
+                            form.get('preis')?.invalid &&
+                            form.get('preis')?.touched
+                        "
+                    />
+                    <div
+                        *ngIf="
+                            form.get('preis')?.invalid &&
+                            form.get('preis')?.touched
+                        "
+                        class="error-message"
+                    >
+                        <span *ngIf="form.get('preis')?.errors?.['required']"
+                            >Preis ist erforderlich</span
+                        >
+                        <span *ngIf="form.get('preis')?.errors?.['min']"
+                            >Preis muss positiv sein</span
+                        >
+                    </div>
+                </div>
+
+                <!-- Rabatt -->
+                <div class="form-group">
+                    <label for="rabatt">Rabatt (0-1)</label>
+                    <input
+                        id="rabatt"
+                        type="number"
+                        formControlName="rabatt"
+                        class="form-control"
+                        step="0.01"
+                        min="0"
+                        max="1"
+                        placeholder="z.B. 0.1 für 10%"
+                        [class.is-invalid]="
+                            form.get('rabatt')?.invalid &&
+                            form.get('rabatt')?.touched
+                        "
+                    />
+                    <div
+                        *ngIf="
+                            form.get('rabatt')?.invalid &&
+                            form.get('rabatt')?.touched
+                        "
+                        class="error-message"
+                    >
+                        <span *ngIf="form.get('rabatt')?.errors?.['min']"
+                            >Rabatt muss mindestens 0 sein</span
+                        >
+                        <span *ngIf="form.get('rabatt')?.errors?.['max']"
+                            >Rabatt darf maximal 1 sein</span
+                        >
+                    </div>
+                </div>
+
+                <!-- Lieferbar -->
+                <div class="form-group form-checkbox">
+                    <label>
+                        <input type="checkbox" formControlName="lieferbar" />
+                        Lieferbar
+                    </label>
+                </div>
+
+                <!-- Datum -->
+                <div class="form-group">
+                    <label for="datum">Erscheinungsdatum</label>
+                    <input
+                        id="datum"
+                        type="date"
+                        formControlName="datum"
+                        class="form-control"
+                    />
+                </div>
+
+                <!-- Homepage -->
+                <div class="form-group">
+                    <label for="homepage">Homepage</label>
+                    <input
+                        id="homepage"
+                        type="url"
+                        formControlName="homepage"
+                        class="form-control"
+                        placeholder="https://example.com"
+                        [class.is-invalid]="
+                            form.get('homepage')?.invalid &&
+                            form.get('homepage')?.touched
+                        "
+                    />
+                    <div
+                        *ngIf="
+                            form.get('homepage')?.invalid &&
+                            form.get('homepage')?.touched
+                        "
+                        class="error-message"
+                    >
+                        <span *ngIf="form.get('homepage')?.errors?.['pattern']"
+                            >Ungültige URL (muss mit http:// oder https://
+                            beginnen)</span
+                        >
+                    </div>
+                </div>
+
+                <!-- Schlagwörter -->
+                <div class="form-group">
+                    <label for="schlagwoerter">Schlagwörter</label>
+                    <input
+                        id="schlagwoerter"
+                        type="text"
+                        formControlName="schlagwoerter"
+                        class="form-control"
+                        placeholder="z.B. JAVASCRIPT, TYPESCRIPT (kommagetrennt)"
+                    />
+                    <small class="form-text"
+                        >Mehrere Wörter mit Komma trennen</small
+                    >
+                </div>
+
+                <!-- Buttons -->
+                <div class="form-actions">
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        [disabled]="isSubmitting"
+                    >
+                        {{ isSubmitting ? 'Wird gespeichert...' : 'Speichern' }}
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="onCancel()"
+                        [disabled]="isSubmitting"
+                    >
+                        Abbrechen
+                    </button>
+                </div>
+            </form>
+        </div>
     `,
+    styles: [
+        `
+            .new-book-container {
+                max-width: 800px;
+                margin: 2rem auto;
+                padding: 2rem;
+            }
+
+            h1 {
+                margin-bottom: 2rem;
+                color: #2c3e50;
+            }
+
+            :host-context(.theme-dark) h1 {
+                color: #ecf0f1;
+            }
+
+            .alert {
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+                border-radius: 4px;
+            }
+
+            .alert-error {
+                background: #fee;
+                color: #c33;
+                border: 1px solid #fcc;
+            }
+
+            :host-context(.theme-dark) .alert-error {
+                background: #4a2222;
+                color: #ffaaaa;
+                border: 1px solid #663333;
+            }
+
+            .alert-success {
+                background: #efe;
+                color: #3c3;
+                border: 1px solid #cfc;
+            }
+
+            :host-context(.theme-dark) .alert-success {
+                background: #224422;
+                color: #aaffaa;
+                border: 1px solid #336633;
+            }
+
+            .book-form {
+                background: white;
+                padding: 2rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            :host-context(.theme-dark) .book-form {
+                background: #2c3e50;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            }
+
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+                color: #555;
+            }
+
+            :host-context(.theme-dark) .form-group label {
+                color: #bdc3c7;
+            }
+
+            .form-control {
+                width: 100%;
+                padding: 0.75rem;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 1rem;
+                transition: border-color 0.3s;
+                background: white;
+                color: #2c3e50;
+            }
+
+            :host-context(.theme-dark) .form-control {
+                background: #34495e;
+                border-color: #4a5f7f;
+                color: #ecf0f1;
+            }
+
+            :host-context(.theme-dark) .form-control::placeholder {
+                color: #7f8c8d;
+            }
+
+            .form-control:focus {
+                outline: none;
+                border-color: #3498db;
+                box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            }
+
+            .form-control.is-invalid {
+                border-color: #e74c3c;
+            }
+
+            .error-message {
+                color: #e74c3c;
+                font-size: 0.875rem;
+                margin-top: 0.5rem;
+            }
+
+            .form-text {
+                display: block;
+                margin-top: 0.5rem;
+                font-size: 0.875rem;
+                color: #777;
+            }
+
+            :host-context(.theme-dark) .form-text {
+                color: #95a5a6;
+            }
+
+            .form-checkbox label {
+                display: flex;
+                align-items: center;
+                font-weight: normal;
+            }
+
+            :host-context(.theme-dark) .form-checkbox label {
+                color: #bdc3c7;
+            }
+
+            .form-checkbox input[type='checkbox'] {
+                width: auto;
+                margin-right: 0.5rem;
+            }
+
+            .form-actions {
+                display: flex;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+
+            .btn {
+                padding: 0.75rem 2rem;
+                border: none;
+                border-radius: 4px;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            .btn:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+            }
+
+            .btn-primary {
+                background: #3498db;
+                color: white;
+            }
+
+            .btn-primary:hover:not(:disabled) {
+                background: #2980b9;
+            }
+
+            .btn-secondary {
+                background: #95a5a6;
+                color: white;
+            }
+
+            .btn-secondary:hover:not(:disabled) {
+                background: #7f8c8d;
+            }
+        `,
+    ],
 })
-export class NewComponent {}
+export class NewComponent implements OnInit {
+    form!: FormGroup;
+    submitError = '';
+    successMessage = '';
+    isSubmitting = false;
+
+    constructor(
+        private readonly fb: FormBuilder,
+        private readonly api: BuchApiService,
+        private readonly router: Router,
+    ) {}
+
+    ngOnInit(): void {
+        this.form = this.fb.group({
+            titel: ['', [Validators.required, Validators.maxLength(40)]],
+            untertitel: ['', [Validators.maxLength(40)]],
+            isbn: [
+                '',
+                [
+                    Validators.required,
+                    // Vereinfachte ISBN-13 Validierung: 978 oder 979 gefolgt von 10 Ziffern
+                    Validators.pattern(/^97[89][\d-]{10,17}$/),
+                ],
+            ],
+            rating: [
+                0,
+                [Validators.required, Validators.min(0), Validators.max(5)],
+            ],
+            art: [''],
+            preis: [0, [Validators.required, Validators.min(0)]],
+            rabatt: [0, [Validators.min(0), Validators.max(1)]],
+            lieferbar: [false],
+            datum: [''],
+            homepage: ['', [Validators.pattern(/^https?:\/\/.+/)]],
+            schlagwoerter: [''],
+        });
+    }
+
+    onSubmit(): void {
+        this.form.markAllAsTouched();
+
+        if (this.form.invalid) {
+            this.submitError =
+                'Bitte füllen Sie alle erforderlichen Felder korrekt aus.';
+            return;
+        }
+
+        this.isSubmitting = true;
+        this.submitError = '';
+        this.successMessage = '';
+
+        const formValue = this.form.value;
+
+        // Schlagwörter von String zu Array konvertieren
+        const schlagwoerterArray = formValue.schlagwoerter
+            ? formValue.schlagwoerter
+                  .split(',')
+                  .map((s: string) => s.trim().toUpperCase())
+                  .filter((s: string) => s.length > 0)
+            : [];
+
+        const payload: CreateBuchPayload = {
+            isbn: formValue.isbn,
+            rating: Number(formValue.rating),
+            art:
+                formValue.art && formValue.art !== ''
+                    ? formValue.art
+                    : undefined,
+            preis: Number(formValue.preis),
+            rabatt:
+                formValue.rabatt && formValue.rabatt > 0
+                    ? Number(formValue.rabatt)
+                    : undefined,
+            lieferbar: formValue.lieferbar || false,
+            datum: formValue.datum || undefined,
+            homepage:
+                formValue.homepage && formValue.homepage !== ''
+                    ? formValue.homepage
+                    : undefined,
+            schlagwoerter:
+                schlagwoerterArray.length > 0 ? schlagwoerterArray : undefined,
+            titel: {
+                titel: formValue.titel,
+                untertitel:
+                    formValue.untertitel && formValue.untertitel !== ''
+                        ? formValue.untertitel
+                        : undefined,
+            },
+        };
+
+        this.api.create(payload).subscribe({
+            next: () => {
+                this.isSubmitting = false;
+                this.successMessage = 'Buch wurde erfolgreich angelegt!';
+                // Nach 2 Sekunden zur Suche navigieren
+                setTimeout(() => {
+                    this.router.navigate(['/search']);
+                }, 2000);
+            },
+            error: (err) => {
+                this.isSubmitting = false;
+                console.error('Fehler beim Anlegen:', err);
+                this.submitError =
+                    err.error?.message ||
+                    'Beim Anlegen des Buches ist ein Fehler aufgetreten.';
+            },
+        });
+    }
+
+    onCancel(): void {
+        this.router.navigate(['/search']);
+    }
+}
