@@ -363,7 +363,7 @@ import { BuchApiService, type CreateBuchPayload } from './buch-api.service';
             }
 
             :host-context(.theme-dark) .book-form {
-                background: #2c3e50;
+                background: #3a4a5c;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
             }
 
@@ -394,8 +394,8 @@ import { BuchApiService, type CreateBuchPayload } from './buch-api.service';
             }
 
             :host-context(.theme-dark) .form-control {
-                background: #34495e;
-                border-color: #4a5f7f;
+                background: #445566;
+                border-color: #556677;
                 color: #ecf0f1;
             }
 
