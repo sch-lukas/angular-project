@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
+    Router,
     RouterLink,
     RouterLinkActive,
     RouterModule,
     RouterOutlet,
 } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
     selector: 'app-root',
@@ -45,18 +47,30 @@ import {
                             [routerLinkActiveOptions]="{ exact: true }"
                             >Suche</a
                         >
+                        <!-- Zeige "Neu" nur für eingeloggte Benutzer -->
                         <a
+                            *ngIf="isLoggedIn$ | async"
                             routerLink="/new"
                             routerLinkActive="active"
                             [routerLinkActiveOptions]="{ exact: true }"
                             >Neu</a
                         >
+                        <!-- Zeige Login oder Logout je nach Status -->
                         <a
+                            *ngIf="!(isLoggedIn$ | async)"
                             routerLink="/login"
                             routerLinkActive="active"
                             [routerLinkActiveOptions]="{ exact: true }"
                             >Login</a
                         >
+                        <button
+                            *ngIf="isLoggedIn$ | async"
+                            type="button"
+                            class="logout-btn"
+                            (click)="onLogout()"
+                        >
+                            Logout
+                        </button>
                     </nav>
                     <button
                         type="button"
@@ -83,10 +97,37 @@ import {
             </footer>
         </div>
     `,
-    styles: [],
+    styles: [
+        `
+            .logout-btn {
+                background: none;
+                border: none;
+                color: inherit;
+                font: inherit;
+                cursor: pointer;
+                padding: 0;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+            .logout-btn:hover {
+                color: #3498db;
+            }
+
+            :host-context(.theme-dark) .logout-btn:hover {
+                color: #5dade2;
+            }
+        `,
+    ],
 })
 export class AppComponent implements OnInit {
     isDarkMode: boolean = false;
+    isLoggedIn$ = this.authService.isLoggedIn$;
+
+    constructor(
+        private readonly authService: AuthService,
+        private readonly router: Router,
+    ) {}
 
     ngOnInit() {
         // Versuche, den Theme aus localStorage zu lesen
@@ -105,5 +146,10 @@ export class AppComponent implements OnInit {
         this.isDarkMode = !this.isDarkMode;
         const theme = this.isDarkMode ? 'dark' : 'light';
         localStorage.setItem('theme', theme);
+    }
+
+    onLogout() {
+        this.authService.logout();
+        this.router.navigate(['/']);
     }
 }
