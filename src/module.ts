@@ -22,11 +22,12 @@ import {
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { AdminModule } from './admin/module.js';
-import { BuchModule } from './buch/module.js';
 import { BuchController } from './buch/controller/buch-controller.js';
 import { BuchWriteController } from './buch/controller/buch-write-controller.js';
+import { BuchModule } from './buch/module.js';
 import { DevModule } from './config/dev/module.js';
 import { graphQlModuleOptions } from './config/graphql.js';
+import { HomeModule } from './home/home.module.js';
 import { LoggerModule } from './logger/module.js';
 import { RequestLoggerMiddleware } from './logger/request-logger.js';
 import { KeycloakModule } from './security/keycloak/module.js';
@@ -39,6 +40,7 @@ import { KeycloakModule } from './security/keycloak/module.js';
         ConfigModule,
         DevModule,
         GraphQLModule.forRoot<ApolloDriverConfig>(graphQlModuleOptions),
+        HomeModule,
         LoggerModule,
         KeycloakModule,
     ],
