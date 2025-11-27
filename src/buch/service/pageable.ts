@@ -69,7 +69,8 @@ export function createPageable({ number, size }: PageableProps): Pageable {
     } else {
         sizeInt = sizeFloat;
         if (sizeInt < 1 || sizeInt > MAX_PAGE_SIZE) {
-            sizeInt = DEFAULT_PAGE_NUMBER;
+            // Ungültige Größe -> auf sinnvollen Default zurückfallen
+            sizeInt = DEFAULT_PAGE_SIZE;
         }
     }
 

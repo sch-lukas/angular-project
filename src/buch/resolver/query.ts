@@ -71,8 +71,13 @@ export class BuchQueryResolver {
         @Args() input: SuchparameterInput | undefined,
         @Args('page') page?: number,
         @Args('size') size?: number,
+        @Args('sort') sort?: string,
     ): Promise<import('../controller/page.js').Page<Readonly<BuchMitTitel>>> {
-        this.#logger.debug('find: input=%s', JSON.stringify(input));
+        this.#logger.debug(
+            'find: input=%s, sort=%s',
+            JSON.stringify(input),
+            sort,
+        );
         const pageable = createPageable({
             number: page?.toString(),
             size: size?.toString(),
@@ -86,8 +91,12 @@ export class BuchQueryResolver {
                 (suchparameter as any).lieferbar = lieferbar.toString();
             }
         }
+        // Add sort parameter to suchparameter
+        const suchparameterWithSort = sort
+            ? { ...suchparameter, sort }
+            : suchparameter;
         const buecherSlice: Readonly<Slice<Readonly<BuchMitTitel>>> =
-            await this.#service.find(suchparameter as any, pageable); // NOSONAR
+            await this.#service.find(suchparameterWithSort as any, pageable); // NOSONAR
         this.#logger.debug('find: buecherSlice=%o', buecherSlice);
 
         // Erzeuge Page-Objekt analog zur REST-API

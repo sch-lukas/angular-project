@@ -6,8 +6,8 @@
  * Query zum Abrufen einer Liste von Büchern mit Suchparametern
  */
 export const BUECHER_QUERY = `
-  query Buecher($suchparameter: SuchparameterInput, $page: Int, $size: Int) {
-    buecher(suchparameter: $suchparameter, page: $page, size: $size) {
+  query Buecher($suchparameter: SuchparameterInput, $page: Int, $size: Int, $sort: String) {
+    buecher(suchparameter: $suchparameter, page: $page, size: $size, sort: $sort) {
       content {
         id
         isbn
@@ -48,6 +48,30 @@ export const BUCH_BY_ID_QUERY = `
       titel {
         titel
         untertitel
+      }
+    }
+  }
+`;
+
+/**
+ * Query zum Abrufen ähnlicher Bücher (für Empfehlungen)
+ * Lädt Bücher mit gleicher Art oder ähnlichen Schlagwörtern
+ */
+export const RELATED_BUECHER_QUERY = `
+  query RelatedBuecher($suchparameter: SuchparameterInput, $size: Int) {
+    buecher(suchparameter: $suchparameter, page: 1, size: $size) {
+      content {
+        id
+        isbn
+        rating
+        art
+        preis
+        rabatt(short: false)
+        titel {
+          titel
+          untertitel
+        }
+        schlagwoerter
       }
     }
   }

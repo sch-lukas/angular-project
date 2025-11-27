@@ -2,20 +2,12 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
 
 @Component({
     selector: 'app-search',
     standalone: true,
-    imports: [
-        CommonModule,
-        NgFor,
-        NgIf,
-        FormsModule,
-        RouterLink,
-        NgbPagination,
-    ],
+    imports: [CommonModule, NgFor, NgIf, FormsModule, RouterLink],
     template: `
         <div style="max-width: 1000px; margin: 0 auto;">
             <h1>Suche</h1>
@@ -194,23 +186,45 @@ import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
                     Keine Einträge gefunden.
                 </div>
 
-                <!-- NG Bootstrap Pagination -->
+                <!-- Simple Pagination -->
                 <div
-                    *ngIf="items && items.length > 0 && totalPages > 1"
-                    style="margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 12px;"
+                    *ngIf="items && items.length > 0"
+                    style="margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 16px;"
                 >
-                    <ngb-pagination
-                        [(page)]="ngbPage"
-                        [pageSize]="pageSize"
-                        [collectionSize]="totalElements"
-                        [maxSize]="5"
-                        [rotate]="true"
-                        [boundaryLinks]="true"
-                        (pageChange)="onPageChange($event)"
-                        aria-label="Seitennavigation"
-                    ></ngb-pagination>
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <button
+                            (click)="goToPreviousPage()"
+                            [disabled]="currentPage <= 0"
+                            style="padding:10px 20px; background:#007bff; color:#fff; border:none; border-radius:4px; font-weight:600; font-size:14px;"
+                            [style.opacity]="currentPage <= 0 ? '0.4' : '1'"
+                            [style.cursor]="
+                                currentPage <= 0 ? 'not-allowed' : 'pointer'
+                            "
+                        >
+                            ← Zurück
+                        </button>
+                        <span
+                            style="font-weight: 600; color: #333; font-size: 16px; min-width: 150px; text-align: center;"
+                        >
+                            Seite {{ currentPage + 1 }}
+                            <span *ngIf="totalPages > 0">
+                                / {{ totalPages }}
+                            </span>
+                        </span>
+                        <button
+                            (click)="goToNextPage()"
+                            [disabled]="!hasMorePages"
+                            style="padding:10px 20px; background:#007bff; color:#fff; border:none; border-radius:4px; font-weight:600; font-size:14px;"
+                            [style.opacity]="!hasMorePages ? '0.4' : '1'"
+                            [style.cursor]="
+                                !hasMorePages ? 'not-allowed' : 'pointer'
+                            "
+                        >
+                            Weiter →
+                        </button>
+                    </div>
                     <span
-                        style="font-weight: 600; color: #666; font-size: 0.9em;"
+                        style="font-weight: 400; color: #666; font-size: 14px;"
                     >
                         Zeige {{ currentPage * pageSize + 1 }} bis
                         {{
@@ -236,9 +250,8 @@ export class SearchComponent implements OnInit {
     pageSize = 10;
     totalPages = 0;
     totalElements = 0;
-    ngbPage = 1; // NG Bootstrap verwendet 1-basierte Seiten
+    hasMorePages = false;
     Math = Math; // Für Template-Zugriff
-    private cachedTotalForFilter?: number; // Gespeicherte echte Gesamtanzahl bei Filtern
 
     formData = {
         suchtext: '',
@@ -296,134 +309,39 @@ export class SearchComponent implements OnInit {
     onSearch(resetPage = true): void {
         if (resetPage) {
             this.currentPage = 0;
-            this.cachedTotalForFilter = undefined; // Reset bei neuer Suche
         }
 
         this.isLoading = true;
         this.error = null;
         this.items = null;
 
-        try {
-            const hasFilter =
-                !!this.formData.ratingFilter ||
-                !!this.formData.suchtext?.trim();
-
-            // Bei Filtern und erster Seite: Zähle erstmal alle mit size=100
-            if (resetPage && hasFilter) {
-                const countParams = {
-                    page: 0,
-                    size: 100,
-                    ...(this.formData.suchtext?.trim() && {
-                        titel: this.formData.suchtext.trim(),
-                    }),
-                    ...(this.formData.ratingFilter && {
-                        rating: Number.parseInt(this.formData.ratingFilter, 10),
-                    }),
-                };
-                this.api.list(countParams).subscribe({
-                    next: (countPage: BuchPage) => {
-                        const realTotal = countPage.content.length;
-                        this.cachedTotalForFilter = realTotal;
-                        // Berechne totalPages vor dem ersten Laden
-                        this.totalPages = Math.ceil(realTotal / this.pageSize);
-                        this.totalElements = realTotal;
-
-                        // Jetzt mit korrekten totalPages die Suchparameter bauen
-                        const params = this.buildSearchParams();
-                        this.api.list(params).subscribe({
-                            next: (page: BuchPage) => {
-                                this.processPageData(page, params, realTotal);
-                            },
-                            error: (err) => this.handleError(err),
-                        });
-                    },
-                    error: (err) => {
-                        // Fallback: Lade ohne Count
-                        const params = this.buildSearchParams();
-                        this.api.list(params).subscribe({
-                            next: (page: BuchPage) => {
-                                this.processPageData(
-                                    page,
-                                    params,
-                                    this.cachedTotalForFilter,
-                                );
-                            },
-                            error: (err2) => this.handleError(err2),
-                        });
-                    },
-                });
-            } else {
-                // Normale Pagination oder ohne Filter
-                const params = this.buildSearchParams();
-                this.api.list(params).subscribe({
-                    next: (page: BuchPage) => {
-                        this.processPageData(
-                            page,
-                            params,
-                            this.cachedTotalForFilter,
-                        );
-                    },
-                    error: (err) => this.handleError(err),
-                });
-            }
-        } catch (err) {
-            this.error = `Fehler bei der Suche: ${err instanceof Error ? err.message : String(err)}`;
-            this.items = [];
-            this.isLoading = false;
-        }
+        const params = this.buildSearchParams();
+        this.api.list(params).subscribe({
+            next: (page: BuchPage) => {
+                this.processPageData(page);
+            },
+            error: (err) => this.handleError(err),
+        });
     }
 
-    private processPageData(
-        page: BuchPage,
-        params: any,
-        knownTotal?: number,
-    ): void {
+    private processPageData(page: BuchPage): void {
         let filtered = page.content;
 
         // Clientseitige Filter (nur für Optionen, die Backend nicht unterstützt)
-
-        // nurMitRating: nur Einträge mit gesetztem Rating
         if (this.formData.nurMitRating) {
             filtered = filtered.filter(
                 (b) => b.rating !== undefined && b.rating !== null,
             );
         }
 
-        // Sortierung erfolgt im Backend via sort-Parameter
-        // Keine clientseitige Sortierung mehr nötig
-
-        // Pagination-Metadaten speichern
+        // Verwende Backend-Metadaten direkt
         this.currentPage = page.page.number;
-        this.ngbPage = this.currentPage + 1; // Synchronisiere NG Bootstrap Page (1-basiert)
+        this.totalPages = page.page.totalPages;
+        this.totalElements = page.page.totalElements;
         this.items = filtered;
 
-        const hasFilter = !!params.rating || !!params.titel;
-
-        if (filtered.length < this.pageSize) {
-            // Definitiv letzte Seite - weniger als pageSize Einträge
-            this.totalPages = this.currentPage + 1;
-            const calculatedTotal =
-                this.currentPage * this.pageSize + filtered.length;
-            this.totalElements = calculatedTotal;
-
-            // Speichere echte Gesamtanzahl für zukünftige Navigationen
-            if (hasFilter) {
-                this.cachedTotalForFilter = calculatedTotal;
-            }
-        } else if (knownTotal !== undefined) {
-            // Wir kennen die echte Gesamtanzahl von vorherigem Durchlauf
-            this.totalElements = knownTotal;
-            this.totalPages = Math.ceil(knownTotal / this.pageSize);
-        } else if (hasFilter) {
-            // Bei Filtern ohne bekannte Gesamtanzahl: Konservative Schätzung
-            this.totalPages = this.currentPage + 2;
-            this.totalElements =
-                (this.currentPage + 1) * this.pageSize + this.pageSize;
-        } else {
-            // Ohne Filter: Backend-Werte sind korrekt
-            this.totalPages = page.page.totalPages;
-            this.totalElements = page.page.totalElements;
-        }
+        // Prüfe ob weitere Seiten verfügbar sind
+        this.hasMorePages = this.currentPage < this.totalPages - 1;
 
         this.isLoading = false;
     }
@@ -463,9 +381,17 @@ export class SearchComponent implements OnInit {
         this.isLoading = false;
     }
 
-    onPageChange(page: number): void {
-        // NG Bootstrap verwendet 1-basierte Seiten, wir verwenden 0-basiert
-        this.currentPage = page - 1;
-        this.onSearch(false);
+    goToPreviousPage(): void {
+        if (this.currentPage > 0) {
+            this.currentPage--;
+            this.onSearch(false);
+        }
+    }
+
+    goToNextPage(): void {
+        if (this.hasMorePages) {
+            this.currentPage++;
+            this.onSearch(false);
+        }
     }
 }
