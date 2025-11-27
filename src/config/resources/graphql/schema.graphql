@@ -62,8 +62,19 @@ type Buch {
   datum: String
   homepage: String
   schlagwoerter: [String]
+  coverUrl: String
+  erzeugt: String
+  aktualisiert: String
   titel: Titel! # 1:1-Beziehung
   rabatt(short: Boolean): String! # field mit @ResolveField
+  abbildungen: [Abbildung!]
+}
+
+"Daten zu einer Abbildung"
+type Abbildung {
+  id: ID!
+  beschriftung: String!
+  contentType: String!
 }
 
 "Enum-Typ für die Art eines Buches"

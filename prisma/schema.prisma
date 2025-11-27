@@ -54,6 +54,7 @@ model Buch {
   homepage      String?
   /// https://www.prisma.io/docs/orm/reference/prisma-schema-reference#json
   schlagwoerter Json?
+  coverUrl      String?     @map("cover_url")
   erzeugt       DateTime    @default(now()) @db.Timestamp(6)
   /// https://www.prisma.io/docs/orm/reference/prisma-schema-reference#updatedat
   aktualisiert  DateTime    @default(now()) @db.Timestamp(6) @updatedAt

@@ -40,7 +40,7 @@ export class DbPopulateService implements OnApplicationBootstrap {
 
     readonly #prisma: PrismaClient;
 
-    readonly #prismaAdmin: PrismaClient;
+    // readonly #prismaAdmin: PrismaClient; // Nicht mehr benötigt
 
     readonly #logger = getLogger(DbPopulateService.name);
 
@@ -55,13 +55,13 @@ export class DbPopulateService implements OnApplicationBootstrap {
         // d.h. mit PostgreSQL-User "buch" und Schema "buch"
         this.#prisma = new PrismaClient({ adapter, errorFormat: 'pretty' });
 
-        const adapterAdmin = new PrismaPg({
-            connectionString: process.env['DATABASE_URL_ADMIN'],
-        });
-        this.#prismaAdmin = new PrismaClient({
-            adapter: adapterAdmin,
-            errorFormat: 'pretty',
-        });
+        // const adapterAdmin = new PrismaPg({
+        //     connectionString: process.env['DATABASE_URL_ADMIN'],
+        // });
+        // this.#prismaAdmin = new PrismaClient({
+        //     adapter: adapterAdmin,
+        //     errorFormat: 'pretty',
+        // });
     }
 
     /**
@@ -87,9 +87,9 @@ export class DbPopulateService implements OnApplicationBootstrap {
         this.#logger.debug('createScript = %s', createScript); // eslint-disable-line sonarjs/no-duplicate-string
         const createStatements = await readFile(createScript, 'utf8'); // eslint-disable-line security/detect-non-literal-fs-filename,n/no-sync
 
-        const copyScript = path.resolve(this.#dbDir, 'copy-csv.sql'); // eslint-disable-line sonarjs/no-duplicate-string
-        this.#logger.debug('copyScript = %s', copyScript); // eslint-disable-line sonarjs/no-duplicate-string
-        const copyStatements = await readFile(copyScript, 'utf8'); // eslint-disable-line security/detect-non-literal-fs-filename,n/no-sync
+        // const copyScript = path.resolve(this.#dbDir, 'copy-csv.sql'); // eslint-disable-line sonarjs/no-duplicate-string
+        // this.#logger.debug('copyScript = %s', copyScript); // eslint-disable-line sonarjs/no-duplicate-string
+        // const copyStatements = await readFile(copyScript, 'utf8'); // eslint-disable-line security/detect-non-literal-fs-filename,n/no-sync
 
         await this.#prisma.$connect();
         await this.#prisma.$transaction(
@@ -102,15 +102,16 @@ export class DbPopulateService implements OnApplicationBootstrap {
 
         // COPY zum Laden von CSV-Dateien erfordert Administrationsrechte
         // https://www.postgresql.org/docs/current/sql-copy.html
-        await this.#prismaAdmin.$connect();
-        await this.#prismaAdmin.$transaction(
-            async (tx: Prisma.TransactionClient) => {
-                await tx.$executeRawUnsafe(copyStatements);
-            },
-        );
-        await this.#prismaAdmin.$disconnect();
+        // CSV-Import deaktiviert (JSON-Parsing-Fehler mit "schlagwoerter")
+        // await this.#prismaAdmin.$connect();
+        // await this.#prismaAdmin.$transaction(
+        //     async (tx: Prisma.TransactionClient) => {
+        //         await tx.$executeRawUnsafe(copyStatements);
+        //     },
+        // );
+        // await this.#prismaAdmin.$disconnect();
 
-        // TypeScript-Seeding NACH CSV-Import ausführen
+        // TypeScript-Seeding (50 Bücher ursprünglich + 9 hinzugefügt = 59)
         // Dadurch werden die CSV-Basisdaten (9 Bücher) durch zusätzliche Seed-Daten (50 Bücher) ergänzt
         try {
             await this.#prisma.$connect();

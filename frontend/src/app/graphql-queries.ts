@@ -12,7 +12,9 @@ export const BUECHER_QUERY = `
         id
         isbn
         rating
+        art
         preis
+        coverUrl
         titel {
           titel
           untertitel
@@ -45,9 +47,17 @@ export const BUCH_BY_ID_QUERY = `
       datum
       homepage
       schlagwoerter
+      coverUrl
+      erzeugt
+      aktualisiert
       titel {
         titel
         untertitel
+      }
+      abbildungen {
+        id
+        beschriftung
+        contentType
       }
     }
   }
@@ -67,6 +77,7 @@ export const RELATED_BUECHER_QUERY = `
         art
         preis
         rabatt(short: false)
+        coverUrl
         titel {
           titel
           untertitel
