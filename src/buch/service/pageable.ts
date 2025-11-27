@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-export const DEFAULT_PAGE_SIZE = 5;
+export const DEFAULT_PAGE_SIZE = 10;
 export const MAX_PAGE_SIZE = 100;
 export const DEFAULT_PAGE_NUMBER = 0;
 

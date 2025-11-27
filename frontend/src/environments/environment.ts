@@ -1,4 +1,5 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://localhost:3000',
+    // Dev-Server läuft ohne TLS, daher HTTP nutzen
+    apiUrl: 'http://localhost:3000',
 };

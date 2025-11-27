@@ -187,12 +187,14 @@ export class BuchService {
         // Das Resultat ist eine leere Liste, falls nichts gefunden
         // Lesen: Keine Transaktion erforderlich
         const where = this.#whereBuilder.build(suchparameter);
+        const orderBy = this.#buildOrderBy(suchparameter.sort);
         const { number, size } = pageable;
         const buecher: BuchMitTitel[] = await this.#prisma.buch.findMany({
             where,
             skip: number * size,
             take: size,
             include: this.#includeTitel,
+            orderBy,
         });
         if (buecher.length === 0) {
             this.#logger.debug('find: Keine Buecher gefunden');
@@ -221,6 +223,7 @@ export class BuchService {
             skip: number * size,
             take: size,
             include: this.#includeTitel,
+            orderBy: { id: 'asc' },
         });
         if (buecher.length === 0) {
             this.#logger.debug('#findAll: Keine Buecher gefunden');
@@ -228,6 +231,34 @@ export class BuchService {
         }
         const totalElements = await this.count();
         return this.#createSlice(buecher, totalElements);
+    }
+
+    #buildOrderBy(sort: string | undefined): any {
+        if (!sort) {
+            return { id: 'asc' }; // Standard-Sortierung
+        }
+
+        // Format: "feldname,richtung" z.B. "preis,asc" oder "preis,desc"
+        const [field, direction] = sort.split(',');
+
+        if (!field || !direction) {
+            return { id: 'asc' };
+        }
+
+        const sortDirection =
+            direction.toLowerCase() === 'desc' ? 'desc' : 'asc';
+
+        // Validiere erlaubte Felder
+        const allowedFields = ['id', 'preis', 'rating', 'datum', 'isbn'];
+        if (!allowedFields.includes(field)) {
+            this.#logger.debug(
+                '#buildOrderBy: ungueltiges Sortierfeld "%s"',
+                field,
+            );
+            return { id: 'asc' };
+        }
+
+        return { [field]: sortDirection };
     }
 
     #createSlice(

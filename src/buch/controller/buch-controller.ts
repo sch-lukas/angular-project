@@ -103,6 +103,9 @@ export class BuchQuery implements Suchparameter {
     declare readonly titel?: string;
 
     @ApiProperty({ required: false })
+    declare readonly sort?: string;
+
+    @ApiProperty({ required: false })
     declare size?: string;
 
     @ApiProperty({ required: false })
