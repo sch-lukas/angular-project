@@ -7,6 +7,7 @@ import {
     BUCH_BY_ID_QUERY,
     BUECHER_QUERY,
     CREATE_BUCH_MUTATION,
+    RELATED_BUECHER_QUERY,
 } from './graphql-queries';
 
 export interface BuchItem {
@@ -99,11 +100,17 @@ export class BuchApiService {
         // Page-Parameter für GraphQL: GraphQL-Seiten sind 1-basiert in der API
         const pageVar = (params?.page ?? 0) + 1; // 1-based
         const sizeVar = params?.size ?? 10;
+        // Build sort parameter for backend: "preis,asc" or "preis,desc"
+        const sortVar = params?.sortierung
+            ? params.sortierung === 'preisAsc'
+                ? 'preis,asc'
+                : 'preis,desc'
+            : undefined;
 
         return executeGraphQL<{ buecher: { content: BuchItem[]; page: any } }>(
             this.http,
             BUECHER_QUERY,
-            { suchparameter, page: pageVar, size: sizeVar },
+            { suchparameter, page: pageVar, size: sizeVar, sort: sortVar },
         ).pipe(
             map((response) => {
                 // GraphQL-Fehler prüfen
@@ -127,13 +134,9 @@ export class BuchApiService {
                     totalPages: Math.ceil(content.length / sizeVar),
                 };
 
-                // Falls Sortierung gewünscht, sortiere client-seitig (Backend unterstützt aktuell kein sort-Parameter)
-                const finalContent = params?.sortierung
-                    ? this.sortBuecher(content, params.sortierung)
-                    : content;
-
+                // Sortierung erfolgt jetzt server-seitig via sort-Parameter
                 return {
-                    content: finalContent,
+                    content,
                     page: {
                         number: pageInfo.number,
                         size: pageInfo.size,
@@ -143,24 +146,6 @@ export class BuchApiService {
                 };
             }),
         );
-    }
-
-    /**
-     * Sortiert Bücher nach Preis
-     */
-    private sortBuecher(
-        buecher: BuchItem[],
-        sortierung: 'preisAsc' | 'preisDesc',
-    ): BuchItem[] {
-        const sorted = [...buecher];
-        sorted.sort((a, b) => {
-            const preisA = a.preis ?? 0;
-            const preisB = b.preis ?? 0;
-            return sortierung === 'preisAsc'
-                ? preisA - preisB
-                : preisB - preisA;
-        });
-        return sorted;
     }
 
     /**
@@ -251,6 +236,63 @@ export class BuchApiService {
 
                 // void zurückgeben (Signatur beibehalten)
                 return undefined as any;
+            }),
+        );
+    }
+
+    /**
+     * Lädt ähnliche/verwandte Bücher basierend auf Art und Schlagwörtern
+     * @param currentBuchId ID des aktuellen Buchs (wird aus Ergebnissen ausgeschlossen)
+     * @param art Buch-Art für Filter (optional)
+     * @param maxResults Maximale Anzahl Ergebnisse (default: 10)
+     * @returns Observable mit Array ähnlicher Bücher
+     */
+    getRelated(
+        currentBuchId: number,
+        art?: 'EPUB' | 'HARDCOVER' | 'PAPERBACK',
+        maxResults = 10,
+    ): Observable<BuchItem[]> {
+        const suchparameter: any = {};
+
+        // Filter nach gleicher Art wenn vorhanden
+        if (art) {
+            suchparameter.art = art;
+        }
+
+        return executeGraphQL<{ buecher: { content: BuchItem[] } }>(
+            this.http,
+            RELATED_BUECHER_QUERY,
+            { suchparameter, size: maxResults + 5 }, // +5 weil wir aktuelles Buch rausfiltern
+        ).pipe(
+            map((response) => {
+                if (response.errors && response.errors.length > 0) {
+                    const errorMsg = response.errors
+                        .map((e) => e.message)
+                        .join(', ');
+                    throw new Error(`GraphQL-Fehler: ${errorMsg}`);
+                }
+
+                if (!response.data?.buecher) {
+                    return [];
+                }
+
+                const buecher = response.data.buecher.content ?? [];
+
+                // Aktuelles Buch ausschließen und auf maxResults begrenzen
+                const filtered = buecher
+                    .filter((b) => b.id !== currentBuchId)
+                    .slice(0, maxResults);
+
+                // Rabatt konvertieren falls vorhanden
+                filtered.forEach((buch) => {
+                    const rabattValue = (buch as any).rabatt;
+                    if (typeof rabattValue === 'string') {
+                        const m = /^([\d.]+)/.exec(rabattValue);
+                        (buch as any).rabatt = m ? Number.parseFloat(m[1]) : 0;
+                    }
+                });
+
+                return filtered;
             }),
         );
     }

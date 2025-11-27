@@ -202,7 +202,8 @@ export class BuchService {
                 `Keine Buecher gefunden: ${JSON.stringify(suchparameter)}, Seite ${pageable.number}}`,
             );
         }
-        const totalElements = await this.count();
+        // Zähle nur die gefilterten Bücher, nicht alle
+        const totalElements = await this.#prisma.buch.count({ where });
         return this.#createSlice(buecher, totalElements);
     }
 

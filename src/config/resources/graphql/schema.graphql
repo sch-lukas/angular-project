@@ -22,7 +22,12 @@ schema {
 
 "Funktionen, um Bücherdaten zu lesen"
 type Query {
-  buecher(suchparameter: SuchparameterInput, page: Int, size: Int): BuchPage
+  buecher(
+    suchparameter: SuchparameterInput
+    page: Int
+    size: Int
+    sort: String
+  ): BuchPage
 
   buch(id: ID!): Buch
 }
