@@ -22,7 +22,7 @@ schema {
 
 "Funktionen, um Bücherdaten zu lesen"
 type Query {
-  buecher(suchparameter: SuchparameterInput): [Buch!]
+  buecher(suchparameter: SuchparameterInput, page: Int, size: Int): BuchPage
 
   buch(id: ID!): Buch
 }
@@ -102,6 +102,20 @@ input BuchInput {
   schlagwoerter: [String]
   titel: TitelInput!
   abbildungen: [AbbildungInput!]
+}
+
+"Seiten-Informationen für eine Page-Antwort"
+type PageInfo {
+  size: Int!
+  number: Int!
+  totalElements: Int!
+  totalPages: Int!
+}
+
+"Paged-Resultat für Bücher"
+type BuchPage {
+  content: [Buch!]!
+  page: PageInfo!
 }
 
 "Generierte ID bei erfolgreichem Neuanlegen"

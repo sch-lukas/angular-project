@@ -69,9 +69,14 @@ export class BuchQueryResolver {
     @Public()
     async find(
         @Args() input: SuchparameterInput | undefined,
-    ): Promise<BuchMitTitel[]> {
+        @Args('page') page?: number,
+        @Args('size') size?: number,
+    ): Promise<import('../controller/page.js').Page<Readonly<BuchMitTitel>>> {
         this.#logger.debug('find: input=%s', JSON.stringify(input));
-        const pageable = createPageable({});
+        const pageable = createPageable({
+            number: page?.toString(),
+            size: size?.toString(),
+        });
         const suchparameter = input?.suchparameter;
         if (suchparameter !== undefined) {
             const { lieferbar } = suchparameter;
@@ -84,7 +89,20 @@ export class BuchQueryResolver {
         const buecherSlice: Readonly<Slice<Readonly<BuchMitTitel>>> =
             await this.#service.find(suchparameter as any, pageable); // NOSONAR
         this.#logger.debug('find: buecherSlice=%o', buecherSlice);
-        return buecherSlice.content;
+
+        // Erzeuge Page-Objekt analog zur REST-API
+        const { content, totalElements } = buecherSlice;
+        const { size: pSize, number: pNumber } = pageable;
+        const pageObj = {
+            content,
+            page: {
+                size: pSize,
+                number: pNumber,
+                totalElements,
+                totalPages: Math.ceil(totalElements / pSize),
+            },
+        };
+        return pageObj as any;
     }
 
     @ResolveField('rabatt')

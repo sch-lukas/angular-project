@@ -35,6 +35,7 @@ export type Suchparameter = {
     readonly java?: string;
     readonly python?: string;
     readonly titel?: string;
+    readonly sort?: string;
 };
 
 // gueltige Namen fuer die Suchparameter
@@ -49,4 +50,5 @@ export const suchparameterNamen = [
     'homepage',
     'schlagwoerter',
     'titel',
+    'sort',
 ];

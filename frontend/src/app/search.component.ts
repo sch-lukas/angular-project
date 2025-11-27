@@ -1,12 +1,21 @@
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
 
 @Component({
     selector: 'app-search',
     standalone: true,
-    imports: [CommonModule, NgFor, NgIf, FormsModule],
+    imports: [
+        CommonModule,
+        NgFor,
+        NgIf,
+        FormsModule,
+        RouterLink,
+        NgbPagination,
+    ],
     template: `
         <div style="max-width: 1000px; margin: 0 auto;">
             <h1>Suche</h1>
@@ -63,18 +72,18 @@ import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
                                 type="radio"
                                 name="sortierung"
                                 [(ngModel)]="formData.sortierung"
-                                value="asc"
+                                value="preisAsc"
                             />
-                            ID aufsteigend
+                            Preis aufsteigend
                         </label>
                         <label>
                             <input
                                 type="radio"
                                 name="sortierung"
                                 [(ngModel)]="formData.sortierung"
-                                value="desc"
+                                value="preisDesc"
                             />
-                            ID absteigend
+                            Preis absteigend
                         </label>
                     </div>
                 </div>
@@ -127,8 +136,13 @@ import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
                             >
                                 ID
                             </th>
-                            <th style="text-align: left; padding: 8px;">
+                            <th
+                                style="text-align: left; padding: 8px; border-right: 1px solid #ddd;"
+                            >
                                 Titel / ISBN
+                            </th>
+                            <th style="text-align: left; padding: 8px;">
+                                Preis
                             </th>
                         </tr>
                     </thead>
@@ -140,12 +154,34 @@ import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
                             <td
                                 style="padding: 8px; border-right: 1px solid #ddd; border-bottom: 1px solid #eee;"
                             >
-                                {{ b.id }}
+                                <a
+                                    [routerLink]="['/detail', b.id]"
+                                    style="color: #007bff; text-decoration: none; font-weight: 600;"
+                                    >{{ b.id }}</a
+                                >
+                            </td>
+                            <td
+                                style="padding: 8px; border-right: 1px solid #ddd; border-bottom: 1px solid #eee;"
+                            >
+                                <a
+                                    [routerLink]="['/detail', b.id]"
+                                    style="color: #007bff; text-decoration: none;"
+                                >
+                                    {{ b.titel?.titel || b.isbn || '–' }}
+                                </a>
                             </td>
                             <td
                                 style="padding: 8px; border-bottom: 1px solid #eee;"
                             >
-                                {{ b.titel?.titel || b.isbn || '–' }}
+                                {{
+                                    b.preis != null
+                                        ? (b.preis
+                                          | currency
+                                              : 'EUR'
+                                              : 'symbol'
+                                              : '1.2-2')
+                                        : '–'
+                                }}
                             </td>
                         </tr>
                     </tbody>
@@ -158,45 +194,33 @@ import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
                     Keine Einträge gefunden.
                 </div>
 
-                <!-- Pagination Controls -->
+                <!-- NG Bootstrap Pagination -->
                 <div
                     *ngIf="items && items.length > 0 && totalPages > 1"
-                    style="margin-top: 20px; display: flex; align-items: center; justify-content: space-between; padding: 12px; background-color: #f5f5f5; border-radius: 4px;"
+                    style="margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 12px;"
                 >
-                    <button
-                        (click)="prevPage()"
-                        [disabled]="currentPage === 0"
-                        style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;"
-                        [style.opacity]="currentPage === 0 ? '0.5' : '1'"
-                        [style.cursor]="
-                            currentPage === 0 ? 'not-allowed' : 'pointer'
-                        "
+                    <ngb-pagination
+                        [(page)]="ngbPage"
+                        [pageSize]="pageSize"
+                        [collectionSize]="totalElements"
+                        [maxSize]="5"
+                        [rotate]="true"
+                        [boundaryLinks]="true"
+                        (pageChange)="onPageChange($event)"
+                        aria-label="Seitennavigation"
+                    ></ngb-pagination>
+                    <span
+                        style="font-weight: 600; color: #666; font-size: 0.9em;"
                     >
-                        ← Zurück
-                    </button>
-
-                    <span style="font-weight: 600; color: #333;">
-                        Seite {{ currentPage + 1 }} von {{ totalPages }} ({{
-                            totalElements
+                        Zeige {{ currentPage * pageSize + 1 }} bis
+                        {{
+                            Math.min(
+                                (currentPage + 1) * pageSize,
+                                totalElements
+                            )
                         }}
-                        Einträge insgesamt)
+                        von {{ totalElements }} Einträgen
                     </span>
-
-                    <button
-                        (click)="nextPage()"
-                        [disabled]="currentPage >= totalPages - 1"
-                        style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;"
-                        [style.opacity]="
-                            currentPage >= totalPages - 1 ? '0.5' : '1'
-                        "
-                        [style.cursor]="
-                            currentPage >= totalPages - 1
-                                ? 'not-allowed'
-                                : 'pointer'
-                        "
-                    >
-                        Weiter →
-                    </button>
                 </div>
             </div>
         </div>
@@ -212,12 +236,14 @@ export class SearchComponent implements OnInit {
     pageSize = 10;
     totalPages = 0;
     totalElements = 0;
+    ngbPage = 1; // NG Bootstrap verwendet 1-basierte Seiten
+    Math = Math; // Für Template-Zugriff
     private cachedTotalForFilter?: number; // Gespeicherte echte Gesamtanzahl bei Filtern
 
     formData = {
         suchtext: '',
         ratingFilter: '',
-        sortierung: 'asc',
+        sortierung: 'preisAsc',
         nurMitRating: false,
     };
 
@@ -241,11 +267,17 @@ export class SearchComponent implements OnInit {
         size: number;
         titel?: string;
         rating?: number;
+        sortierung?: 'preisAsc' | 'preisDesc';
     } {
         const params: any = {
             page: this.currentPage,
             size: this.pageSize,
         };
+
+        // Sortierung (nur wenn explizit gesetzt)
+        if (this.formData.sortierung) {
+            params.sortierung = this.formData.sortierung;
+        }
 
         // Titel-Suche (Backend unterstützt titel-Parameter)
         const suchtext = (this.formData.suchtext || '').trim();
@@ -272,19 +304,32 @@ export class SearchComponent implements OnInit {
         this.items = null;
 
         try {
-            // Suchparameter über zentrale Funktion bauen
-            const params = this.buildSearchParams();
-            const hasFilter = !!params.rating || !!params.titel;
+            const hasFilter =
+                !!this.formData.ratingFilter ||
+                !!this.formData.suchtext?.trim();
 
             // Bei Filtern und erster Seite: Zähle erstmal alle mit size=100
             if (resetPage && hasFilter) {
-                const countParams = { ...params, page: 0, size: 100 };
+                const countParams = {
+                    page: 0,
+                    size: 100,
+                    ...(this.formData.suchtext?.trim() && {
+                        titel: this.formData.suchtext.trim(),
+                    }),
+                    ...(this.formData.ratingFilter && {
+                        rating: Number.parseInt(this.formData.ratingFilter, 10),
+                    }),
+                };
                 this.api.list(countParams).subscribe({
                     next: (countPage: BuchPage) => {
                         const realTotal = countPage.content.length;
                         this.cachedTotalForFilter = realTotal;
+                        // Berechne totalPages vor dem ersten Laden
+                        this.totalPages = Math.ceil(realTotal / this.pageSize);
+                        this.totalElements = realTotal;
 
-                        // Lade jetzt die erste Seite normal
+                        // Jetzt mit korrekten totalPages die Suchparameter bauen
+                        const params = this.buildSearchParams();
                         this.api.list(params).subscribe({
                             next: (page: BuchPage) => {
                                 this.processPageData(page, params, realTotal);
@@ -294,6 +339,7 @@ export class SearchComponent implements OnInit {
                     },
                     error: (err) => {
                         // Fallback: Lade ohne Count
+                        const params = this.buildSearchParams();
                         this.api.list(params).subscribe({
                             next: (page: BuchPage) => {
                                 this.processPageData(
@@ -308,6 +354,7 @@ export class SearchComponent implements OnInit {
                 });
             } else {
                 // Normale Pagination oder ohne Filter
+                const params = this.buildSearchParams();
                 this.api.list(params).subscribe({
                     next: (page: BuchPage) => {
                         this.processPageData(
@@ -342,15 +389,12 @@ export class SearchComponent implements OnInit {
             );
         }
 
-        // Sortierung nach ID (clientseitig, da Backend keine sort-Parameter hat)
-        if (this.formData.sortierung === 'asc') {
-            filtered.sort((a, b) => (a.id ?? 0) - (b.id ?? 0));
-        } else {
-            filtered.sort((a, b) => (b.id ?? 0) - (a.id ?? 0));
-        }
+        // Sortierung erfolgt im Backend via sort-Parameter
+        // Keine clientseitige Sortierung mehr nötig
 
         // Pagination-Metadaten speichern
         this.currentPage = page.page.number;
+        this.ngbPage = this.currentPage + 1; // Synchronisiere NG Bootstrap Page (1-basiert)
         this.items = filtered;
 
         const hasFilter = !!params.rating || !!params.titel;
@@ -419,17 +463,9 @@ export class SearchComponent implements OnInit {
         this.isLoading = false;
     }
 
-    nextPage(): void {
-        if (this.currentPage < this.totalPages - 1) {
-            this.currentPage++;
-            this.onSearch(false);
-        }
-    }
-
-    prevPage(): void {
-        if (this.currentPage > 0) {
-            this.currentPage--;
-            this.onSearch(false);
-        }
+    onPageChange(page: number): void {
+        // NG Bootstrap verwendet 1-basierte Seiten, wir verwenden 0-basiert
+        this.currentPage = page - 1;
+        this.onSearch(false);
     }
 }
