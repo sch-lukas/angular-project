@@ -1,0 +1,233 @@
+@startuml Buchhandlung_SPA_Zustandsdiagramm
+!theme vibrant
+skinparam backgroundColor #F8F9FA
+skinparam state {
+  BackgroundColor<<new>> #10B981
+  BorderColor<<new>> #059669
+  BackgroundColor<<enhanced>> #3B82F6
+  BorderColor<<enhanced>> #2563EB
+}
+
+title Buchhandlung SPA - Zustandsdiagramm\n(Neue Features seit GitHub-Start)
+
+[*] --> Initialisierung
+
+state Initialisierung {
+  [*] --> ThemeErkannt
+  ThemeErkannt --> DarkMode : prefers-color-scheme: dark
+  ThemeErkannt --> LightMode : prefers-color-scheme: light
+  DarkMode --> ThemeGespeichert
+  LightMode --> ThemeGespeichert
+  ThemeGespeichert --> [*]
+}
+
+Initialisierung --> Startseite
+
+state Startseite <<enhanced>> {
+  [*] --> StatistikenLaden
+  StatistikenLaden --> AnimationStarten : Daten geladen
+  AnimationStarten --> CarouselsLaden
+
+  state CarouselsLaden {
+    [*] --> NeuImProgramm
+    [*] --> BeliebteeBuecher
+    [*] --> Schwabenpreis
+
+    NeuImProgramm : GraphQL Query\n(sortierung: preisDesc)
+    BeliebteeBuecher : Filter Rating >= 4
+    Schwabenpreis : Filter lieferbar\nsortierung: preisAsc
+  }
+
+  CarouselsLaden --> InteraktiveBereit
+  InteraktiveBereit --> [*]
+}
+
+Startseite --> Navigation
+
+state Navigation {
+  [*] --> RouteAuswahl
+  RouteAuswahl --> Suche
+  RouteAuswahl --> BuchDetail
+  RouteAuswahl --> Warenkorb
+  RouteAuswahl --> Merkliste
+  RouteAuswahl --> NeuesBuch
+}
+
+state Suche {
+  [*] --> SuchformularAnzeigen
+  SuchformularAnzeigen --> SucheAusfuehren : Suchkriterien eingeben
+  SucheAusfuehren --> ErgebnisseLaden : GraphQL Query
+  ErgebnisseLaden --> ErgebnisseAnzeigen
+  ErgebnisseAnzeigen --> Pagination
+  Pagination --> ErgebnisseAnzeigen : Seite wechseln
+  ErgebnisseAnzeigen --> BuchDetail : Buch auswählen
+}
+
+state BuchDetail <<enhanced>> {
+  [*] --> BuchLaden
+  BuchLaden --> DetailsAnzeigen : GraphQL getById
+
+  state DetailsAnzeigen {
+    [*] --> CoverAnzeigen
+    [*] --> ProduktinfoAnzeigen
+    [*] --> BeschreibungAnzeigen
+    [*] --> AutorBiographieAnzeigen
+    [*] --> AehnlicheBuecherLaden
+
+    CoverAnzeigen : Dynamisches SVG\n16 Farbvarianten
+    ProduktinfoAnzeigen : Preis, Rating,\nLieferbarkeit
+    BeschreibungAnzeigen : Volltext-Beschreibung\nmit Card-Design
+    AutorBiographieAnzeigen : Autor-Biographie\nmit Card-Design
+  }
+
+  DetailsAnzeigen --> InteraktionWarten
+  InteraktionWarten --> WarenkorbHinzufuegen : "In den Warenkorb"
+  InteraktionWarten --> MerklisteToggle : "Merken"
+
+  WarenkorbHinzufuegen --> WarenkorbService
+  MerklisteToggle --> MerklisteService
+}
+
+state WarenkorbService <<new>> {
+  [*] --> ItemPruefen
+  ItemPruefen --> ItemVorhanden : existiert
+  ItemPruefen --> ItemNeu : neu
+
+  ItemVorhanden --> MengeErhoehen
+  ItemNeu --> ItemHinzufuegen
+
+  MengeErhoehen --> LocalStorageSpeichern
+  ItemHinzufuegen --> LocalStorageSpeichern
+  LocalStorageSpeichern --> BehaviorSubjectUpdate
+  BehaviorSubjectUpdate --> [*]
+}
+
+state Warenkorb <<new>> {
+  [*] --> WarenkorbLaden
+  WarenkorbLaden --> LocalStorageAbrufen
+  LocalStorageAbrufen --> ItemsAnzeigen
+
+  state ItemsAnzeigen {
+    [*] --> TabelleDesktop
+    [*] --> CardsMobile
+    [*] -> GesamtpreisBerechnen
+
+    TabelleDesktop : Responsive Table\nab lg-Breakpoint
+    CardsMobile : Bootstrap Cards\nbis md-Breakpoint
+  }
+
+  ItemsAnzeigen --> InteraktionWarten
+  InteraktionWarten --> MengeAendern : +/- Button
+  InteraktionWarten --> ItemEntfernen : Entfernen
+  InteraktionWarten --> WarenkorbLeeren : Alle entfernen
+
+  MengeAendern --> WarenkorbService
+  ItemEntfernen --> WarenkorbService
+  WarenkorbLeeren --> WarenkorbService
+}
+
+state MerklisteService <<new>> {
+  [*] --> ItemPruefen
+  ItemPruefen --> ItemVorhanden : existiert
+  ItemPruefen --> ItemNeu : neu
+
+  ItemVorhanden --> ItemEntfernen : Toggle aus
+  ItemNeu --> ItemHinzufuegen : Toggle an
+
+  ItemEntfernen --> LocalStorageSpeichern
+  ItemHinzufuegen --> LocalStorageSpeichern
+  LocalStorageSpeichern --> BehaviorSubjectUpdate
+  BehaviorSubjectUpdate --> [*]
+}
+
+state Merkliste <<new>> {
+  [*] --> MerklisteLaden
+  MerklisteLaden --> LocalStorageAbrufen
+  LocalStorageAbrufen --> GridAnzeigen
+
+  state GridAnzeigen {
+    [*] --> ResponsivesGrid
+    ResponsivesGrid : col-12 col-md-6\ncol-lg-4
+    ResponsivesGrid --> BuchCards
+    BuchCards --> RatingSterne
+    BuchCards --> Preis
+  }
+
+  GridAnzeigen --> InteraktionWarten
+  InteraktionWarten --> ItemEntfernen : "Entfernen"
+  InteraktionWarten --> ZuDetails : "Details ansehen"
+
+  ItemEntfernen --> MerklisteService
+  ZuDetails --> BuchDetail
+}
+
+state NeuesBuch {
+  [*] --> FormularAnzeigen
+  FormularAnzeigen --> DatenEingeben
+  DatenEingeben --> ValidationPruefen
+  ValidationPruefen --> FormularAnzeigen : Fehler
+  ValidationPruefen --> BuchErstellen : Valid
+  BuchErstellen --> GraphQLMutation
+  GraphQLMutation --> ErfolgAnzeigen : Erfolg
+  GraphQLMutation --> FehlerAnzeigen : Fehler
+  ErfolgAnzeigen --> [*]
+  FehlerAnzeigen --> FormularAnzeigen
+}
+
+state ThemeToggle <<enhanced>> {
+  [*] --> AktuellerTheme
+  AktuellerTheme --> Toggle
+  Toggle --> DarkMode : war Light
+  Toggle --> LightMode : war Dark
+  DarkMode --> LocalStorageSpeichern
+  LightMode --> LocalStorageSpeichern
+  LocalStorageSpeichern --> CSSVariablenUpdate
+  CSSVariablenUpdate --> [*]
+}
+
+Navigation --> ThemeToggle : Theme-Button
+
+note right of Startseite
+  **Neu hinzugefügt:**
+  - Statistik-Animation
+  - 3 Buch-Carousels
+  - Horizontales Scrolling
+  - Responsive Design
+end note
+
+note right of BuchDetail
+  **Neu hinzugefügt:**
+  - Beschreibungs-Sektion
+  - Autor-Biographie
+  - Ähnliche Bücher Carousel
+  - Card-Design mit Gradient
+  - Mobile-Optimierung
+end note
+
+note right of WarenkorbService
+  **Vollständig neu:**
+  - BehaviorSubject State
+  - localStorage Persistenz
+  - Item-Management
+  - Mengen-Verwaltung
+  - Preis-Berechnung
+end note
+
+note right of MerklisteService
+  **Vollständig neu:**
+  - Toggle-Funktion
+  - localStorage Persistenz
+  - BehaviorSubject State
+  - Synchronisation
+end note
+
+note right of ThemeToggle
+  **Neu implementiert:**
+  - Dark/Light Mode
+  - System-Präferenz
+  - localStorage Cache
+  - CSS Custom Properties
+  - Alle Komponenten
+end note
+
+@enduml
