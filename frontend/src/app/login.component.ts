@@ -86,14 +86,6 @@ import { AuthService } from './auth.service';
                             }}
                         </button>
                     </div>
-
-                    <!-- Demo-Hinweis -->
-                    <div class="demo-hint">
-                        <small>
-                            <strong>Demo-Login:</strong> Benutzername: admin,
-                            Passwort: p
-                        </small>
-                    </div>
                 </form>
             </div>
         </div>

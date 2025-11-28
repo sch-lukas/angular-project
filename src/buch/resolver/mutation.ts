@@ -135,6 +135,9 @@ export class BuchMutationResolver {
             datum: buchDTO.datum ?? null,
             homepage: buchDTO.homepage ?? null,
             schlagwoerter: buchDTO.schlagwoerter ?? [],
+            beschreibung: buchDTO.beschreibung ?? null,
+            autor: buchDTO.autor ?? null,
+            autorBiographie: buchDTO.autorBiographie ?? null,
             titel: {
                 create: {
                     titel: buchDTO.titel.titel,
