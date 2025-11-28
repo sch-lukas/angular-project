@@ -7,14 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='550.6' y='515.7' width='50.1' height='72.0' fill='#0369A1' fill-opacity='0.07' transform='rotate(5.2 550.6 515.7)'/><rect x='126.5' y='656.3' width='87.3' height='87.6' fill='#0369A1' fill-opacity='0.07' transform='rotate(6.5 126.5 656.3)'/><rect x='288.9' y='450.5' width='108.3' height='116.3' fill='#0369A1' fill-opacity='0.07' transform='rotate(6.6 288.9 450.5)'/><rect x='243.5' y='816.9' width='61.3' height='159.5' fill='#0369A1' fill-opacity='0.07' transform='rotate(8.3 243.5 816.9)'/><rect x='520.9' y='466.0' width='92.3' height='162.9' fill='#0369A1' fill-opacity='0.07' transform='rotate(-5.9 520.9 466.0)'/><rect x='237.2' y='156.0' width='79.0' height='64.4' fill='#0369A1' fill-opacity='0.07' transform='rotate(-5.7 237.2 156.0)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#0369A1'/>
+
+  <rect x='58' y='66' width='96' height='149' fill='#D97706' fill-opacity='0.07' transform='rotate(0.9 58 66)'/><rect x='189' y='724' width='111' height='93' fill='#D97706' fill-opacity='0.07' transform='rotate(2.7 189 724)'/><rect x='283' y='316' width='167' height='45' fill='#D97706' fill-opacity='0.07' transform='rotate(7.6 283 316)'/><rect x='402' y='250' width='66' height='157' fill='#D97706' fill-opacity='0.07' transform='rotate(7.4 402 250)'/><rect x='226' y='362' width='104' height='50' fill='#D97706' fill-opacity='0.07' transform='rotate(-6 226 362)'/><rect x='122' y='855' width='176' height='171' fill='#D97706' fill-opacity='0.07' transform='rotate(4.7 122 855)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#D97706'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>Virale Netze</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>Wie Pandemien entstehen</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Meisterwerk Nr. 1137</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Leicht verständlich</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#0369A1' font-family='Arial, sans-serif'>von Prof. Alina Vogt</text>
-  <text x='88' y='820' font-size='20' fill='#0369A1' font-family='Arial, sans-serif'>wissenschaft-gesundheit</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#D97706' font-family='Arial, sans-serif'>von Michael Weber</text>
+  <text x='88' y='820' font-size='20' fill='#D97706' font-family='Arial, sans-serif'>Kochen</text>
 </svg>

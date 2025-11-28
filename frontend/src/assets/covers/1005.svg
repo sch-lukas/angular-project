@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='552.4' y='477.0' width='104.8' height='45.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(0.4 552.4 477.0)'/><rect x='317.3' y='604.6' width='158.4' height='114.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.9 317.3 604.6)'/><rect x='481.4' y='363.7' width='169.0' height='172.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(0.5 481.4 363.7)'/><rect x='344.8' y='701.2' width='173.2' height='132.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.2 344.8 701.2)'/><rect x='375.4' y='339.9' width='96.7' height='57.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.4 375.4 339.9)'/><rect x='474.4' y='205.7' width='48.7' height='149.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(7.4 474.4 205.7)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+
+  <rect x='593' y='832' width='136' height='125' fill='#EA580C' fill-opacity='0.07' transform='rotate(-5.4 593 832)'/><rect x='253' y='217' width='127' height='145' fill='#EA580C' fill-opacity='0.07' transform='rotate(5.3 253 217)'/><rect x='537' y='74' width='65' height='73' fill='#EA580C' fill-opacity='0.07' transform='rotate(7.2 537 74)'/><rect x='206' y='118' width='68' height='67' fill='#EA580C' fill-opacity='0.07' transform='rotate(-5.6 206 118)'/><rect x='490' y='745' width='88' height='145' fill='#EA580C' fill-opacity='0.07' transform='rotate(3.4 490 745)'/><rect x='231' y='842' width='51' height='151' fill='#EA580C' fill-opacity='0.07' transform='rotate(7.7 231 842)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#EA580C'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Microservices</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>in der Praxis</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Architekturen und Patterns</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Klassiker Nr. 1005</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Die ultimative Sammlung</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
-  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#EA580C' font-family='Arial, sans-serif'>von Michael Weber</text>
+  <text x='88' y='820' font-size='20' fill='#EA580C' font-family='Arial, sans-serif'>Fantasy</text>
 </svg>

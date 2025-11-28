@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='377.3' y='212.7' width='82.4' height='57.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.7 377.3 212.7)'/><rect x='179.5' y='61.6' width='53.4' height='74.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(8.2 179.5 61.6)'/><rect x='293.1' y='233.8' width='43.2' height='43.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(2.1 293.1 233.8)'/><rect x='109.5' y='383.2' width='100.5' height='105.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.5 109.5 383.2)'/><rect x='469.4' y='837.2' width='160.5' height='63.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(3.1 469.4 837.2)'/><rect x='342.2' y='422.9' width='78.9' height='80.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(6.9 342.2 422.9)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+
+  <rect x='597' y='545' width='94' height='136' fill='#4F46E5' fill-opacity='0.07' transform='rotate(-0.2 597 545)'/><rect x='236' y='404' width='160' height='70' fill='#4F46E5' fill-opacity='0.07' transform='rotate(8.3 236 404)'/><rect x='491' y='455' width='130' height='78' fill='#4F46E5' fill-opacity='0.07' transform='rotate(-3.8 491 455)'/><rect x='307' y='253' width='123' height='162' fill='#4F46E5' fill-opacity='0.07' transform='rotate(2.3 307 253)'/><rect x='476' y='810' width='143' height='122' fill='#4F46E5' fill-opacity='0.07' transform='rotate(-4.2 476 810)'/><rect x='383' y='530' width='125' height='65' fill='#4F46E5' fill-opacity='0.07' transform='rotate(4.7 383 530)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#4F46E5'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Linux</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>Administration</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Server betreiben</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Geheimnisse von 1026</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Fundiertes Fachwissen</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
-  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#4F46E5' font-family='Arial, sans-serif'>von Julia Wolf</text>
+  <text x='88' y='820' font-size='20' fill='#4F46E5' font-family='Arial, sans-serif'>Reisen</text>
 </svg>

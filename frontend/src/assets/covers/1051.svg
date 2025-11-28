@@ -7,14 +7,15 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='527.4' y='360.1' width='77.7' height='152.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-6.5 527.4 360.1)'/><rect x='566.0' y='44.2' width='165.6' height='45.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-2.4 566.0 44.2)'/><rect x='306.3' y='589.4' width='155.2' height='121.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(6.7 306.3 589.4)'/><rect x='270.1' y='136.0' width='53.0' height='132.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.1 270.1 136.0)'/><rect x='331.8' y='407.0' width='128.0' height='151.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-5.6 331.8 407.0)'/><rect x='236.7' y='769.9' width='116.3' height='152.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.6 236.7 769.9)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+
+  <rect x='372' y='531' width='78' height='104' fill='#059669' fill-opacity='0.07' transform='rotate(5 372 531)'/><rect x='295' y='296' width='174' height='65' fill='#059669' fill-opacity='0.07' transform='rotate(4.2 295 296)'/><rect x='322' y='282' width='160' height='87' fill='#059669' fill-opacity='0.07' transform='rotate(6.9 322 282)'/><rect x='526' y='55' width='68' height='68' fill='#059669' fill-opacity='0.07' transform='rotate(-7.1 526 55)'/><rect x='289' y='148' width='176' height='95' fill='#059669' fill-opacity='0.07' transform='rotate(3.7 289 148)'/><rect x='246' y='248' width='131' height='130' fill='#059669' fill-opacity='0.07' transform='rotate(4.5 246 248)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#059669'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>Go</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>Cloud Native Development</text>
+    <text x='80' y='110' font-size='52' font-weight='700'>Die Kunst des</text>
+    <text x='80' y='172' font-size='52' font-weight='700'>Green</text>
+    <text x='80' y='274' font-size='28' font-style='italic'>Mit vielen Beispielen</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
-  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#059669' font-family='Arial, sans-serif'>von Daniel Richter</text>
+  <text x='88' y='820' font-size='20' fill='#059669' font-family='Arial, sans-serif'>Biografie</text>
 </svg>

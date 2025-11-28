@@ -7,14 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='260.6' y='545.7' width='112.7' height='149.6' fill='#EA580C' fill-opacity='0.07' transform='rotate(-7.8 260.6 545.7)'/><rect x='386.5' y='366.0' width='92.1' height='76.2' fill='#EA580C' fill-opacity='0.07' transform='rotate(-3.7 386.5 366.0)'/><rect x='158.4' y='42.2' width='150.6' height='146.1' fill='#EA580C' fill-opacity='0.07' transform='rotate(-3.9 158.4 42.2)'/><rect x='357.9' y='349.3' width='75.0' height='60.5' fill='#EA580C' fill-opacity='0.07' transform='rotate(-6.3 357.9 349.3)'/><rect x='317.1' y='512.7' width='89.9' height='42.1' fill='#EA580C' fill-opacity='0.07' transform='rotate(-5.5 317.1 512.7)'/><rect x='344.4' y='321.6' width='100.5' height='150.8' fill='#EA580C' fill-opacity='0.07' transform='rotate(7.5 344.4 321.6)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#EA580C'/>
+
+  <rect x='550' y='509' width='72' height='175' fill='#4F46E5' fill-opacity='0.07' transform='rotate(2.8 550 509)'/><rect x='123' y='351' width='136' height='106' fill='#4F46E5' fill-opacity='0.07' transform='rotate(-5.1 123 351)'/><rect x='115' y='134' width='136' height='165' fill='#4F46E5' fill-opacity='0.07' transform='rotate(-2.9 115 134)'/><rect x='127' y='351' width='156' height='167' fill='#4F46E5' fill-opacity='0.07' transform='rotate(3.4 127 351)'/><rect x='145' y='410' width='89' height='115' fill='#4F46E5' fill-opacity='0.07' transform='rotate(-5.7 145 410)'/><rect x='462' y='537' width='171' height='84' fill='#4F46E5' fill-opacity='0.07' transform='rotate(-4.1 462 537)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#4F46E5'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>Märkte der</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>Street-Food kulinarisch</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Geheimnisse von 1074</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Fundiertes Fachwissen</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#EA580C' font-family='Arial, sans-serif'>von Soraya Bell</text>
-  <text x='88' y='820' font-size='20' fill='#EA580C' font-family='Arial, sans-serif'>reisen-kulinarik</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#4F46E5' font-family='Arial, sans-serif'>von Julia Wolf</text>
+  <text x='88' y='820' font-size='20' fill='#4F46E5' font-family='Arial, sans-serif'>Reisen</text>
 </svg>

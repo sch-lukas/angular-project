@@ -7,14 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='110.0' y='855.6' width='142.6' height='154.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(7.7 110.0 855.6)'/><rect x='533.4' y='717.1' width='104.8' height='141.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-2.8 533.4 717.1)'/><rect x='170.0' y='44.1' width='173.0' height='66.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-4.1 170.0 44.1)'/><rect x='174.8' y='350.6' width='82.0' height='58.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(2.0 174.8 350.6)'/><rect x='364.9' y='256.9' width='114.0' height='57.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(2.6 364.9 256.9)'/><rect x='273.3' y='824.3' width='149.6' height='132.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-4.0 273.3 824.3)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+
+  <rect x='377' y='823' width='106' height='59' fill='#C026D3' fill-opacity='0.07' transform='rotate(7.8 377 823)'/><rect x='384' y='244' width='79' height='119' fill='#C026D3' fill-opacity='0.07' transform='rotate(8.7 384 244)'/><rect x='282' y='135' width='106' height='174' fill='#C026D3' fill-opacity='0.07' transform='rotate(-7.2 282 135)'/><rect x='207' y='204' width='106' height='148' fill='#C026D3' fill-opacity='0.07' transform='rotate(7.2 207 204)'/><rect x='513' y='898' width='96' height='96' fill='#C026D3' fill-opacity='0.07' transform='rotate(-1.5 513 898)'/><rect x='101' y='89' width='151' height='172' fill='#C026D3' fill-opacity='0.07' transform='rotate(-8.7 101 89)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#C026D3'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>Nginx Cookbook</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>Webserver konfigurieren</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Entdecke Fuchsia</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Spannend von Anfang bis Ende</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
-  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#C026D3' font-family='Arial, sans-serif'>von Daniel Richter</text>
+  <text x='88' y='820' font-size='20' fill='#C026D3' font-family='Arial, sans-serif'>Sport</text>
 </svg>

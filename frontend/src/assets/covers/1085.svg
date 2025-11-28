@@ -7,14 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='424.2' y='308.9' width='165.5' height='117.2' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-3.9 424.2 308.9)'/><rect x='149.3' y='43.6' width='130.6' height='83.2' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-7.3 149.3 43.6)'/><rect x='578.9' y='170.9' width='174.7' height='175.5' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-5.1 578.9 170.9)'/><rect x='263.7' y='261.6' width='69.6' height='129.9' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-1.6 263.7 261.6)'/><rect x='315.0' y='845.7' width='107.9' height='62.4' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-6.4 315.0 845.7)'/><rect x='230.0' y='440.3' width='146.9' height='47.9' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(3.0 230.0 440.3)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#8B5E3C'/>
+
+  <rect x='383' y='296' width='171' height='179' fill='#EA580C' fill-opacity='0.07' transform='rotate(-3.8 383 296)'/><rect x='443' y='606' width='102' height='162' fill='#EA580C' fill-opacity='0.07' transform='rotate(-7.3 443 606)'/><rect x='407' y='696' width='107' height='101' fill='#EA580C' fill-opacity='0.07' transform='rotate(8 407 696)'/><rect x='536' y='544' width='132' height='163' fill='#EA580C' fill-opacity='0.07' transform='rotate(-8.8 536 544)'/><rect x='415' y='239' width='74' height='108' fill='#EA580C' fill-opacity='0.07' transform='rotate(6.9 415 239)'/><rect x='224' y='418' width='176' height='53' fill='#EA580C' fill-opacity='0.07' transform='rotate(0.8 224 418)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#EA580C'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>Römische</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>Lektionen für Führungskräfte</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Klassiker Nr. 1085</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Die ultimative Sammlung</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#8B5E3C' font-family='Arial, sans-serif'>von Prof. Daniel Krämer</text>
-  <text x='88' y='820' font-size='20' fill='#8B5E3C' font-family='Arial, sans-serif'>geschichte-politik</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#EA580C' font-family='Arial, sans-serif'>von Michael Weber</text>
+  <text x='88' y='820' font-size='20' fill='#EA580C' font-family='Arial, sans-serif'>Fantasy</text>
 </svg>

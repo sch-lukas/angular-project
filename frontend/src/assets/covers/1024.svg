@@ -7,18 +7,15 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <g fill='#7C3AED' fill-opacity='0.12'>
-                    <circle cx='270' cy='420' r='150'/>
-                    <circle cx='400' cy='500' r='120' fill-opacity='0.18'/>
-                    <circle cx='350' cy='350' r='80' fill-opacity='0.25'/>
-                </g>
-  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+
+  <rect x='77' y='547' width='164' height='154' fill='#E11D48' fill-opacity='0.07' transform='rotate(2.9 77 547)'/><rect x='569' y='124' width='179' height='115' fill='#E11D48' fill-opacity='0.07' transform='rotate(1 569 124)'/><rect x='401' y='640' width='75' height='61' fill='#E11D48' fill-opacity='0.07' transform='rotate(-6.2 401 640)'/><rect x='336' y='129' width='149' height='106' fill='#E11D48' fill-opacity='0.07' transform='rotate(2.9 336 129)'/><rect x='589' y='484' width='136' height='47' fill='#E11D48' fill-opacity='0.07' transform='rotate(4.4 589 484)'/><rect x='205' y='414' width='97' height='170' fill='#E11D48' fill-opacity='0.07' transform='rotate(-7.2 205 414)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#E11D48'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>Git für Profis</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>Versionskontrolle meistern</text>
+    <text x='80' y='110' font-size='52' font-weight='700'>Das große Buch</text>
+    <text x='80' y='172' font-size='52' font-weight='700'>1024</text>
+    <text x='80' y='274' font-size='28' font-style='italic'>Ein unvergessliches Leseerlebnis</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
-  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#E11D48' font-family='Arial, sans-serif'>von Maria Schneider</text>
+  <text x='88' y='820' font-size='20' fill='#E11D48' font-family='Arial, sans-serif'>Sachbuch</text>
 </svg>

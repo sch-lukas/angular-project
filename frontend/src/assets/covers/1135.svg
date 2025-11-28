@@ -7,14 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='162.1' y='482.7' width='102.1' height='44.5' fill='#15803D' fill-opacity='0.07' transform='rotate(-8.8 162.1 482.7)'/><rect x='87.1' y='762.8' width='87.0' height='80.9' fill='#15803D' fill-opacity='0.07' transform='rotate(7.8 87.1 762.8)'/><rect x='417.1' y='754.6' width='74.7' height='144.1' fill='#15803D' fill-opacity='0.07' transform='rotate(5.1 417.1 754.6)'/><rect x='392.8' y='713.0' width='141.7' height='160.5' fill='#15803D' fill-opacity='0.07' transform='rotate(8.2 392.8 713.0)'/><rect x='234.7' y='59.4' width='128.2' height='43.0' fill='#15803D' fill-opacity='0.07' transform='rotate(-8.0 234.7 59.4)'/><rect x='457.7' y='639.2' width='150.0' height='121.7' fill='#15803D' fill-opacity='0.07' transform='rotate(4.3 457.7 639.2)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#15803D'/>
+
+  <rect x='138' y='850' width='113' height='143' fill='#DB2777' fill-opacity='0.07' transform='rotate(-7.1 138 850)'/><rect x='76' y='898' width='96' height='110' fill='#DB2777' fill-opacity='0.07' transform='rotate(-5.6 76 898)'/><rect x='461' y='470' width='99' height='119' fill='#DB2777' fill-opacity='0.07' transform='rotate(-8.9 461 470)'/><rect x='341' y='381' width='109' height='94' fill='#DB2777' fill-opacity='0.07' transform='rotate(5.9 341 381)'/><rect x='334' y='856' width='162' height='83' fill='#DB2777' fill-opacity='0.07' transform='rotate(-3 334 856)'/><rect x='54' y='316' width='116' height='82' fill='#DB2777' fill-opacity='0.07' transform='rotate(0.8 54 316)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#DB2777'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>Rewilding</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>Wälder gewinnen zurück</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Entdecke Pink</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Spannend von Anfang bis Ende</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#15803D' font-family='Arial, sans-serif'>von Greta Lind</text>
-  <text x='88' y='820' font-size='20' fill='#15803D' font-family='Arial, sans-serif'>nachhaltigkeit-umwelt</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#DB2777' font-family='Arial, sans-serif'>von Daniel Richter</text>
+  <text x='88' y='820' font-size='20' fill='#DB2777' font-family='Arial, sans-serif'>Krimi</text>
 </svg>

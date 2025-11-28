@@ -7,15 +7,15 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='528.5' y='392.2' width='159.8' height='124.1' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(4.9 528.5 392.2)'/><rect x='289.1' y='574.9' width='146.6' height='68.3' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-6.0 289.1 574.9)'/><rect x='471.5' y='664.5' width='152.2' height='164.9' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-5.5 471.5 664.5)'/><rect x='142.8' y='425.2' width='115.1' height='140.0' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(7.0 142.8 425.2)'/><rect x='247.3' y='219.8' width='114.2' height='96.0' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-3.9 247.3 219.8)'/><rect x='87.8' y='487.8' width='174.6' height='122.8' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-6.4 87.8 487.8)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#0B5CAD'/>
+
+  <rect x='369' y='262' width='148' height='130' fill='#059669' fill-opacity='0.07' transform='rotate(-2.6 369 262)'/><rect x='316' y='525' width='149' height='97' fill='#059669' fill-opacity='0.07' transform='rotate(8.7 316 525)'/><rect x='311' y='762' width='174' height='122' fill='#059669' fill-opacity='0.07' transform='rotate(0.7 311 762)'/><rect x='517' y='426' width='96' height='102' fill='#059669' fill-opacity='0.07' transform='rotate(5.5 517 426)'/><rect x='334' y='342' width='140' height='118' fill='#059669' fill-opacity='0.07' transform='rotate(6.3 334 342)'/><rect x='349' y='776' width='60' height='93' fill='#059669' fill-opacity='0.07' transform='rotate(-7 349 776)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#059669'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Microservices</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>entwerfen</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Domänen sauber schneiden</text>
+    <text x='80' y='110' font-size='52' font-weight='700'>Die Kunst des</text>
+    <text x='80' y='172' font-size='52' font-weight='700'>Green</text>
+    <text x='80' y='274' font-size='28' font-style='italic'>Mit vielen Beispielen</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#0B5CAD' font-family='Arial, sans-serif'>von Luca Meier</text>
-  <text x='88' y='820' font-size='20' fill='#0B5CAD' font-family='Arial, sans-serif'>it-software</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#059669' font-family='Arial, sans-serif'>von Daniel Richter</text>
+  <text x='88' y='820' font-size='20' fill='#059669' font-family='Arial, sans-serif'>Biografie</text>
 </svg>

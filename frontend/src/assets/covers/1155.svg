@@ -7,15 +7,15 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='486.6' y='675.5' width='139.0' height='83.9' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-3.1 486.6 675.5)'/><rect x='220.5' y='558.2' width='145.5' height='56.8' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-6.5 220.5 558.2)'/><rect x='549.8' y='70.8' width='137.3' height='78.4' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(1.3 549.8 70.8)'/><rect x='235.5' y='239.6' width='131.0' height='62.5' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-2.0 235.5 239.6)'/><rect x='127.4' y='609.4' width='81.2' height='137.4' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(5.5 127.4 609.4)'/><rect x='506.1' y='189.6' width='154.9' height='120.5' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-6.4 506.1 189.6)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#0B5CAD'/>
+
+  <rect x='92' y='173' width='163' height='106' fill='#0D9488' fill-opacity='0.07' transform='rotate(-6.2 92 173)'/><rect x='184' y='760' width='87' height='57' fill='#0D9488' fill-opacity='0.07' transform='rotate(7.5 184 760)'/><rect x='76' y='406' width='115' height='86' fill='#0D9488' fill-opacity='0.07' transform='rotate(-0.3 76 406)'/><rect x='140' y='250' width='134' height='77' fill='#0D9488' fill-opacity='0.07' transform='rotate(-4.5 140 250)'/><rect x='356' y='854' width='111' height='131' fill='#0D9488' fill-opacity='0.07' transform='rotate(7.7 356 854)'/><rect x='443' y='742' width='133' height='139' fill='#0D9488' fill-opacity='0.07' transform='rotate(-3.8 443 742)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0D9488'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='48' font-weight='700'>Moderne DevOps</text>
-    <text x='80' y='166' font-size='48' font-weight='700'>Pipelines –</text>
-    <text x='80' y='252' font-size='28' font-style='italic'>CI/CD mit Vertrauen · Expertise</text>
+    <text x='80' y='110' font-size='52' font-weight='700'>Die Kunst des</text>
+    <text x='80' y='172' font-size='52' font-weight='700'>Teal</text>
+    <text x='80' y='274' font-size='28' font-style='italic'>Mit vielen Beispielen</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#0B5CAD' font-family='Arial, sans-serif'>von Dr. Helena Schwarz</text>
-  <text x='88' y='820' font-size='20' fill='#0B5CAD' font-family='Arial, sans-serif'>it-software</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0D9488' font-family='Arial, sans-serif'>von Daniel Richter</text>
+  <text x='88' y='820' font-size='20' fill='#0D9488' font-family='Arial, sans-serif'>Geschichte</text>
 </svg>

@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <path d='M160 640c42-150 170-250 320-260-75 32-118 86-128 129 48-22 96-27 150-16-64 37-100 74-116 126 16 5 48-5 74-11-32 58-80 100-144 121-42 16-102 26-156 21 43-31 64-63 75-105-27 11-59 17-75 0z' fill='#6D28D9' fill-opacity='0.18'/>
-  <rect x='0' y='0' width='48' height='900' fill='#6D28D9'/>
+
+  <rect x='426' y='438' width='60' height='90' fill='#0284C7' fill-opacity='0.07' transform='rotate(3.6 426 438)'/><rect x='243' y='587' width='55' height='176' fill='#0284C7' fill-opacity='0.07' transform='rotate(3.8 243 587)'/><rect x='452' y='821' width='85' height='120' fill='#0284C7' fill-opacity='0.07' transform='rotate(3.8 452 821)'/><rect x='360' y='160' width='100' height='56' fill='#0284C7' fill-opacity='0.07' transform='rotate(0.1 360 160)'/><rect x='260' y='248' width='141' height='65' fill='#0284C7' fill-opacity='0.07' transform='rotate(-8 260 248)'/><rect x='361' y='585' width='54' height='117' fill='#0284C7' fill-opacity='0.07' transform='rotate(1.4 361 585)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0284C7'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Der letzte</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>Drachenrufer</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Feuer im Herzen</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Wissen kompakt 1092</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Praxisnah erklärt</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#6D28D9' font-family='Arial, sans-serif'>von Jonas Adler</text>
-  <text x='88' y='820' font-size='20' fill='#6D28D9' font-family='Arial, sans-serif'>fantasy-sci-fi</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0284C7' font-family='Arial, sans-serif'>von Maria Schneider</text>
+  <text x='88' y='820' font-size='20' fill='#0284C7' font-family='Arial, sans-serif'>Technologie</text>
 </svg>

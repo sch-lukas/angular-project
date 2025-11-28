@@ -7,15 +7,15 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='330.2' y='249.7' width='75.5' height='89.5' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(2.9 330.2 249.7)'/><rect x='121.2' y='351.5' width='116.9' height='165.4' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-1.1 121.2 351.5)'/><rect x='81.0' y='825.6' width='154.3' height='167.6' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(0.1 81.0 825.6)'/><rect x='406.3' y='335.7' width='75.3' height='170.6' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-7.5 406.3 335.7)'/><rect x='246.2' y='116.7' width='57.6' height='94.0' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-2.6 246.2 116.7)'/><rect x='350.9' y='144.4' width='129.2' height='174.6' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(8.6 350.9 144.4)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#0B5CAD'/>
+
+  <rect x='282' y='755' width='154' height='92' fill='#059669' fill-opacity='0.07' transform='rotate(-2.1 282 755)'/><rect x='81' y='237' width='52' height='124' fill='#059669' fill-opacity='0.07' transform='rotate(-0.4 81 237)'/><rect x='141' y='610' width='99' height='72' fill='#059669' fill-opacity='0.07' transform='rotate(5.3 141 610)'/><rect x='132' y='362' width='87' height='73' fill='#059669' fill-opacity='0.07' transform='rotate(1.4 132 362)'/><rect x='594' y='805' width='179' height='45' fill='#059669' fill-opacity='0.07' transform='rotate(-4 594 805)'/><rect x='379' y='590' width='142' height='86' fill='#059669' fill-opacity='0.07' transform='rotate(8.1 379 590)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#059669'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Kubernetes</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>verständlich</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Cluster erfolgreich betreiben</text>
+    <text x='80' y='110' font-size='52' font-weight='700'>Die Kunst des</text>
+    <text x='80' y='172' font-size='52' font-weight='700'>Green</text>
+    <text x='80' y='274' font-size='28' font-style='italic'>Mit vielen Beispielen</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#0B5CAD' font-family='Arial, sans-serif'>von Sofia Brandt</text>
-  <text x='88' y='820' font-size='20' fill='#0B5CAD' font-family='Arial, sans-serif'>it-software</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#059669' font-family='Arial, sans-serif'>von Daniel Richter</text>
+  <text x='88' y='820' font-size='20' fill='#059669' font-family='Arial, sans-serif'>Biografie</text>
 </svg>

@@ -7,14 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='252.2' y='649.8' width='125.4' height='76.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(7.0 252.2 649.8)'/><rect x='384.8' y='467.2' width='101.6' height='60.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(0.2 384.8 467.2)'/><rect x='395.3' y='238.9' width='119.0' height='51.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-4.5 395.3 238.9)'/><rect x='92.2' y='67.4' width='179.4' height='101.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(8.1 92.2 67.4)'/><rect x='222.6' y='778.4' width='111.3' height='65.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.4 222.6 778.4)'/><rect x='456.9' y='500.2' width='129.6' height='176.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.2 456.9 500.2)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+
+  <rect x='327' y='268' width='119' height='148' fill='#9333EA' fill-opacity='0.07' transform='rotate(-8.6 327 268)'/><rect x='280' y='412' width='149' height='141' fill='#9333EA' fill-opacity='0.07' transform='rotate(8.9 280 412)'/><rect x='182' y='66' width='172' height='108' fill='#9333EA' fill-opacity='0.07' transform='rotate(3 182 66)'/><rect x='231' y='151' width='111' height='91' fill='#9333EA' fill-opacity='0.07' transform='rotate(-4.5 231 151)'/><rect x='581' y='175' width='94' height='41' fill='#9333EA' fill-opacity='0.07' transform='rotate(7.9 581 175)'/><rect x='50' y='656' width='131' height='76' fill='#9333EA' fill-opacity='0.07' transform='rotate(8.7 50 656)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#9333EA'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Software-Archi…</text>
-    <text x='80' y='200' font-size='28' font-style='italic'>Patterns und Prinzipien</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Bestseller 1014</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Für Einsteiger und Profis</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
-  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#9333EA' font-family='Arial, sans-serif'>von Julia Wolf</text>
+  <text x='88' y='820' font-size='20' fill='#9333EA' font-family='Arial, sans-serif'>Musik</text>
 </svg>

@@ -7,15 +7,15 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='416.7' y='168.2' width='118.9' height='81.9' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-0.9 416.7 168.2)'/><rect x='393.8' y='295.3' width='94.9' height='41.9' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(2.9 393.8 295.3)'/><rect x='143.8' y='404.2' width='109.3' height='177.8' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-2.0 143.8 404.2)'/><rect x='385.4' y='814.1' width='89.7' height='106.0' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-5.2 385.4 814.1)'/><rect x='537.3' y='462.8' width='68.2' height='110.8' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(4.4 537.3 462.8)'/><rect x='68.7' y='813.2' width='58.3' height='97.2' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-5.2 68.7 813.2)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#0B5CAD'/>
+
+  <rect x='263' y='588' width='120' height='69' fill='#0D9488' fill-opacity='0.07' transform='rotate(7.2 263 588)'/><rect x='122' y='160' width='121' height='152' fill='#0D9488' fill-opacity='0.07' transform='rotate(5.8 122 160)'/><rect x='247' y='160' width='116' height='82' fill='#0D9488' fill-opacity='0.07' transform='rotate(8.6 247 160)'/><rect x='405' y='569' width='57' height='102' fill='#0D9488' fill-opacity='0.07' transform='rotate(7.8 405 569)'/><rect x='428' y='420' width='129' height='137' fill='#0D9488' fill-opacity='0.07' transform='rotate(-1.7 428 420)'/><rect x='93' y='109' width='129' height='84' fill='#0D9488' fill-opacity='0.07' transform='rotate(-3.9 93 109)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0D9488'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Secure Coding</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>Patterns</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>OWASP alltagstauglich</text>
+    <text x='80' y='110' font-size='52' font-weight='700'>Die Kunst des</text>
+    <text x='80' y='172' font-size='52' font-weight='700'>Teal</text>
+    <text x='80' y='274' font-size='28' font-style='italic'>Mit vielen Beispielen</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#0B5CAD' font-family='Arial, sans-serif'>von Sofia Brandt</text>
-  <text x='88' y='820' font-size='20' fill='#0B5CAD' font-family='Arial, sans-serif'>it-software</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0D9488' font-family='Arial, sans-serif'>von Daniel Richter</text>
+  <text x='88' y='820' font-size='20' fill='#0D9488' font-family='Arial, sans-serif'>Geschichte</text>
 </svg>

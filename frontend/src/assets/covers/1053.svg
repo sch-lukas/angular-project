@@ -7,14 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='181.5' y='519.9' width='77.4' height='61.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(2.4 181.5 519.9)'/><rect x='461.5' y='641.9' width='108.8' height='78.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(6.0 461.5 641.9)'/><rect x='265.8' y='331.9' width='120.1' height='53.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-4.2 265.8 331.9)'/><rect x='266.1' y='739.3' width='69.2' height='98.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-1.9 266.1 739.3)'/><rect x='557.3' y='779.3' width='100.9' height='113.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.8 557.3 779.3)'/><rect x='191.1' y='265.5' width='110.4' height='151.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(2.9 191.1 265.5)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+
+  <rect x='471' y='321' width='168' height='66' fill='#EA580C' fill-opacity='0.07' transform='rotate(-7.3 471 321)'/><rect x='318' y='767' width='89' height='130' fill='#EA580C' fill-opacity='0.07' transform='rotate(7.5 318 767)'/><rect x='318' y='461' width='163' height='149' fill='#EA580C' fill-opacity='0.07' transform='rotate(7.3 318 461)'/><rect x='419' y='629' width='125' height='46' fill='#EA580C' fill-opacity='0.07' transform='rotate(6.7 419 629)'/><rect x='148' y='129' width='136' height='135' fill='#EA580C' fill-opacity='0.07' transform='rotate(-4.3 148 129)'/><rect x='379' y='484' width='75' height='59' fill='#EA580C' fill-opacity='0.07' transform='rotate(2.6 379 484)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#EA580C'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>Kotlin for</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>Modern Android Development</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Klassiker Nr. 1053</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Die ultimative Sammlung</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
-  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#EA580C' font-family='Arial, sans-serif'>von Michael Weber</text>
+  <text x='88' y='820' font-size='20' fill='#EA580C' font-family='Arial, sans-serif'>Fantasy</text>
 </svg>

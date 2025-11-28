@@ -7,15 +7,15 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='267.8' y='51.2' width='179.9' height='56.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(6.9 267.8 51.2)'/><rect x='278.0' y='560.1' width='129.8' height='42.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(3.6 278.0 560.1)'/><rect x='250.2' y='499.3' width='142.2' height='101.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.7 250.2 499.3)'/><rect x='453.0' y='496.9' width='110.3' height='87.3' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-1.9 453.0 496.9)'/><rect x='511.2' y='594.2' width='67.1' height='65.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.7 511.2 594.2)'/><rect x='262.2' y='840.7' width='48.9' height='163.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(2.8 262.2 840.7)'/>
+
+  <rect x='423' y='195' width='77' height='168' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-1.8 423 195)'/><rect x='572' y='653' width='104' height='64' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.7 572 653)'/><rect x='515' y='192' width='75' height='59' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.3 515 192)'/><rect x='400' y='564' width='55' height='115' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-5.3 400 564)'/><rect x='323' y='300' width='131' height='109' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-4 323 300)'/><rect x='249' y='557' width='68' height='143' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.9 249 557)'/>
   <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Serverless</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>Architecture</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>FaaS und mehr</text>
+    <text x='80' y='110' font-size='52' font-weight='700'>Das große Buch</text>
+    <text x='80' y='172' font-size='52' font-weight='700'>1032</text>
+    <text x='80' y='274' font-size='28' font-style='italic'>Ein unvergessliches Leseerlebnis</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
-  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>von Maria Schneider</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>Roman</text>
 </svg>

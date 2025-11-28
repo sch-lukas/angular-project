@@ -7,14 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='72.9' y='242.7' width='49.9' height='93.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-7.6 72.9 242.7)'/><rect x='499.1' y='434.9' width='150.2' height='104.3' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-0.8 499.1 434.9)'/><rect x='139.6' y='643.7' width='102.9' height='112.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-4.1 139.6 643.7)'/><rect x='82.5' y='314.8' width='131.7' height='173.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(1.3 82.5 314.8)'/><rect x='241.4' y='613.0' width='79.3' height='80.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-7.2 241.4 613.0)'/><rect x='517.5' y='214.6' width='68.9' height='163.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(4.6 517.5 214.6)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+
+  <rect x='477' y='271' width='155' height='128' fill='#DC2626' fill-opacity='0.07' transform='rotate(8.8 477 271)'/><rect x='549' y='742' width='148' height='49' fill='#DC2626' fill-opacity='0.07' transform='rotate(5.8 549 742)'/><rect x='406' y='559' width='84' height='159' fill='#DC2626' fill-opacity='0.07' transform='rotate(-2.3 406 559)'/><rect x='459' y='451' width='115' height='171' fill='#DC2626' fill-opacity='0.07' transform='rotate(7.5 459 451)'/><rect x='383' y='469' width='170' height='116' fill='#DC2626' fill-opacity='0.07' transform='rotate(5.1 383 469)'/><rect x='597' y='742' width='88' height='71' fill='#DC2626' fill-opacity='0.07' transform='rotate(-6.6 597 742)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#DC2626'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>MongoDB</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>NoSQL-Datenbanken</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Bestseller 1022</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Für Einsteiger und Profis</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
-  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#DC2626' font-family='Arial, sans-serif'>von Julia Wolf</text>
+  <text x='88' y='820' font-size='20' fill='#DC2626' font-family='Arial, sans-serif'>Thriller</text>
 </svg>

@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='64.2' y='112.9' width='92.6' height='142.5' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-1.9 64.2 112.9)'/><rect x='291.6' y='96.7' width='158.8' height='143.2' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-0.4 291.6 96.7)'/><rect x='564.5' y='750.0' width='84.8' height='42.3' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(4.0 564.5 750.0)'/><rect x='127.1' y='641.2' width='77.3' height='61.1' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(1.8 127.1 641.2)'/><rect x='475.5' y='696.6' width='139.6' height='131.1' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-2.2 475.5 696.6)'/><rect x='96.8' y='822.2' width='83.9' height='56.6' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-1.5 96.8 822.2)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#8B5E3C'/>
+
+  <rect x='374' y='57' width='118' height='158' fill='#65A30D' fill-opacity='0.07' transform='rotate(-5.5 374 57)'/><rect x='247' y='171' width='138' height='154' fill='#65A30D' fill-opacity='0.07' transform='rotate(-8.2 247 171)'/><rect x='488' y='810' width='70' height='164' fill='#65A30D' fill-opacity='0.07' transform='rotate(1.6 488 810)'/><rect x='599' y='581' width='110' height='132' fill='#65A30D' fill-opacity='0.07' transform='rotate(5.7 599 581)'/><rect x='522' y='767' width='62' height='90' fill='#65A30D' fill-opacity='0.07' transform='rotate(6.9 522 767)'/><rect x='240' y='615' width='168' height='48' fill='#65A30D' fill-opacity='0.07' transform='rotate(5.9 240 615)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#65A30D'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Die</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>Seidenstraße –</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Globalisierung damals und heute · Expertise</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Klassiker Nr. 1157</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Die ultimative Sammlung</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#8B5E3C' font-family='Arial, sans-serif'>von Prof. Daniel Krämer</text>
-  <text x='88' y='820' font-size='20' fill='#8B5E3C' font-family='Arial, sans-serif'>geschichte-politik</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#65A30D' font-family='Arial, sans-serif'>von Michael Weber</text>
+  <text x='88' y='820' font-size='20' fill='#65A30D' font-family='Arial, sans-serif'>Kunst</text>
 </svg>

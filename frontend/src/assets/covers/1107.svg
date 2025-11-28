@@ -7,15 +7,15 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='323.4' y='174.2' width='114.1' height='95.4' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-7.5 323.4 174.2)'/><rect x='505.4' y='252.4' width='54.1' height='107.6' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(4.6 505.4 252.4)'/><rect x='576.8' y='762.0' width='42.4' height='100.6' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(6.5 576.8 762.0)'/><rect x='546.6' y='179.2' width='63.7' height='161.4' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(4.0 546.6 179.2)'/><rect x='310.4' y='211.5' width='80.3' height='108.1' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(0.0 310.4 211.5)'/><rect x='433.8' y='574.5' width='49.6' height='178.6' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(6.6 433.8 574.5)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#0B5CAD'/>
+
+  <rect x='291' y='313' width='59' height='44' fill='#0D9488' fill-opacity='0.07' transform='rotate(3.2 291 313)'/><rect x='293' y='467' width='84' height='91' fill='#0D9488' fill-opacity='0.07' transform='rotate(6.5 293 467)'/><rect x='592' y='449' width='165' height='43' fill='#0D9488' fill-opacity='0.07' transform='rotate(-4.4 592 449)'/><rect x='505' y='290' width='99' height='73' fill='#0D9488' fill-opacity='0.07' transform='rotate(4 505 290)'/><rect x='528' y='520' width='129' height='84' fill='#0D9488' fill-opacity='0.07' transform='rotate(6.6 528 520)'/><rect x='88' y='658' width='121' height='134' fill='#0D9488' fill-opacity='0.07' transform='rotate(-1 88 658)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0D9488'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>GraphQL in der</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>Praxis</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>API-Design mit Fokus</text>
+    <text x='80' y='110' font-size='52' font-weight='700'>Die Kunst des</text>
+    <text x='80' y='172' font-size='52' font-weight='700'>Teal</text>
+    <text x='80' y='274' font-size='28' font-style='italic'>Mit vielen Beispielen</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#0B5CAD' font-family='Arial, sans-serif'>von Dr. Helena Schwarz</text>
-  <text x='88' y='820' font-size='20' fill='#0B5CAD' font-family='Arial, sans-serif'>it-software</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0D9488' font-family='Arial, sans-serif'>von Daniel Richter</text>
+  <text x='88' y='820' font-size='20' fill='#0D9488' font-family='Arial, sans-serif'>Geschichte</text>
 </svg>

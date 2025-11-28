@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='479.2' y='128.6' width='61.9' height='68.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-2.5 479.2 128.6)'/><rect x='147.9' y='449.8' width='145.4' height='75.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.4 147.9 449.8)'/><rect x='504.7' y='662.1' width='133.2' height='86.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-5.8 504.7 662.1)'/><rect x='102.8' y='665.4' width='118.4' height='90.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(1.4 102.8 665.4)'/><rect x='365.6' y='160.8' width='126.1' height='107.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(7.5 365.6 160.8)'/><rect x='506.5' y='81.5' width='45.1' height='74.3' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-4.3 506.5 81.5)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+
+  <rect x='256' y='509' width='123' height='102' fill='#0284C7' fill-opacity='0.07' transform='rotate(4.7 256 509)'/><rect x='95' y='236' width='174' height='126' fill='#0284C7' fill-opacity='0.07' transform='rotate(1.1 95 236)'/><rect x='459' y='787' width='123' height='166' fill='#0284C7' fill-opacity='0.07' transform='rotate(7.9 459 787)'/><rect x='542' y='751' width='92' height='75' fill='#0284C7' fill-opacity='0.07' transform='rotate(3.6 542 751)'/><rect x='83' y='598' width='169' height='93' fill='#0284C7' fill-opacity='0.07' transform='rotate(-3.2 83 598)'/><rect x='407' y='677' width='74' height='170' fill='#0284C7' fill-opacity='0.07' transform='rotate(-1.1 407 677)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0284C7'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Elasticsearch</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>Guide</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Search and Analytics</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Wissen kompakt 1044</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Praxisnah erklärt</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
-  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0284C7' font-family='Arial, sans-serif'>von Maria Schneider</text>
+  <text x='88' y='820' font-size='20' fill='#0284C7' font-family='Arial, sans-serif'>Technologie</text>
 </svg>
