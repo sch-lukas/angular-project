@@ -266,9 +266,9 @@ export class BuchService {
         buecher: BuchMitTitel[],
         totalElements: number,
     ): Readonly<Slice<BuchMitTitel>> {
-        buecher.forEach((buch) => {
+        for (const buch of buecher) {
             buch.schlagwoerter ??= [];
-        });
+        }
         const buchSlice: Slice<BuchMitTitel> = {
             content: buecher,
             totalElements,
@@ -281,7 +281,7 @@ export class BuchService {
         this.#logger.debug('#checkKeys: keys=%o', keys);
         // Ist jeder Suchparameter auch eine Property von Buch oder "schlagwoerter"?
         let validKeys = true;
-        keys.forEach((key) => {
+        for (const key of keys) {
             if (
                 !suchparameterNamen.includes(key) &&
                 key !== 'javascript' &&
@@ -295,7 +295,7 @@ export class BuchService {
                 );
                 validKeys = false;
             }
-        });
+        }
 
         return validKeys;
     }

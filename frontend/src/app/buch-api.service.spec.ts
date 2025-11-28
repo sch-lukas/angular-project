@@ -1,6 +1,7 @@
+import { provideHttpClient } from '@angular/common/http';
 import {
-    HttpClientTestingModule,
     HttpTestingController,
+    provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
@@ -45,8 +46,11 @@ describe('BuchApiService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule],
-            providers: [BuchApiService],
+            providers: [
+                BuchApiService,
+                provideHttpClient(),
+                provideHttpClientTesting(),
+            ],
         });
         service = TestBed.inject(BuchApiService);
         httpMock = TestBed.inject(HttpTestingController);

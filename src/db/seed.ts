@@ -52,8 +52,8 @@ const VARIATION_SUBTITLE_TAGS = ['Praxis', 'Expertise', 'Neuauflage'];
 const slugify = (value: string) =>
     value
         .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '');
+        .replaceAll(/[^a-z0-9]+/g, '-')
+        .replaceAll(/(?:^-+)|(?:-+$)/g, '');
 
 const formatDecimal = (value: number, fractionDigits: number) =>
     value.toFixed(fractionDigits);

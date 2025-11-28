@@ -6,6 +6,7 @@ export interface CartItem {
     id: number;
     title: string;
     price: number;
+    rabatt?: number;
     quantity: number;
     coverUrl?: string;
     isbn?: string;
@@ -102,6 +103,7 @@ export class CartService {
                 id: book.id,
                 title: book.titel.titel,
                 price: book.preis,
+                rabatt: book.rabatt,
                 quantity,
                 coverUrl: book.coverUrl,
                 isbn: book.isbn,
@@ -147,11 +149,24 @@ export class CartService {
     }
 
     /**
-     * Berechnet die Gesamtsumme aller Artikel im Warenkorb
+     * Berechnet den rabattierten Preis für einen Artikel
+     */
+    getDiscountedPrice(item: CartItem): number {
+        if (!item.rabatt || item.rabatt <= 0) {
+            return item.price;
+        }
+        return item.price * (1 - item.rabatt);
+    }
+
+    /**
+     * Berechnet die Gesamtsumme aller Artikel im Warenkorb (mit Rabatten)
      */
     getTotal(): number {
         const items = this.cartSubject.value;
-        return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        return items.reduce((sum, item) => {
+            const discountedPrice = this.getDiscountedPrice(item);
+            return sum + discountedPrice * item.quantity;
+        }, 0);
     }
 
     /**

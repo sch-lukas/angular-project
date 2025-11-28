@@ -50,7 +50,7 @@ Entwicklung einer vollständigen E-Commerce-Plattform für Bücher mit:
 
 ## 📦 Projektstruktur
 
-```
+```text
 angular-project/
 ├── frontend/                    # Angular Frontend
 │   ├── src/

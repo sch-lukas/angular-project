@@ -124,7 +124,18 @@ import { CartService } from './cart.service';
                                             </div>
                                         </td>
                                         <td class="align-middle">
-                                            {{ item.price | number: '1.2-2' }} €
+                                            <div *ngIf="item.rabatt && item.rabatt > 0">
+                                                <div class="text-muted text-decoration-line-through small">
+                                                    {{ item.price | number: '1.2-2' }} €
+                                                </div>
+                                                <div class="fw-semibold text-success">
+                                                    {{ getDiscountedPrice(item) | number: '1.2-2' }} €
+                                                    <span class="badge bg-success ms-1">-{{ formatDiscount(item.rabatt) }}</span>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="!item.rabatt || item.rabatt <= 0">
+                                                {{ item.price | number: '1.2-2' }} €
+                                            </div>
                                         </td>
                                         <td class="align-middle">
                                             <div
@@ -169,7 +180,7 @@ import { CartService } from './cart.service';
                                         </td>
                                         <td class="align-middle fw-semibold">
                                             {{
-                                                item.price * item.quantity
+                                                getDiscountedPrice(item) * item.quantity
                                                     | number: '1.2-2'
                                             }}
                                             €
@@ -231,7 +242,17 @@ import { CartService } from './cart.service';
                                     >
                                         {{ getArtLabel(item.art) }}
                                     </p>
-                                    <p class="mb-2">
+                                    <div class="mb-2" *ngIf="item.rabatt && item.rabatt > 0">
+                                        <div class="text-muted text-decoration-line-through small">
+                                            {{ item.price | number: '1.2-2' }} €
+                                        </div>
+                                        <div>
+                                            <strong class="text-success">{{ getDiscountedPrice(item) | number: '1.2-2' }} €</strong>
+                                            <span class="badge bg-success ms-1">-{{ formatDiscount(item.rabatt) }}</span>
+                                        </div>
+                                        <small class="text-muted">pro Stück</small>
+                                    </div>
+                                    <p class="mb-2" *ngIf="!item.rabatt || item.rabatt <= 0">
                                         <strong
                                             >{{
                                                 item.price | number: '1.2-2'
@@ -272,7 +293,7 @@ import { CartService } from './cart.service';
                                     <p class="fw-bold mb-2">
                                         Gesamt:
                                         {{
-                                            item.price * item.quantity
+                                            getDiscountedPrice(item) * item.quantity
                                                 | number: '1.2-2'
                                         }}
                                         €
@@ -311,6 +332,14 @@ import { CartService } from './cart.service';
                                     <span>Artikel:</span>
                                     <span>{{ getTotalItems() }}</span>
                                 </div>
+                                <div
+                                    *ngIf="getTotalSavings() > 0"
+                                    class="d-flex justify-content-between mb-2 text-success"
+                                >
+                                    <span>💰 Ersparnis:</span>
+                                    <span class="fw-semibold">-{{ getTotalSavings() | number: '1.2-2' }} €</span>
+                                </div>
+                                <hr *ngIf="getTotalSavings() > 0" class="my-2">
                                 <div
                                     class="d-flex justify-content-between mb-3"
                                 >
@@ -440,6 +469,37 @@ export class CartComponent implements OnInit {
             total = items.reduce((sum, item) => sum + item.quantity, 0);
         });
         return total;
+    }
+
+    /**
+     * Berechnet den rabattierten Preis für einen Artikel
+     */
+    getDiscountedPrice(item: CartItem): number {
+        return this.cartService.getDiscountedPrice(item);
+    }
+
+    /**
+     * Formatiert den Rabatt als Prozentsatz
+     */
+    formatDiscount(rabatt: number): string {
+        return `${(rabatt * 100).toFixed(0)}%`;
+    }
+
+    /**
+     * Berechnet die Gesamtersparnis durch Rabatte
+     */
+    getTotalSavings(): number {
+        let savings = 0;
+        this.cartItems$.subscribe((items) => {
+            savings = items.reduce((sum, item) => {
+                if (item.rabatt && item.rabatt > 0) {
+                    const discount = item.price * item.rabatt * item.quantity;
+                    return sum + discount;
+                }
+                return sum;
+            }, 0);
+        });
+        return savings;
     }
 
     /**

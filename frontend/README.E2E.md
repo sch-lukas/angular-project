@@ -1,12 +1,12 @@
 # Playwright E2E Tests
 
-## ✅ Erfolgreich implementiert!
+## ✅ Erfolgreich implementiert
 
 Dieses Projekt verfügt nun über vollständige End-to-End-Tests mit Playwright.
 
 ## 📋 Struktur
 
-```
+```text
 frontend/
 ├── playwright.config.ts           # Playwright-Konfiguration
 ├── e2e/
@@ -105,9 +105,9 @@ pnpm test:e2e:report
 
 ## 📊 Projektstand
 
-**Hochschul-Anforderungen: 11.7/12 Punkte (97.5%)**
+### Hochschul-Anforderungen: 11.7/12 Punkte (97.5%)
 
-### ✅ Erfüllt:
+#### ✅ Erfüllt
 
 1. Angular 19 SPA mit Standalone Components
 2. NestJS Backend mit GraphQL
@@ -122,11 +122,11 @@ pnpm test:e2e:report
 11. Responsive Design mit Mobile-First
 12. Docker Multi-Stage Build
 
-### ⚠️ Teilweise erfüllt:
+### ⚠️ Teilweise erfüllt
 
 - Icon-Bibliothek (0.3 Punkte)
 
-### 💡 Nächste Schritte:
+### 💡 Nächste Schritte
 
 ```bash
 # Icon-Bibliothek hinzufügen
@@ -151,6 +151,6 @@ Alle bisherigen Implementierungen funktionieren weiterhin:
 - ✅ Responsive Design
 - ✅ Alle CRUD-Operationen
 
-## 🎉 Erfolgreich!
+## 🎉 Erfolgreich
 
 Die E2E-Tests sind vollständig implementiert und einsatzbereit!

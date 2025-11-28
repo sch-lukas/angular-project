@@ -98,14 +98,20 @@ export class BuchWriteService {
 
         // Neuer Datensatz mit generierter ID
         let buchDb: BuchCreated | undefined;
-        await this.#prisma.$transaction(
-            async (tx: Prisma.TransactionClient) => {
-                buchDb = await tx.buch.create({
-                    data: buch,
-                    include: { titel: true, abbildungen: true },
-                });
-            },
-        );
+        try {
+            await this.#prisma.$transaction(
+                async (tx: Prisma.TransactionClient) => {
+                    buchDb = await tx.buch.create({
+                        data: buch,
+                        include: { titel: true, abbildungen: true },
+                    });
+                },
+            );
+        } catch (error: unknown) {
+            this.#logger.error('create: Prisma error: %s', String(error));
+            throw error;
+        }
+
         await this.#sendmail({
             id: buchDb?.id ?? 'N/A',
             titel: buchDb?.titel?.titel ?? 'N/A',

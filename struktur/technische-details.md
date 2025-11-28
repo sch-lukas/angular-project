@@ -2,9 +2,9 @@
 
 ## 🔄 Datenfluss und Komponentenkommunikation
 
-### 1. Warenkorb-System: End-to-End Datenfluss
+### 1. Warenkorb-System End-to-End Datenfluss
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    Warenkorb Datenfluss                          │
 └─────────────────────────────────────────────────────────────────┘
@@ -12,7 +12,7 @@
 DetailComponent                    CartService                 CartComponent
      │                                 │                             │
      │  1. addToCart()                │                             │
-     ├────────────────────────────────>│                             │
+     ├─────────────────────────────────>│                             │
      │                                 │                             │
      │                            2. Prüfe: Item                    │
      │                               existiert?                      │
@@ -34,9 +34,9 @@ DetailComponent                    CartService                 CartComponent
      │                                 │                             │
 ```
 
-#### Implementierungsdetails:
+#### Implementierungsdetails
 
-**CartService (cart.service.ts)**
+##### CartService (cart.service.ts)
 
 ```typescript
 export class CartService {
@@ -76,9 +76,9 @@ export class CartService {
 
 ---
 
-### 2. Merkliste-System: Toggle-Mechanismus
+### 2. Merkliste-System Toggle-Mechanismus
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                   Wishlist Toggle Datenfluss                     │
 └─────────────────────────────────────────────────────────────────┘
@@ -103,9 +103,9 @@ DetailComponent                WishlistService            WishlistComponent
      │                              │                            │
 ```
 
-#### Besonderheit: Synchroner UI-Feedback
+#### Besonderheit Synchroner UI-Feedback
 
-**DetailComponent Template**
+##### DetailComponent Template
 
 ```html
 <button
@@ -116,7 +116,7 @@ DetailComponent                WishlistService            WishlistComponent
 </button>
 ```
 
-**Synchronisation über Observable**
+##### Synchronisation über Observable
 
 ```typescript
 export class DetailComponent {
@@ -136,9 +136,9 @@ export class DetailComponent {
 
 ---
 
-### 3. Carousel-System: Datenbeschaffung und Rendering
+### 3. Carousel-System Datenbeschaffung und Rendering
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │              Landing Page Carousel Datenfluss                    │
 └─────────────────────────────────────────────────────────────────┘
@@ -176,7 +176,7 @@ LandingPageComponent          BuchApiService          BookCarouselComponent
 
 #### GraphQL Query-Optimierung
 
-**Schwabenpreis Query (günstigste Bücher)**
+##### Schwabenpreis Query (günstigste Bücher)
 
 ```typescript
 this.api.list({ size: 15, sortierung: 'preisAsc' }).subscribe({
@@ -197,9 +197,9 @@ this.api.list({ size: 15, sortierung: 'preisAsc' }).subscribe({
 
 ---
 
-### 4. Dark Mode: Theme-Switching Mechanismus
+### 4. Dark Mode Theme-Switching Mechanismus
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                  Dark Mode Theme-Wechsel                         │
 └─────────────────────────────────────────────────────────────────┘
@@ -235,7 +235,7 @@ Browser                    AppComponent              Alle Komponenten
 
 #### CSS Custom Properties System
 
-**styles.css (Root Level)**
+##### styles.css (Root Level)
 
 ```css
 :root {
@@ -264,7 +264,7 @@ body {
 }
 ```
 
-**Komponenten-Level Styles**
+##### Komponenten-Level Styles
 
 ```css
 /* detail.component.ts */
@@ -279,7 +279,7 @@ body {
 }
 ```
 
-**Vorteile dieses Ansatzes:**
+##### Vorteile dieses Ansatzes
 
 - Zentrale Theme-Verwaltung
 - Smooth Transitions
@@ -288,9 +288,9 @@ body {
 
 ---
 
-### 5. GraphQL Integration: API-Kommunikation
+### 5. GraphQL Integration API-Kommunikation
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │              GraphQL Kommunikationsfluss                         │
 └─────────────────────────────────────────────────────────────────┘
@@ -340,7 +340,7 @@ Component              BuchApiService         HttpClient        Backend
 
 #### Error Handling Strategy
 
-**BuchApiService**
+##### BuchApiService
 
 ```typescript
 getById(id: number): Observable<BuchItem> {
@@ -379,7 +379,7 @@ getById(id: number): Observable<BuchItem> {
 
 ### 6. Routing und Navigation Guards
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                  Routing mit Auth Guard                          │
 └─────────────────────────────────────────────────────────────────┘
@@ -410,7 +410,7 @@ Browser URL Change        Router               AuthGuard          Component
 
 #### Route-Konfiguration
 
-**main.ts**
+##### main.ts
 
 ```typescript
 export const routes: Route[] = [
@@ -446,7 +446,7 @@ export const routes: Route[] = [
 })
 ```
 
-**Vorteile:**
+#### Vorteile Standalone Components
 
 - Kein NgModule nötig
 - Lazy Loading per Component
@@ -460,7 +460,7 @@ private itemsSubject = new BehaviorSubject<CartItem[]>([]);
 public items$ = this.itemsSubject.asObservable();
 ```
 
-**Vorteile:**
+#### Vorteile BehaviorSubject
 
 - Reactive State Management
 - Automatische Change Detection
@@ -480,7 +480,7 @@ private loadFromStorage(): CartItem[] {
 }
 ```
 
-**Vorteile:**
+#### Vorteile localStorage
 
 - Persistenz über Sessions hinweg
 - Kein Backend-Request für Cart/Wishlist
@@ -501,7 +501,7 @@ private loadFromStorage(): CartItem[] {
 }
 ```
 
-**Vorteile:**
+#### Vorteile CSS Custom Properties
 
 - Ein Theme-Switch für gesamte App
 - CSS-only (keine JS-Manipulation)
@@ -525,7 +525,7 @@ query BuchById($id: ID!) {
 }
 ```
 
-**Vorteile:**
+#### Vorteile GraphQL
 
 - Nur benötigte Felder laden (kein Over-Fetching)
 - Single Request für komplexe Daten

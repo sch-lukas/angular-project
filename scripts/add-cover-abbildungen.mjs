@@ -38,7 +38,9 @@ async function main() {
     }
 }
 
-main().catch((err) => {
+try {
+    await main();
+} catch (err) {
     console.error('Fehler:', err);
     process.exit(1);
-});
+}

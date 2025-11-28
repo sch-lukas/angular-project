@@ -287,6 +287,97 @@ import { BuchApiService, type CreateBuchPayload } from './buch-api.service';
                     >
                 </div>
 
+                <!-- Beschreibung -->
+                <div class="form-group">
+                    <label for="beschreibung">Beschreibung</label>
+                    <textarea
+                        id="beschreibung"
+                        formControlName="beschreibung"
+                        class="form-control"
+                        rows="4"
+                        placeholder="Eine kurze Beschreibung des Buches..."
+                        [class.is-invalid]="
+                            form.get('beschreibung')?.invalid &&
+                            form.get('beschreibung')?.touched
+                        "
+                    ></textarea>
+                    <div
+                        *ngIf="
+                            form.get('beschreibung')?.invalid &&
+                            form.get('beschreibung')?.touched
+                        "
+                        class="error-message"
+                    >
+                        <span
+                            *ngIf="
+                                form.get('beschreibung')?.errors?.['maxlength']
+                            "
+                            >Beschreibung darf maximal 1000 Zeichen lang
+                            sein</span
+                        >
+                    </div>
+                </div>
+
+                <!-- Autor -->
+                <div class="form-group">
+                    <label for="autor">Autor</label>
+                    <input
+                        id="autor"
+                        type="text"
+                        formControlName="autor"
+                        class="form-control"
+                        placeholder="Name des Autors"
+                        [class.is-invalid]="
+                            form.get('autor')?.invalid &&
+                            form.get('autor')?.touched
+                        "
+                    />
+                    <div
+                        *ngIf="
+                            form.get('autor')?.invalid &&
+                            form.get('autor')?.touched
+                        "
+                        class="error-message"
+                    >
+                        <span *ngIf="form.get('autor')?.errors?.['maxlength']"
+                            >Autor darf maximal 100 Zeichen lang sein</span
+                        >
+                    </div>
+                </div>
+
+                <!-- Autor Biographie -->
+                <div class="form-group">
+                    <label for="autorBiographie">Autor-Biographie</label>
+                    <textarea
+                        id="autorBiographie"
+                        formControlName="autorBiographie"
+                        class="form-control"
+                        rows="3"
+                        placeholder="Informationen über den Autor..."
+                        [class.is-invalid]="
+                            form.get('autorBiographie')?.invalid &&
+                            form.get('autorBiographie')?.touched
+                        "
+                    ></textarea>
+                    <div
+                        *ngIf="
+                            form.get('autorBiographie')?.invalid &&
+                            form.get('autorBiographie')?.touched
+                        "
+                        class="error-message"
+                    >
+                        <span
+                            *ngIf="
+                                form.get('autorBiographie')?.errors?.[
+                                    'maxlength'
+                                ]
+                            "
+                            >Biographie darf maximal 1000 Zeichen lang
+                            sein</span
+                        >
+                    </div>
+                </div>
+
                 <!-- Buttons -->
                 <div class="form-actions">
                     <button
@@ -391,6 +482,13 @@ import { BuchApiService, type CreateBuchPayload } from './buch-api.service';
                 transition: border-color 0.3s;
                 background: white;
                 color: #2c3e50;
+            }
+
+            textarea.form-control {
+                resize: vertical;
+                min-height: 100px;
+                font-family: inherit;
+                line-height: 1.5;
             }
 
             :host-context(.theme-dark) .form-control {
@@ -520,6 +618,9 @@ export class NewComponent implements OnInit {
             datum: [''],
             homepage: ['', [Validators.pattern(/^https?:\/\/.+/)]],
             schlagwoerter: [''],
+            beschreibung: ['', [Validators.maxLength(1000)]],
+            autor: ['', [Validators.maxLength(100)]],
+            autorBiographie: ['', [Validators.maxLength(1000)]],
         });
     }
 
@@ -566,6 +667,18 @@ export class NewComponent implements OnInit {
                     : undefined,
             schlagwoerter:
                 schlagwoerterArray.length > 0 ? schlagwoerterArray : undefined,
+            beschreibung:
+                formValue.beschreibung && formValue.beschreibung !== ''
+                    ? formValue.beschreibung
+                    : undefined,
+            autor:
+                formValue.autor && formValue.autor !== ''
+                    ? formValue.autor
+                    : undefined,
+            autorBiographie:
+                formValue.autorBiographie && formValue.autorBiographie !== ''
+                    ? formValue.autorBiographie
+                    : undefined,
             titel: {
                 titel: formValue.titel,
                 untertitel:

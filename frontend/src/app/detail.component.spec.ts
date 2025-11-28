@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, convertToParamMap } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import {
+    ActivatedRoute,
+    convertToParamMap,
+    provideRouter,
+} from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { of, throwError } from 'rxjs';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -108,8 +111,9 @@ describe('DetailComponent', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [DetailComponent, RouterTestingModule],
+            imports: [DetailComponent],
             providers: [
+                provideRouter([]),
                 { provide: BuchApiService, useValue: mockBuchApiService },
                 { provide: ActivatedRoute, useValue: mockActivatedRoute },
                 { provide: NgbModal, useValue: mockNgbModal },
@@ -346,7 +350,7 @@ describe('DetailComponent', () => {
 
         it('sollte false zurückgeben für teures Buch', () => {
             component.buch = {
-                preis: 25.0,
+                preis: 25,
                 rabatt: 0.2,
             };
             expect(component.isSchwabenpreis()).toBe(false);
@@ -354,14 +358,14 @@ describe('DetailComponent', () => {
 
         it('sollte false zurückgeben für günstiges Buch mit niedrigem Rabatt', () => {
             component.buch = {
-                preis: 15.0,
+                preis: 15,
                 rabatt: 0.05,
             };
             expect(component.isSchwabenpreis()).toBe(false);
         });
 
         it('sollte false zurückgeben wenn Preis oder Rabatt fehlt', () => {
-            component.buch = { preis: 15.0 };
+            component.buch = { preis: 15 };
             expect(component.isSchwabenpreis()).toBe(false);
 
             component.buch = { rabatt: 0.2 };
@@ -408,7 +412,7 @@ describe('DetailComponent', () => {
             mockNgbModal.open.mockReturnValue(mockModalRef as any);
 
             const openSpy = vi
-                .spyOn(window, 'open')
+                .spyOn(globalThis, 'open')
                 .mockImplementation((() => null) as any);
 
             component.buch = mockBuch;
@@ -469,7 +473,7 @@ describe('DetailComponent', () => {
         it('sollte den Schnäppchen-Badge für Schwabenpreis anzeigen', async () => {
             const cheapBuch: BuchItem = {
                 ...mockBuch,
-                preis: 15.0,
+                preis: 15,
                 rabatt: 0.2,
             };
             mockBuchApiService.getById.mockReturnValue(of(cheapBuch));

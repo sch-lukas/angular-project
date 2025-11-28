@@ -341,7 +341,7 @@ import { WishlistService } from './wishlist/wishlist.service';
                     <h4 class="section-title">📖 Über dieses Buch</h4>
                 </div>
                 <div class="section-content">
-                    <p class="description-text">{{ buch?.beschreibung }}</p>
+                    <p class="description-text">{{ buch.beschreibung }}</p>
                 </div>
             </div>
 
@@ -355,10 +355,10 @@ import { WishlistService } from './wishlist/wishlist.service';
                 </div>
                 <div class="section-content">
                     <h5 class="author-name" *ngIf="buch?.autor">
-                        {{ buch?.autor }}
+                        {{ buch.autor }}
                     </h5>
                     <p class="author-bio" *ngIf="buch?.autorBiographie">
-                        {{ buch?.autorBiographie }}
+                        {{ buch.autorBiographie }}
                     </p>
                 </div>
             </div>
@@ -511,7 +511,7 @@ import { WishlistService } from './wishlist/wishlist.service';
                 </h5>
                 <p class="mb-0">
                     Leider haben wir aktuell keine weiteren Bücher in der
-                    Kategorie "{{ buch?.art }}" gefunden.
+                    Kategorie "{{ buch.art }}" gefunden.
                 </p>
                 <hr />
                 <p class="mb-0 small text-muted">
