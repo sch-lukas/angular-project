@@ -7,14 +7,15 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='110.1' y='463.5' width='153.5' height='132.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-4.9 110.1 463.5)'/><rect x='274.1' y='314.4' width='163.3' height='99.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(6.0 274.1 314.4)'/><rect x='487.8' y='491.9' width='169.7' height='86.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.2 487.8 491.9)'/><rect x='375.6' y='109.8' width='130.7' height='134.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.6 375.6 109.8)'/><rect x='522.3' y='281.8' width='53.0' height='168.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(6.9 522.3 281.8)'/><rect x='208.7' y='107.5' width='165.7' height='137.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.3 208.7 107.5)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+
+  <rect x='378' y='274' width='173' height='127' fill='#0D9488' fill-opacity='0.07' transform='rotate(2.9 378 274)'/><rect x='213' y='305' width='119' height='40' fill='#0D9488' fill-opacity='0.07' transform='rotate(-6.4 213 305)'/><rect x='445' y='463' width='124' height='154' fill='#0D9488' fill-opacity='0.07' transform='rotate(6.1 445 463)'/><rect x='328' y='464' width='159' height='42' fill='#0D9488' fill-opacity='0.07' transform='rotate(6 328 464)'/><rect x='341' y='450' width='138' height='53' fill='#0D9488' fill-opacity='0.07' transform='rotate(-0.1 341 450)'/><rect x='501' y='168' width='125' height='44' fill='#0D9488' fill-opacity='0.07' transform='rotate(6.8 501 168)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0D9488'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>Swift</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>iOS Apps entwickeln</text>
+    <text x='80' y='110' font-size='52' font-weight='700'>Die Kunst des</text>
+    <text x='80' y='172' font-size='52' font-weight='700'>Teal</text>
+    <text x='80' y='274' font-size='28' font-style='italic'>Mit vielen Beispielen</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
-  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0D9488' font-family='Arial, sans-serif'>von Daniel Richter</text>
+  <text x='88' y='820' font-size='20' fill='#0D9488' font-family='Arial, sans-serif'>Geschichte</text>
 </svg>

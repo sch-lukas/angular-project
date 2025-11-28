@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='165.6' y='46.1' width='119.9' height='173.9' fill='#9D174D' fill-opacity='0.07' transform='rotate(0.0 165.6 46.1)'/><rect x='231.3' y='769.6' width='168.8' height='155.4' fill='#9D174D' fill-opacity='0.07' transform='rotate(5.2 231.3 769.6)'/><rect x='552.4' y='478.9' width='164.9' height='88.5' fill='#9D174D' fill-opacity='0.07' transform='rotate(-5.9 552.4 478.9)'/><rect x='456.1' y='751.3' width='121.9' height='168.5' fill='#9D174D' fill-opacity='0.07' transform='rotate(-2.5 456.1 751.3)'/><rect x='389.6' y='84.0' width='49.4' height='120.7' fill='#9D174D' fill-opacity='0.07' transform='rotate(6.3 389.6 84.0)'/><rect x='392.7' y='383.9' width='135.4' height='117.5' fill='#9D174D' fill-opacity='0.07' transform='rotate(-7.7 392.7 383.9)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#9D174D'/>
+
+  <rect x='270' y='217' width='58' height='91' fill='#DC2626' fill-opacity='0.07' transform='rotate(-2.6 270 217)'/><rect x='405' y='795' width='136' height='128' fill='#DC2626' fill-opacity='0.07' transform='rotate(-3.7 405 795)'/><rect x='296' y='71' width='133' height='51' fill='#DC2626' fill-opacity='0.07' transform='rotate(-8.9 296 71)'/><rect x='234' y='838' width='114' height='61' fill='#DC2626' fill-opacity='0.07' transform='rotate(3.6 234 838)'/><rect x='478' y='90' width='74' height='152' fill='#DC2626' fill-opacity='0.07' transform='rotate(3.1 478 90)'/><rect x='552' y='494' width='69' height='146' fill='#DC2626' fill-opacity='0.07' transform='rotate(-4.9 552 494)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#DC2626'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Das Archiv</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>meines</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Familiengeheimnisse ans Licht gebracht</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Bestseller 1086</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Für Einsteiger und Profis</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#9D174D' font-family='Arial, sans-serif'>von Clara Wieland</text>
-  <text x='88' y='820' font-size='20' fill='#9D174D' font-family='Arial, sans-serif'>biographien-memoiren</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#DC2626' font-family='Arial, sans-serif'>von Julia Wolf</text>
+  <text x='88' y='820' font-size='20' fill='#DC2626' font-family='Arial, sans-serif'>Thriller</text>
 </svg>

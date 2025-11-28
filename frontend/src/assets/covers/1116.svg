@@ -7,14 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='574.7' y='681.0' width='70.0' height='64.8' fill='#6D28D9' fill-opacity='0.07' transform='rotate(1.6 574.7 681.0)'/><rect x='93.2' y='86.9' width='87.9' height='162.2' fill='#6D28D9' fill-opacity='0.07' transform='rotate(-8.7 93.2 86.9)'/><rect x='338.0' y='692.6' width='65.9' height='164.9' fill='#6D28D9' fill-opacity='0.07' transform='rotate(-5.4 338.0 692.6)'/><rect x='574.3' y='324.5' width='51.6' height='77.8' fill='#6D28D9' fill-opacity='0.07' transform='rotate(-9.0 574.3 324.5)'/><rect x='118.3' y='600.7' width='136.3' height='119.4' fill='#6D28D9' fill-opacity='0.07' transform='rotate(6.6 118.3 600.7)'/><rect x='513.1' y='845.7' width='91.8' height='156.3' fill='#6D28D9' fill-opacity='0.07' transform='rotate(8.0 513.1 845.7)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#6D28D9'/>
+
+  <rect x='408' y='512' width='83' height='162' fill='#10B981' fill-opacity='0.07' transform='rotate(3.4 408 512)'/><rect x='51' y='210' width='83' height='112' fill='#10B981' fill-opacity='0.07' transform='rotate(7.5 51 210)'/><rect x='96' y='573' width='169' height='132' fill='#10B981' fill-opacity='0.07' transform='rotate(-0.6 96 573)'/><rect x='238' y='250' width='71' height='177' fill='#10B981' fill-opacity='0.07' transform='rotate(-7.5 238 250)'/><rect x='311' y='268' width='67' height='95' fill='#10B981' fill-opacity='0.07' transform='rotate(-7.5 311 268)'/><rect x='62' y='309' width='91' height='113' fill='#10B981' fill-opacity='0.07' transform='rotate(3.4 62 309)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#10B981'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>Maschinenherz</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>Liebe im Posthumanismus</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Wissen kompakt 1116</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Praxisnah erklärt</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#6D28D9' font-family='Arial, sans-serif'>von Jonas Adler</text>
-  <text x='88' y='820' font-size='20' fill='#6D28D9' font-family='Arial, sans-serif'>fantasy-sci-fi</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#10B981' font-family='Arial, sans-serif'>von Maria Schneider</text>
+  <text x='88' y='820' font-size='20' fill='#10B981' font-family='Arial, sans-serif'>Science Fiction</text>
 </svg>

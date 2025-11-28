@@ -7,15 +7,15 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='262.5' y='99.9' width='66.8' height='179.6' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-2.0 262.5 99.9)'/><rect x='282.4' y='152.2' width='61.4' height='112.4' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-4.9 282.4 152.2)'/><rect x='565.4' y='561.8' width='50.4' height='64.5' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(7.1 565.4 561.8)'/><rect x='532.7' y='829.0' width='48.0' height='71.8' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-4.3 532.7 829.0)'/><rect x='230.6' y='386.3' width='85.5' height='69.6' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(2.1 230.6 386.3)'/><rect x='227.7' y='738.0' width='78.5' height='90.7' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-7.0 227.7 738.0)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#1E3A8A'/>
+
+  <rect x='295' y='765' width='154' height='57' fill='#E11D48' fill-opacity='0.07' transform='rotate(-8.4 295 765)'/><rect x='62' y='669' width='79' height='93' fill='#E11D48' fill-opacity='0.07' transform='rotate(-6.5 62 669)'/><rect x='477' y='502' width='107' height='179' fill='#E11D48' fill-opacity='0.07' transform='rotate(6.7 477 502)'/><rect x='446' y='856' width='178' height='96' fill='#E11D48' fill-opacity='0.07' transform='rotate(-0.5 446 856)'/><rect x='154' y='552' width='80' height='82' fill='#E11D48' fill-opacity='0.07' transform='rotate(1.6 154 552)'/><rect x='247' y='162' width='156' height='48' fill='#E11D48' fill-opacity='0.07' transform='rotate(6.3 247 162)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#E11D48'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='48' font-weight='700'>Strategische</text>
-    <text x='80' y='166' font-size='48' font-weight='700'>Experimente –</text>
-    <text x='80' y='252' font-size='28' font-style='italic'>Hypothesen testen im Unternehmen · Expertise</text>
+    <text x='80' y='110' font-size='52' font-weight='700'>Das große Buch</text>
+    <text x='80' y='172' font-size='52' font-weight='700'>1152</text>
+    <text x='80' y='274' font-size='28' font-style='italic'>Ein unvergessliches Leseerlebnis</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#1E3A8A' font-family='Arial, sans-serif'>von Aisha Grant</text>
-  <text x='88' y='820' font-size='20' fill='#1E3A8A' font-family='Arial, sans-serif'>business-leadership</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#E11D48' font-family='Arial, sans-serif'>von Maria Schneider</text>
+  <text x='88' y='820' font-size='20' fill='#E11D48' font-family='Arial, sans-serif'>Sachbuch</text>
 </svg>

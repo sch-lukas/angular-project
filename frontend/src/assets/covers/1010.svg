@@ -7,14 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='343.6' y='483.5' width='104.5' height='107.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-4.2 343.6 483.5)'/><rect x='373.2' y='800.7' width='118.3' height='157.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.9 373.2 800.7)'/><rect x='255.8' y='228.8' width='126.2' height='113.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(6.1 255.8 228.8)'/><rect x='571.6' y='561.1' width='48.6' height='154.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.8 571.6 561.1)'/><rect x='193.5' y='827.3' width='119.8' height='78.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(7.4 193.5 827.3)'/><rect x='285.8' y='150.1' width='105.4' height='89.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-2.5 285.8 150.1)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+
+  <rect x='176' y='513' width='80' height='57' fill='#4F46E5' fill-opacity='0.07' transform='rotate(0.2 176 513)'/><rect x='85' y='784' width='140' height='111' fill='#4F46E5' fill-opacity='0.07' transform='rotate(-5 85 784)'/><rect x='303' y='136' width='150' height='165' fill='#4F46E5' fill-opacity='0.07' transform='rotate(8.8 303 136)'/><rect x='415' y='479' width='144' height='77' fill='#4F46E5' fill-opacity='0.07' transform='rotate(7.2 415 479)'/><rect x='152' y='620' width='89' height='81' fill='#4F46E5' fill-opacity='0.07' transform='rotate(5.9 152 620)'/><rect x='529' y='295' width='74' height='143' fill='#4F46E5' fill-opacity='0.07' transform='rotate(-2 529 295)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#4F46E5'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>Clean Code</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>Lesbarer Code schreiben</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Geheimnisse von 1010</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Fundiertes Fachwissen</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
-  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#4F46E5' font-family='Arial, sans-serif'>von Julia Wolf</text>
+  <text x='88' y='820' font-size='20' fill='#4F46E5' font-family='Arial, sans-serif'>Reisen</text>
 </svg>

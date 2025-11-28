@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='163.0' y='269.0' width='178.5' height='106.3' fill='#9D174D' fill-opacity='0.07' transform='rotate(9.0 163.0 269.0)'/><rect x='536.2' y='859.1' width='154.5' height='85.3' fill='#9D174D' fill-opacity='0.07' transform='rotate(7.8 536.2 859.1)'/><rect x='290.5' y='486.4' width='45.0' height='68.1' fill='#9D174D' fill-opacity='0.07' transform='rotate(2.6 290.5 486.4)'/><rect x='176.9' y='667.2' width='179.6' height='143.3' fill='#9D174D' fill-opacity='0.07' transform='rotate(-7.8 176.9 667.2)'/><rect x='375.0' y='831.1' width='66.3' height='42.8' fill='#9D174D' fill-opacity='0.07' transform='rotate(6.3 375.0 831.1)'/><rect x='490.8' y='623.4' width='49.4' height='124.0' fill='#9D174D' fill-opacity='0.07' transform='rotate(2.4 490.8 623.4)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#9D174D'/>
+
+  <rect x='412' y='303' width='57' height='113' fill='#DC2626' fill-opacity='0.07' transform='rotate(-6 412 303)'/><rect x='401' y='351' width='155' height='125' fill='#DC2626' fill-opacity='0.07' transform='rotate(1.2 401 351)'/><rect x='296' y='493' width='105' height='164' fill='#DC2626' fill-opacity='0.07' transform='rotate(0.2 296 493)'/><rect x='68' y='145' width='123' height='86' fill='#DC2626' fill-opacity='0.07' transform='rotate(5.5 68 145)'/><rect x='293' y='127' width='175' height='57' fill='#DC2626' fill-opacity='0.07' transform='rotate(-4.3 293 127)'/><rect x='545' y='657' width='156' height='57' fill='#DC2626' fill-opacity='0.07' transform='rotate(-8.9 545 657)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#DC2626'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='44' font-weight='700'>Zwischen Lichtern</text>
-    <text x='80' y='162' font-size='44' font-weight='700'>und Schatten –</text>
-    <text x='80' y='244' font-size='28' font-style='italic'>Karriere einer Bühnenkünstlerin · Expertise</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Bestseller 1150</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Für Einsteiger und Profis</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#9D174D' font-family='Arial, sans-serif'>von Hannah Giese</text>
-  <text x='88' y='820' font-size='20' fill='#9D174D' font-family='Arial, sans-serif'>biographien-memoiren</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#DC2626' font-family='Arial, sans-serif'>von Julia Wolf</text>
+  <text x='88' y='820' font-size='20' fill='#DC2626' font-family='Arial, sans-serif'>Thriller</text>
 </svg>

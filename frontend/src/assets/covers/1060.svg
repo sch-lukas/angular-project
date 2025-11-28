@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='168.8' y='437.8' width='46.0' height='87.5' fill='#6D28D9' fill-opacity='0.07' transform='rotate(8.8 168.8 437.8)'/><rect x='545.8' y='680.5' width='101.6' height='122.9' fill='#6D28D9' fill-opacity='0.07' transform='rotate(1.6 545.8 680.5)'/><rect x='100.1' y='296.1' width='92.9' height='78.1' fill='#6D28D9' fill-opacity='0.07' transform='rotate(8.5 100.1 296.1)'/><rect x='228.8' y='172.1' width='122.4' height='106.0' fill='#6D28D9' fill-opacity='0.07' transform='rotate(7.8 228.8 172.1)'/><rect x='128.2' y='294.2' width='142.9' height='168.2' fill='#6D28D9' fill-opacity='0.07' transform='rotate(-5.3 128.2 294.2)'/><rect x='333.7' y='547.4' width='125.6' height='87.0' fill='#6D28D9' fill-opacity='0.07' transform='rotate(-3.4 333.7 547.4)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#6D28D9'/>
+
+  <rect x='569' y='204' width='157' height='64' fill='#0284C7' fill-opacity='0.07' transform='rotate(0.1 569 204)'/><rect x='423' y='574' width='179' height='161' fill='#0284C7' fill-opacity='0.07' transform='rotate(-3.7 423 574)'/><rect x='168' y='296' width='166' height='99' fill='#0284C7' fill-opacity='0.07' transform='rotate(7 168 296)'/><rect x='188' y='531' width='163' height='122' fill='#0284C7' fill-opacity='0.07' transform='rotate(-5.4 188 531)'/><rect x='362' y='349' width='89' height='125' fill='#0284C7' fill-opacity='0.07' transform='rotate(-7.4 362 349)'/><rect x='163' y='165' width='164' height='163' fill='#0284C7' fill-opacity='0.07' transform='rotate(-5.6 163 165)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0284C7'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Chroniken der</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>Nebelinseln</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Eine Legende erwacht</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Wissen kompakt 1060</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Praxisnah erklärt</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#6D28D9' font-family='Arial, sans-serif'>von Mara Thalberg</text>
-  <text x='88' y='820' font-size='20' fill='#6D28D9' font-family='Arial, sans-serif'>fantasy-sci-fi</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0284C7' font-family='Arial, sans-serif'>von Maria Schneider</text>
+  <text x='88' y='820' font-size='20' fill='#0284C7' font-family='Arial, sans-serif'>Technologie</text>
 </svg>

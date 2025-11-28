@@ -7,14 +7,15 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='108.2' y='664.9' width='124.6' height='106.4' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-6.7 108.2 664.9)'/><rect x='547.2' y='257.2' width='113.7' height='151.9' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(5.2 547.2 257.2)'/><rect x='147.0' y='333.3' width='140.7' height='171.7' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(7.3 147.0 333.3)'/><rect x='561.2' y='542.9' width='152.8' height='132.6' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(4.0 561.2 542.9)'/><rect x='347.4' y='123.4' width='138.7' height='143.4' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(2.1 347.4 123.4)'/><rect x='99.8' y='156.6' width='95.1' height='49.1' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-0.4 99.8 156.6)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#1E3A8A'/>
+
+  <rect x='325' y='867' width='151' height='49' fill='#7C3AED' fill-opacity='0.07' transform='rotate(6.3 325 867)'/><rect x='410' y='253' width='128' height='97' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-6.5 410 253)'/><rect x='409' y='734' width='174' height='63' fill='#7C3AED' fill-opacity='0.07' transform='rotate(4.3 409 734)'/><rect x='526' y='366' width='127' height='64' fill='#7C3AED' fill-opacity='0.07' transform='rotate(0.9 526 366)'/><rect x='350' y='737' width='127' height='63' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-2.6 350 737)'/><rect x='152' y='867' width='51' height='80' fill='#7C3AED' fill-opacity='0.07' transform='rotate(0.2 152 867)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>Nachfolge</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>Familienunternehmen im Wandel</text>
+    <text x='80' y='110' font-size='52' font-weight='700'>Das große Buch</text>
+    <text x='80' y='172' font-size='52' font-weight='700'>1096</text>
+    <text x='80' y='274' font-size='28' font-style='italic'>Ein unvergessliches Leseerlebnis</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#1E3A8A' font-family='Arial, sans-serif'>von Dr. Milan Becker</text>
-  <text x='88' y='820' font-size='20' fill='#1E3A8A' font-family='Arial, sans-serif'>business-leadership</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>von Maria Schneider</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>Roman</text>
 </svg>

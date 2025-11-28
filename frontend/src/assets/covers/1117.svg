@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='158.1' y='524.0' width='97.0' height='90.1' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-7.2 158.1 524.0)'/><rect x='431.3' y='840.3' width='73.9' height='71.0' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-7.6 431.3 840.3)'/><rect x='481.3' y='457.5' width='91.0' height='92.9' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-7.0 481.3 457.5)'/><rect x='517.3' y='604.9' width='91.4' height='65.5' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-8.6 517.3 604.9)'/><rect x='331.2' y='662.8' width='60.6' height='60.3' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-6.9 331.2 662.8)'/><rect x='220.0' y='116.7' width='169.6' height='64.0' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(1.2 220.0 116.7)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#8B5E3C'/>
+
+  <rect x='570' y='94' width='144' height='166' fill='#EA580C' fill-opacity='0.07' transform='rotate(-6.1 570 94)'/><rect x='181' y='830' width='171' height='103' fill='#EA580C' fill-opacity='0.07' transform='rotate(1 181 830)'/><rect x='256' y='109' width='57' height='60' fill='#EA580C' fill-opacity='0.07' transform='rotate(3.2 256 109)'/><rect x='338' y='414' width='135' height='66' fill='#EA580C' fill-opacity='0.07' transform='rotate(-0.7 338 414)'/><rect x='85' y='773' width='177' height='150' fill='#EA580C' fill-opacity='0.07' transform='rotate(1.1 85 773)'/><rect x='103' y='774' width='133' height='81' fill='#EA580C' fill-opacity='0.07' transform='rotate(-3.7 103 774)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#EA580C'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Frauen der</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>Geschichte</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Unsichtbare Führungskräfte</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Klassiker Nr. 1117</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Die ultimative Sammlung</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#8B5E3C' font-family='Arial, sans-serif'>von Leyla Al-Hamid</text>
-  <text x='88' y='820' font-size='20' fill='#8B5E3C' font-family='Arial, sans-serif'>geschichte-politik</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#EA580C' font-family='Arial, sans-serif'>von Michael Weber</text>
+  <text x='88' y='820' font-size='20' fill='#EA580C' font-family='Arial, sans-serif'>Fantasy</text>
 </svg>

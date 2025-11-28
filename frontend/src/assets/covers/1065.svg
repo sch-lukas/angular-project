@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='82.5' y='165.0' width='162.0' height='159.9' fill='#0369A1' fill-opacity='0.07' transform='rotate(6.2 82.5 165.0)'/><rect x='487.2' y='849.6' width='50.7' height='137.1' fill='#0369A1' fill-opacity='0.07' transform='rotate(-7.7 487.2 849.6)'/><rect x='136.0' y='405.5' width='138.3' height='144.3' fill='#0369A1' fill-opacity='0.07' transform='rotate(0.1 136.0 405.5)'/><rect x='361.1' y='309.7' width='116.0' height='121.1' fill='#0369A1' fill-opacity='0.07' transform='rotate(-5.2 361.1 309.7)'/><rect x='572.4' y='857.3' width='125.7' height='79.5' fill='#0369A1' fill-opacity='0.07' transform='rotate(1.4 572.4 857.3)'/><rect x='151.4' y='612.2' width='100.3' height='142.5' fill='#0369A1' fill-opacity='0.07' transform='rotate(-0.8 151.4 612.2)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#0369A1'/>
+
+  <rect x='459' y='522' width='138' height='118' fill='#2563EB' fill-opacity='0.07' transform='rotate(8.7 459 522)'/><rect x='193' y='798' width='155' height='142' fill='#2563EB' fill-opacity='0.07' transform='rotate(-6.2 193 798)'/><rect x='410' y='207' width='127' height='106' fill='#2563EB' fill-opacity='0.07' transform='rotate(-5.9 410 207)'/><rect x='272' y='459' width='172' height='145' fill='#2563EB' fill-opacity='0.07' transform='rotate(6.5 272 459)'/><rect x='583' y='202' width='173' height='128' fill='#2563EB' fill-opacity='0.07' transform='rotate(-0.1 583 202)'/><rect x='363' y='627' width='95' height='59' fill='#2563EB' fill-opacity='0.07' transform='rotate(-7.2 363 627)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#2563EB'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Das Mikrobiom</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>verstehen</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Bakterien als Verbündete</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Meisterwerk Nr. 1065</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Leicht verständlich</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#0369A1' font-family='Arial, sans-serif'>von Prof. Alina Vogt</text>
-  <text x='88' y='820' font-size='20' fill='#0369A1' font-family='Arial, sans-serif'>wissenschaft-gesundheit</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#2563EB' font-family='Arial, sans-serif'>von Michael Weber</text>
+  <text x='88' y='820' font-size='20' fill='#2563EB' font-family='Arial, sans-serif'>Fachbuch</text>
 </svg>

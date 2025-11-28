@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='269.7' y='196.6' width='90.6' height='74.1' fill='#9D174D' fill-opacity='0.07' transform='rotate(6.9 269.7 196.6)'/><rect x='149.3' y='95.8' width='58.0' height='109.1' fill='#9D174D' fill-opacity='0.07' transform='rotate(4.8 149.3 95.8)'/><rect x='175.6' y='462.0' width='68.1' height='116.6' fill='#9D174D' fill-opacity='0.07' transform='rotate(1.6 175.6 462.0)'/><rect x='308.7' y='605.6' width='99.1' height='87.2' fill='#9D174D' fill-opacity='0.07' transform='rotate(-0.7 308.7 605.6)'/><rect x='245.8' y='667.7' width='142.9' height='138.4' fill='#9D174D' fill-opacity='0.07' transform='rotate(-5.6 245.8 667.7)'/><rect x='136.7' y='682.5' width='44.5' height='140.4' fill='#9D174D' fill-opacity='0.07' transform='rotate(3.2 136.7 682.5)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#9D174D'/>
+
+  <rect x='408' y='465' width='121' height='121' fill='#9333EA' fill-opacity='0.07' transform='rotate(-0.3 408 465)'/><rect x='95' y='778' width='178' height='144' fill='#9333EA' fill-opacity='0.07' transform='rotate(6.1 95 778)'/><rect x='184' y='243' width='60' height='86' fill='#9333EA' fill-opacity='0.07' transform='rotate(-7.4 184 243)'/><rect x='379' y='722' width='85' height='104' fill='#9333EA' fill-opacity='0.07' transform='rotate(-6.3 379 722)'/><rect x='353' y='717' width='104' height='120' fill='#9333EA' fill-opacity='0.07' transform='rotate(-3.9 353 717)'/><rect x='99' y='475' width='135' height='156' fill='#9333EA' fill-opacity='0.07' transform='rotate(-3.4 99 475)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#9333EA'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='48' font-weight='700'>Mein Weg durch</text>
-    <text x='80' y='166' font-size='48' font-weight='700'>den Ozean –</text>
-    <text x='80' y='252' font-size='28' font-style='italic'>Eine Seglerin trotzt Stürmen · Expertise</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Bestseller 1142</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Für Einsteiger und Profis</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#9D174D' font-family='Arial, sans-serif'>von Marco Ruiz</text>
-  <text x='88' y='820' font-size='20' fill='#9D174D' font-family='Arial, sans-serif'>biographien-memoiren</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#9333EA' font-family='Arial, sans-serif'>von Julia Wolf</text>
+  <text x='88' y='820' font-size='20' fill='#9333EA' font-family='Arial, sans-serif'>Musik</text>
 </svg>

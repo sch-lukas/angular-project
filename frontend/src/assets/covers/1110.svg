@@ -7,14 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='144.1' y='196.6' width='42.5' height='116.6' fill='#9D174D' fill-opacity='0.07' transform='rotate(-6.4 144.1 196.6)'/><rect x='563.7' y='70.0' width='77.5' height='145.2' fill='#9D174D' fill-opacity='0.07' transform='rotate(-8.4 563.7 70.0)'/><rect x='327.7' y='419.8' width='110.4' height='156.7' fill='#9D174D' fill-opacity='0.07' transform='rotate(-5.4 327.7 419.8)'/><rect x='482.8' y='76.3' width='160.0' height='126.5' fill='#9D174D' fill-opacity='0.07' transform='rotate(-8.3 482.8 76.3)'/><rect x='108.3' y='537.5' width='95.5' height='66.5' fill='#9D174D' fill-opacity='0.07' transform='rotate(-5.6 108.3 537.5)'/><rect x='360.4' y='836.0' width='166.5' height='125.5' fill='#9D174D' fill-opacity='0.07' transform='rotate(1.5 360.4 836.0)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#9D174D'/>
+
+  <rect x='416' y='735' width='122' height='144' fill='#9333EA' fill-opacity='0.07' transform='rotate(-3.7 416 735)'/><rect x='189' y='831' width='159' height='97' fill='#9333EA' fill-opacity='0.07' transform='rotate(-4.6 189 831)'/><rect x='448' y='310' width='97' height='159' fill='#9333EA' fill-opacity='0.07' transform='rotate(0 448 310)'/><rect x='228' y='894' width='147' height='72' fill='#9333EA' fill-opacity='0.07' transform='rotate(-9 228 894)'/><rect x='282' y='893' width='117' height='143' fill='#9333EA' fill-opacity='0.07' transform='rotate(-0.5 282 893)'/><rect x='302' y='430' width='131' height='150' fill='#9333EA' fill-opacity='0.07' transform='rotate(3.6 302 430)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#9333EA'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>Der lange</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>Fotografie als Lebensaufgabe</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Bestseller 1110</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Für Einsteiger und Profis</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#9D174D' font-family='Arial, sans-serif'>von Clara Wieland</text>
-  <text x='88' y='820' font-size='20' fill='#9D174D' font-family='Arial, sans-serif'>biographien-memoiren</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#9333EA' font-family='Arial, sans-serif'>von Julia Wolf</text>
+  <text x='88' y='820' font-size='20' fill='#9333EA' font-family='Arial, sans-serif'>Musik</text>
 </svg>

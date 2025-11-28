@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='345.0' y='376.3' width='127.3' height='117.1' fill='#0369A1' fill-opacity='0.07' transform='rotate(-0.6 345.0 376.3)'/><rect x='69.8' y='222.6' width='85.4' height='57.1' fill='#0369A1' fill-opacity='0.07' transform='rotate(-1.2 69.8 222.6)'/><rect x='540.9' y='199.1' width='53.0' height='50.3' fill='#0369A1' fill-opacity='0.07' transform='rotate(-7.1 540.9 199.1)'/><rect x='514.9' y='515.3' width='80.6' height='85.3' fill='#0369A1' fill-opacity='0.07' transform='rotate(-4.3 514.9 515.3)'/><rect x='193.4' y='378.0' width='94.4' height='72.5' fill='#0369A1' fill-opacity='0.07' transform='rotate(-2.3 193.4 378.0)'/><rect x='186.7' y='809.7' width='66.1' height='117.5' fill='#0369A1' fill-opacity='0.07' transform='rotate(-7.3 186.7 809.7)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#0369A1'/>
+
+  <rect x='335' y='896' width='123' height='128' fill='#D97706' fill-opacity='0.07' transform='rotate(-5.1 335 896)'/><rect x='307' y='300' width='131' height='170' fill='#D97706' fill-opacity='0.07' transform='rotate(-3.2 307 300)'/><rect x='387' y='463' width='169' height='75' fill='#D97706' fill-opacity='0.07' transform='rotate(8.6 387 463)'/><rect x='246' y='197' width='63' height='99' fill='#D97706' fill-opacity='0.07' transform='rotate(7.7 246 197)'/><rect x='566' y='326' width='97' height='129' fill='#D97706' fill-opacity='0.07' transform='rotate(-0.4 566 326)'/><rect x='67' y='313' width='166' height='126' fill='#D97706' fill-opacity='0.07' transform='rotate(-0.3 67 313)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#D97706'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Digital Detox</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>wissenschaftli…</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Bildschirmzeiten reflektieren</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Meisterwerk Nr. 1121</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Leicht verständlich</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#0369A1' font-family='Arial, sans-serif'>von Dr. Emil Vargas</text>
-  <text x='88' y='820' font-size='20' fill='#0369A1' font-family='Arial, sans-serif'>wissenschaft-gesundheit</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#D97706' font-family='Arial, sans-serif'>von Michael Weber</text>
+  <text x='88' y='820' font-size='20' fill='#D97706' font-family='Arial, sans-serif'>Kochen</text>
 </svg>

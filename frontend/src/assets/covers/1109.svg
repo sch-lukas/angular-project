@@ -7,14 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='550.6' y='312.8' width='104.9' height='158.7' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(2.1 550.6 312.8)'/><rect x='299.3' y='741.8' width='124.7' height='127.8' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-1.9 299.3 741.8)'/><rect x='472.6' y='196.4' width='172.0' height='139.9' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-2.2 472.6 196.4)'/><rect x='491.4' y='44.0' width='81.3' height='125.7' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-3.6 491.4 44.0)'/><rect x='203.3' y='61.5' width='107.9' height='79.1' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(2.9 203.3 61.5)'/><rect x='187.4' y='469.6' width='114.8' height='85.5' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-8.8 187.4 469.6)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#8B5E3C'/>
+
+  <rect x='469' y='198' width='64' height='83' fill='#65A30D' fill-opacity='0.07' transform='rotate(6.1 469 198)'/><rect x='57' y='140' width='79' height='92' fill='#65A30D' fill-opacity='0.07' transform='rotate(-1.9 57 140)'/><rect x='549' y='152' width='154' height='167' fill='#65A30D' fill-opacity='0.07' transform='rotate(1.8 549 152)'/><rect x='400' y='335' width='108' height='53' fill='#65A30D' fill-opacity='0.07' transform='rotate(6.4 400 335)'/><rect x='111' y='715' width='172' height='110' fill='#65A30D' fill-opacity='0.07' transform='rotate(-2.4 111 715)'/><rect x='229' y='151' width='94' height='89' fill='#65A30D' fill-opacity='0.07' transform='rotate(-0.4 229 151)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#65A30D'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>Koloniale</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>Erinnern und Verantwortung</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Klassiker Nr. 1109</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Die ultimative Sammlung</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#8B5E3C' font-family='Arial, sans-serif'>von Prof. Daniel Krämer</text>
-  <text x='88' y='820' font-size='20' fill='#8B5E3C' font-family='Arial, sans-serif'>geschichte-politik</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#65A30D' font-family='Arial, sans-serif'>von Michael Weber</text>
+  <text x='88' y='820' font-size='20' fill='#65A30D' font-family='Arial, sans-serif'>Kunst</text>
 </svg>

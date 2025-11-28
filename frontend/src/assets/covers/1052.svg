@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='216.8' y='690.5' width='108.2' height='65.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.5 216.8 690.5)'/><rect x='324.8' y='648.4' width='110.3' height='89.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(8.0 324.8 648.4)'/><rect x='295.1' y='257.6' width='94.9' height='101.3' fill='#7C3AED' fill-opacity='0.07' transform='rotate(0.4 295.1 257.6)'/><rect x='531.4' y='582.8' width='52.4' height='156.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.3 531.4 582.8)'/><rect x='230.0' y='528.6' width='49.4' height='158.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-7.7 230.0 528.6)'/><rect x='379.1' y='164.6' width='168.2' height='137.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(7.3 379.1 164.6)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+
+  <rect x='355' y='709' width='171' height='71' fill='#10B981' fill-opacity='0.07' transform='rotate(0.1 355 709)'/><rect x='313' y='315' width='73' height='52' fill='#10B981' fill-opacity='0.07' transform='rotate(-6.7 313 315)'/><rect x='120' y='686' width='126' height='159' fill='#10B981' fill-opacity='0.07' transform='rotate(8 120 686)'/><rect x='312' y='598' width='164' height='96' fill='#10B981' fill-opacity='0.07' transform='rotate(4.1 312 598)'/><rect x='597' y='210' width='135' height='128' fill='#10B981' fill-opacity='0.07' transform='rotate(4.5 597 210)'/><rect x='137' y='168' width='61' height='68' fill='#10B981' fill-opacity='0.07' transform='rotate(-4.5 137 168)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#10B981'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Elixir &amp;</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>Phoenix</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Functional Web Development</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Wissen kompakt 1052</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Praxisnah erklärt</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
-  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#10B981' font-family='Arial, sans-serif'>von Maria Schneider</text>
+  <text x='88' y='820' font-size='20' fill='#10B981' font-family='Arial, sans-serif'>Science Fiction</text>
 </svg>

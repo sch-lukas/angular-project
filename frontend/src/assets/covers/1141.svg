@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='409.3' y='388.4' width='176.1' height='101.3' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(1.0 409.3 388.4)'/><rect x='537.8' y='689.7' width='104.3' height='129.6' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(6.6 537.8 689.7)'/><rect x='73.4' y='509.3' width='49.3' height='172.6' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-2.4 73.4 509.3)'/><rect x='226.0' y='752.3' width='80.5' height='125.7' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(5.3 226.0 752.3)'/><rect x='313.6' y='586.7' width='107.6' height='156.0' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(0.6 313.6 586.7)'/><rect x='311.5' y='826.0' width='136.9' height='83.4' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(3.4 311.5 826.0)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#8B5E3C'/>
+
+  <rect x='200' y='503' width='109' height='79' fill='#65A30D' fill-opacity='0.07' transform='rotate(3.1 200 503)'/><rect x='159' y='665' width='119' height='170' fill='#65A30D' fill-opacity='0.07' transform='rotate(4 159 665)'/><rect x='383' y='507' width='99' height='48' fill='#65A30D' fill-opacity='0.07' transform='rotate(-1.4 383 507)'/><rect x='384' y='858' width='125' height='141' fill='#65A30D' fill-opacity='0.07' transform='rotate(-3.5 384 858)'/><rect x='231' y='78' width='135' height='93' fill='#65A30D' fill-opacity='0.07' transform='rotate(5.9 231 78)'/><rect x='331' y='559' width='84' height='68' fill='#65A30D' fill-opacity='0.07' transform='rotate(-5.5 331 559)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#65A30D'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Europa im</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>Wandel –</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Vom Mittelalter bis heute · Expertise</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Klassiker Nr. 1141</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Die ultimative Sammlung</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#8B5E3C' font-family='Arial, sans-serif'>von Leyla Al-Hamid</text>
-  <text x='88' y='820' font-size='20' fill='#8B5E3C' font-family='Arial, sans-serif'>geschichte-politik</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#65A30D' font-family='Arial, sans-serif'>von Michael Weber</text>
+  <text x='88' y='820' font-size='20' fill='#65A30D' font-family='Arial, sans-serif'>Kunst</text>
 </svg>

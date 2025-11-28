@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='121.4' y='760.2' width='48.3' height='67.6' fill='#6D28D9' fill-opacity='0.07' transform='rotate(7.0 121.4 760.2)'/><rect x='63.2' y='404.6' width='94.7' height='151.6' fill='#6D28D9' fill-opacity='0.07' transform='rotate(0.7 63.2 404.6)'/><rect x='243.3' y='478.7' width='63.2' height='144.9' fill='#6D28D9' fill-opacity='0.07' transform='rotate(3.4 243.3 478.7)'/><rect x='103.6' y='227.2' width='52.3' height='51.9' fill='#6D28D9' fill-opacity='0.07' transform='rotate(-7.3 103.6 227.2)'/><rect x='417.4' y='177.5' width='154.3' height='63.1' fill='#6D28D9' fill-opacity='0.07' transform='rotate(-7.5 417.4 177.5)'/><rect x='528.8' y='185.2' width='173.8' height='86.6' fill='#6D28D9' fill-opacity='0.07' transform='rotate(0.7 528.8 185.2)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#6D28D9'/>
+
+  <rect x='302' y='646' width='91' height='98' fill='#0284C7' fill-opacity='0.07' transform='rotate(1.1 302 646)'/><rect x='276' y='606' width='61' height='101' fill='#0284C7' fill-opacity='0.07' transform='rotate(-7.3 276 606)'/><rect x='565' y='401' width='92' height='131' fill='#0284C7' fill-opacity='0.07' transform='rotate(1.8 565 401)'/><rect x='140' y='255' width='104' height='60' fill='#0284C7' fill-opacity='0.07' transform='rotate(2 140 255)'/><rect x='156' y='689' width='68' height='128' fill='#0284C7' fill-opacity='0.07' transform='rotate(-6.9 156 689)'/><rect x='368' y='83' width='110' height='141' fill='#0284C7' fill-opacity='0.07' transform='rotate(4.5 368 83)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0284C7'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Die Gärten von</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>Miraval</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Botanische Magie</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Wissen kompakt 1124</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Praxisnah erklärt</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#6D28D9' font-family='Arial, sans-serif'>von Elin Falk</text>
-  <text x='88' y='820' font-size='20' fill='#6D28D9' font-family='Arial, sans-serif'>fantasy-sci-fi</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0284C7' font-family='Arial, sans-serif'>von Maria Schneider</text>
+  <text x='88' y='820' font-size='20' fill='#0284C7' font-family='Arial, sans-serif'>Technologie</text>
 </svg>

@@ -7,15 +7,15 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='425.3' y='752.2' width='50.3' height='173.1' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(5.1 425.3 752.2)'/><rect x='560.9' y='313.4' width='87.6' height='135.7' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-6.9 560.9 313.4)'/><rect x='565.1' y='427.7' width='65.5' height='179.5' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-8.0 565.1 427.7)'/><rect x='383.7' y='243.7' width='55.4' height='147.4' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(6.1 383.7 243.7)'/><rect x='72.1' y='381.8' width='54.9' height='136.4' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(7.2 72.1 381.8)'/><rect x='422.5' y='155.3' width='96.3' height='113.2' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(7.3 422.5 155.3)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#1E3A8A'/>
+
+  <rect x='502' y='132' width='102' height='70' fill='#7C3AED' fill-opacity='0.07' transform='rotate(4 502 132)'/><rect x='435' y='780' width='74' height='56' fill='#7C3AED' fill-opacity='0.07' transform='rotate(8.7 435 780)'/><rect x='115' y='71' width='84' height='41' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.7 115 71)'/><rect x='320' y='390' width='100' height='108' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-2.5 320 390)'/><rect x='432' y='194' width='74' height='64' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-6.9 432 194)'/><rect x='399' y='678' width='105' height='69' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-0.9 399 678)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Produktstrategien</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>schärfen</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Vom Insight zum Release</text>
+    <text x='80' y='110' font-size='52' font-weight='700'>Das große Buch</text>
+    <text x='80' y='172' font-size='52' font-weight='700'>1112</text>
+    <text x='80' y='274' font-size='28' font-style='italic'>Ein unvergessliches Leseerlebnis</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#1E3A8A' font-family='Arial, sans-serif'>von Verena Boldt</text>
-  <text x='88' y='820' font-size='20' fill='#1E3A8A' font-family='Arial, sans-serif'>business-leadership</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>von Maria Schneider</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>Roman</text>
 </svg>

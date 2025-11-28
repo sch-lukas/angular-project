@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='186.3' y='700.2' width='162.7' height='153.1' fill='#EA580C' fill-opacity='0.07' transform='rotate(0.5 186.3 700.2)'/><rect x='259.3' y='171.8' width='176.6' height='77.8' fill='#EA580C' fill-opacity='0.07' transform='rotate(-3.7 259.3 171.8)'/><rect x='233.0' y='657.0' width='78.9' height='48.5' fill='#EA580C' fill-opacity='0.07' transform='rotate(4.1 233.0 657.0)'/><rect x='561.8' y='857.3' width='79.7' height='41.3' fill='#EA580C' fill-opacity='0.07' transform='rotate(6.1 561.8 857.3)'/><rect x='230.9' y='516.6' width='135.7' height='143.4' fill='#EA580C' fill-opacity='0.07' transform='rotate(-4.1 230.9 516.6)'/><rect x='213.3' y='716.6' width='169.7' height='108.9' fill='#EA580C' fill-opacity='0.07' transform='rotate(4.3 213.3 716.6)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#EA580C'/>
+
+  <rect x='239' y='395' width='117' height='68' fill='#0891B2' fill-opacity='0.07' transform='rotate(7.1 239 395)'/><rect x='375' y='288' width='155' height='60' fill='#0891B2' fill-opacity='0.07' transform='rotate(-1.7 375 288)'/><rect x='165' y='97' width='129' height='84' fill='#0891B2' fill-opacity='0.07' transform='rotate(-7.9 165 97)'/><rect x='424' y='576' width='84' height='98' fill='#0891B2' fill-opacity='0.07' transform='rotate(-6.5 424 576)'/><rect x='403' y='415' width='53' height='40' fill='#0891B2' fill-opacity='0.07' transform='rotate(-8.6 403 415)'/><rect x='587' y='417' width='127' height='131' fill='#0891B2' fill-opacity='0.07' transform='rotate(-2.2 587 417)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0891B2'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Nordische</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>Fjordküche</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Rezepte zwischen Felsen und Meer</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Geheimnisse von 1082</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Fundiertes Fachwissen</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#EA580C' font-family='Arial, sans-serif'>von Ivo Hernandez</text>
-  <text x='88' y='820' font-size='20' fill='#EA580C' font-family='Arial, sans-serif'>reisen-kulinarik</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0891B2' font-family='Arial, sans-serif'>von Julia Wolf</text>
+  <text x='88' y='820' font-size='20' fill='#0891B2' font-family='Arial, sans-serif'>Ratgeber</text>
 </svg>

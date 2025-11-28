@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='534.9' y='574.6' width='89.4' height='170.2' fill='#9D174D' fill-opacity='0.07' transform='rotate(5.8 534.9 574.6)'/><rect x='268.6' y='700.3' width='85.6' height='85.1' fill='#9D174D' fill-opacity='0.07' transform='rotate(8.7 268.6 700.3)'/><rect x='132.0' y='723.1' width='128.3' height='55.6' fill='#9D174D' fill-opacity='0.07' transform='rotate(-2.5 132.0 723.1)'/><rect x='487.0' y='269.1' width='111.6' height='104.0' fill='#9D174D' fill-opacity='0.07' transform='rotate(4.3 487.0 269.1)'/><rect x='272.2' y='646.8' width='48.5' height='139.6' fill='#9D174D' fill-opacity='0.07' transform='rotate(-1.9 272.2 646.8)'/><rect x='154.1' y='109.9' width='114.4' height='131.0' fill='#9D174D' fill-opacity='0.07' transform='rotate(1.8 154.1 109.9)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#9D174D'/>
+
+  <rect x='206' y='81' width='173' height='73' fill='#9333EA' fill-opacity='0.07' transform='rotate(0.9 206 81)'/><rect x='512' y='233' width='79' height='62' fill='#9333EA' fill-opacity='0.07' transform='rotate(-2.1 512 233)'/><rect x='215' y='787' width='64' height='150' fill='#9333EA' fill-opacity='0.07' transform='rotate(-1.5 215 787)'/><rect x='105' y='200' width='165' height='100' fill='#9333EA' fill-opacity='0.07' transform='rotate(-1.6 105 200)'/><rect x='492' y='740' width='75' height='166' fill='#9333EA' fill-opacity='0.07' transform='rotate(2.6 492 740)'/><rect x='67' y='58' width='144' height='82' fill='#9333EA' fill-opacity='0.07' transform='rotate(-2 67 58)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#9333EA'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Mein Weg durch</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>den Ozean</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Eine Seglerin trotzt Stürmen</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Bestseller 1062</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Für Einsteiger und Profis</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#9D174D' font-family='Arial, sans-serif'>von Clara Wieland</text>
-  <text x='88' y='820' font-size='20' fill='#9D174D' font-family='Arial, sans-serif'>biographien-memoiren</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#9333EA' font-family='Arial, sans-serif'>von Julia Wolf</text>
+  <text x='88' y='820' font-size='20' fill='#9333EA' font-family='Arial, sans-serif'>Musik</text>
 </svg>

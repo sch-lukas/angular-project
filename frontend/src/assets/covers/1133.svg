@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='479.1' y='631.6' width='93.3' height='116.9' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(2.1 479.1 631.6)'/><rect x='545.2' y='154.2' width='103.9' height='130.5' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(1.8 545.2 154.2)'/><rect x='223.9' y='374.3' width='123.0' height='112.1' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-8.1 223.9 374.3)'/><rect x='197.8' y='662.0' width='145.1' height='152.2' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-3.9 197.8 662.0)'/><rect x='377.3' y='135.8' width='116.4' height='62.5' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-7.7 377.3 135.8)'/><rect x='187.7' y='331.7' width='55.3' height='51.6' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-4.0 187.7 331.7)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#8B5E3C'/>
+
+  <rect x='595' y='833' width='112' height='140' fill='#EA580C' fill-opacity='0.07' transform='rotate(-7.5 595 833)'/><rect x='382' y='270' width='179' height='46' fill='#EA580C' fill-opacity='0.07' transform='rotate(0.6 382 270)'/><rect x='588' y='301' width='130' height='177' fill='#EA580C' fill-opacity='0.07' transform='rotate(8 588 301)'/><rect x='399' y='443' width='125' height='108' fill='#EA580C' fill-opacity='0.07' transform='rotate(2.6 399 443)'/><rect x='101' y='199' width='159' height='106' fill='#EA580C' fill-opacity='0.07' transform='rotate(8.8 101 199)'/><rect x='78' y='481' width='84' height='48' fill='#EA580C' fill-opacity='0.07' transform='rotate(3.2 78 481)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#EA580C'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Weltmächte im</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>Vergleich</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Machtprojektionen analysieren</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Klassiker Nr. 1133</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Die ultimative Sammlung</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#8B5E3C' font-family='Arial, sans-serif'>von Prof. Daniel Krämer</text>
-  <text x='88' y='820' font-size='20' fill='#8B5E3C' font-family='Arial, sans-serif'>geschichte-politik</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#EA580C' font-family='Arial, sans-serif'>von Michael Weber</text>
+  <text x='88' y='820' font-size='20' fill='#EA580C' font-family='Arial, sans-serif'>Fantasy</text>
 </svg>

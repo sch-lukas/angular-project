@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='101.5' y='497.1' width='178.5' height='54.4' fill='#9D174D' fill-opacity='0.07' transform='rotate(0.1 101.5 497.1)'/><rect x='557.2' y='89.1' width='122.0' height='150.7' fill='#9D174D' fill-opacity='0.07' transform='rotate(4.2 557.2 89.1)'/><rect x='573.3' y='703.1' width='149.1' height='41.3' fill='#9D174D' fill-opacity='0.07' transform='rotate(7.6 573.3 703.1)'/><rect x='340.5' y='125.5' width='157.6' height='61.7' fill='#9D174D' fill-opacity='0.07' transform='rotate(5.2 340.5 125.5)'/><rect x='414.4' y='790.5' width='79.7' height='162.1' fill='#9D174D' fill-opacity='0.07' transform='rotate(7.7 414.4 790.5)'/><rect x='522.2' y='388.8' width='138.6' height='66.4' fill='#9D174D' fill-opacity='0.07' transform='rotate(1.5 522.2 388.8)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#9D174D'/>
+
+  <rect x='286' y='363' width='98' height='103' fill='#9333EA' fill-opacity='0.07' transform='rotate(0.8 286 363)'/><rect x='541' y='495' width='175' height='46' fill='#9333EA' fill-opacity='0.07' transform='rotate(1.1 541 495)'/><rect x='219' y='444' width='101' height='75' fill='#9333EA' fill-opacity='0.07' transform='rotate(-5.5 219 444)'/><rect x='404' y='890' width='83' height='175' fill='#9333EA' fill-opacity='0.07' transform='rotate(5.5 404 890)'/><rect x='117' y='637' width='141' height='111' fill='#9333EA' fill-opacity='0.07' transform='rotate(7.3 117 637)'/><rect x='396' y='309' width='108' height='175' fill='#9333EA' fill-opacity='0.07' transform='rotate(-3.2 396 309)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#9333EA'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='48' font-weight='700'>Gegen jede</text>
-    <text x='80' y='166' font-size='48' font-weight='700'>Prognose –</text>
-    <text x='80' y='252' font-size='28' font-style='italic'>Vom Außenseiter zum Visionär · Expertise</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Bestseller 1158</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Für Einsteiger und Profis</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#9D174D' font-family='Arial, sans-serif'>von Clara Wieland</text>
-  <text x='88' y='820' font-size='20' fill='#9D174D' font-family='Arial, sans-serif'>biographien-memoiren</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#9333EA' font-family='Arial, sans-serif'>von Julia Wolf</text>
+  <text x='88' y='820' font-size='20' fill='#9333EA' font-family='Arial, sans-serif'>Musik</text>
 </svg>

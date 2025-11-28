@@ -7,14 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='201.7' y='248.7' width='58.8' height='173.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.1 201.7 248.7)'/><rect x='315.8' y='704.8' width='155.6' height='98.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-0.4 315.8 704.8)'/><rect x='221.0' y='229.4' width='135.6' height='147.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-1.9 221.0 229.4)'/><rect x='307.4' y='185.9' width='91.9' height='99.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(8.5 307.4 185.9)'/><rect x='350.3' y='180.0' width='110.9' height='78.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.6 350.3 180.0)'/><rect x='226.6' y='724.8' width='90.9' height='65.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(6.6 226.6 724.8)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+
+  <rect x='528' y='222' width='93' height='155' fill='#0891B2' fill-opacity='0.07' transform='rotate(-0.7 528 222)'/><rect x='147' y='891' width='163' height='84' fill='#0891B2' fill-opacity='0.07' transform='rotate(0.2 147 891)'/><rect x='467' y='660' width='154' height='89' fill='#0891B2' fill-opacity='0.07' transform='rotate(-5.9 467 660)'/><rect x='537' y='554' width='133' height='92' fill='#0891B2' fill-opacity='0.07' transform='rotate(5.3 537 554)'/><rect x='122' y='647' width='174' height='58' fill='#0891B2' fill-opacity='0.07' transform='rotate(2.6 122 647)'/><rect x='573' y='447' width='60' height='75' fill='#0891B2' fill-opacity='0.07' transform='rotate(-7.3 573 447)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0891B2'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>Terraform</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>Infrastructure as Code</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Geheimnisse von 1034</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Fundiertes Fachwissen</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
-  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0891B2' font-family='Arial, sans-serif'>von Julia Wolf</text>
+  <text x='88' y='820' font-size='20' fill='#0891B2' font-family='Arial, sans-serif'>Ratgeber</text>
 </svg>

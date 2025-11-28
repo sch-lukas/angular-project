@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='189.5' y='535.6' width='111.8' height='93.1' fill='#9D174D' fill-opacity='0.07' transform='rotate(-4.4 189.5 535.6)'/><rect x='101.7' y='583.7' width='97.9' height='72.9' fill='#9D174D' fill-opacity='0.07' transform='rotate(-6.4 101.7 583.7)'/><rect x='445.9' y='322.0' width='168.1' height='111.0' fill='#9D174D' fill-opacity='0.07' transform='rotate(4.7 445.9 322.0)'/><rect x='168.0' y='97.0' width='127.4' height='79.6' fill='#9D174D' fill-opacity='0.07' transform='rotate(1.7 168.0 97.0)'/><rect x='487.8' y='476.5' width='119.9' height='43.1' fill='#9D174D' fill-opacity='0.07' transform='rotate(8.4 487.8 476.5)'/><rect x='124.8' y='745.5' width='179.1' height='93.0' fill='#9D174D' fill-opacity='0.07' transform='rotate(-3.9 124.8 745.5)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#9D174D'/>
+
+  <rect x='105' y='109' width='170' height='106' fill='#DC2626' fill-opacity='0.07' transform='rotate(8 105 109)'/><rect x='469' y='142' width='157' height='115' fill='#DC2626' fill-opacity='0.07' transform='rotate(2.6 469 142)'/><rect x='585' y='191' width='70' height='170' fill='#DC2626' fill-opacity='0.07' transform='rotate(8 585 191)'/><rect x='503' y='716' width='173' height='75' fill='#DC2626' fill-opacity='0.07' transform='rotate(-8.7 503 716)'/><rect x='382' y='558' width='51' height='101' fill='#DC2626' fill-opacity='0.07' transform='rotate(1.9 382 558)'/><rect x='198' y='519' width='171' height='157' fill='#DC2626' fill-opacity='0.07' transform='rotate(1.8 198 519)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#DC2626'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Zwischen</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>Lichtern und</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Karriere einer Bühnenkünstlerin</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Bestseller 1070</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Für Einsteiger und Profis</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#9D174D' font-family='Arial, sans-serif'>von Marco Ruiz</text>
-  <text x='88' y='820' font-size='20' fill='#9D174D' font-family='Arial, sans-serif'>biographien-memoiren</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#DC2626' font-family='Arial, sans-serif'>von Julia Wolf</text>
+  <text x='88' y='820' font-size='20' fill='#DC2626' font-family='Arial, sans-serif'>Thriller</text>
 </svg>

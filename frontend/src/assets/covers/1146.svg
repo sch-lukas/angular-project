@@ -7,15 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='554.9' y='786.4' width='117.9' height='150.8' fill='#EA580C' fill-opacity='0.07' transform='rotate(-6.7 554.9 786.4)'/><rect x='484.6' y='582.2' width='111.2' height='155.0' fill='#EA580C' fill-opacity='0.07' transform='rotate(-1.0 484.6 582.2)'/><rect x='272.7' y='323.7' width='178.9' height='49.4' fill='#EA580C' fill-opacity='0.07' transform='rotate(4.1 272.7 323.7)'/><rect x='578.1' y='739.7' width='163.0' height='43.9' fill='#EA580C' fill-opacity='0.07' transform='rotate(-3.0 578.1 739.7)'/><rect x='339.1' y='470.7' width='122.0' height='118.0' fill='#EA580C' fill-opacity='0.07' transform='rotate(8.5 339.1 470.7)'/><rect x='403.3' y='139.0' width='82.0' height='58.3' fill='#EA580C' fill-opacity='0.07' transform='rotate(2.3 403.3 139.0)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#EA580C'/>
+
+  <rect x='483' y='889' width='146' height='148' fill='#0891B2' fill-opacity='0.07' transform='rotate(2.3 483 889)'/><rect x='112' y='521' width='81' height='109' fill='#0891B2' fill-opacity='0.07' transform='rotate(-0.6 112 521)'/><rect x='537' y='566' width='75' height='82' fill='#0891B2' fill-opacity='0.07' transform='rotate(0.6 537 566)'/><rect x='513' y='51' width='150' height='40' fill='#0891B2' fill-opacity='0.07' transform='rotate(-5.8 513 51)'/><rect x='151' y='183' width='128' height='95' fill='#0891B2' fill-opacity='0.07' transform='rotate(0.2 151 183)'/><rect x='561' y='348' width='158' height='103' fill='#0891B2' fill-opacity='0.07' transform='rotate(7.4 561 348)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0891B2'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='48' font-weight='700'>Mit der Bahn</text>
-    <text x='80' y='166' font-size='48' font-weight='700'>durch Europa –</text>
-    <text x='80' y='252' font-size='28' font-style='italic'>Slow-Travel-Routen · Expertise</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Geheimnisse von 1146</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Fundiertes Fachwissen</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#EA580C' font-family='Arial, sans-serif'>von Soraya Bell</text>
-  <text x='88' y='820' font-size='20' fill='#EA580C' font-family='Arial, sans-serif'>reisen-kulinarik</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0891B2' font-family='Arial, sans-serif'>von Julia Wolf</text>
+  <text x='88' y='820' font-size='20' fill='#0891B2' font-family='Arial, sans-serif'>Ratgeber</text>
 </svg>

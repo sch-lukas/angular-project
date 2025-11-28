@@ -7,19 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <g stroke='#6D28D9' stroke-width='3' stroke-opacity='0.5' fill='none'>
-                    <rect x='190' y='370' width='250' height='170'/>
-                    <path d='M190 370l250 170M440 370L190 540'/>
-                    <path d='M230 370v170M270 370v170M310 370v170M350 370v170M390 370v170'/>
-                </g>
-  <rect x='0' y='0' width='48' height='900' fill='#6D28D9'/>
+
+  <rect x='393' y='329' width='132' height='78' fill='#10B981' fill-opacity='0.07' transform='rotate(-9 393 329)'/><rect x='481' y='808' width='101' height='92' fill='#10B981' fill-opacity='0.07' transform='rotate(1.8 481 808)'/><rect x='525' y='791' width='114' height='96' fill='#10B981' fill-opacity='0.07' transform='rotate(6.2 525 791)'/><rect x='202' y='696' width='167' height='177' fill='#10B981' fill-opacity='0.07' transform='rotate(6.3 202 696)'/><rect x='313' y='801' width='133' height='152' fill='#10B981' fill-opacity='0.07' transform='rotate(-7.2 313 801)'/><rect x='567' y='302' width='121' height='141' fill='#10B981' fill-opacity='0.07' transform='rotate(4.1 567 302)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#10B981'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='52' font-weight='700'>Wächter von</text>
-    <text x='80' y='170' font-size='52' font-weight='700'>Solaris</text>
-    <text x='80' y='260' font-size='28' font-style='italic'>Cyberpunk trifft Mythos</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Wissen kompakt 1100</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Praxisnah erklärt</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#6D28D9' font-family='Arial, sans-serif'>von Elin Falk</text>
-  <text x='88' y='820' font-size='20' fill='#6D28D9' font-family='Arial, sans-serif'>fantasy-sci-fi</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#10B981' font-family='Arial, sans-serif'>von Maria Schneider</text>
+  <text x='88' y='820' font-size='20' fill='#10B981' font-family='Arial, sans-serif'>Science Fiction</text>
 </svg>

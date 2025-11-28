@@ -7,14 +7,14 @@
     </linearGradient>
   </defs>
   <rect width='600' height='900' fill='url(#bg)'/>
-  
-  <rect x='104.4' y='92.4' width='165.4' height='165.5' fill='#15803D' fill-opacity='0.07' transform='rotate(-2.7 104.4 92.4)'/><rect x='507.2' y='577.2' width='145.1' height='47.6' fill='#15803D' fill-opacity='0.07' transform='rotate(-1.9 507.2 577.2)'/><rect x='378.2' y='459.4' width='163.4' height='159.6' fill='#15803D' fill-opacity='0.07' transform='rotate(1.5 378.2 459.4)'/><rect x='100.5' y='528.1' width='68.6' height='169.6' fill='#15803D' fill-opacity='0.07' transform='rotate(-4.1 100.5 528.1)'/><rect x='191.4' y='265.5' width='146.0' height='61.8' fill='#15803D' fill-opacity='0.07' transform='rotate(2.2 191.4 265.5)'/><rect x='219.7' y='281.7' width='121.8' height='95.3' fill='#15803D' fill-opacity='0.07' transform='rotate(-7.6 219.7 281.7)'/>
-  <rect x='0' y='0' width='48' height='900' fill='#15803D'/>
+
+  <rect x='494' y='179' width='127' height='55' fill='#C026D3' fill-opacity='0.07' transform='rotate(-5.5 494 179)'/><rect x='146' y='301' width='151' height='127' fill='#C026D3' fill-opacity='0.07' transform='rotate(-2 146 301)'/><rect x='263' y='105' width='105' height='80' fill='#C026D3' fill-opacity='0.07' transform='rotate(2.6 263 105)'/><rect x='419' y='872' width='78' height='72' fill='#C026D3' fill-opacity='0.07' transform='rotate(-4.2 419 872)'/><rect x='320' y='421' width='146' height='166' fill='#C026D3' fill-opacity='0.07' transform='rotate(-3.5 320 421)'/><rect x='505' y='383' width='91' height='60' fill='#C026D3' fill-opacity='0.07' transform='rotate(-3.9 505 383)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#C026D3'/>
   <g font-family='Arial, sans-serif' fill='white'>
-    <text x='80' y='110' font-size='56' font-weight='700'>Grüne</text>
-    <text x='80' y='204' font-size='28' font-style='italic'>Transparenz entlang des Weges</text>
+    <text x='80' y='110' font-size='56' font-weight='700'>Entdecke Fuchsia</text>
+    <text x='80' y='216' font-size='28' font-style='italic'>Spannend von Anfang bis Ende</text>
   </g>
   <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
-  <text x='88' y='775' font-size='32' font-weight='700' fill='#15803D' font-family='Arial, sans-serif'>von Paul Steiner</text>
-  <text x='88' y='820' font-size='20' fill='#15803D' font-family='Arial, sans-serif'>nachhaltigkeit-umwelt</text>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#C026D3' font-family='Arial, sans-serif'>von Daniel Richter</text>
+  <text x='88' y='820' font-size='20' fill='#C026D3' font-family='Arial, sans-serif'>Sport</text>
 </svg>
