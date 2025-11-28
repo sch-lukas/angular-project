@@ -55,51 +55,45 @@ import { BuchApiService, type BuchItem } from './buch-api.service';
 
             <!-- Produktseite (Shop-Layout) -->
             <div *ngIf="buch && !isLoading" class="product-card card shadow">
-                <!-- Hero Header mit Titel und Rating -->
-                <div class="card-header hero-header">
-                    <div
-                        class="d-flex justify-content-between align-items-start flex-wrap gap-3"
+                <!-- Titel und Rating über allem -->
+                <div class="card-header bg-white border-bottom">
+                    <h1 class="product-title mb-2">
+                        {{ buch.titel?.titel || '–' }}
+                    </h1>
+                    <p
+                        *ngIf="buch.titel?.untertitel"
+                        class="product-subtitle mb-2 text-muted"
                     >
-                        <div class="flex-grow-1">
-                            <h1 class="product-title mb-2">
-                                {{ buch.titel?.titel || '–' }}
-                            </h1>
-                            <p
-                                *ngIf="buch.titel?.untertitel"
-                                class="product-subtitle mb-0"
-                            >
-                                {{ buch.titel?.untertitel }}
-                            </p>
-                        </div>
-                        <div class="d-flex gap-2 align-items-center">
-                            <span
-                                *ngIf="buch.rating"
-                                class="badge rating-badge"
-                                [ngClass]="{
-                                    'bg-success': buch.rating >= 4,
-                                    'bg-warning text-dark': buch.rating === 3,
-                                    'bg-secondary': buch.rating < 3,
-                                }"
-                            >
-                                ⭐ {{ buch.rating }} / 5
-                            </span>
-                            <span
-                                *ngIf="isSchwabenpreis()"
-                                class="badge bg-danger"
-                                style="font-size: 0.95rem;"
-                                title="Preis unter 20 EUR mit hohem Rabatt"
-                            >
-                                💰 Schnäppchen
-                            </span>
-                        </div>
+                        {{ buch.titel?.untertitel }}
+                    </p>
+                    <div class="d-flex gap-2 align-items-center">
+                        <span
+                            *ngIf="buch.rating"
+                            class="badge rating-badge"
+                            [ngClass]="{
+                                'bg-success': buch.rating >= 4,
+                                'bg-warning text-dark': buch.rating === 3,
+                                'bg-secondary': buch.rating < 3,
+                            }"
+                        >
+                            ⭐ {{ buch.rating }} / 5
+                        </span>
+                        <span
+                            *ngIf="isSchwabenpreis()"
+                            class="badge bg-danger"
+                            style="font-size: 0.95rem;"
+                            title="Preis unter 20 EUR mit hohem Rabatt"
+                        >
+                            💰 Schnäppchen
+                        </span>
                     </div>
                 </div>
 
-                <!-- Main Content: Cover + Kaufinfos -->
+                <!-- Main Content: Cover links + Infos rechts -->
                 <div class="card-body p-4">
                     <div class="row g-4">
                         <!-- Linke Spalte: Cover-Bild -->
-                        <div class="col-md-4 col-lg-3">
+                        <div class="col-12 col-lg-4">
                             <div class="cover-container">
                                 <img
                                     [src]="
@@ -113,7 +107,7 @@ import { BuchApiService, type BuchItem } from './buch-api.service';
                         </div>
 
                         <!-- Rechte Spalte: Kaufinfos + CTA -->
-                        <div class="col-md-8 col-lg-9">
+                        <div class="col-12 col-lg-8">
                             <!-- Preis und Rabatt prominent -->
                             <div class="price-section mb-4">
                                 <div class="d-flex align-items-baseline gap-3">
