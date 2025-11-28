@@ -11,6 +11,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BuchApiService, type BuchItem } from './buch-api.service';
 import { CartService } from './cart/cart.service';
+import { WishlistService } from './wishlist/wishlist.service';
 
 @Component({
     selector: 'app-detail',
@@ -186,6 +187,22 @@ import { CartService } from './cart/cart.service';
                                     >
                                 </ngb-alert>
 
+                                <!-- Wishlist Success Alert -->
+                                <ngb-alert
+                                    *ngIf="addToWishlistSuccess"
+                                    type="info"
+                                    [dismissible]="false"
+                                    class="mb-3"
+                                    style="animation: slideIn 0.3s ease-out;"
+                                >
+                                    ✅ Zur Merkliste hinzugefügt!
+                                    <a
+                                        routerLink="/wishlist"
+                                        class="alert-link ms-2"
+                                        >Zur Merkliste →</a
+                                    >
+                                </ngb-alert>
+
                                 <div class="d-grid gap-2 d-md-flex">
                                     <button
                                         class="btn btn-success btn-lg flex-grow-1"
@@ -196,9 +213,20 @@ import { CartService } from './cart/cart.service';
                                         🛒 In den Warenkorb
                                     </button>
                                     <button
-                                        class="btn btn-outline-primary btn-lg"
+                                        type="button"
+                                        class="btn btn-lg"
+                                        [ngClass]="
+                                            isInWishlist()
+                                                ? 'btn-danger'
+                                                : 'btn-outline-secondary'
+                                        "
+                                        (click)="onToggleWishlist()"
                                     >
-                                        ❤ Merken
+                                        {{
+                                            isInWishlist()
+                                                ? '❤️ Gemerkt'
+                                                : '🤍 Merken'
+                                        }}
                                     </button>
                                 </div>
                             </div>
@@ -1114,6 +1142,9 @@ export class DetailComponent implements OnInit {
     // Warenkorb-Status
     addToCartSuccess = false;
 
+    // Merkliste-Status
+    addToWishlistSuccess = false;
+
     @ViewChild('homepageWarningModal')
     homepageWarningModal!: TemplateRef<any>;
 
@@ -1122,6 +1153,7 @@ export class DetailComponent implements OnInit {
 
     private readonly modalService = inject(NgbModal);
     private readonly cartService = inject(CartService);
+    private readonly wishlistService = inject(WishlistService);
 
     constructor(
         private readonly route: ActivatedRoute,
@@ -1424,5 +1456,50 @@ export class DetailComponent implements OnInit {
             '✅ Buch zum Warenkorb hinzugefügt:',
             this.buch.titel?.titel,
         );
+    }
+
+    /**
+     * Prüft, ob das aktuelle Buch in der Merkliste ist
+     */
+    isInWishlist(): boolean {
+        if (!this.buch?.id) {
+            return false;
+        }
+        return this.wishlistService.isInWishlist(this.buch.id);
+    }
+
+    /**
+     * Fügt das aktuelle Buch zur Merkliste hinzu oder entfernt es (Toggle)
+     */
+    onToggleWishlist(): void {
+        if (!this.buch) {
+            console.error('Kein Buch vorhanden');
+            return;
+        }
+
+        const wasInWishlist = this.isInWishlist();
+
+        // Toggle in Service
+        this.wishlistService.toggleItem(this.buch);
+
+        // Zeige Success-Nachricht nur beim Hinzufügen
+        if (wasInWishlist) {
+            console.log(
+                '💔 Buch aus Merkliste entfernt:',
+                this.buch.titel?.titel,
+            );
+        } else {
+            this.addToWishlistSuccess = true;
+
+            // Verstecke Nachricht nach 4 Sekunden
+            setTimeout(() => {
+                this.addToWishlistSuccess = false;
+            }, 4000);
+
+            console.log(
+                '❤️ Buch zur Merkliste hinzugefügt:',
+                this.buch.titel?.titel,
+            );
+        }
     }
 }

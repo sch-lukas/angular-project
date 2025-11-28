@@ -14,6 +14,7 @@ export const BUECHER_QUERY = `
         rating
         art
         preis
+        lieferbar
         coverUrl
         titel {
           titel

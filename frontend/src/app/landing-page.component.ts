@@ -1,12 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BuchApiService, type BuchStats } from './buch-api.service';
+import { BookCarouselComponent } from './book-carousel.component';
+import {
+    BuchApiService,
+    type BuchItem,
+    type BuchStats,
+} from './buch-api.service';
 
 @Component({
     selector: 'app-landing-page',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, BookCarouselComponent],
     template: `
         <div class="landing-page">
             <div class="logo-container">
@@ -58,6 +63,32 @@ import { BuchApiService, type BuchStats } from './buch-api.service';
                     Zur Buchsuche
                 </button>
             </div>
+
+            <!-- Buch-Carousels -->
+            <section class="carousel-section">
+                <!-- Neu im Programm -->
+                <div class="carousel-block">
+                    <h2 class="carousel-title">📚 Neu im Programm</h2>
+                    <app-book-carousel [books]="booksNew"></app-book-carousel>
+                </div>
+
+                <!-- Beliebte Bücher -->
+                <div class="carousel-block">
+                    <h2 class="carousel-title">⭐ Beliebte Bücher</h2>
+                    <app-book-carousel
+                        [books]="booksPopular"
+                    ></app-book-carousel>
+                </div>
+
+                <!-- Schwabenpreis -->
+                <div class="carousel-block">
+                    <h2 class="carousel-title">🏆 Schwabenpreis</h2>
+                    <p class="carousel-subtitle">Die günstigsten Bücher</p>
+                    <app-book-carousel
+                        [books]="booksRecommended"
+                    ></app-book-carousel>
+                </div>
+            </section>
         </div>
     `,
     styles: [
@@ -156,6 +187,46 @@ import { BuchApiService, type BuchStats } from './buch-api.service';
                 box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
             }
 
+            /* Carousel Section */
+            .carousel-section {
+                margin-top: 5rem;
+                padding: 0 1rem;
+            }
+
+            .carousel-block {
+                margin-bottom: 4rem;
+            }
+
+            .carousel-title {
+                font-size: 2rem;
+                font-weight: bold;
+                color: #2c3e50;
+                text-align: center;
+                margin-bottom: 2rem;
+                position: relative;
+                padding-bottom: 0.75rem;
+            }
+
+            .carousel-title::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 4px;
+                background: linear-gradient(90deg, #3498db, #2ecc71);
+                border-radius: 2px;
+            }
+
+            .carousel-subtitle {
+                font-size: 1.1rem;
+                color: #7f8c8d;
+                text-align: center;
+                margin-top: -1rem;
+                margin-bottom: 1.5rem;
+            }
+
             @media (max-width: 768px) {
                 .stats-container {
                     grid-template-columns: 1fr;
@@ -167,6 +238,14 @@ import { BuchApiService, type BuchStats } from './buch-api.service';
 
                 .stat-value {
                     font-size: 2rem;
+                }
+
+                .carousel-title {
+                    font-size: 1.5rem;
+                }
+
+                .carousel-section {
+                    padding: 0;
                 }
             }
         `,
@@ -180,6 +259,11 @@ export class LandingPageComponent implements OnInit {
     animatedBestRating = 0;
     animatedCheapestPrice = 0;
 
+    // Buchlisten für Carousels
+    booksNew: BuchItem[] = [];
+    booksPopular: BuchItem[] = [];
+    booksRecommended: BuchItem[] = [];
+
     constructor(
         private readonly api: BuchApiService,
         private readonly router: Router,
@@ -187,6 +271,7 @@ export class LandingPageComponent implements OnInit {
 
     ngOnInit(): void {
         this.loadStats();
+        this.loadCarouselBooks();
     }
 
     private loadStats(): void {
@@ -268,5 +353,54 @@ export class LandingPageComponent implements OnInit {
         if (id) {
             this.router.navigate(['/detail', id]);
         }
+    }
+
+    /**
+     * Lädt Bücher für die drei Carousels
+     */
+    private loadCarouselBooks(): void {
+        // Neu im Programm: Sortiere nach Datum (neueste zuerst)
+        this.api.list({ size: 10, sortierung: 'preisDesc' }).subscribe({
+            next: (result) => {
+                // Simuliere "neu" durch die ersten 10 Bücher
+                this.booksNew = result.content.slice(0, 10);
+            },
+            error: (err) => {
+                console.error('Fehler beim Laden neuer Bücher:', err);
+            },
+        });
+
+        // Beliebte Bücher: Sortiere nach Rating (höchste zuerst)
+        this.api.list({ size: 20 }).subscribe({
+            next: (result) => {
+                // Filter: Rating >= 4
+                this.booksPopular = result.content
+                    .filter((book) => (book.rating ?? 0) >= 4)
+                    .slice(0, 10);
+            },
+            error: (err) => {
+                console.error('Fehler beim Laden beliebter Bücher:', err);
+            },
+        });
+
+        // Schwabenpreis: Günstigste Bücher (nach Preis aufsteigend sortiert)
+        this.api.list({ size: 15, sortierung: 'preisAsc' }).subscribe({
+            next: (result) => {
+                // Filter: Nur lieferbare Bücher, sortiert nach Preis
+                this.booksRecommended = result.content
+                    .filter(
+                        (book) =>
+                            book.lieferbar && book.preis && book.preis > 0,
+                    )
+                    .sort((a, b) => (a.preis || 0) - (b.preis || 0))
+                    .slice(0, 10);
+            },
+            error: (err) => {
+                console.error(
+                    'Fehler beim Laden der Schwabenpreis-Bücher:',
+                    err,
+                );
+            },
+        });
     }
 }
