@@ -1,23 +1,20 @@
 import { CommonModule } from '@angular/common';
 import {
     Component,
+    ElementRef,
     OnInit,
     TemplateRef,
     ViewChild,
     inject,
 } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import {
-    NgbAlert,
-    NgbCarouselModule,
-    NgbModal,
-} from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BuchApiService, type BuchItem } from './buch-api.service';
 
 @Component({
     selector: 'app-detail',
     standalone: true,
-    imports: [CommonModule, RouterLink, NgbAlert, NgbCarouselModule],
+    imports: [CommonModule, RouterLink, NgbAlert],
     template: `
         <div class="container py-4" style="max-width: 1200px;">
             <!-- Zurück-Button -->
@@ -388,122 +385,126 @@ import { BuchApiService, type BuchItem } from './buch-api.service';
                 {{ relatedError }}
             </ngb-alert>
 
-            <!-- Karussell mit Empfehlungen -->
-            <div *ngIf="related.length > 0 && !relatedLoading">
-                <ngb-carousel
-                    [interval]="0"
-                    [showNavigationArrows]="related.length > 3"
-                    [showNavigationIndicators]="related.length > 3"
+            <!-- Karussell mit Empfehlungen (Amazon-Style Horizontal Scroll) -->
+            <div
+                *ngIf="related.length > 0 && !relatedLoading"
+                class="carousel-wrapper"
+            >
+                <!-- Linker Pfeil -->
+                <button
+                    class="carousel-arrow carousel-arrow-left"
+                    (click)="scrollCarousel('left')"
+                    *ngIf="related.length > 5"
                 >
-                    <!-- Jedes Slide zeigt 3 Bücher -->
-                    <ng-template
-                        ngbSlide
-                        *ngFor="
-                            let chunk of getChunks(related, 3);
-                            let i = index
-                        "
-                    >
-                        <div class="row g-3">
-                            <div *ngFor="let buch of chunk" class="col-md-4">
-                                <div
-                                    class="card h-100 shadow-sm recommendation-card"
-                                >
-                                    <div class="card-body d-flex flex-column">
-                                        <!-- Mini-Cover -->
-                                        <div class="text-center mb-3">
-                                            <img
-                                                [src]="
-                                                    'https://via.placeholder.com/120x170?text=Cover'
-                                                "
-                                                [alt]="
-                                                    buch.titel?.titel ||
-                                                    'Buch Cover'
-                                                "
-                                                class="img-fluid rounded"
-                                                style="max-height: 170px;"
-                                            />
-                                        </div>
+                    ‹
+                </button>
 
-                                        <!-- Titel -->
-                                        <h6
-                                            class="card-title mb-2"
-                                            style="min-height: 2.5rem; font-weight: 600;"
-                                        >
-                                            {{ buch.titel?.titel || '–' }}
-                                        </h6>
-
-                                        <!-- Preis + Rating -->
-                                        <div class="mb-2">
-                                            <span
-                                                class="fw-bold text-success"
-                                                style="font-size: 1.2rem;"
-                                            >
-                                                {{
-                                                    buch.preis != null
-                                                        ? (buch.preis
-                                                          | currency
-                                                              : 'EUR'
-                                                              : 'symbol'
-                                                              : '1.2-2')
-                                                        : '–'
-                                                }}
-                                            </span>
-                                            <span
-                                                *ngIf="buch.rating"
-                                                class="badge bg-warning text-dark ms-2"
-                                            >
-                                                ⭐ {{ buch.rating }}
-                                            </span>
-                                        </div>
-
-                                        <!-- Art Badge -->
-                                        <div class="mb-auto">
-                                            <span
-                                                *ngIf="buch.art"
-                                                class="badge"
-                                                [ngClass]="{
-                                                    'bg-info text-dark':
-                                                        buch.art === 'EPUB',
-                                                    'bg-primary':
-                                                        buch.art ===
-                                                        'HARDCOVER',
-                                                    'bg-secondary':
-                                                        buch.art ===
-                                                        'PAPERBACK',
-                                                }"
-                                                style="font-size: 0.75rem;"
-                                            >
-                                                {{ buch.art }}
-                                            </span>
-                                        </div>
-
-                                        <!-- Details Button -->
-                                        <div class="mt-3">
-                                            <a
-                                                [routerLink]="[
-                                                    '/detail',
-                                                    buch.id,
-                                                ]"
-                                                class="btn btn-outline-primary btn-sm w-100"
-                                            >
-                                                Details ansehen
-                                            </a>
-                                        </div>
-                                    </div>
+                <!-- Scroll Container -->
+                <div class="carousel-scroll-container" #carouselContainer>
+                    <div class="carousel-items">
+                        <div
+                            *ngFor="let buch of related"
+                            class="carousel-item-card"
+                        >
+                            <a
+                                [routerLink]="['/detail', buch.id]"
+                                class="item-link"
+                            >
+                                <!-- Cover -->
+                                <div class="item-image">
+                                    <img
+                                        [src]="
+                                            'https://via.placeholder.com/180x260?text=' +
+                                            (buch.titel?.titel || 'Cover')
+                                        "
+                                        [alt]="
+                                            buch.titel?.titel || 'Buch Cover'
+                                        "
+                                    />
                                 </div>
-                            </div>
+
+                                <!-- Titel -->
+                                <h6 class="item-title">
+                                    {{ buch.titel?.titel || '–' }}
+                                </h6>
+
+                                <!-- Rating -->
+                                <div class="item-rating" *ngIf="buch.rating">
+                                    <span class="rating-stars">
+                                        <span
+                                            *ngFor="let star of [1, 2, 3, 4, 5]"
+                                            [class.filled]="star <= buch.rating"
+                                            >★</span
+                                        >
+                                    </span>
+                                    <span class="rating-value">{{
+                                        buch.rating
+                                    }}</span>
+                                </div>
+
+                                <!-- Preis -->
+                                <div class="item-price">
+                                    <span class="price-amount">
+                                        {{
+                                            buch.preis != null
+                                                ? (buch.preis
+                                                  | currency
+                                                      : 'EUR'
+                                                      : 'symbol'
+                                                      : '1.2-2')
+                                                : '–'
+                                        }}
+                                    </span>
+                                    <span
+                                        *ngIf="buch.rabatt && buch.rabatt > 0"
+                                        class="price-discount"
+                                    >
+                                        -{{
+                                            buch.rabatt * 100 | number: '1.0-0'
+                                        }}%
+                                    </span>
+                                </div>
+
+                                <!-- Lieferbar -->
+                                <div
+                                    class="item-delivery"
+                                    *ngIf="buch.lieferbar"
+                                >
+                                    <span class="badge bg-success"
+                                        >✓ Lieferbar</span
+                                    >
+                                </div>
+                            </a>
                         </div>
-                    </ng-template>
-                </ngb-carousel>
+                    </div>
+                </div>
+
+                <!-- Rechter Pfeil -->
+                <button
+                    class="carousel-arrow carousel-arrow-right"
+                    (click)="scrollCarousel('right')"
+                    *ngIf="related.length > 5"
+                >
+                    ›
+                </button>
             </div>
 
             <!-- Keine Empfehlungen -->
             <div
                 *ngIf="related.length === 0 && !relatedLoading && !relatedError"
-                class="text-center py-4 text-muted"
+                class="alert alert-info text-center"
+                role="alert"
             >
+                <h5 class="alert-heading">
+                    📚 Keine ähnlichen Bücher gefunden
+                </h5>
                 <p class="mb-0">
-                    <em>Keine weiteren Empfehlungen verfügbar.</em>
+                    Leider haben wir aktuell keine weiteren Bücher in der
+                    Kategorie "{{ buch?.art }}" gefunden.
+                </p>
+                <hr />
+                <p class="mb-0 small text-muted">
+                    Hinweis: Überprüfe die Browser-Console (F12) für Details
                 </p>
             </div>
         </div>
@@ -645,32 +646,264 @@ import { BuchApiService, type BuchItem } from './buch-api.service';
                 color: #495057;
             }
 
-            /* Empfehlungen / Karussell */
-            .recommendation-card {
-                transition:
-                    transform 0.2s ease,
-                    box-shadow 0.2s ease;
-                border: 1px solid #e9ecef;
+            /* Horizontal Scroll Karussell */
+            .carousel-wrapper {
+                position: relative;
+                padding: 20px 0;
+                margin: 0 -12px;
             }
 
-            .recommendation-card:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12) !important;
+            .carousel-scroll-container {
+                overflow-x: auto;
+                overflow-y: hidden;
+                scroll-behavior: smooth;
+                scrollbar-width: thin;
+                scrollbar-color: #888 #f1f1f1;
+                padding: 0 50px;
             }
 
-            .recommendation-card .card-body {
-                padding: 1.25rem;
+            .carousel-scroll-container::-webkit-scrollbar {
+                height: 8px;
             }
 
-            .recommendation-card h6 {
+            .carousel-scroll-container::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 4px;
+            }
+
+            .carousel-scroll-container::-webkit-scrollbar-thumb {
+                background: #888;
+                border-radius: 4px;
+            }
+
+            .carousel-scroll-container::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+
+            .carousel-items {
+                display: flex;
+                gap: 16px;
+                padding: 10px 0;
+            }
+
+            .carousel-item-card {
+                flex: 0 0 auto;
+                width: 200px;
+            }
+
+            @media (min-width: 1400px) {
+                .carousel-item-card {
+                    width: 220px;
+                }
+            }
+
+            .carousel-arrow {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10;
+                width: 45px;
+                height: 100px;
+                background: linear-gradient(
+                    to right,
+                    rgba(255, 255, 255, 0.9),
+                    rgba(255, 255, 255, 0.7)
+                );
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 36px;
+                color: #111;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0;
+            }
+
+            .carousel-arrow:hover {
+                background: rgba(255, 255, 255, 1);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            }
+
+            .carousel-arrow-left {
+                left: 0;
+            }
+
+            .carousel-arrow-right {
+                right: 0;
+                background: linear-gradient(
+                    to left,
+                    rgba(255, 255, 255, 0.9),
+                    rgba(255, 255, 255, 0.7)
+                );
+            }
+
+            .item-link {
+                text-decoration: none;
+                color: inherit;
+                display: flex;
+                flex-direction: column;
+                padding: 12px;
+                border: 1px solid #e7e7e7;
+                border-radius: 8px;
+                background: #fff;
+                transition: all 0.2s ease;
+                height: 100%;
+            }
+
+            .item-link:hover {
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transform: translateY(-2px);
+                border-color: #ddd;
+            }
+
+            .item-image {
+                width: 100%;
+                margin-bottom: 12px;
+                text-align: center;
+            }
+
+            .item-image img {
+                width: 100%;
+                max-width: 180px;
+                height: auto;
+                border-radius: 4px;
+            }
+
+            .item-title {
+                font-size: 14px;
+                font-weight: 400;
+                color: #0f1111;
+                margin: 0 0 8px 0;
+                line-height: 1.4;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
+                min-height: 40px;
             }
 
-            /* Karussell Navigation */
+            .item-link:hover .item-title {
+                color: #c45500;
+            }
+
+            .item-rating {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                margin-bottom: 8px;
+                font-size: 13px;
+            }
+
+            .rating-stars {
+                color: #ffa41c;
+                letter-spacing: 2px;
+            }
+
+            .rating-stars span {
+                color: #ddd;
+            }
+
+            .rating-stars span.filled {
+                color: #ffa41c;
+            }
+
+            .rating-value {
+                color: #007185;
+                font-size: 12px;
+            }
+
+            .item-price {
+                margin-bottom: 8px;
+            }
+
+            .price-amount {
+                font-size: 18px;
+                font-weight: 700;
+                color: #b12704;
+            }
+
+            .price-discount {
+                font-size: 13px;
+                color: #cc0c39;
+                margin-left: 6px;
+                font-weight: 600;
+            }
+
+            .item-delivery {
+                margin-top: auto;
+            }
+
+            .item-delivery .badge {
+                font-size: 11px;
+                padding: 4px 8px;
+                font-weight: 400;
+            }
+
+            /* Bootstrap Carousel Customization */
+            .carousel {
+                padding: 0;
+            }
+
+            .carousel-inner {
+                padding: 20px 50px;
+            }
+
+            .carousel-item {
+                transition: transform 0.6s ease-in-out;
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 50px;
+                opacity: 0.9;
+                z-index: 10;
+            }
+
+            .carousel-control-prev:hover,
+            .carousel-control-next:hover {
+                opacity: 1;
+            }
+
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+                background-color: rgba(0, 0, 0, 0.7);
+                border-radius: 50%;
+                padding: 25px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .carousel-indicators {
+                margin-bottom: -1rem;
+                z-index: 10;
+            }
+
+            .carousel-indicators button {
+                background-color: #6c757d;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                opacity: 0.5;
+            }
+
+            .carousel-indicators button.active {
+                background-color: #0d6efd;
+                opacity: 1;
+            }
+
+            /* Stelle sicher dass row/col richtig funktioniert */
+            .carousel-item .row {
+                margin: 0;
+            }
+
+            .carousel-item .col-md-4 {
+                padding: 0 10px;
+            }
+
+            /* Karussell Navigation (Legacy) */
             ::ng-deep .carousel-control-prev,
             ::ng-deep .carousel-control-next {
                 width: 5%;
@@ -697,6 +930,9 @@ export class DetailComponent implements OnInit {
     @ViewChild('homepageWarningModal')
     homepageWarningModal!: TemplateRef<any>;
 
+    @ViewChild('carouselContainer')
+    carouselContainer!: ElementRef<HTMLDivElement>;
+
     private readonly modalService = inject(NgbModal);
 
     constructor(
@@ -719,6 +955,17 @@ export class DetailComponent implements OnInit {
                 this.isLoading = false;
                 return;
             }
+
+            // Reset state für endless loop
+            this.buch = null;
+            this.isLoading = true;
+            this.error = null;
+            this.related = [];
+            this.relatedLoading = false;
+            this.relatedError = null;
+
+            // Scroll nach oben bei Navigation
+            window.scrollTo({ top: 0, behavior: 'smooth' });
 
             this.loadBuch(id);
         });
@@ -756,21 +1003,35 @@ export class DetailComponent implements OnInit {
         currentId: number,
         art?: 'EPUB' | 'HARDCOVER' | 'PAPERBACK',
     ): void {
+        console.log('🔍 loadRelated aufgerufen:', { currentId, art });
         this.relatedLoading = true;
         this.relatedError = null;
         this.related = [];
 
-        this.api.getRelated(currentId, art, 10).subscribe({
-            next: (buecher) => {
-                console.log('Ähnliche Bücher geladen:', buecher);
-                this.related = buecher;
+        // Lade ähnliche Bücher von der API
+        this.api.getRelated(currentId, art, 8).subscribe({
+            next: (books) => {
+                console.log('✅ Ähnliche Bücher geladen:', books);
+                this.related = books;
                 this.relatedLoading = false;
+
+                // Fallback: Wenn keine ähnlichen Bücher gefunden wurden
+                if (this.related.length === 0) {
+                    console.log(
+                        '⚠️ Keine ähnlichen Bücher gefunden, lade Dummy-Daten',
+                    );
+                    this.loadDummyRecommendations();
+                }
             },
             error: (err) => {
-                console.error('Fehler beim Laden ähnlicher Bücher:', err);
+                console.error('❌ Fehler beim Laden der Empfehlungen:', err);
                 this.relatedError =
                     'Empfehlungen konnten nicht geladen werden.';
                 this.relatedLoading = false;
+
+                // Fallback: Zeige Dummy-Daten bei Fehler
+                console.log('🎭 Fallback: Lade Dummy-Daten');
+                this.loadDummyRecommendations();
             },
         });
     }
@@ -793,6 +1054,82 @@ export class DetailComponent implements OnInit {
         // return `/api/buch/${this.buch?.id}/cover`;
         // oder aus buch.coverUrl
         return null;
+    }
+
+    /**
+     * Lädt Dummy-Empfehlungen zum Testen des Karussells
+     * (nur für Development - aktiviere dies in loadRelated error handler)
+     */
+    private loadDummyRecommendations(): void {
+        console.log('🎭 Lade Dummy-Empfehlungen...');
+        this.related = [
+            {
+                id: 999,
+                isbn: '978-3-12345-678-9',
+                rating: 4,
+                art: this.buch?.art || 'HARDCOVER',
+                preis: 24.99,
+                rabatt: 0.1,
+                lieferbar: true,
+                titel: {
+                    titel: 'TypeScript Kompakt',
+                    untertitel: 'Moderne Entwicklung',
+                },
+            },
+            {
+                id: 998,
+                isbn: '978-3-12345-679-0',
+                rating: 5,
+                art: this.buch?.art || 'HARDCOVER',
+                preis: 29.99,
+                rabatt: 0.15,
+                lieferbar: true,
+                titel: {
+                    titel: 'Angular Best Practices',
+                },
+            },
+            {
+                id: 997,
+                isbn: '978-3-12345-680-6',
+                rating: 3,
+                art: this.buch?.art || 'HARDCOVER',
+                preis: 19.99,
+                lieferbar: false,
+                titel: {
+                    titel: 'RxJS für Einsteiger',
+                },
+            },
+            {
+                id: 996,
+                isbn: '978-3-12345-681-3',
+                rating: 4,
+                art: this.buch?.art || 'HARDCOVER',
+                preis: 34.99,
+                rabatt: 0.2,
+                lieferbar: true,
+                titel: {
+                    titel: 'Web Development 2025',
+                    untertitel: 'Der komplette Guide',
+                },
+            },
+        ];
+        console.log('✅ Dummy-Empfehlungen geladen:', this.related);
+    }
+
+    /**
+     * Scrollt das Karussell nach links oder rechts
+     */
+    scrollCarousel(direction: 'left' | 'right'): void {
+        if (!this.carouselContainer) return;
+
+        const container = this.carouselContainer.nativeElement;
+        const scrollAmount = 220 * 2; // 2 Items pro Klick (Item width + gap)
+
+        if (direction === 'left') {
+            container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        } else {
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
     }
 
     /**

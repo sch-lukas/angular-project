@@ -6,6 +6,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, Routes } from '@angular/router';
 import { AppComponent } from './app/app.component';
 import { authGuard } from './app/auth.guard';
+import { CarouselTestComponent } from './app/carousel-test.component';
 import { DetailComponent } from './app/detail.component';
 import { ImpressumComponent } from './app/impressum.component';
 import { KontaktComponent } from './app/kontakt.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'search', component: SearchComponent },
     { path: 'detail/:id', component: DetailComponent },
+    { path: 'carousel-test', component: CarouselTestComponent },
     { path: 'new', component: NewComponent, canMatch: [authGuard] },
     { path: 'kontakt', component: KontaktComponent },
     { path: 'impressum', component: ImpressumComponent },
