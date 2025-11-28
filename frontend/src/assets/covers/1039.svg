@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='106.7' y='534.5' width='81.4' height='60.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.9 106.7 534.5)'/><rect x='491.5' y='195.3' width='82.7' height='64.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-7.8 491.5 195.3)'/><rect x='185.4' y='650.8' width='67.8' height='80.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.4 185.4 650.8)'/><rect x='270.5' y='530.5' width='73.4' height='60.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.7 270.5 530.5)'/><rect x='62.5' y='276.4' width='114.8' height='72.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(4.5 62.5 276.4)'/><rect x='129.8' y='703.7' width='122.4' height='42.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-7.8 129.8 703.7)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>Rust</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Systems Programming</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

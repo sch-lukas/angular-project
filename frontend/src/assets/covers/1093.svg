@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='329.6' y='189.1' width='173.2' height='93.2' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-0.6 329.6 189.1)'/><rect x='577.9' y='746.8' width='82.8' height='133.4' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-0.6 577.9 746.8)'/><rect x='252.0' y='56.1' width='102.2' height='78.5' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-8.7 252.0 56.1)'/><rect x='118.3' y='512.8' width='67.9' height='49.8' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-7.9 118.3 512.8)'/><rect x='193.7' y='220.8' width='41.9' height='125.3' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-0.5 193.7 220.8)'/><rect x='230.4' y='415.5' width='101.9' height='167.7' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-0.9 230.4 415.5)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#8B5E3C'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>Berlin 1989</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Chronik eines Herbstes</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#8B5E3C' font-family='Arial, sans-serif'>von Leyla Al-Hamid</text>
+  <text x='88' y='820' font-size='20' fill='#8B5E3C' font-family='Arial, sans-serif'>geschichte-politik</text>
+</svg>

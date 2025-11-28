@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='166.2' y='737.1' width='173.7' height='40.1' fill='#EA580C' fill-opacity='0.07' transform='rotate(7.3 166.2 737.1)'/><rect x='126.7' y='688.9' width='132.7' height='97.2' fill='#EA580C' fill-opacity='0.07' transform='rotate(4.4 126.7 688.9)'/><rect x='478.3' y='431.1' width='131.3' height='70.3' fill='#EA580C' fill-opacity='0.07' transform='rotate(6.9 478.3 431.1)'/><rect x='295.5' y='829.3' width='148.9' height='139.8' fill='#EA580C' fill-opacity='0.07' transform='rotate(-6.0 295.5 829.3)'/><rect x='130.9' y='93.5' width='151.1' height='138.6' fill='#EA580C' fill-opacity='0.07' transform='rotate(0.9 130.9 93.5)'/><rect x='421.8' y='757.7' width='160.4' height='95.1' fill='#EA580C' fill-opacity='0.07' transform='rotate(8.0 421.8 757.7)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#EA580C'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Rucksack und</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Kamera</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Fototrips leicht gemacht</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#EA580C' font-family='Arial, sans-serif'>von Soraya Bell</text>
+  <text x='88' y='820' font-size='20' fill='#EA580C' font-family='Arial, sans-serif'>reisen-kulinarik</text>
+</svg>

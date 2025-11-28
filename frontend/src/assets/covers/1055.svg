@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='224.8' y='102.6' width='94.6' height='120.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(7.9 224.8 102.6)'/><rect x='467.3' y='186.8' width='97.4' height='149.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-6.0 467.3 186.8)'/><rect x='431.8' y='63.5' width='176.8' height='81.3' fill='#7C3AED' fill-opacity='0.07' transform='rotate(8.0 431.8 63.5)'/><rect x='232.8' y='329.0' width='133.1' height='151.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.8 232.8 329.0)'/><rect x='73.3' y='512.7' width='85.3' height='51.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-0.3 73.3 512.7)'/><rect x='463.9' y='411.9' width='105.8' height='159.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(6.2 463.9 411.9)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>WebAssembly</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Deep Dive</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>High-Performance Web Applications</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

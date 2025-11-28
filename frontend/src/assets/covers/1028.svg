@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='78.3' y='46.1' width='177.2' height='90.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-0.6 78.3 46.1)'/><rect x='81.5' y='677.9' width='152.8' height='144.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.9 81.5 677.9)'/><rect x='304.1' y='83.3' width='89.5' height='115.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-2.0 304.1 83.3)'/><rect x='97.3' y='602.3' width='152.6' height='101.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-2.4 97.3 602.3)'/><rect x='519.1' y='833.6' width='95.2' height='172.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-2.6 519.1 833.6)'/><rect x='140.0' y='611.9' width='92.6' height='170.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(1.7 140.0 611.9)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Cloud Native</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Patterns</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Designing Applications</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

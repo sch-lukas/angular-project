@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <g stroke='#6D28D9' stroke-width='3' stroke-opacity='0.5' fill='none'>
+                    <rect x='190' y='370' width='250' height='170'/>
+                    <path d='M190 370l250 170M440 370L190 540'/>
+                    <path d='M230 370v170M270 370v170M310 370v170M350 370v170M390 370v170'/>
+                </g>
+  <rect x='0' y='0' width='48' height='900' fill='#6D28D9'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Wächter von</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Solaris</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Cyberpunk trifft Mythos</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#6D28D9' font-family='Arial, sans-serif'>von Elin Falk</text>
+  <text x='88' y='820' font-size='20' fill='#6D28D9' font-family='Arial, sans-serif'>fantasy-sci-fi</text>
+</svg>

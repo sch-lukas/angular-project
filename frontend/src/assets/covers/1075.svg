@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='306.7' y='40.5' width='107.1' height='105.0' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-6.6 306.7 40.5)'/><rect x='473.6' y='303.7' width='137.4' height='176.0' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-1.1 473.6 303.7)'/><rect x='373.3' y='459.9' width='61.1' height='83.8' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(2.4 373.3 459.9)'/><rect x='160.7' y='270.3' width='92.2' height='145.2' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(7.8 160.7 270.3)'/><rect x='245.4' y='141.9' width='55.9' height='66.2' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(4.6 245.4 141.9)'/><rect x='230.0' y='797.0' width='160.9' height='106.8' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(6.7 230.0 797.0)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0B5CAD'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Moderne DevOps</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Pipelines</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>CI/CD mit Vertrauen</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0B5CAD' font-family='Arial, sans-serif'>von Sofia Brandt</text>
+  <text x='88' y='820' font-size='20' fill='#0B5CAD' font-family='Arial, sans-serif'>it-software</text>
+</svg>

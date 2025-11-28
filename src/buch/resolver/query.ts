@@ -59,7 +59,10 @@ export class BuchQueryResolver {
         this.#logger.debug('findById: id=%s', id);
 
         const buch: Readonly<BuchMitTitelUndAbbildungen> =
-            await this.#service.findById({ id: Number(id) });
+            await this.#service.findById({
+                id: Number(id),
+                mitAbbildungen: true,
+            });
 
         this.#logger.debug('findById: buch=%o', buch);
         return buch;

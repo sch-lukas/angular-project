@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='311.5' y='317.5' width='62.8' height='136.7' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(6.7 311.5 317.5)'/><rect x='467.9' y='586.2' width='133.2' height='130.1' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-5.9 467.9 586.2)'/><rect x='525.5' y='317.6' width='132.6' height='70.7' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(0.5 525.5 317.6)'/><rect x='399.8' y='630.2' width='84.1' height='176.8' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(5.9 399.8 630.2)'/><rect x='470.7' y='510.1' width='122.9' height='155.0' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(3.2 470.7 510.1)'/><rect x='176.0' y='282.0' width='114.3' height='171.1' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-2.3 176.0 282.0)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#1E3A8A'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Strategische</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Experimente</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Hypothesen testen im Unternehmen</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#1E3A8A' font-family='Arial, sans-serif'>von Dr. Milan Becker</text>
+  <text x='88' y='820' font-size='20' fill='#1E3A8A' font-family='Arial, sans-serif'>business-leadership</text>
+</svg>

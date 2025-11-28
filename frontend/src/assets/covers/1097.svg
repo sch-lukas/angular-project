@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='511.8' y='197.7' width='117.9' height='117.4' fill='#0369A1' fill-opacity='0.07' transform='rotate(5.6 511.8 197.7)'/><rect x='230.0' y='307.2' width='45.6' height='91.0' fill='#0369A1' fill-opacity='0.07' transform='rotate(1.7 230.0 307.2)'/><rect x='492.8' y='787.8' width='55.9' height='70.5' fill='#0369A1' fill-opacity='0.07' transform='rotate(0.7 492.8 787.8)'/><rect x='289.9' y='166.3' width='148.6' height='41.9' fill='#0369A1' fill-opacity='0.07' transform='rotate(-8.8 289.9 166.3)'/><rect x='464.4' y='253.0' width='72.5' height='56.1' fill='#0369A1' fill-opacity='0.07' transform='rotate(-5.6 464.4 253.0)'/><rect x='187.7' y='123.1' width='104.9' height='178.6' fill='#0369A1' fill-opacity='0.07' transform='rotate(-0.1 187.7 123.1)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0369A1'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Fitness</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>jenseits der</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Intuitive Trainingspläne</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0369A1' font-family='Arial, sans-serif'>von Dr. Emil Vargas</text>
+  <text x='88' y='820' font-size='20' fill='#0369A1' font-family='Arial, sans-serif'>wissenschaft-gesundheit</text>
+</svg>

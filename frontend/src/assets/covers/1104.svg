@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='543.0' y='516.0' width='81.0' height='114.0' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(3.2 543.0 516.0)'/><rect x='302.7' y='745.1' width='122.7' height='113.7' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(5.2 302.7 745.1)'/><rect x='356.8' y='768.1' width='103.2' height='174.1' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-1.7 356.8 768.1)'/><rect x='213.5' y='592.8' width='50.5' height='71.7' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(0.4 213.5 592.8)'/><rect x='64.7' y='158.1' width='49.2' height='84.3' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(5.9 64.7 158.1)'/><rect x='381.5' y='60.9' width='40.7' height='136.0' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(1.1 381.5 60.9)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#1E3A8A'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='48' font-weight='700'>Verhandlungen</text>
+    <text x='80' y='166' font-size='48' font-weight='700'>empathisch führen</text>
+    <text x='80' y='252' font-size='28' font-style='italic'>Mehrwert durch Zuhören</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#1E3A8A' font-family='Arial, sans-serif'>von Aisha Grant</text>
+  <text x='88' y='820' font-size='20' fill='#1E3A8A' font-family='Arial, sans-serif'>business-leadership</text>
+</svg>

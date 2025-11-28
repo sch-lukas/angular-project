@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='189.6' y='406.2' width='156.2' height='171.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-0.3 189.6 406.2)'/><rect x='259.1' y='674.7' width='163.5' height='179.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.7 259.1 674.7)'/><rect x='578.4' y='786.3' width='53.0' height='146.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.8 578.4 786.3)'/><rect x='166.3' y='109.2' width='147.1' height='175.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(2.2 166.3 109.2)'/><rect x='99.5' y='340.2' width='169.3' height='82.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(2.9 99.5 340.2)'/><rect x='211.9' y='538.4' width='48.3' height='162.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.9 211.9 538.4)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>Docker kompakt</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Container-Workflows</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

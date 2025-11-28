@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='320.8' y='516.3' width='119.4' height='164.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(0.9 320.8 516.3)'/><rect x='180.6' y='560.8' width='79.9' height='99.3' fill='#7C3AED' fill-opacity='0.07' transform='rotate(3.0 180.6 560.8)'/><rect x='244.4' y='621.9' width='85.6' height='66.3' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-6.2 244.4 621.9)'/><rect x='431.3' y='409.2' width='119.2' height='156.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(0.9 431.3 409.2)'/><rect x='519.2' y='49.7' width='94.6' height='178.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(0.4 519.2 49.7)'/><rect x='413.4' y='827.0' width='73.3' height='96.3' fill='#7C3AED' fill-opacity='0.07' transform='rotate(4.3 413.4 827.0)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>Go Concurrency</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Goroutines und Channels</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

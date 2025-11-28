@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='480.1' y='707.3' width='149.5' height='113.4' fill='#0369A1' fill-opacity='0.07' transform='rotate(1.5 480.1 707.3)'/><rect x='314.8' y='766.0' width='49.7' height='179.4' fill='#0369A1' fill-opacity='0.07' transform='rotate(-8.8 314.8 766.0)'/><rect x='548.7' y='683.9' width='65.5' height='173.7' fill='#0369A1' fill-opacity='0.07' transform='rotate(-3.6 548.7 683.9)'/><rect x='204.8' y='520.7' width='134.8' height='52.9' fill='#0369A1' fill-opacity='0.07' transform='rotate(3.1 204.8 520.7)'/><rect x='418.7' y='109.3' width='118.9' height='83.5' fill='#0369A1' fill-opacity='0.07' transform='rotate(-1.7 418.7 109.3)'/><rect x='154.2' y='304.5' width='68.5' height='104.1' fill='#0369A1' fill-opacity='0.07' transform='rotate(3.9 154.2 304.5)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0369A1'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>Gehirn im Flow</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Konzentration trainieren</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0369A1' font-family='Arial, sans-serif'>von Lea Kuang</text>
+  <text x='88' y='820' font-size='20' fill='#0369A1' font-family='Arial, sans-serif'>wissenschaft-gesundheit</text>
+</svg>

@@ -308,6 +308,7 @@ export class BuchWriteController {
             const abbildung = {
                 beschriftung: abbildungDTO.beschriftung,
                 contentType: abbildungDTO.contentType,
+                pfad: abbildungDTO.pfad ?? '',
             };
             return abbildung;
         });

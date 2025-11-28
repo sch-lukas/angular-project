@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='90.3' y='327.1' width='152.4' height='48.5' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-4.6 90.3 327.1)'/><rect x='458.0' y='106.5' width='167.6' height='86.1' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-5.3 458.0 106.5)'/><rect x='191.8' y='57.9' width='82.6' height='179.6' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(0.7 191.8 57.9)'/><rect x='284.1' y='782.0' width='169.5' height='40.9' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-1.1 284.1 782.0)'/><rect x='283.3' y='298.3' width='155.5' height='142.5' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-7.5 283.3 298.3)'/><rect x='501.9' y='349.6' width='100.0' height='114.5' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(2.9 501.9 349.6)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0B5CAD'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Cloud Native</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Architektur</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Skalierbar denken</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0B5CAD' font-family='Arial, sans-serif'>von Dr. Helena Schwarz</text>
+  <text x='88' y='820' font-size='20' fill='#0B5CAD' font-family='Arial, sans-serif'>it-software</text>
+</svg>

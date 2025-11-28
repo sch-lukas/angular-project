@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='269.7' y='196.6' width='90.6' height='74.1' fill='#9D174D' fill-opacity='0.07' transform='rotate(6.9 269.7 196.6)'/><rect x='149.3' y='95.8' width='58.0' height='109.1' fill='#9D174D' fill-opacity='0.07' transform='rotate(4.8 149.3 95.8)'/><rect x='175.6' y='462.0' width='68.1' height='116.6' fill='#9D174D' fill-opacity='0.07' transform='rotate(1.6 175.6 462.0)'/><rect x='308.7' y='605.6' width='99.1' height='87.2' fill='#9D174D' fill-opacity='0.07' transform='rotate(-0.7 308.7 605.6)'/><rect x='245.8' y='667.7' width='142.9' height='138.4' fill='#9D174D' fill-opacity='0.07' transform='rotate(-5.6 245.8 667.7)'/><rect x='136.7' y='682.5' width='44.5' height='140.4' fill='#9D174D' fill-opacity='0.07' transform='rotate(3.2 136.7 682.5)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#9D174D'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='48' font-weight='700'>Mein Weg durch</text>
+    <text x='80' y='166' font-size='48' font-weight='700'>den Ozean –</text>
+    <text x='80' y='252' font-size='28' font-style='italic'>Eine Seglerin trotzt Stürmen · Expertise</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#9D174D' font-family='Arial, sans-serif'>von Marco Ruiz</text>
+  <text x='88' y='820' font-size='20' fill='#9D174D' font-family='Arial, sans-serif'>biographien-memoiren</text>
+</svg>

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='440.5' y='345.7' width='118.0' height='155.3' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-3.3 440.5 345.7)'/><rect x='158.0' y='790.2' width='173.7' height='146.5' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-4.1 158.0 790.2)'/><rect x='372.5' y='543.2' width='173.1' height='163.2' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(5.2 372.5 543.2)'/><rect x='124.6' y='139.4' width='97.4' height='167.3' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(0.3 124.6 139.4)'/><rect x='413.5' y='449.0' width='49.9' height='132.6' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-4.5 413.5 449.0)'/><rect x='169.0' y='483.0' width='41.9' height='64.5' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(4.0 169.0 483.0)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#1E3A8A'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>Impact OKRs</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Messbare Ziele lebendig machen</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#1E3A8A' font-family='Arial, sans-serif'>von Verena Boldt</text>
+  <text x='88' y='820' font-size='20' fill='#1E3A8A' font-family='Arial, sans-serif'>business-leadership</text>
+</svg>

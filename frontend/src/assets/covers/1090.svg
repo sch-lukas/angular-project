@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='204.4' y='701.1' width='130.1' height='164.4' fill='#EA580C' fill-opacity='0.07' transform='rotate(-5.4 204.4 701.1)'/><rect x='187.9' y='287.5' width='169.3' height='157.5' fill='#EA580C' fill-opacity='0.07' transform='rotate(-5.9 187.9 287.5)'/><rect x='577.4' y='566.5' width='132.5' height='49.3' fill='#EA580C' fill-opacity='0.07' transform='rotate(-8.9 577.4 566.5)'/><rect x='326.7' y='261.5' width='96.8' height='77.6' fill='#EA580C' fill-opacity='0.07' transform='rotate(-5.4 326.7 261.5)'/><rect x='394.2' y='290.1' width='75.2' height='55.1' fill='#EA580C' fill-opacity='0.07' transform='rotate(-2.5 394.2 290.1)'/><rect x='149.9' y='54.6' width='114.7' height='125.4' fill='#EA580C' fill-opacity='0.07' transform='rotate(-3.1 149.9 54.6)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#EA580C'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>Sahara bei</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Nomadenwege nachzeichnen</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#EA580C' font-family='Arial, sans-serif'>von Felix Mertens</text>
+  <text x='88' y='820' font-size='20' fill='#EA580C' font-family='Arial, sans-serif'>reisen-kulinarik</text>
+</svg>

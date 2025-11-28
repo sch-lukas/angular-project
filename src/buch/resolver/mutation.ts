@@ -22,12 +22,12 @@ import { getLogger } from '../../logger/logger.js';
 import { ResponseTimeInterceptor } from '../../logger/response-time.js';
 import { BuchDTO } from '../controller/buch-dto.js';
 import {
-    BuchWriteService,
     BuchCreate,
     BuchUpdate,
+    BuchWriteService,
 } from '../service/buch-write-service.js';
-import { type IdInput } from './query.js';
 import { HttpExceptionFilter } from './http-exception-filter.js';
+import { type IdInput } from './query.js';
 
 // Authentifizierung und Autorisierung durch
 //  GraphQL Shield
@@ -120,6 +120,7 @@ export class BuchMutationResolver {
             const abbildung = {
                 beschriftung: abbildungDTO.beschriftung,
                 contentType: abbildungDTO.contentType,
+                pfad: abbildungDTO.pfad ?? '',
             };
             return abbildung;
         });

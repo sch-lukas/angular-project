@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='258.5' y='329.5' width='85.0' height='52.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-6.6 258.5 329.5)'/><rect x='117.3' y='610.8' width='74.6' height='111.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(0.0 117.3 610.8)'/><rect x='128.1' y='420.4' width='138.1' height='99.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(6.3 128.1 420.4)'/><rect x='365.4' y='668.4' width='102.5' height='140.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(0.3 365.4 668.4)'/><rect x='227.2' y='376.0' width='127.5' height='51.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(8.6 227.2 376.0)'/><rect x='511.7' y='688.6' width='73.2' height='139.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.9 511.7 688.6)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>AWS Cloud</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Practitioner</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Amazon Web Services</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

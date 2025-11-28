@@ -22,13 +22,16 @@ export interface BuchItem {
     datum?: string;
     homepage?: string;
     schlagwoerter?: string[];
+    beschreibung?: string;
     erzeugt?: string;
     aktualisiert?: string;
     titel?: { titel: string; untertitel?: string } | null;
+    coverUrl?: string;
     abbildungen?: Array<{
         id?: number;
         beschriftung?: string;
         contentType?: string;
+        pfad?: string;
     }>;
 }
 

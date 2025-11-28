@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='252.2' y='649.8' width='125.4' height='76.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(7.0 252.2 649.8)'/><rect x='384.8' y='467.2' width='101.6' height='60.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(0.2 384.8 467.2)'/><rect x='395.3' y='238.9' width='119.0' height='51.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-4.5 395.3 238.9)'/><rect x='92.2' y='67.4' width='179.4' height='101.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(8.1 92.2 67.4)'/><rect x='222.6' y='778.4' width='111.3' height='65.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.4 222.6 778.4)'/><rect x='456.9' y='500.2' width='129.6' height='176.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.2 456.9 500.2)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Software-Archi…</text>
+    <text x='80' y='200' font-size='28' font-style='italic'>Patterns und Prinzipien</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

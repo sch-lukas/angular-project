@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='398.5' y='770.0' width='163.1' height='107.5' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(2.7 398.5 770.0)'/><rect x='441.3' y='145.3' width='160.2' height='134.4' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(3.6 441.3 145.3)'/><rect x='194.8' y='570.0' width='55.7' height='79.8' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-2.5 194.8 570.0)'/><rect x='192.9' y='306.1' width='52.0' height='120.8' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-4.1 192.9 306.1)'/><rect x='210.0' y='763.9' width='163.7' height='159.4' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(3.9 210.0 763.9)'/><rect x='216.9' y='466.2' width='179.1' height='168.6' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-3.0 216.9 466.2)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#1E3A8A'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>Ethics by</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Verantwortung in Tech-Teams</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#1E3A8A' font-family='Arial, sans-serif'>von Dr. Milan Becker</text>
+  <text x='88' y='820' font-size='20' fill='#1E3A8A' font-family='Arial, sans-serif'>business-leadership</text>
+</svg>

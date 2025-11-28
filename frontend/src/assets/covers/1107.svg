@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='323.4' y='174.2' width='114.1' height='95.4' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(-7.5 323.4 174.2)'/><rect x='505.4' y='252.4' width='54.1' height='107.6' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(4.6 505.4 252.4)'/><rect x='576.8' y='762.0' width='42.4' height='100.6' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(6.5 576.8 762.0)'/><rect x='546.6' y='179.2' width='63.7' height='161.4' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(4.0 546.6 179.2)'/><rect x='310.4' y='211.5' width='80.3' height='108.1' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(0.0 310.4 211.5)'/><rect x='433.8' y='574.5' width='49.6' height='178.6' fill='#0B5CAD' fill-opacity='0.07' transform='rotate(6.6 433.8 574.5)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0B5CAD'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>GraphQL in der</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Praxis</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>API-Design mit Fokus</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0B5CAD' font-family='Arial, sans-serif'>von Dr. Helena Schwarz</text>
+  <text x='88' y='820' font-size='20' fill='#0B5CAD' font-family='Arial, sans-serif'>it-software</text>
+</svg>

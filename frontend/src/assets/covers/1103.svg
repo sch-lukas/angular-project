@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <g fill='#15803D' fill-opacity='0.22'>
+                    <polygon points='140,660 180,520 220,660'/>
+                    <polygon points='220,680 270,500 320,680'/>
+                    <polygon points='300,660 350,540 400,660'/>
+                    <polygon points='380,680 450,480 520,680'/>
+                </g>
+  <rect x='0' y='0' width='48' height='900' fill='#15803D'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Kulinarik des</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Waldes</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Sammeln, Kochen, Bewahren</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#15803D' font-family='Arial, sans-serif'>von Nia Okafor</text>
+  <text x='88' y='820' font-size='20' fill='#15803D' font-family='Arial, sans-serif'>nachhaltigkeit-umwelt</text>
+</svg>

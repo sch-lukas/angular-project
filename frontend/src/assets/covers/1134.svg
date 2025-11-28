@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='268.4' y='575.0' width='133.9' height='175.2' fill='#9D174D' fill-opacity='0.07' transform='rotate(7.9 268.4 575.0)'/><rect x='299.5' y='502.5' width='101.5' height='88.4' fill='#9D174D' fill-opacity='0.07' transform='rotate(7.4 299.5 502.5)'/><rect x='396.6' y='187.7' width='173.1' height='119.1' fill='#9D174D' fill-opacity='0.07' transform='rotate(-1.1 396.6 187.7)'/><rect x='392.9' y='791.8' width='134.4' height='124.2' fill='#9D174D' fill-opacity='0.07' transform='rotate(-4.5 392.9 791.8)'/><rect x='408.1' y='132.9' width='54.3' height='162.7' fill='#9D174D' fill-opacity='0.07' transform='rotate(-4.3 408.1 132.9)'/><rect x='177.8' y='239.2' width='154.0' height='93.4' fill='#9D174D' fill-opacity='0.07' transform='rotate(4.3 177.8 239.2)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#9D174D'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Grenzenlos</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>trainieren</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Ein Leben für den Sport</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#9D174D' font-family='Arial, sans-serif'>von Clara Wieland</text>
+  <text x='88' y='820' font-size='20' fill='#9D174D' font-family='Arial, sans-serif'>biographien-memoiren</text>
+</svg>

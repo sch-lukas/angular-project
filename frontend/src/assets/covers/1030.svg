@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='98.5' y='801.3' width='70.3' height='42.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-5.7 98.5 801.3)'/><rect x='100.7' y='520.5' width='174.8' height='76.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.1 100.7 520.5)'/><rect x='260.3' y='343.3' width='96.9' height='90.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(3.7 260.3 343.3)'/><rect x='474.3' y='363.4' width='125.0' height='139.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-5.7 474.3 363.4)'/><rect x='466.8' y='348.4' width='157.6' height='164.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(1.6 466.8 348.4)'/><rect x='263.7' y='450.7' width='165.9' height='102.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-2.1 263.7 450.7)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>Redis in</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Key-Value Store nutzen</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='515.6' y='476.4' width='125.7' height='61.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.6 515.6 476.4)'/><rect x='544.8' y='83.2' width='128.8' height='100.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.5 544.8 83.2)'/><rect x='450.6' y='764.6' width='125.3' height='159.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(3.5 450.6 764.6)'/><rect x='213.7' y='317.2' width='129.9' height='150.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-1.4 213.7 317.2)'/><rect x='76.9' y='654.7' width='151.6' height='117.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(7.4 76.9 654.7)'/><rect x='568.0' y='212.0' width='73.6' height='88.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.8 568.0 212.0)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Svelte &amp;</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>SvelteKit</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Reactive Frontend Framework</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

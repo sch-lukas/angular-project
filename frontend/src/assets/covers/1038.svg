@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='158.9' y='789.7' width='62.1' height='49.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-6.8 158.9 789.7)'/><rect x='401.8' y='49.8' width='127.2' height='136.3' fill='#7C3AED' fill-opacity='0.07' transform='rotate(6.6 401.8 49.8)'/><rect x='529.1' y='264.4' width='44.8' height='108.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(3.7 529.1 264.4)'/><rect x='352.3' y='559.9' width='151.6' height='137.3' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.5 352.3 559.9)'/><rect x='436.9' y='167.2' width='94.9' height='75.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.2 436.9 167.2)'/><rect x='403.2' y='752.6' width='130.0' height='93.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-9.0 403.2 752.6)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>Azure</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Microsoft Cloud Platform</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

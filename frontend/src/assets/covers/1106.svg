@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='544.7' y='680.7' width='65.9' height='40.6' fill='#EA580C' fill-opacity='0.07' transform='rotate(3.1 544.7 680.7)'/><rect x='424.3' y='485.0' width='67.0' height='99.5' fill='#EA580C' fill-opacity='0.07' transform='rotate(4.5 424.3 485.0)'/><rect x='530.2' y='637.3' width='74.5' height='87.9' fill='#EA580C' fill-opacity='0.07' transform='rotate(-8.6 530.2 637.3)'/><rect x='173.1' y='74.5' width='76.6' height='88.1' fill='#EA580C' fill-opacity='0.07' transform='rotate(8.1 173.1 74.5)'/><rect x='150.0' y='768.3' width='45.8' height='146.9' fill='#EA580C' fill-opacity='0.07' transform='rotate(1.9 150.0 768.3)'/><rect x='107.2' y='204.6' width='136.6' height='150.5' fill='#EA580C' fill-opacity='0.07' transform='rotate(7.7 107.2 204.6)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#EA580C'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>Himalaya-Tees…</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Geschichten aus großen Höhen</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#EA580C' font-family='Arial, sans-serif'>von Ivo Hernandez</text>
+  <text x='88' y='820' font-size='20' fill='#EA580C' font-family='Arial, sans-serif'>reisen-kulinarik</text>
+</svg>

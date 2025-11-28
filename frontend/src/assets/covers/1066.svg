@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='416.4' y='670.7' width='86.3' height='92.9' fill='#EA580C' fill-opacity='0.07' transform='rotate(-6.1 416.4 670.7)'/><rect x='485.4' y='590.4' width='126.3' height='139.7' fill='#EA580C' fill-opacity='0.07' transform='rotate(-7.6 485.4 590.4)'/><rect x='263.8' y='481.9' width='166.5' height='45.4' fill='#EA580C' fill-opacity='0.07' transform='rotate(-4.4 263.8 481.9)'/><rect x='390.3' y='55.8' width='68.8' height='87.6' fill='#EA580C' fill-opacity='0.07' transform='rotate(-7.9 390.3 55.8)'/><rect x='444.5' y='61.3' width='44.3' height='156.3' fill='#EA580C' fill-opacity='0.07' transform='rotate(-7.0 444.5 61.3)'/><rect x='227.3' y='379.5' width='133.0' height='143.1' fill='#EA580C' fill-opacity='0.07' transform='rotate(-6.5 227.3 379.5)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#EA580C'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Mit der Bahn</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>durch Europa</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Slow-Travel-Routen</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#EA580C' font-family='Arial, sans-serif'>von Felix Mertens</text>
+  <text x='88' y='820' font-size='20' fill='#EA580C' font-family='Arial, sans-serif'>reisen-kulinarik</text>
+</svg>

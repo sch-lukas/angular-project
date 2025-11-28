@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='487.5' y='227.4' width='103.2' height='57.5' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(3.0 487.5 227.4)'/><rect x='318.5' y='774.9' width='74.0' height='66.7' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(3.5 318.5 774.9)'/><rect x='215.2' y='780.6' width='160.6' height='40.5' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-7.3 215.2 780.6)'/><rect x='239.2' y='786.3' width='53.2' height='179.4' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-1.1 239.2 786.3)'/><rect x='377.7' y='691.2' width='130.5' height='97.7' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(5.8 377.7 691.2)'/><rect x='478.3' y='270.7' width='73.8' height='103.0' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(7.3 478.3 270.7)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#1E3A8A'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Führen mit</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Klarheit</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Feedback, Fokus, Fortschritt</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#1E3A8A' font-family='Arial, sans-serif'>von Verena Boldt</text>
+  <text x='88' y='820' font-size='20' fill='#1E3A8A' font-family='Arial, sans-serif'>business-leadership</text>
+</svg>

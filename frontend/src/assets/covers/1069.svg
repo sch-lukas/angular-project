@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='225.3' y='403.3' width='116.0' height='137.1' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(3.3 225.3 403.3)'/><rect x='569.5' y='699.9' width='91.9' height='99.0' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(3.4 569.5 699.9)'/><rect x='243.8' y='319.1' width='141.6' height='170.7' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(6.3 243.8 319.1)'/><rect x='548.2' y='551.1' width='48.0' height='54.2' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(6.6 548.2 551.1)'/><rect x='136.7' y='496.6' width='179.8' height='68.2' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(3.1 136.7 496.6)'/><rect x='544.1' y='704.1' width='127.3' height='139.1' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(8.4 544.1 704.1)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#8B5E3C'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Revolutionäre</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Stimmen</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Manifest der Veränderung</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#8B5E3C' font-family='Arial, sans-serif'>von Leyla Al-Hamid</text>
+  <text x='88' y='820' font-size='20' fill='#8B5E3C' font-family='Arial, sans-serif'>geschichte-politik</text>
+</svg>

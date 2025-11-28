@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='151.5' y='144.3' width='164.9' height='64.4' fill='#EA580C' fill-opacity='0.07' transform='rotate(-4.8 151.5 144.3)'/><rect x='348.8' y='790.4' width='157.3' height='159.0' fill='#EA580C' fill-opacity='0.07' transform='rotate(8.7 348.8 790.4)'/><rect x='549.4' y='245.7' width='140.2' height='127.8' fill='#EA580C' fill-opacity='0.07' transform='rotate(7.9 549.4 245.7)'/><rect x='579.4' y='235.6' width='108.9' height='154.2' fill='#EA580C' fill-opacity='0.07' transform='rotate(2.7 579.4 235.6)'/><rect x='130.4' y='393.0' width='146.1' height='170.4' fill='#EA580C' fill-opacity='0.07' transform='rotate(3.9 130.4 393.0)'/><rect x='205.5' y='501.8' width='44.3' height='118.8' fill='#EA580C' fill-opacity='0.07' transform='rotate(-5.2 205.5 501.8)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#EA580C'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>Wanderdörfer</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Gipfel, Hütten, Menschen</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#EA580C' font-family='Arial, sans-serif'>von Ivo Hernandez</text>
+  <text x='88' y='820' font-size='20' fill='#EA580C' font-family='Arial, sans-serif'>reisen-kulinarik</text>
+</svg>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='552.4' y='477.0' width='104.8' height='45.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(0.4 552.4 477.0)'/><rect x='317.3' y='604.6' width='158.4' height='114.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.9 317.3 604.6)'/><rect x='481.4' y='363.7' width='169.0' height='172.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(0.5 481.4 363.7)'/><rect x='344.8' y='701.2' width='173.2' height='132.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.2 344.8 701.2)'/><rect x='375.4' y='339.9' width='96.7' height='57.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.4 375.4 339.9)'/><rect x='474.4' y='205.7' width='48.7' height='149.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(7.4 474.4 205.7)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Microservices</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>in der Praxis</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Architekturen und Patterns</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

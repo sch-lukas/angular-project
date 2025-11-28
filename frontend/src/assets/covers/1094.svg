@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='461.4' y='744.4' width='151.9' height='70.2' fill='#9D174D' fill-opacity='0.07' transform='rotate(-2.7 461.4 744.4)'/><rect x='471.2' y='350.1' width='142.3' height='152.4' fill='#9D174D' fill-opacity='0.07' transform='rotate(-0.1 471.2 350.1)'/><rect x='269.4' y='715.2' width='136.7' height='140.3' fill='#9D174D' fill-opacity='0.07' transform='rotate(-7.2 269.4 715.2)'/><rect x='263.4' y='852.0' width='55.4' height='41.7' fill='#9D174D' fill-opacity='0.07' transform='rotate(8.4 263.4 852.0)'/><rect x='514.1' y='627.6' width='178.3' height='171.3' fill='#9D174D' fill-opacity='0.07' transform='rotate(-7.8 514.1 627.6)'/><rect x='151.8' y='70.8' width='172.5' height='179.2' fill='#9D174D' fill-opacity='0.07' transform='rotate(0.4 151.8 70.8)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#9D174D'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Die Stimme des</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Nordens</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Musik zwischen Protest und Poesie</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#9D174D' font-family='Arial, sans-serif'>von Marco Ruiz</text>
+  <text x='88' y='820' font-size='20' fill='#9D174D' font-family='Arial, sans-serif'>biographien-memoiren</text>
+</svg>

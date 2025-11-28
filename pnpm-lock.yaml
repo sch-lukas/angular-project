@@ -104,9 +104,6 @@ importers:
       nodemailer:
         specifier: 7.0.10
         version: 7.0.10
-      pg:
-        specifier: 8.16.3
-        version: 8.16.3
       pino:
         specifier: 10.1.0
         version: 10.1.0
@@ -237,6 +234,9 @@ importers:
       asciidoctor-kroki:
         specifier: 0.18.1
         version: 0.18.1(@asciidoctor/core@3.0.4)
+      canvas:
+        specifier: 3.2.0
+        version: 3.2.0
       chalk:
         specifier: 5.6.2
         version: 5.6.2
@@ -286,11 +286,14 @@ importers:
         specifier: 8.0.0
         version: 8.0.0(typescript@5.8.3)
       node:
-        specifier: runtime:25.2.1
-        version: runtime:25.2.1
+        specifier: runtime:25.0.0
+        version: runtime:25.0.0
       node-gyp:
         specifier: 12.1.0
         version: 12.1.0
+      pg:
+        specifier: 8.16.3
+        version: 8.16.3
       prettier:
         specifier: 3.6.2
         version: 3.6.2
@@ -4418,6 +4421,10 @@ packages:
   caniuse-lite@1.0.30001756:
     resolution: {integrity: sha512-4HnCNKbMLkLdhJz3TToeVWHSnfJvPaq6vu/eRP0Ahub/07n484XHhBF5AJoSGHdVrS8tKFauUQz8Bp9P7LVx7A==}
 
+  canvas@3.2.0:
+    resolution: {integrity: sha512-jk0GxrLtUEmW/TmFsk2WghvgHe8B0pxGilqCL21y8lHkPUGa6FTsnCNtHPOzT8O3y+N+m3espawV80bbBlgfTA==}
+    engines: {node: ^18.12.0 || >= 20.9.0}
+
   chai@6.2.1:
     resolution: {integrity: sha512-p4Z49OGG5W/WBCPSS/dH3jQ73kD6tiMmUM+bckNK6Jr5JHMG3k9bg/BvKR8lKmtVBKmOiuVaV2ws8s9oSbwysg==}
     engines: {node: '>=18'}
@@ -4447,6 +4454,9 @@ packages:
   chokidar@4.0.3:
     resolution: {integrity: sha512-Qgzu8kfBvo+cA4962jnP1KkS6Dop5NS6g7R5LFYJr4b8Ub94PPQXUksCw9PvXoeXPRRddRNC5C1JQUR2SMGtnA==}
     engines: {node: '>= 14.16.0'}
+
+  chownr@1.1.4:
+    resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==}
 
   chownr@2.0.0:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
@@ -4782,6 +4792,10 @@ packages:
     peerDependenciesMeta:
       supports-color:
         optional: true
+
+  decompress-response@6.0.0:
+    resolution: {integrity: sha512-aW35yZM6Bb/4oJlZncMH2LCoZtJXTRxES17vE3hoRiowU2kWHaJKFkSBDnDR+cm9J+9QhXmREyIfv0pji9ejCQ==}
+    engines: {node: '>=10'}
 
   deep-extend@0.6.0:
     resolution: {integrity: sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==}
@@ -5305,6 +5319,10 @@ packages:
     resolution: {integrity: sha512-8uSpZZocAZRBAPIEINJj3Lo9HyGitllczc27Eh5YYojjMFMn8yHMDMaUHE2Jqfq05D/wucwI4JGURyXt1vchyg==}
     engines: {node: '>=10'}
 
+  expand-template@2.0.3:
+    resolution: {integrity: sha512-XYfuKMvj4O35f/pOXLObndIRvyQ+/+6AhODh+OKWj9S9498pHHn/IMszH+gt0fBCRWMNfk1ZSp5x3AifmnI2vg==}
+    engines: {node: '>=6'}
+
   expect-type@1.2.2:
     resolution: {integrity: sha512-JhFGDVJ7tmDJItKhYgJCGLOWjuK9vPxiXoUFLwLDc99NlmklilbiQJwoctZtt13+xMw91MCk/REan6MWHqDjyA==}
     engines: {node: '>=12.0.0'}
@@ -5492,6 +5510,9 @@ packages:
     resolution: {integrity: sha512-Rx/WycZ60HOaqLKAi6cHRKKI7zxWbJ31MhntmtwMoaTeF7XFH9hhBp8vITaMidfljRQ6eYWCKkaTK+ykVJHP2A==}
     engines: {node: '>= 0.8'}
 
+  fs-constants@1.0.0:
+    resolution: {integrity: sha512-y6OAwoSIf7FyjMIv94u+b5rdheZEjzR63GTyZJm5qh4Bi+2YgwLCcI/fPFZkL5PSixOt6ZNKm+w+Hfp/Bciwow==}
+
   fs-extra@10.1.0:
     resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
     engines: {node: '>=12'}
@@ -5594,6 +5615,9 @@ packages:
 
   git-hooks-list@4.1.1:
     resolution: {integrity: sha512-cmP497iLq54AZnv4YRAEMnEyQ1eIn4tGKbmswqwmFV4GBnAqE8NLtWxxdXa++AalfgL5EBH4IxTPyquEuGY/jA==}
+
+  github-from-package@0.0.0:
+    resolution: {integrity: sha512-SyHy3T1v2NUXn29OsWdxmK6RwHD+vkj3v8en8AOBZ1wBQ/hCAQ5bAQTD02kW4W9tUp/3Qh6J8r9EvntiyCmOOw==}
 
   glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -6557,6 +6581,10 @@ packages:
     resolution: {integrity: sha512-VP79XUPxV2CigYP3jWwAUFSku2aKqBH7uTAapFWCBqutsbmDo96KY5o8uh6U+/YSIn5OxJnXp73beVkpqMIGhA==}
     engines: {node: '>=18'}
 
+  mimic-response@3.1.0:
+    resolution: {integrity: sha512-z0yWI+4FDrrweS8Zmt4Ej5HdJmky15+L2e6Wgn3+iK5fWzb6T3fhNFq2+MeTRb064c6Wr4N/wv0DzQTjNzHNGQ==}
+    engines: {node: '>=10'}
+
   mini-css-extract-plugin@2.9.2:
     resolution: {integrity: sha512-GJuACcS//jtq4kCtd5ii/M0SZf7OZRH+BxdqXZHaJfb8TJiVl+NgQRPwiYt2EuqeSkNydn/7vP+bcE27C5mb9w==}
     engines: {node: '>= 12.13.0'}
@@ -6631,6 +6659,9 @@ packages:
     resolution: {integrity: sha512-KZxYo1BUkWD2TVFLr0MQoM8vUUigWD3LlD83a/75BqC+4qE0Hb1Vo5v1FgcfaNXvfXzr+5EhQ6ing/CaBijTlw==}
     engines: {node: '>= 18'}
 
+  mkdirp-classic@0.5.3:
+    resolution: {integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==}
+
   mkdirp@0.5.6:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
     hasBin: true
@@ -6696,6 +6727,9 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  napi-build-utils@2.0.0:
+    resolution: {integrity: sha512-GEbrYkbfF7MoNaoh2iGG84Mnf/WZfB0GdGEsM8wz7Expx/LlWf5U8t9nvJKXSp3qr5IsEbK04cBGhol/KwOsWA==}
+
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
@@ -6736,6 +6770,10 @@ packages:
 
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
+
+  node-abi@3.85.0:
+    resolution: {integrity: sha512-zsFhmbkAzwhTft6nd3VxcG0cvJsT70rL+BIGHWVq5fi6MwGrHwzqKaxXE+Hl2GmnGItnDKPPkO5/LQqjVkIdFg==}
+    engines: {node: '>=10'}
 
   node-abort-controller@3.1.1:
     resolution: {integrity: sha512-AGK2yQKIjRuqnc6VkX2Xj5d+QW8xZ87pa1UK6yA6ouUyuxfHuMP6umE5QK7UmTeOAymo+Zx1Fxiuw9rVx8taHQ==}
@@ -6796,94 +6834,94 @@ packages:
     resolution: {integrity: sha512-3VW/8JpPqPvnJvseXowjZcirPisssnBuDikk6JIZ8jQzF7KJQX52iPFX4RYYxLycYH7IbMRSPUOga/esVjy5Yg==}
     engines: {node: '>=18'}
 
-  node@runtime:25.2.1:
+  node@runtime:25.0.0:
     resolution:
       type: variations
       variants:
         - resolution:
             archive: tarball
             bin: bin/node
-            integrity: sha256-/NtF/ktuWCsL7pudQN7rY5H1+nvpWp3yCkptSiqY1dM=
+            integrity: sha256-4Gkz65GbPyfpFTsmbq8XYxc8x0Oibj3xCTdtl4ADc74=
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-aix-ppc64.tar.gz
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-aix-ppc64.tar.gz
           targets:
             - cpu: ppc64
               os: aix
         - resolution:
             archive: tarball
             bin: bin/node
-            integrity: sha256-vofiG9I1pFH60CyJ5b98sX4gbkzYndVmTyDRnn395vk=
+            integrity: sha256-43NP4E6+v1uIy24dt3DT+/c2vYYXSFl8oAitPVHxZfg=
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-darwin-arm64.tar.gz
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-darwin-arm64.tar.gz
           targets:
             - cpu: arm64
               os: darwin
         - resolution:
             archive: tarball
             bin: bin/node
-            integrity: sha256-wmbaWpB1pW4aoCRgzo35b8qeeWw4ir6UqN9JSZRd9rY=
+            integrity: sha256-oUXYrE5wJE7lRJ1vt6Tx8M11nCurAmByUtp9GkPXt48=
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-darwin-x64.tar.gz
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-darwin-x64.tar.gz
           targets:
             - cpu: x64
               os: darwin
         - resolution:
             archive: tarball
             bin: bin/node
-            integrity: sha256-kFI4oXvprmLBbllgGSaNjKnw/DFCYCofhg3Ep8Hdv4I=
+            integrity: sha256-dIvocpmWPtp6q++wcidICFdrwvZ7EJw4I+7jrE/8kwo=
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-linux-arm64.tar.gz
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-linux-arm64.tar.gz
           targets:
             - cpu: arm64
               os: linux
         - resolution:
             archive: tarball
             bin: bin/node
-            integrity: sha256-D/271DVfQCIUI69vBDqTcOG20u+z7CfrThDket/6Qn8=
+            integrity: sha256-+j1MBxR2L/qXVbD1+rFqCWGT/946OV098aQeiuVH1ZA=
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-linux-ppc64le.tar.gz
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-linux-ppc64le.tar.gz
           targets:
             - cpu: ppc64le
               os: linux
         - resolution:
             archive: tarball
             bin: bin/node
-            integrity: sha256-uotgbaWipo56krjlfAo6T3J/aP2NPMlst2VhM1OoygQ=
+            integrity: sha256-1ukWUPjM2moK3JgBtMODHg/WXTmg4QNZNkE4I4i8Ul0=
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-linux-s390x.tar.gz
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-linux-s390x.tar.gz
           targets:
             - cpu: s390x
               os: linux
         - resolution:
             archive: tarball
             bin: bin/node
-            integrity: sha256-IJTs3IROoR6Xd8rEJnKw2JzWPScgQZOlh9xaLSdruUA=
+            integrity: sha256-KN1GpnMxkmR9fIJnND9aPxxhb3c8RI4sDSU5rnByS0A=
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-linux-x64.tar.gz
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-linux-x64.tar.gz
           targets:
             - cpu: x64
               os: linux
         - resolution:
             archive: zip
             bin: node.exe
-            integrity: sha256-4qPtqfq/l5KSdMycu/TzdHQ3ZWMMuxaRoi0BBAsM8jo=
-            prefix: node-v25.2.1-win-arm64
+            integrity: sha256-5rTXAM9eYx0C2tsReFasGFpyEmz77JhwdFYmGfeAwR8=
+            prefix: node-v25.0.0-win-arm64
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-win-arm64.zip
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-win-arm64.zip
           targets:
             - cpu: arm64
               os: win32
         - resolution:
             archive: zip
             bin: node.exe
-            integrity: sha256-+XunXq13IGUvOSXZz4Zh4IOijGuY6nesyDkD13qd1og=
-            prefix: node-v25.2.1-win-x64
+            integrity: sha256-TvPCOxM2DpDviUpIuc7sUJsD6nqaTOVAVc6KdEowMzw=
+            prefix: node-v25.0.0-win-x64
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-win-x64.zip
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-win-x64.zip
           targets:
             - cpu: x64
               os: win32
-    version: 25.2.1
+    version: 25.0.0
     hasBin: true
 
   nodemailer@7.0.10:
@@ -7324,6 +7362,11 @@ packages:
   postgres-interval@1.2.0:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
+
+  prebuild-install@7.1.3:
+    resolution: {integrity: sha512-8Mf2cbV7x1cXPUILADGI3wuhfqWvtiLA1iclTDbFRZkgRQS0NqsPZphna9V+HyTEadheuPmjaJMsbzKQFOzLug==}
+    engines: {node: '>=10'}
+    hasBin: true
 
   precinct@12.2.0:
     resolution: {integrity: sha512-NFBMuwIfaJ4SocE9YXPU/n4AcNSoFMVFjP72nvl3cx69j/ke61/hPOWFREVxLkFhhEGnA8ZuVfTqJBa+PK3b5w==}
@@ -7826,6 +7869,12 @@ packages:
     resolution: {integrity: sha512-ZpzWAFHIFqyFE56dXqgX/DkDRZdz+rRcjoIk/RQU4IX0wiCv1l8S7ZrXDHcCc+uaf+6o7w3h2l3g6GYG5TKN9Q==}
     engines: {node: ^18.17.0 || >=20.5.0}
 
+  simple-concat@1.0.1:
+    resolution: {integrity: sha512-cSFtAPtRhljv69IK0hTVZQ+OfE9nePi/rtJmw5UjHeVyVroEqJXP1sFztKUy1qU+xvz3u/sfYJLa947b7nAN2Q==}
+
+  simple-get@4.0.1:
+    resolution: {integrity: sha512-brv7p5WgH0jmQJr1ZDDfKDOSeWWg+OVypG99A/5vYGPqJ6pxiaHLy8nxtFjBA7oMa01ebA9gfh1uMCFqOuXxvA==}
+
   sirv@3.0.2:
     resolution: {integrity: sha512-2wcC/oGxHis/BoHkkPwldgiPSYcpZK3JU28WoMVv55yHJgcZ8rlXvuG9iZggz+sU1d4bRgIGASwyWqjxu3FM0g==}
     engines: {node: '>=18'}
@@ -8086,6 +8135,13 @@ packages:
     resolution: {integrity: sha512-g9ljZiwki/LfxmQADO3dEY1CbpmXT5Hm2fJ+QaGKwSXUylMybePR7/67YW7jOrrvjEgL1Fmz5kzyAjWVWLlucg==}
     engines: {node: '>=6'}
 
+  tar-fs@2.1.4:
+    resolution: {integrity: sha512-mDAjwmZdh7LTT6pNleZ05Yt65HC3E+NiQzl672vQG38jIrehtJk/J3mNwIg+vShQPcLF/LV7CMnDW6vjj6sfYQ==}
+
+  tar-stream@2.2.0:
+    resolution: {integrity: sha512-ujeqbceABgwMZxEJnk2HDY2DlnUZ+9oEcb1KzTVfYHio0UE6dG71n60d8D2I4qNvleWrrXpmjpt7vZeF1LnMZQ==}
+    engines: {node: '>=6'}
+
   tar@6.2.1:
     resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
     engines: {node: '>=10'}
@@ -8240,6 +8296,9 @@ packages:
   tuf-js@3.1.0:
     resolution: {integrity: sha512-3T3T04WzowbwV2FDiGXBbr81t64g1MUGGJRgT4x5o97N+8ArdhVCAF9IxFrxuSJmM3E5Asn7nKHkao0ibcZXAg==}
     engines: {node: ^18.17.0 || >=20.5.0}
+
+  tunnel-agent@0.6.0:
+    resolution: {integrity: sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==}
 
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
@@ -8831,7 +8890,7 @@ snapshots:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.1902.19(chokidar@4.0.3)
-      '@angular-devkit/build-webpack': 0.1902.19(chokidar@4.0.3)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.4)))(webpack@5.98.0(esbuild@0.25.4))
+      '@angular-devkit/build-webpack': 0.1902.19(chokidar@4.0.3)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.27.0)))(webpack@5.98.0(esbuild@0.25.4))
       '@angular-devkit/core': 19.2.19(chokidar@4.0.3)
       '@angular/build': 19.2.19(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15)(@types/node@22.19.1)(chokidar@4.0.3)(jiti@2.6.1)(less@4.2.2)(postcss@8.5.2)(terser@5.39.0)(typescript@5.8.3)(yaml@2.8.1)
       '@angular/compiler-cli': 19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3)
@@ -8881,9 +8940,9 @@ snapshots:
       tree-kill: 1.2.2
       tslib: 2.8.1
       typescript: 5.8.3
-      webpack: 5.98.0(esbuild@0.27.0)
-      webpack-dev-middleware: 7.4.2(webpack@5.98.0(esbuild@0.25.4))
-      webpack-dev-server: 5.2.2(webpack@5.98.0(esbuild@0.25.4))
+      webpack: 5.98.0(esbuild@0.25.4)
+      webpack-dev-middleware: 7.4.2(webpack@5.98.0(esbuild@0.27.0))
+      webpack-dev-server: 5.2.2(webpack@5.98.0(esbuild@0.27.0))
       webpack-merge: 6.0.1
       webpack-subresource-integrity: 5.1.0(webpack@5.98.0(esbuild@0.25.4))
     optionalDependencies:
@@ -8911,12 +8970,12 @@ snapshots:
       - webpack-cli
       - yaml
 
-  '@angular-devkit/build-webpack@0.1902.19(chokidar@4.0.3)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.4)))(webpack@5.98.0(esbuild@0.25.4))':
+  '@angular-devkit/build-webpack@0.1902.19(chokidar@4.0.3)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.27.0)))(webpack@5.98.0(esbuild@0.25.4))':
     dependencies:
       '@angular-devkit/architect': 0.1902.19(chokidar@4.0.3)
       rxjs: 7.8.1
-      webpack: 5.98.0(esbuild@0.27.0)
-      webpack-dev-server: 5.2.2(webpack@5.98.0(esbuild@0.25.4))
+      webpack: 5.98.0(esbuild@0.25.4)
+      webpack-dev-server: 5.2.2(webpack@5.98.0(esbuild@0.27.0))
     transitivePeerDependencies:
       - chokidar
 
@@ -11715,7 +11774,7 @@ snapshots:
     dependencies:
       '@angular/compiler-cli': 19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3)
       typescript: 5.8.3
-      webpack: 5.98.0(esbuild@0.27.0)
+      webpack: 5.98.0(esbuild@0.25.4)
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -13308,7 +13367,7 @@ snapshots:
       '@babel/core': 7.26.10
       find-cache-dir: 4.0.0
       schema-utils: 4.3.3
-      webpack: 5.98.0(esbuild@0.27.0)
+      webpack: 5.98.0(esbuild@0.25.4)
 
   babel-plugin-polyfill-corejs2@0.4.14(@babel/core@7.26.10):
     dependencies:
@@ -13546,6 +13605,11 @@ snapshots:
 
   caniuse-lite@1.0.30001756: {}
 
+  canvas@3.2.0:
+    dependencies:
+      node-addon-api: 7.1.1
+      prebuild-install: 7.1.3
+
   chai@6.2.1: {}
 
   chalk@4.1.2:
@@ -13576,6 +13640,8 @@ snapshots:
   chokidar@4.0.3:
     dependencies:
       readdirp: 4.1.2
+
+  chownr@1.1.4: {}
 
   chownr@2.0.0: {}
 
@@ -13776,7 +13842,7 @@ snapshots:
       normalize-path: 3.0.0
       schema-utils: 4.3.3
       serialize-javascript: 6.0.2
-      webpack: 5.98.0(esbuild@0.27.0)
+      webpack: 5.98.0(esbuild@0.25.4)
 
   core-js-compat@3.47.0:
     dependencies:
@@ -13841,7 +13907,7 @@ snapshots:
       postcss-value-parser: 4.2.0
       semver: 7.7.3
     optionalDependencies:
-      webpack: 5.98.0(esbuild@0.27.0)
+      webpack: 5.98.0(esbuild@0.25.4)
 
   css-select@5.2.2:
     dependencies:
@@ -13900,6 +13966,10 @@ snapshots:
   debug@4.4.3:
     dependencies:
       ms: 2.1.3
+
+  decompress-response@6.0.0:
+    dependencies:
+      mimic-response: 3.1.0
 
   deep-extend@0.6.0: {}
 
@@ -13967,8 +14037,7 @@ snapshots:
   detect-libc@1.0.3:
     optional: true
 
-  detect-libc@2.1.2:
-    optional: true
+  detect-libc@2.1.2: {}
 
   detect-newline@4.0.1: {}
 
@@ -14606,6 +14675,8 @@ snapshots:
       signal-exit: 3.0.7
       strip-final-newline: 2.0.0
 
+  expand-template@2.0.3: {}
+
   expect-type@1.2.2: {}
 
   exponential-backoff@3.1.3: {}
@@ -14886,6 +14957,8 @@ snapshots:
 
   fresh@2.0.0: {}
 
+  fs-constants@1.0.0: {}
+
   fs-extra@10.1.0:
     dependencies:
       graceful-fs: 4.2.11
@@ -14999,6 +15072,8 @@ snapshots:
       pathe: 2.0.3
 
   git-hooks-list@4.1.1: {}
+
+  github-from-package@0.0.0: {}
 
   glob-parent@5.1.2:
     dependencies:
@@ -15722,7 +15797,7 @@ snapshots:
     dependencies:
       less: 4.2.2
     optionalDependencies:
-      webpack: 5.98.0(esbuild@0.27.0)
+      webpack: 5.98.0(esbuild@0.25.4)
 
   less@4.2.2:
     dependencies:
@@ -15749,7 +15824,7 @@ snapshots:
     dependencies:
       webpack-sources: 3.3.3
     optionalDependencies:
-      webpack: 5.98.0(esbuild@0.27.0)
+      webpack: 5.98.0(esbuild@0.25.4)
 
   lines-and-columns@1.2.4: {}
 
@@ -15997,11 +16072,13 @@ snapshots:
 
   mimic-function@5.0.1: {}
 
+  mimic-response@3.1.0: {}
+
   mini-css-extract-plugin@2.9.2(webpack@5.98.0(esbuild@0.25.4)):
     dependencies:
       schema-utils: 4.3.3
       tapable: 2.3.0
-      webpack: 5.98.0(esbuild@0.27.0)
+      webpack: 5.98.0(esbuild@0.25.4)
 
   minimalistic-assert@1.0.1: {}
 
@@ -16074,6 +16151,8 @@ snapshots:
     dependencies:
       minipass: 7.1.2
 
+  mkdirp-classic@0.5.3: {}
+
   mkdirp@0.5.6:
     dependencies:
       minimist: 1.2.8
@@ -16141,6 +16220,8 @@ snapshots:
 
   nanoid@3.3.11: {}
 
+  napi-build-utils@2.0.0: {}
+
   natural-compare@1.4.0: {}
 
   needle@3.3.1:
@@ -16173,6 +16254,10 @@ snapshots:
       lower-case: 2.0.2
       tslib: 2.8.1
 
+  node-abi@3.85.0:
+    dependencies:
+      semver: 7.7.3
+
   node-abort-controller@3.1.1: {}
 
   node-addon-api@3.2.1: {}
@@ -16180,8 +16265,7 @@ snapshots:
   node-addon-api@6.1.0:
     optional: true
 
-  node-addon-api@7.1.1:
-    optional: true
+  node-addon-api@7.1.1: {}
 
   node-domexception@1.0.0: {}
 
@@ -16244,7 +16328,7 @@ snapshots:
     dependencies:
       '@babel/parser': 7.28.5
 
-  node@runtime:25.2.1: {}
+  node@runtime:25.0.0: {}
 
   nodemailer@7.0.10: {}
 
@@ -16687,7 +16771,7 @@ snapshots:
       postcss: 8.5.2
       semver: 7.7.3
     optionalDependencies:
-      webpack: 5.98.0(esbuild@0.27.0)
+      webpack: 5.98.0(esbuild@0.25.4)
     transitivePeerDependencies:
       - typescript
 
@@ -16751,6 +16835,21 @@ snapshots:
   postgres-interval@1.2.0:
     dependencies:
       xtend: 4.0.2
+
+  prebuild-install@7.1.3:
+    dependencies:
+      detect-libc: 2.1.2
+      expand-template: 2.0.3
+      github-from-package: 0.0.0
+      minimist: 1.2.8
+      mkdirp-classic: 0.5.3
+      napi-build-utils: 2.0.0
+      node-abi: 3.85.0
+      pump: 3.0.3
+      rc: 1.2.8
+      simple-get: 4.0.1
+      tar-fs: 2.1.4
+      tunnel-agent: 0.6.0
 
   precinct@12.2.0:
     dependencies:
@@ -17150,7 +17249,7 @@ snapshots:
       neo-async: 2.6.2
     optionalDependencies:
       sass: 1.85.0
-      webpack: 5.98.0(esbuild@0.27.0)
+      webpack: 5.98.0(esbuild@0.25.4)
 
   sass-lookup@6.1.0:
     dependencies:
@@ -17374,6 +17473,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  simple-concat@1.0.1: {}
+
+  simple-get@4.0.1:
+    dependencies:
+      decompress-response: 6.0.0
+      once: 1.4.0
+      simple-concat: 1.0.1
+
   sirv@3.0.2:
     dependencies:
       '@polka/url': 1.0.0-next.29
@@ -17443,7 +17550,7 @@ snapshots:
     dependencies:
       iconv-lite: 0.6.3
       source-map-js: 1.2.1
-      webpack: 5.98.0(esbuild@0.27.0)
+      webpack: 5.98.0(esbuild@0.25.4)
 
   source-map-support@0.5.21:
     dependencies:
@@ -17647,6 +17754,21 @@ snapshots:
 
   tapable@2.3.0: {}
 
+  tar-fs@2.1.4:
+    dependencies:
+      chownr: 1.1.4
+      mkdirp-classic: 0.5.3
+      pump: 3.0.3
+      tar-stream: 2.2.0
+
+  tar-stream@2.2.0:
+    dependencies:
+      bl: 4.1.0
+      end-of-stream: 1.4.5
+      fs-constants: 1.0.0
+      inherits: 2.0.4
+      readable-stream: 3.6.2
+
   tar@6.2.1:
     dependencies:
       chownr: 2.0.0
@@ -17676,6 +17798,17 @@ snapshots:
     dependencies:
       bintrees: 1.0.2
 
+  terser-webpack-plugin@5.3.14(esbuild@0.25.4)(webpack@5.98.0(esbuild@0.27.0)):
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.31
+      jest-worker: 27.5.1
+      schema-utils: 4.3.3
+      serialize-javascript: 6.0.2
+      terser: 5.44.1
+      webpack: 5.98.0(esbuild@0.25.4)
+    optionalDependencies:
+      esbuild: 0.25.4
+
   terser-webpack-plugin@5.3.14(esbuild@0.27.0)(webpack@5.100.2(esbuild@0.27.0)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
@@ -17684,17 +17817,6 @@ snapshots:
       serialize-javascript: 6.0.2
       terser: 5.44.1
       webpack: 5.100.2(esbuild@0.27.0)
-    optionalDependencies:
-      esbuild: 0.27.0
-
-  terser-webpack-plugin@5.3.14(esbuild@0.27.0)(webpack@5.98.0(esbuild@0.25.4)):
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.31
-      jest-worker: 27.5.1
-      schema-utils: 4.3.3
-      serialize-javascript: 6.0.2
-      terser: 5.44.1
-      webpack: 5.98.0(esbuild@0.27.0)
     optionalDependencies:
       esbuild: 0.27.0
 
@@ -17824,6 +17946,10 @@ snapshots:
       make-fetch-happen: 14.0.3
     transitivePeerDependencies:
       - supports-color
+
+  tunnel-agent@0.6.0:
+    dependencies:
+      safe-buffer: 5.2.1
 
   type-check@0.4.0:
     dependencies:
@@ -18129,7 +18255,7 @@ snapshots:
 
   web-streams-polyfill@3.3.3: {}
 
-  webpack-dev-middleware@7.4.2(webpack@5.98.0(esbuild@0.25.4)):
+  webpack-dev-middleware@7.4.2(webpack@5.98.0(esbuild@0.27.0)):
     dependencies:
       colorette: 2.0.20
       memfs: 4.51.0
@@ -18138,9 +18264,9 @@ snapshots:
       range-parser: 1.2.1
       schema-utils: 4.3.3
     optionalDependencies:
-      webpack: 5.98.0(esbuild@0.27.0)
+      webpack: 5.98.0(esbuild@0.25.4)
 
-  webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.4)):
+  webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.27.0)):
     dependencies:
       '@types/bonjour': 3.5.13
       '@types/connect-history-api-fallback': 1.5.4
@@ -18168,10 +18294,10 @@ snapshots:
       serve-index: 1.9.1
       sockjs: 0.3.24
       spdy: 4.0.2
-      webpack-dev-middleware: 7.4.2(webpack@5.98.0(esbuild@0.25.4))
+      webpack-dev-middleware: 7.4.2(webpack@5.98.0(esbuild@0.27.0))
       ws: 8.18.3
     optionalDependencies:
-      webpack: 5.98.0(esbuild@0.27.0)
+      webpack: 5.98.0(esbuild@0.25.4)
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -18191,7 +18317,7 @@ snapshots:
   webpack-subresource-integrity@5.1.0(webpack@5.98.0(esbuild@0.25.4)):
     dependencies:
       typed-assert: 1.0.9
-      webpack: 5.98.0(esbuild@0.27.0)
+      webpack: 5.98.0(esbuild@0.25.4)
 
   webpack@5.100.2(esbuild@0.27.0):
     dependencies:
@@ -18225,7 +18351,7 @@ snapshots:
       - esbuild
       - uglify-js
 
-  webpack@5.98.0(esbuild@0.27.0):
+  webpack@5.98.0(esbuild@0.25.4):
     dependencies:
       '@types/eslint-scope': 3.7.7
       '@types/estree': 1.0.8
@@ -18247,7 +18373,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.0
-      terser-webpack-plugin: 5.3.14(esbuild@0.27.0)(webpack@5.98.0(esbuild@0.25.4))
+      terser-webpack-plugin: 5.3.14(esbuild@0.25.4)(webpack@5.98.0(esbuild@0.27.0))
       watchpack: 2.4.4
       webpack-sources: 3.3.3
     transitivePeerDependencies:

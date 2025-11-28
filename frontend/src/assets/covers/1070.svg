@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='189.5' y='535.6' width='111.8' height='93.1' fill='#9D174D' fill-opacity='0.07' transform='rotate(-4.4 189.5 535.6)'/><rect x='101.7' y='583.7' width='97.9' height='72.9' fill='#9D174D' fill-opacity='0.07' transform='rotate(-6.4 101.7 583.7)'/><rect x='445.9' y='322.0' width='168.1' height='111.0' fill='#9D174D' fill-opacity='0.07' transform='rotate(4.7 445.9 322.0)'/><rect x='168.0' y='97.0' width='127.4' height='79.6' fill='#9D174D' fill-opacity='0.07' transform='rotate(1.7 168.0 97.0)'/><rect x='487.8' y='476.5' width='119.9' height='43.1' fill='#9D174D' fill-opacity='0.07' transform='rotate(8.4 487.8 476.5)'/><rect x='124.8' y='745.5' width='179.1' height='93.0' fill='#9D174D' fill-opacity='0.07' transform='rotate(-3.9 124.8 745.5)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#9D174D'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Zwischen</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Lichtern und</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Karriere einer Bühnenkünstlerin</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#9D174D' font-family='Arial, sans-serif'>von Marco Ruiz</text>
+  <text x='88' y='820' font-size='20' fill='#9D174D' font-family='Arial, sans-serif'>biographien-memoiren</text>
+</svg>

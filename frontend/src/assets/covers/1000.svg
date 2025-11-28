@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='234.0' y='281.3' width='93.7' height='150.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(0.4 234.0 281.3)'/><rect x='414.2' y='122.7' width='175.7' height='127.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-0.1 414.2 122.7)'/><rect x='166.8' y='248.8' width='54.1' height='174.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-5.6 166.8 248.8)'/><rect x='493.3' y='173.5' width='101.0' height='66.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-2.0 493.3 173.5)'/><rect x='520.1' y='696.5' width='111.8' height='104.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.6 520.1 696.5)'/><rect x='432.0' y='653.8' width='142.9' height='160.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.0 432.0 653.8)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Programmieren</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>mit TypeScript</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Grundlagen und Praxis</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

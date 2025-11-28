@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='574.5' y='345.4' width='59.6' height='108.6' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(6.2 574.5 345.4)'/><rect x='103.5' y='426.4' width='103.7' height='173.3' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(8.7 103.5 426.4)'/><rect x='387.5' y='702.5' width='115.9' height='84.9' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-2.2 387.5 702.5)'/><rect x='186.1' y='421.5' width='74.9' height='172.6' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-3.7 186.1 421.5)'/><rect x='67.7' y='800.3' width='83.9' height='147.1' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(1.2 67.7 800.3)'/><rect x='117.9' y='311.3' width='96.7' height='53.2' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-7.4 117.9 311.3)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#8B5E3C'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='48' font-weight='700'>Revolutionäre</text>
+    <text x='80' y='166' font-size='48' font-weight='700'>Stimmen –</text>
+    <text x='80' y='252' font-size='28' font-style='italic'>Manifest der Veränderung · Expertise</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#8B5E3C' font-family='Arial, sans-serif'>von Tobias Weigel</text>
+  <text x='88' y='820' font-size='20' fill='#8B5E3C' font-family='Arial, sans-serif'>geschichte-politik</text>
+</svg>

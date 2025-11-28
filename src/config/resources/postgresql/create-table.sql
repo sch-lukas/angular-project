@@ -94,6 +94,7 @@ CREATE TABLE IF NOT EXISTS abbildung (
     id              INTEGER GENERATED ALWAYS AS IDENTITY(START WITH 1000) PRIMARY KEY,
     beschriftung    TEXT NOT NULL,
     content_type    TEXT NOT NULL,
+    pfad            TEXT,
     buch_id         INTEGER NOT NULL REFERENCES buch ON DELETE CASCADE
 );
 CREATE INDEX IF NOT EXISTS abbildung_buch_id_idx ON abbildung(buch_id);
