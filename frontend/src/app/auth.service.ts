@@ -26,6 +26,7 @@ export class AuthService {
     private readonly http = inject(HttpClient);
     private readonly STORAGE_KEY = 'buchspa_auth';
     private readonly TOKEN_KEY = 'buchspa_token';
+    private readonly SESSION_KEY = 'buchspa_session';
 
     private readonly authState$ = new BehaviorSubject<AuthState>(
         this.loadAuthState(),
@@ -36,6 +37,9 @@ export class AuthService {
     );
 
     constructor() {
+        // Server-Session-Check: Logout bei Server-Neustart
+        this.checkServerSession();
+
         // Synchronisiere isLoggedIn$ mit authState$
         this.authState$.subscribe((state) => {
             (this.isLoggedIn$ as BehaviorSubject<boolean>).next(
@@ -52,6 +56,9 @@ export class AuthService {
             map((response) => {
                 // Token speichern
                 localStorage.setItem(this.TOKEN_KEY, response.access_token);
+
+                // Server-Session-ID speichern (für Neustart-Erkennung)
+                this.updateServerSession();
 
                 // Auth-State aktualisieren
                 const newState: AuthState = {
@@ -120,5 +127,49 @@ export class AuthService {
         } catch (error) {
             console.error('Fehler beim Speichern des Auth-Status:', error);
         }
+    }
+
+    /**
+     * Prüft Server-Session und loggt bei Neustart automatisch aus
+     */
+    private checkServerSession(): void {
+        if (!this.authState$.value.isLoggedIn) {
+            return;
+        }
+
+        const loginTimestamp = localStorage.getItem(this.SESSION_KEY);
+        if (!loginTimestamp) {
+            // Kein Login-Timestamp vorhanden, Logout zur Sicherheit
+            this.logout();
+            return;
+        }
+
+        // Prüfe, ob das Token noch gültig ist
+        // Wenn Server neu gestartet wurde, wird eine Anfrage mit dem alten Token fehlschlagen
+        this.http
+            .get<any>(`${environment.apiUrl}/health/liveness`, {
+                observe: 'response',
+            })
+            .pipe(
+                catchError((error) => {
+                    // Bei Auth-Fehler (401/403) → Server wurde neu gestartet
+                    if (error.status === 401 || error.status === 403) {
+                        console.log(
+                            'Server wurde neu gestartet - automatischer Logout',
+                        );
+                        this.logout();
+                    }
+                    return of(null);
+                }),
+            )
+            .subscribe();
+    }
+
+    /**
+     * Speichert Login-Timestamp als Session-Marker
+     */
+    private updateServerSession(): void {
+        const now = Date.now().toString();
+        localStorage.setItem(this.SESSION_KEY, now);
     }
 }

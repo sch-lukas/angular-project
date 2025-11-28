@@ -209,7 +209,7 @@ export class BuchApiService {
     create(buch: CreateBuchPayload): Observable<void> {
         // Input-Objekt für GraphQL Mutation aufbauen
         const input: any = {
-            isbn: buch.isbn,
+            isbn: buch.isbn.replace(/[-\s]/g, ''), // Bindestriche und Leerzeichen entfernen
             rating: buch.rating,
             preis: buch.preis,
             titel: {
@@ -225,6 +225,9 @@ export class BuchApiService {
         if (buch.datum) input.datum = buch.datum;
         if (buch.homepage) input.homepage = buch.homepage;
         if (buch.schlagwoerter) input.schlagwoerter = buch.schlagwoerter;
+        if (buch.beschreibung) input.beschreibung = buch.beschreibung;
+        if (buch.autor) input.autor = buch.autor;
+        if (buch.autorBiographie) input.autorBiographie = buch.autorBiographie;
 
         return executeGraphQL<{ create: { id: number } }>(
             this.http,
