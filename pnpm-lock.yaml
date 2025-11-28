@@ -286,8 +286,8 @@ importers:
         specifier: 8.0.0
         version: 8.0.0(typescript@5.8.3)
       node:
-        specifier: runtime:25.2.1
-        version: runtime:25.2.1
+        specifier: runtime:25.0.0
+        version: runtime:25.0.0
       node-gyp:
         specifier: 12.1.0
         version: 12.1.0
@@ -352,8 +352,8 @@ importers:
         specifier: ^19.0.0
         version: 19.2.15(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@19.2.15(@angular/animations@19.2.15(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@ng-bootstrap/ng-bootstrap':
-        specifier: 19.0.1
-        version: 19.0.1(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(@angular/forms@19.2.15(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@19.2.15(@angular/animations@19.2.15(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2))(@popperjs/core@2.11.8)(rxjs@7.8.2)
+        specifier: 18.0.0
+        version: 18.0.0(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(@angular/forms@19.2.15(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@19.2.15(@angular/animations@19.2.15(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2))(@angular/localize@19.2.16(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15))(@popperjs/core@2.11.8)(rxjs@7.8.2)
       rxjs:
         specifier: ^7.8.0
         version: 7.8.2
@@ -366,7 +366,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: ^19.0.0
-        version: 19.2.19(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15)(@types/node@22.19.1)(chokidar@4.0.3)(jiti@2.6.1)(typescript@5.8.3)(vite@7.2.2(@types/node@22.19.1)(jiti@2.6.1)(less@4.2.2)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.1))(yaml@2.8.1)
+        version: 19.2.19(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15)(@angular/localize@19.2.16(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15))(@types/node@22.19.1)(chokidar@4.0.3)(jiti@2.6.1)(typescript@5.8.3)(vite@7.2.2(@types/node@22.19.1)(jiti@2.6.1)(less@4.2.2)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.1))(yaml@2.8.1)
       '@angular/cli':
         specifier: ^19.0.0
         version: 19.2.19(@types/node@22.19.1)(chokidar@4.0.3)
@@ -557,6 +557,14 @@ packages:
       '@angular/core': 19.2.15
       '@angular/platform-browser': 19.2.15
       rxjs: ^6.5.3 || ^7.4.0
+
+  '@angular/localize@19.2.16':
+    resolution: {integrity: sha512-ler2eRGqzeoPQDUdsFDPVsdSjPwLA3vLnyDyxT3nekHYDC5jeyFHWi4mb/knE9lPp/PBE8d4xj7WNSpSlSKZVA==}
+    engines: {node: ^18.19.1 || ^20.11.1 || >=22.0.0}
+    hasBin: true
+    peerDependencies:
+      '@angular/compiler': 19.2.16
+      '@angular/compiler-cli': 19.2.16
 
   '@angular/platform-browser-dynamic@19.2.15':
     resolution: {integrity: sha512-dKy0SS395FCh8cW9AQ8nf4Wn3XlONaH7z50T1bGxm3eOoRqjxJYyIeIlEbDdJakMz4QPR3dGr81HleZd8TJumQ==}
@@ -2755,13 +2763,13 @@ packages:
       '@nestjs/platform-express':
         optional: true
 
-  '@ng-bootstrap/ng-bootstrap@19.0.1':
-    resolution: {integrity: sha512-1lErAkwh0F+gWkzpiddViY4GfA9LVXkwLpgBsV9Mb3IC0zo6WNkY8WxCC+LqajirBTu20DCkZSqeRzrwaVLpZw==}
+  '@ng-bootstrap/ng-bootstrap@18.0.0':
+    resolution: {integrity: sha512-GeSAz4yiGq49psdte8kcf+Y562wB3jK/qKRAkh6iA32lcXmy2sfQXVAmlHdjZ3AyP+E8lf3yMwuPdSKiYcDgSg==}
     peerDependencies:
-      '@angular/common': ^20.0.0
-      '@angular/core': ^20.0.0
-      '@angular/forms': ^20.0.0
-      '@angular/localize': ^20.0.0
+      '@angular/common': ^19.0.0
+      '@angular/core': ^19.0.0
+      '@angular/forms': ^19.0.0
+      '@angular/localize': ^19.0.0
       '@popperjs/core': ^2.11.8
       rxjs: ^6.5.3 || ^7.4.0
 
@@ -3632,6 +3640,18 @@ packages:
 
   '@types/aws-sdk2-types@0.0.6':
     resolution: {integrity: sha512-ZHQZWxYt8s3EAeVZzw3k/GeBDcarJ2SHJAGjkBZexiTI5U2l41z+DMX4GlSHxSL3wzSpGrTrVsZEyBEUdVspoA==}
+
+  '@types/babel__core@7.20.5':
+    resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
+
+  '@types/babel__generator@7.27.0':
+    resolution: {integrity: sha512-ufFd2Xi92OAVPYsy+P4n7/U7e68fex0+Ee8gSG9KX7eo084CWiQ4sdxktvdl0bOPupXtVJPY19zk6EwWqUQ8lg==}
+
+  '@types/babel__template@7.4.4':
+    resolution: {integrity: sha512-h/NUaSyG5EyxBIp8YRxo4RMe2/qQgvyowRwVMzhYhBCONbW8PUsg4lkFMrhgZhUe5z3L3MiLDuvyJ/CaPa2A8A==}
+
+  '@types/babel__traverse@7.28.0':
+    resolution: {integrity: sha512-8PvcXf70gTDZBgt9ptxJ8elBeBjcLOAcOtoO/mPJjtji1+CdGbHgm77om1GrsPxsiE+uXIpNSK64UYaIwQXd4Q==}
 
   '@types/body-parser@1.19.6':
     resolution: {integrity: sha512-HLFeCYgz89uk22N5Qg3dvGvsv46B8GLvKKo1zKG4NybA8U2DiEO3w9lqGg29t/tfLRJpJ6iQxnVw4OnB7MoM9g==}
@@ -6796,94 +6816,94 @@ packages:
     resolution: {integrity: sha512-3VW/8JpPqPvnJvseXowjZcirPisssnBuDikk6JIZ8jQzF7KJQX52iPFX4RYYxLycYH7IbMRSPUOga/esVjy5Yg==}
     engines: {node: '>=18'}
 
-  node@runtime:25.2.1:
+  node@runtime:25.0.0:
     resolution:
       type: variations
       variants:
         - resolution:
             archive: tarball
             bin: bin/node
-            integrity: sha256-/NtF/ktuWCsL7pudQN7rY5H1+nvpWp3yCkptSiqY1dM=
+            integrity: sha256-4Gkz65GbPyfpFTsmbq8XYxc8x0Oibj3xCTdtl4ADc74=
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-aix-ppc64.tar.gz
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-aix-ppc64.tar.gz
           targets:
             - cpu: ppc64
               os: aix
         - resolution:
             archive: tarball
             bin: bin/node
-            integrity: sha256-vofiG9I1pFH60CyJ5b98sX4gbkzYndVmTyDRnn395vk=
+            integrity: sha256-43NP4E6+v1uIy24dt3DT+/c2vYYXSFl8oAitPVHxZfg=
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-darwin-arm64.tar.gz
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-darwin-arm64.tar.gz
           targets:
             - cpu: arm64
               os: darwin
         - resolution:
             archive: tarball
             bin: bin/node
-            integrity: sha256-wmbaWpB1pW4aoCRgzo35b8qeeWw4ir6UqN9JSZRd9rY=
+            integrity: sha256-oUXYrE5wJE7lRJ1vt6Tx8M11nCurAmByUtp9GkPXt48=
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-darwin-x64.tar.gz
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-darwin-x64.tar.gz
           targets:
             - cpu: x64
               os: darwin
         - resolution:
             archive: tarball
             bin: bin/node
-            integrity: sha256-kFI4oXvprmLBbllgGSaNjKnw/DFCYCofhg3Ep8Hdv4I=
+            integrity: sha256-dIvocpmWPtp6q++wcidICFdrwvZ7EJw4I+7jrE/8kwo=
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-linux-arm64.tar.gz
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-linux-arm64.tar.gz
           targets:
             - cpu: arm64
               os: linux
         - resolution:
             archive: tarball
             bin: bin/node
-            integrity: sha256-D/271DVfQCIUI69vBDqTcOG20u+z7CfrThDket/6Qn8=
+            integrity: sha256-+j1MBxR2L/qXVbD1+rFqCWGT/946OV098aQeiuVH1ZA=
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-linux-ppc64le.tar.gz
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-linux-ppc64le.tar.gz
           targets:
             - cpu: ppc64le
               os: linux
         - resolution:
             archive: tarball
             bin: bin/node
-            integrity: sha256-uotgbaWipo56krjlfAo6T3J/aP2NPMlst2VhM1OoygQ=
+            integrity: sha256-1ukWUPjM2moK3JgBtMODHg/WXTmg4QNZNkE4I4i8Ul0=
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-linux-s390x.tar.gz
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-linux-s390x.tar.gz
           targets:
             - cpu: s390x
               os: linux
         - resolution:
             archive: tarball
             bin: bin/node
-            integrity: sha256-IJTs3IROoR6Xd8rEJnKw2JzWPScgQZOlh9xaLSdruUA=
+            integrity: sha256-KN1GpnMxkmR9fIJnND9aPxxhb3c8RI4sDSU5rnByS0A=
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-linux-x64.tar.gz
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-linux-x64.tar.gz
           targets:
             - cpu: x64
               os: linux
         - resolution:
             archive: zip
             bin: node.exe
-            integrity: sha256-4qPtqfq/l5KSdMycu/TzdHQ3ZWMMuxaRoi0BBAsM8jo=
-            prefix: node-v25.2.1-win-arm64
+            integrity: sha256-5rTXAM9eYx0C2tsReFasGFpyEmz77JhwdFYmGfeAwR8=
+            prefix: node-v25.0.0-win-arm64
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-win-arm64.zip
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-win-arm64.zip
           targets:
             - cpu: arm64
               os: win32
         - resolution:
             archive: zip
             bin: node.exe
-            integrity: sha256-+XunXq13IGUvOSXZz4Zh4IOijGuY6nesyDkD13qd1og=
-            prefix: node-v25.2.1-win-x64
+            integrity: sha256-TvPCOxM2DpDviUpIuc7sUJsD6nqaTOVAVc6KdEowMzw=
+            prefix: node-v25.0.0-win-x64
             type: binary
-            url: https://nodejs.org/download/release/v25.2.1/node-v25.2.1-win-x64.zip
+            url: https://nodejs.org/download/release/v25.0.0/node-v25.0.0-win-x64.zip
           targets:
             - cpu: x64
               os: win32
-    version: 25.2.1
+    version: 25.0.0
     hasBin: true
 
   nodemailer@7.0.10:
@@ -8827,13 +8847,13 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@angular-devkit/build-angular@19.2.19(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15)(@types/node@22.19.1)(chokidar@4.0.3)(jiti@2.6.1)(typescript@5.8.3)(vite@7.2.2(@types/node@22.19.1)(jiti@2.6.1)(less@4.2.2)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.1))(yaml@2.8.1)':
+  '@angular-devkit/build-angular@19.2.19(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15)(@angular/localize@19.2.16(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15))(@types/node@22.19.1)(chokidar@4.0.3)(jiti@2.6.1)(typescript@5.8.3)(vite@7.2.2(@types/node@22.19.1)(jiti@2.6.1)(less@4.2.2)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.1))(yaml@2.8.1)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.1902.19(chokidar@4.0.3)
       '@angular-devkit/build-webpack': 0.1902.19(chokidar@4.0.3)(webpack-dev-server@5.2.2(webpack@5.98.0(esbuild@0.25.4)))(webpack@5.98.0(esbuild@0.25.4))
       '@angular-devkit/core': 19.2.19(chokidar@4.0.3)
-      '@angular/build': 19.2.19(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15)(@types/node@22.19.1)(chokidar@4.0.3)(jiti@2.6.1)(less@4.2.2)(postcss@8.5.2)(terser@5.39.0)(typescript@5.8.3)(yaml@2.8.1)
+      '@angular/build': 19.2.19(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15)(@angular/localize@19.2.16(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15))(@types/node@22.19.1)(chokidar@4.0.3)(jiti@2.6.1)(less@4.2.2)(postcss@8.5.2)(terser@5.39.0)(typescript@5.8.3)(yaml@2.8.1)
       '@angular/compiler-cli': 19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3)
       '@babel/core': 7.26.10
       '@babel/generator': 7.26.10
@@ -8887,6 +8907,7 @@ snapshots:
       webpack-merge: 6.0.1
       webpack-subresource-integrity: 5.1.0(webpack@5.98.0(esbuild@0.25.4))
     optionalDependencies:
+      '@angular/localize': 19.2.16(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15)
       esbuild: 0.25.4
     transitivePeerDependencies:
       - '@angular/compiler'
@@ -8980,7 +9001,7 @@ snapshots:
       '@angular/core': 19.2.15(rxjs@7.8.2)(zone.js@0.15.1)
       tslib: 2.8.1
 
-  '@angular/build@19.2.19(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15)(@types/node@22.19.1)(chokidar@4.0.3)(jiti@2.6.1)(less@4.2.2)(postcss@8.5.2)(terser@5.39.0)(typescript@5.8.3)(yaml@2.8.1)':
+  '@angular/build@19.2.19(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15)(@angular/localize@19.2.16(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15))(@types/node@22.19.1)(chokidar@4.0.3)(jiti@2.6.1)(less@4.2.2)(postcss@8.5.2)(terser@5.39.0)(typescript@5.8.3)(yaml@2.8.1)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.1902.19(chokidar@4.0.3)
@@ -9012,6 +9033,7 @@ snapshots:
       vite: 6.4.1(@types/node@22.19.1)(jiti@2.6.1)(less@4.2.2)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.1)
       watchpack: 2.4.2
     optionalDependencies:
+      '@angular/localize': 19.2.16(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15)
       less: 4.2.2
       lmdb: 3.2.6
       postcss: 8.5.2
@@ -9090,6 +9112,17 @@ snapshots:
       '@angular/platform-browser': 19.2.15(@angular/animations@19.2.15(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))
       rxjs: 7.8.2
       tslib: 2.8.1
+
+  '@angular/localize@19.2.16(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15)':
+    dependencies:
+      '@angular/compiler': 19.2.15
+      '@angular/compiler-cli': 19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3)
+      '@babel/core': 7.26.9
+      '@types/babel__core': 7.20.5
+      fast-glob: 3.3.3
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - supports-color
 
   '@angular/platform-browser-dynamic@19.2.15(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler@19.2.15)(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@19.2.15(@angular/animations@19.2.15(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1)))':
     dependencies:
@@ -11702,11 +11735,12 @@ snapshots:
       '@nestjs/microservices': 11.1.9(@nestjs/common@11.1.9(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.9)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/platform-express': 11.1.9(@nestjs/common@11.1.9(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.9)
 
-  '@ng-bootstrap/ng-bootstrap@19.0.1(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(@angular/forms@19.2.15(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@19.2.15(@angular/animations@19.2.15(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2))(@popperjs/core@2.11.8)(rxjs@7.8.2)':
+  '@ng-bootstrap/ng-bootstrap@18.0.0(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(@angular/forms@19.2.15(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@19.2.15(@angular/animations@19.2.15(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2))(@angular/localize@19.2.16(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15))(@popperjs/core@2.11.8)(rxjs@7.8.2)':
     dependencies:
       '@angular/common': 19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       '@angular/core': 19.2.15(rxjs@7.8.2)(zone.js@0.15.1)
       '@angular/forms': 19.2.15(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@19.2.15(@angular/animations@19.2.15(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@19.2.15(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.15(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
+      '@angular/localize': 19.2.16(@angular/compiler-cli@19.2.15(@angular/compiler@19.2.15)(typescript@5.8.3))(@angular/compiler@19.2.15)
       '@popperjs/core': 2.11.8
       rxjs: 7.8.2
       tslib: 2.8.1
@@ -12547,6 +12581,27 @@ snapshots:
   '@types/aws-sdk2-types@0.0.6':
     dependencies:
       '@types/node': 22.19.1
+
+  '@types/babel__core@7.20.5':
+    dependencies:
+      '@babel/parser': 7.28.5
+      '@babel/types': 7.28.5
+      '@types/babel__generator': 7.27.0
+      '@types/babel__template': 7.4.4
+      '@types/babel__traverse': 7.28.0
+
+  '@types/babel__generator@7.27.0':
+    dependencies:
+      '@babel/types': 7.28.5
+
+  '@types/babel__template@7.4.4':
+    dependencies:
+      '@babel/parser': 7.28.5
+      '@babel/types': 7.28.5
+
+  '@types/babel__traverse@7.28.0':
+    dependencies:
+      '@babel/types': 7.28.5
 
   '@types/body-parser@1.19.6':
     dependencies:
@@ -16244,7 +16299,7 @@ snapshots:
     dependencies:
       '@babel/parser': 7.28.5
 
-  node@runtime:25.2.1: {}
+  node@runtime:25.0.0: {}
 
   nodemailer@7.0.10: {}
 
