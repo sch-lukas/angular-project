@@ -413,13 +413,11 @@ import { BuchApiService, type BuchItem } from './buch-api.service';
                                 <!-- Cover -->
                                 <div class="item-image">
                                     <img
-                                        [src]="
-                                            'https://via.placeholder.com/180x260?text=' +
-                                            (buch.titel?.titel || 'Cover')
-                                        "
+                                        [src]="getRelatedCoverUrl(buch)"
                                         [alt]="
                                             buch.titel?.titel || 'Buch Cover'
                                         "
+                                        onerror="this.src='https://via.placeholder.com/180x260?text=Kein+Cover'"
                                     />
                                 </div>
 
@@ -1047,13 +1045,46 @@ export class DetailComponent implements OnInit {
     }
 
     /**
-     * Gibt die Cover-URL zurück (Platzhalter für zukünftige Implementierung)
+     * Gibt die Cover-URL zurück
      */
     getCoverUrl(): string | null {
-        // In Zukunft könnte hier eine echte Cover-URL kommen, z.B.:
-        // return `/api/buch/${this.buch?.id}/cover`;
-        // oder aus buch.coverUrl
+        if (!this.buch) return null;
+
+        // 1. Prüfe ob abbildungen vorhanden sind
+        if (this.buch.abbildungen && this.buch.abbildungen.length > 0) {
+            const firstImage = this.buch.abbildungen[0];
+            if (firstImage.pfad) {
+                return firstImage.pfad;
+            }
+        }
+
+        // 2. Fallback: SVG Cover aus assets
+        if (this.buch.id) {
+            return `/assets/covers/${this.buch.id}.svg`;
+        }
+
         return null;
+    }
+
+    /**
+     * Gibt die Cover-URL für ein Buch im Karussell zurück
+     */
+    getRelatedCoverUrl(buch: BuchItem): string {
+        // 1. Prüfe ob abbildungen vorhanden sind
+        if (buch.abbildungen && buch.abbildungen.length > 0) {
+            const firstImage = buch.abbildungen[0];
+            if (firstImage.pfad) {
+                return firstImage.pfad;
+            }
+        }
+
+        // 2. Fallback: SVG Cover aus assets
+        if (buch.id) {
+            return `/assets/covers/${buch.id}.svg`;
+        }
+
+        // 3. Final Fallback: Platzhalter
+        return `https://via.placeholder.com/180x260?text=Kein+Cover`;
     }
 
     /**
