@@ -10,6 +10,7 @@ import {
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BuchApiService, type BuchItem } from './buch-api.service';
+import { CartService } from './cart/cart.service';
 
 @Component({
     selector: 'app-detail',
@@ -169,11 +170,28 @@ import { BuchApiService, type BuchItem } from './buch-api.service';
 
                             <!-- Call-to-Action Buttons -->
                             <div class="cta-section mb-4">
+                                <!-- Success Alert -->
+                                <ngb-alert
+                                    *ngIf="addToCartSuccess"
+                                    type="success"
+                                    [dismissible]="false"
+                                    class="mb-3"
+                                    style="animation: slideIn 0.3s ease-out;"
+                                >
+                                    ✅ Buch wurde zum Warenkorb hinzugefügt!
+                                    <a
+                                        routerLink="/cart"
+                                        class="alert-link ms-2"
+                                        >Zum Warenkorb →</a
+                                    >
+                                </ngb-alert>
+
                                 <div class="d-grid gap-2 d-md-flex">
                                     <button
                                         class="btn btn-success btn-lg flex-grow-1"
                                         style="max-width: 300px;"
                                         [disabled]="!buch.lieferbar"
+                                        (click)="addToCart()"
                                     >
                                         🛒 In den Warenkorb
                                     </button>
@@ -646,6 +664,18 @@ import { BuchApiService, type BuchItem } from './buch-api.service';
                 transform: scale(1.02);
             }
 
+            /* Success Alert Animation */
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
             /* Preis-Sektion */
             .price-section {
                 padding: 1rem;
@@ -1081,6 +1111,9 @@ export class DetailComponent implements OnInit {
     relatedLoading = false;
     relatedError: string | null = null;
 
+    // Warenkorb-Status
+    addToCartSuccess = false;
+
     @ViewChild('homepageWarningModal')
     homepageWarningModal!: TemplateRef<any>;
 
@@ -1088,6 +1121,7 @@ export class DetailComponent implements OnInit {
     carouselContainer!: ElementRef<HTMLDivElement>;
 
     private readonly modalService = inject(NgbModal);
+    private readonly cartService = inject(CartService);
 
     constructor(
         private readonly route: ActivatedRoute,
@@ -1359,5 +1393,36 @@ export class DetailComponent implements OnInit {
             .catch(() => {
                 // Modal wurde geschlossen (X oder Abbrechen) → nichts tun
             });
+    }
+
+    /**
+     * Fügt das aktuelle Buch zum Warenkorb hinzu
+     */
+    addToCart(): void {
+        if (!this.buch) {
+            console.error('Kein Buch zum Hinzufügen vorhanden');
+            return;
+        }
+
+        if (!this.buch.lieferbar) {
+            console.warn('Buch ist nicht lieferbar');
+            return;
+        }
+
+        // Füge zum Warenkorb hinzu
+        this.cartService.addItem(this.buch, 1);
+
+        // Zeige Erfolgs-Nachricht
+        this.addToCartSuccess = true;
+
+        // Verstecke Nachricht nach 4 Sekunden
+        setTimeout(() => {
+            this.addToCartSuccess = false;
+        }, 4000);
+
+        console.log(
+            '✅ Buch zum Warenkorb hinzugefügt:',
+            this.buch.titel?.titel,
+        );
     }
 }
