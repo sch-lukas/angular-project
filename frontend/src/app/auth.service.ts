@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
+import { environment } from '../environments/environment';
 
 export interface LoginResult {
     success: boolean;
@@ -9,13 +11,21 @@ export interface LoginResult {
 interface AuthState {
     isLoggedIn: boolean;
     username: string | null;
+    token: string | null;
+}
+
+interface TokenResponse {
+    access_token: string;
+    expires_in: number;
+    refresh_token: string;
+    refresh_expires_in: number;
 }
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+    private readonly http = inject(HttpClient);
     private readonly STORAGE_KEY = 'buchspa_auth';
-    private readonly VALID_USERNAME = 'admin';
-    private readonly VALID_PASSWORD = 'p';
+    private readonly TOKEN_KEY = 'buchspa_token';
 
     private readonly authState$ = new BehaviorSubject<AuthState>(
         this.loadAuthState(),
@@ -34,30 +44,44 @@ export class AuthService {
         });
     }
 
-    login(username: string, password: string): LoginResult {
-        if (
-            username === this.VALID_USERNAME &&
-            password === this.VALID_PASSWORD
-        ) {
-            const newState: AuthState = {
-                isLoggedIn: true,
-                username,
-            };
-            this.saveAuthState(newState);
-            this.authState$.next(newState);
-            return { success: true };
-        }
+    login(username: string, password: string): Observable<LoginResult> {
+        const url = `${environment.apiUrl}/auth/token`;
+        const body = { username, password };
 
-        return {
-            success: false,
-            message: 'Benutzername oder Passwort ist falsch.',
-        };
+        return this.http.post<TokenResponse>(url, body).pipe(
+            map((response) => {
+                // Token speichern
+                localStorage.setItem(this.TOKEN_KEY, response.access_token);
+
+                // Auth-State aktualisieren
+                const newState: AuthState = {
+                    isLoggedIn: true,
+                    username,
+                    token: response.access_token,
+                };
+                this.saveAuthState(newState);
+                this.authState$.next(newState);
+
+                return { success: true };
+            }),
+            catchError((error) => {
+                console.error('Login-Fehler:', error);
+                return of({
+                    success: false,
+                    message: 'Benutzername oder Passwort ist falsch.',
+                });
+            }),
+        );
     }
 
     logout(): void {
+        // Token entfernen
+        localStorage.removeItem(this.TOKEN_KEY);
+
         const newState: AuthState = {
             isLoggedIn: false,
             username: null,
+            token: null,
         };
         this.saveAuthState(newState);
         this.authState$.next(newState);
@@ -71,16 +95,23 @@ export class AuthService {
         return this.authState$.value.username;
     }
 
+    getToken(): string | null {
+        return localStorage.getItem(this.TOKEN_KEY);
+    }
+
     private loadAuthState(): AuthState {
         try {
             const stored = localStorage.getItem(this.STORAGE_KEY);
             if (stored) {
-                return JSON.parse(stored);
+                const state = JSON.parse(stored);
+                // Token aus separatem Storage holen
+                const token = localStorage.getItem(this.TOKEN_KEY);
+                return { ...state, token };
             }
         } catch (error) {
             console.error('Fehler beim Laden des Auth-Status:', error);
         }
-        return { isLoggedIn: false, username: null };
+        return { isLoggedIn: false, username: null, token: null };
     }
 
     private saveAuthState(state: AuthState): void {

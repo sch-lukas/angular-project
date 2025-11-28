@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from './auth.service';
 import { BuchApiService, type BuchItem } from './buch-api.service';
 import { CartService } from './cart/cart.service';
 import { WishlistService } from './wishlist/wishlist.service';
@@ -53,6 +54,26 @@ import { WishlistService } from './wishlist/wishlist.service';
                 (closed)="error = null"
             >
                 <strong>⚠ Fehler!</strong> {{ error }}
+            </ngb-alert>
+
+            <!-- Lösch-Fehleranzeige -->
+            <ngb-alert
+                *ngIf="deleteError"
+                type="danger"
+                [dismissible]="true"
+                (closed)="deleteError = null"
+            >
+                <strong>⚠ Fehler beim Löschen!</strong> {{ deleteError }}
+            </ngb-alert>
+
+            <!-- Lösch-Erfolg -->
+            <ngb-alert
+                *ngIf="deleteSuccess"
+                type="success"
+                [dismissible]="false"
+            >
+                <strong>✅ Erfolgreich gelöscht!</strong> Sie werden zur Suche
+                weitergeleitet...
             </ngb-alert>
 
             <!-- Produktseite (Shop-Layout) -->
@@ -228,6 +249,15 @@ import { WishlistService } from './wishlist/wishlist.service';
                                                 : '🤍 Merken'
                                         }}
                                     </button>
+                                    <button
+                                        *ngIf="isAdmin()"
+                                        type="button"
+                                        class="btn btn-danger btn-lg"
+                                        (click)="openDeleteConfirmation()"
+                                        style="white-space: pre-line;"
+                                    >
+                                        🗑️ Artikel löschen
+                                    </button>
                                 </div>
                             </div>
 
@@ -326,6 +356,62 @@ import { WishlistService } from './wishlist/wishlist.service';
                     (click)="modal.close('confirm')"
                 >
                     Trotzdem öffnen
+                </button>
+            </div>
+        </ng-template>
+
+        <!-- Modal: Lösch-Bestätigung -->
+        <ng-template #deleteConfirmModal let-modal>
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">
+                    <span style="font-size: 1.5rem;">⚠️</span> Artikel löschen
+                </h5>
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    aria-label="Schließen"
+                    (click)="modal.dismiss('cancel')"
+                ></button>
+            </div>
+            <div class="modal-body text-center py-4">
+                <div class="mb-3">
+                    <span style="font-size: 4rem;">🗑️</span>
+                </div>
+                <h5 class="mb-3">
+                    Möchten Sie diesen Artikel wirklich löschen?
+                </h5>
+                <p class="text-muted mb-0">
+                    <strong>{{ buch?.titel?.titel }}</strong>
+                </p>
+                <p class="text-muted small mb-0">ISBN: {{ buch?.isbn }}</p>
+                <div class="alert alert-warning mt-3 mb-0" role="alert">
+                    <strong>Achtung:</strong> Diese Aktion kann nicht rückgängig
+                    gemacht werden!
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="modal.dismiss('cancel')"
+                >
+                    ❌ Nein, abbrechen
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="modal.close('confirm')"
+                    [disabled]="isDeleting"
+                >
+                    <span *ngIf="!isDeleting">✅ Ja, löschen</span>
+                    <span *ngIf="isDeleting">
+                        <span
+                            class="spinner-border spinner-border-sm me-2"
+                            role="status"
+                            aria-hidden="true"
+                        ></span>
+                        Wird gelöscht...
+                    </span>
                 </button>
             </div>
         </ng-template>
@@ -1226,8 +1312,16 @@ export class DetailComponent implements OnInit {
     // Merkliste-Status
     addToWishlistSuccess = false;
 
+    // Lösch-Status
+    isDeleting = false;
+    deleteSuccess = false;
+    deleteError: string | null = null;
+
     @ViewChild('homepageWarningModal')
     homepageWarningModal!: TemplateRef<any>;
+
+    @ViewChild('deleteConfirmModal')
+    deleteConfirmModal!: TemplateRef<any>;
 
     @ViewChild('carouselContainer')
     carouselContainer!: ElementRef<HTMLDivElement>;
@@ -1235,6 +1329,7 @@ export class DetailComponent implements OnInit {
     private readonly modalService = inject(NgbModal);
     private readonly cartService = inject(CartService);
     private readonly wishlistService = inject(WishlistService);
+    private readonly authService = inject(AuthService);
 
     constructor(
         private readonly route: ActivatedRoute,
@@ -1582,5 +1677,74 @@ export class DetailComponent implements OnInit {
                 this.buch.titel?.titel,
             );
         }
+    }
+
+    /**
+     * Prüft, ob der Benutzer als Admin angemeldet ist
+     */
+    isAdmin(): boolean {
+        return this.authService.isLoggedIn();
+    }
+
+    /**
+     * Öffnet Modal mit Lösch-Bestätigung
+     */
+    openDeleteConfirmation(): void {
+        if (!this.buch?.id || !this.deleteConfirmModal) {
+            return;
+        }
+
+        const modalRef = this.modalService.open(this.deleteConfirmModal, {
+            centered: true,
+            backdrop: 'static',
+            size: 'md',
+        });
+
+        modalRef.result
+            .then((result) => {
+                if (result === 'confirm' && this.buch?.id) {
+                    // Benutzer hat bestätigt → Artikel löschen
+                    this.deleteBuch(this.buch.id);
+                }
+            })
+            .catch(() => {
+                // Modal wurde geschlossen (X oder Abbrechen) → nichts tun
+            });
+    }
+
+    /**
+     * Löscht das aktuelle Buch
+     */
+    private deleteBuch(id: number): void {
+        console.log('🗑️  deleteBuch() aufgerufen für ID:', id);
+        console.log(
+            '🔑 Token im localStorage:',
+            localStorage.getItem('buchspa_token') ? 'VORHANDEN' : 'FEHLT',
+        );
+
+        this.isDeleting = true;
+        this.deleteError = null;
+
+        this.api.delete(id).subscribe({
+            next: () => {
+                console.log('✅ Buch erfolgreich gelöscht:', id);
+                this.deleteSuccess = true;
+                this.isDeleting = false;
+
+                // Nach 2 Sekunden zur Suche navigieren
+                setTimeout(() => {
+                    globalThis.location.href = '/search';
+                }, 2000);
+            },
+            error: (err) => {
+                console.error('❌ Fehler beim Löschen:', err);
+                console.error('❌ Status:', err.status);
+                console.error('❌ Error Body:', err.error);
+                this.deleteError =
+                    err.error?.message ||
+                    `Fehler ${err.status}: ${err.statusText || 'Beim Löschen des Artikels ist ein Fehler aufgetreten.'}`;
+                this.isDeleting = false;
+            },
+        });
     }
 }
