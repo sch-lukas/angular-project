@@ -52,5 +52,8 @@
     "erasableSyntaxOnly": true // NICHT: enum, parameter properties in constructor(), namespace, import aliases
 
     // "useUnknownInCatchVariables": true // unknown als default-Typ bei catch-Klauseln, default bei strict
+
+    // TypeScript 7.0 Deprecation Warnings unterdrücken
+    // "ignoreDeprecations": "6.0"
   }
 }

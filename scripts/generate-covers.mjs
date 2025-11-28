@@ -101,7 +101,7 @@ function generateCover(buch, titel) {
     // Preis
     ctx.font = 'bold 28px Arial';
     ctx.fillStyle = colors.text;
-    const preis = `€${parseFloat(buch.preis).toFixed(2)}`;
+    const preis = `€${Number.parseFloat(buch.preis).toFixed(2)}`;
     ctx.fillText(preis, width / 2, height - 30);
 
     return canvas;
@@ -169,4 +169,4 @@ async function main() {
     }
 }
 
-main();
+await main();

@@ -30,15 +30,15 @@ function generateSVGCover(buch) {
     const colors = COLORS[buch.art] || COLORS.DEFAULT;
 
     const titel = (buch.titel || 'Unbekannter Titel')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;');
 
     const untertitel = buch.untertitel
         ? buch.untertitel
-              .replace(/&/g, '&amp;')
-              .replace(/</g, '&lt;')
-              .replace(/>/g, '&gt;')
+              .replaceAll('&', '&amp;')
+              .replaceAll('<', '&lt;')
+              .replaceAll('>', '&gt;')
         : '';
 
     const rating = buch.rating || 0;
@@ -218,4 +218,4 @@ async function main() {
     }
 }
 
-main();
+await main();

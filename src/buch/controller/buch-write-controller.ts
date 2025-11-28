@@ -312,6 +312,16 @@ export class BuchWriteController {
             };
             return abbildung;
         });
+
+        // Datum-Konvertierung: String zu Date-Objekt
+        let datum: Date | null = null;
+        if (buchDTO.datum !== undefined) {
+            datum =
+                typeof buchDTO.datum === 'string'
+                    ? new Date(buchDTO.datum)
+                    : buchDTO.datum;
+        }
+
         const buch: BuchCreate = {
             version: 0,
             isbn: buchDTO.isbn,
@@ -320,9 +330,12 @@ export class BuchWriteController {
             preis: buchDTO.preis.toNumber(),
             rabatt: buchDTO.rabatt?.toNumber() ?? 0,
             lieferbar: buchDTO.lieferbar ?? false,
-            datum: buchDTO.datum ?? null,
+            datum,
             homepage: buchDTO.homepage ?? null,
             schlagwoerter: buchDTO.schlagwoerter ?? [],
+            beschreibung: buchDTO.beschreibung ?? null,
+            autor: buchDTO.autor ?? null,
+            autorBiographie: buchDTO.autorBiographie ?? null,
             titel: {
                 create: {
                     titel: buchDTO.titel.titel,
@@ -335,6 +348,15 @@ export class BuchWriteController {
     }
 
     #buchDtoToBuchUpdate(buchDTO: BuchDtoOhneRef): BuchUpdate {
+        // Datum-Konvertierung: String zu Date-Objekt
+        let datum: Date | null = null;
+        if (buchDTO.datum !== undefined) {
+            datum =
+                typeof buchDTO.datum === 'string'
+                    ? new Date(buchDTO.datum)
+                    : buchDTO.datum;
+        }
+
         return {
             version: 0,
             isbn: buchDTO.isbn,
@@ -343,9 +365,12 @@ export class BuchWriteController {
             preis: buchDTO.preis.toNumber(),
             rabatt: buchDTO.rabatt?.toNumber() ?? 0,
             lieferbar: buchDTO.lieferbar ?? false,
-            datum: buchDTO.datum ?? null,
+            datum,
             homepage: buchDTO.homepage ?? null,
             schlagwoerter: buchDTO.schlagwoerter ?? [],
+            beschreibung: buchDTO.beschreibung ?? null,
+            autor: buchDTO.autor ?? null,
+            autorBiographie: buchDTO.autorBiographie ?? null,
         };
     }
 }

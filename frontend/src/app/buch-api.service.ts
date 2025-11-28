@@ -10,12 +10,14 @@ import {
     RELATED_BUECHER_QUERY,
 } from './graphql-queries';
 
+export type BuchArt = 'EPUB' | 'HARDCOVER' | 'PAPERBACK';
+
 export interface BuchItem {
     id?: number;
     version?: number;
     isbn?: string;
     rating?: number;
-    art?: 'EPUB' | 'HARDCOVER' | 'PAPERBACK';
+    art?: BuchArt;
     preis?: number;
     rabatt?: number;
     lieferbar?: boolean;
@@ -65,13 +67,16 @@ export interface BuchStats {
 export interface CreateBuchPayload {
     isbn: string;
     rating: number;
-    art?: 'EPUB' | 'HARDCOVER' | 'PAPERBACK';
+    art?: BuchArt;
     preis: number;
     rabatt?: number;
     lieferbar?: boolean;
     datum?: string;
     homepage?: string;
     schlagwoerter?: string[];
+    beschreibung?: string;
+    autor?: string;
+    autorBiographie?: string;
     titel: {
         titel: string;
         untertitel?: string;
@@ -106,11 +111,11 @@ export class BuchApiService {
         const pageVar = (params?.page ?? 0) + 1; // 1-based
         const sizeVar = params?.size ?? 10;
         // Build sort parameter for backend: "preis,asc" or "preis,desc"
-        const sortVar = params?.sortierung
-            ? params.sortierung === 'preisAsc'
-                ? 'preis,asc'
-                : 'preis,desc'
-            : undefined;
+        let sortVar: string | undefined;
+        if (params?.sortierung) {
+            sortVar =
+                params.sortierung === 'preisAsc' ? 'preis,asc' : 'preis,desc';
+        }
 
         return executeGraphQL<{ buecher: { content: BuchItem[]; page: any } }>(
             this.http,
@@ -254,7 +259,7 @@ export class BuchApiService {
      */
     getRelated(
         currentBuchId: number,
-        art?: 'EPUB' | 'HARDCOVER' | 'PAPERBACK',
+        art?: BuchArt,
         maxResults = 10,
     ): Observable<BuchItem[]> {
         const suchparameter: any = {};
@@ -289,13 +294,13 @@ export class BuchApiService {
                     .slice(0, maxResults);
 
                 // Rabatt konvertieren falls vorhanden
-                filtered.forEach((buch) => {
+                for (const buch of filtered) {
                     const rabattValue = (buch as any).rabatt;
                     if (typeof rabattValue === 'string') {
                         const m = /^([\d.]+)/.exec(rabattValue);
                         (buch as any).rabatt = m ? Number.parseFloat(m[1]) : 0;
                     }
-                });
+                }
 
                 return filtered;
             }),

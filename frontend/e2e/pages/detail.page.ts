@@ -53,7 +53,8 @@ export class DetailPage {
     }
 
     async getTitle(): Promise<string> {
-        return this.bookTitle.textContent() ?? '';
+        const title = await this.bookTitle.textContent();
+        return title ?? '';
     }
 
     async getBeschreibung(): Promise<string> {
