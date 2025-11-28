@@ -15,6 +15,7 @@ import { LandingPageComponent } from './app/landing-page.component';
 import { LoginComponent } from './app/login.component';
 import { NewComponent } from './app/new.component';
 import { SearchComponent } from './app/search.component';
+import { WishlistComponent } from './app/wishlist/wishlist.component';
 
 const routes: Routes = [
     { path: '', component: LandingPageComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path: 'search', component: SearchComponent },
     { path: 'detail/:id', component: DetailComponent },
     { path: 'cart', component: CartComponent },
+    { path: 'wishlist', component: WishlistComponent },
     { path: 'carousel-test', component: CarouselTestComponent },
     { path: 'new', component: NewComponent, canMatch: [authGuard] },
     { path: 'kontakt', component: KontaktComponent },

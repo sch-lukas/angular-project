@@ -10,6 +10,7 @@ import {
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { CartService } from './cart/cart.service';
+import { WishlistService } from './wishlist/wishlist.service';
 
 @Component({
     selector: 'app-root',
@@ -70,6 +71,21 @@ import { CartService } from './cart/cart.service';
                                 class="cart-badge"
                             >
                                 {{ cartItemCount$ | async }}
+                            </span>
+                        </a>
+                        <!-- Merkliste mit Badge -->
+                        <a
+                            routerLink="/wishlist"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            class="wishlist-link"
+                        >
+                            ❤️ Merkliste
+                            <span
+                                *ngIf="(wishlistItemCount$ | async) ?? 0 > 0"
+                                class="wishlist-badge"
+                            >
+                                {{ wishlistItemCount$ | async }}
                             </span>
                         </a>
                         <!-- Zeige Login oder Logout je nach Status -->
@@ -135,7 +151,8 @@ import { CartService } from './cart/cart.service';
                 color: #5dade2;
             }
 
-            .cart-link {
+            .cart-link,
+            .wishlist-link {
                 position: relative;
                 display: inline-block;
             }
@@ -145,6 +162,24 @@ import { CartService } from './cart/cart.service';
                 top: -8px;
                 right: -12px;
                 background: #dc3545;
+                color: white;
+                border-radius: 50%;
+                padding: 2px 6px;
+                font-size: 0.7rem;
+                font-weight: bold;
+                min-width: 18px;
+                height: 18px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                animation: scaleIn 0.3s ease-out;
+            }
+
+            .wishlist-badge {
+                position: absolute;
+                top: -8px;
+                right: -12px;
+                background: #e91e63;
                 color: white;
                 border-radius: 50%;
                 padding: 2px 6px;
@@ -176,13 +211,16 @@ export class AppComponent implements OnInit {
     isDarkMode: boolean = false;
     isLoggedIn$ = this.authService.isLoggedIn$;
     cartItemCount$: Observable<number>;
+    wishlistItemCount$: Observable<number>;
 
     constructor(
         private readonly authService: AuthService,
         private readonly router: Router,
         private readonly cartService: CartService,
+        private readonly wishlistService: WishlistService,
     ) {
         this.cartItemCount$ = this.cartService.getItemCount();
+        this.wishlistItemCount$ = this.wishlistService.getItemCount();
     }
 
     ngOnInit() {
