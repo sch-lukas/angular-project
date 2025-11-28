@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='334.4' y='572.7' width='40.3' height='71.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(2.5 334.4 572.7)'/><rect x='334.2' y='424.5' width='155.7' height='100.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-0.8 334.2 424.5)'/><rect x='346.8' y='802.5' width='63.4' height='54.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(9.0 346.8 802.5)'/><rect x='158.2' y='763.4' width='72.1' height='112.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.7 158.2 763.4)'/><rect x='221.1' y='327.2' width='158.5' height='51.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(3.9 221.1 327.2)'/><rect x='139.4' y='56.6' width='131.3' height='126.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(1.8 139.4 56.6)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Apache Kafka</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Streams</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Event Streaming Platform</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

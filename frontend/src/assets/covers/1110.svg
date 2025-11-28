@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='144.1' y='196.6' width='42.5' height='116.6' fill='#9D174D' fill-opacity='0.07' transform='rotate(-6.4 144.1 196.6)'/><rect x='563.7' y='70.0' width='77.5' height='145.2' fill='#9D174D' fill-opacity='0.07' transform='rotate(-8.4 563.7 70.0)'/><rect x='327.7' y='419.8' width='110.4' height='156.7' fill='#9D174D' fill-opacity='0.07' transform='rotate(-5.4 327.7 419.8)'/><rect x='482.8' y='76.3' width='160.0' height='126.5' fill='#9D174D' fill-opacity='0.07' transform='rotate(-8.3 482.8 76.3)'/><rect x='108.3' y='537.5' width='95.5' height='66.5' fill='#9D174D' fill-opacity='0.07' transform='rotate(-5.6 108.3 537.5)'/><rect x='360.4' y='836.0' width='166.5' height='125.5' fill='#9D174D' fill-opacity='0.07' transform='rotate(1.5 360.4 836.0)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#9D174D'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>Der lange</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Fotografie als Lebensaufgabe</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#9D174D' font-family='Arial, sans-serif'>von Clara Wieland</text>
+  <text x='88' y='820' font-size='20' fill='#9D174D' font-family='Arial, sans-serif'>biographien-memoiren</text>
+</svg>

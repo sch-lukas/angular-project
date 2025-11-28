@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='280.9' y='583.5' width='148.9' height='119.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(3.2 280.9 583.5)'/><rect x='188.8' y='451.5' width='157.4' height='161.0' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-7.8 188.8 451.5)'/><rect x='390.7' y='691.6' width='79.6' height='74.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-5.3 390.7 691.6)'/><rect x='455.3' y='635.1' width='121.9' height='95.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(7.7 455.3 635.1)'/><rect x='431.5' y='176.5' width='52.6' height='158.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(7.6 431.5 176.5)'/><rect x='404.6' y='528.8' width='88.8' height='53.3' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-5.8 404.6 528.8)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>Svelte</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Compiler-basiert entwickeln</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

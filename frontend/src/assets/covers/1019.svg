@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='444.8' y='637.3' width='169.8' height='159.3' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-5.5 444.8 637.3)'/><rect x='70.4' y='514.2' width='155.8' height='135.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(6.7 70.4 514.2)'/><rect x='530.6' y='417.2' width='126.4' height='119.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-4.5 530.6 417.2)'/><rect x='209.9' y='182.2' width='93.2' height='105.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(4.8 209.9 182.2)'/><rect x='358.5' y='345.5' width='84.2' height='167.3' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-4.0 358.5 345.5)'/><rect x='551.6' y='665.2' width='83.4' height='136.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-5.1 551.6 665.2)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Python für Data</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Science</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Datenanalyse mit Python</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

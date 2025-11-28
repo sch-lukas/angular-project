@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='82.5' y='165.0' width='162.0' height='159.9' fill='#0369A1' fill-opacity='0.07' transform='rotate(6.2 82.5 165.0)'/><rect x='487.2' y='849.6' width='50.7' height='137.1' fill='#0369A1' fill-opacity='0.07' transform='rotate(-7.7 487.2 849.6)'/><rect x='136.0' y='405.5' width='138.3' height='144.3' fill='#0369A1' fill-opacity='0.07' transform='rotate(0.1 136.0 405.5)'/><rect x='361.1' y='309.7' width='116.0' height='121.1' fill='#0369A1' fill-opacity='0.07' transform='rotate(-5.2 361.1 309.7)'/><rect x='572.4' y='857.3' width='125.7' height='79.5' fill='#0369A1' fill-opacity='0.07' transform='rotate(1.4 572.4 857.3)'/><rect x='151.4' y='612.2' width='100.3' height='142.5' fill='#0369A1' fill-opacity='0.07' transform='rotate(-0.8 151.4 612.2)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0369A1'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Das Mikrobiom</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>verstehen</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Bakterien als Verbündete</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0369A1' font-family='Arial, sans-serif'>von Prof. Alina Vogt</text>
+  <text x='88' y='820' font-size='20' fill='#0369A1' font-family='Arial, sans-serif'>wissenschaft-gesundheit</text>
+</svg>

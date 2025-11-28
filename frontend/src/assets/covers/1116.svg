@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='574.7' y='681.0' width='70.0' height='64.8' fill='#6D28D9' fill-opacity='0.07' transform='rotate(1.6 574.7 681.0)'/><rect x='93.2' y='86.9' width='87.9' height='162.2' fill='#6D28D9' fill-opacity='0.07' transform='rotate(-8.7 93.2 86.9)'/><rect x='338.0' y='692.6' width='65.9' height='164.9' fill='#6D28D9' fill-opacity='0.07' transform='rotate(-5.4 338.0 692.6)'/><rect x='574.3' y='324.5' width='51.6' height='77.8' fill='#6D28D9' fill-opacity='0.07' transform='rotate(-9.0 574.3 324.5)'/><rect x='118.3' y='600.7' width='136.3' height='119.4' fill='#6D28D9' fill-opacity='0.07' transform='rotate(6.6 118.3 600.7)'/><rect x='513.1' y='845.7' width='91.8' height='156.3' fill='#6D28D9' fill-opacity='0.07' transform='rotate(8.0 513.1 845.7)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#6D28D9'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>Maschinenherz</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Liebe im Posthumanismus</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#6D28D9' font-family='Arial, sans-serif'>von Jonas Adler</text>
+  <text x='88' y='820' font-size='20' fill='#6D28D9' font-family='Arial, sans-serif'>fantasy-sci-fi</text>
+</svg>

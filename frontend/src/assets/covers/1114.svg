@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='157.9' y='277.0' width='108.1' height='102.2' fill='#EA580C' fill-opacity='0.07' transform='rotate(7.9 157.9 277.0)'/><rect x='343.1' y='726.7' width='112.1' height='127.9' fill='#EA580C' fill-opacity='0.07' transform='rotate(4.3 343.1 726.7)'/><rect x='377.6' y='818.9' width='132.0' height='55.8' fill='#EA580C' fill-opacity='0.07' transform='rotate(2.4 377.6 818.9)'/><rect x='508.6' y='660.4' width='62.3' height='40.5' fill='#EA580C' fill-opacity='0.07' transform='rotate(-0.3 508.6 660.4)'/><rect x='514.2' y='448.4' width='45.4' height='162.1' fill='#EA580C' fill-opacity='0.07' transform='rotate(2.2 514.2 448.4)'/><rect x='297.1' y='291.8' width='130.5' height='55.5' fill='#EA580C' fill-opacity='0.07' transform='rotate(4.5 297.1 291.8)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#EA580C'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Küstenstädte</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>des Südens</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Architektur und Aperitivo</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#EA580C' font-family='Arial, sans-serif'>von Felix Mertens</text>
+  <text x='88' y='820' font-size='20' fill='#EA580C' font-family='Arial, sans-serif'>reisen-kulinarik</text>
+</svg>

@@ -58,6 +58,7 @@ export const BUCH_BY_ID_QUERY = `
         id
         beschriftung
         contentType
+        pfad
       }
     }
   }
@@ -77,12 +78,19 @@ export const RELATED_BUECHER_QUERY = `
         art
         preis
         rabatt(short: false)
+        lieferbar
         coverUrl
         titel {
           titel
           untertitel
         }
         schlagwoerter
+        abbildungen {
+          id
+          beschriftung
+          contentType
+          pfad
+        }
       }
     }
   }

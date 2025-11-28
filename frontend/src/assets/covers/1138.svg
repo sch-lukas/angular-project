@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='366.7' y='286.4' width='165.3' height='112.9' fill='#EA580C' fill-opacity='0.07' transform='rotate(7.5 366.7 286.4)'/><rect x='122.7' y='61.3' width='115.3' height='100.0' fill='#EA580C' fill-opacity='0.07' transform='rotate(5.8 122.7 61.3)'/><rect x='70.9' y='594.3' width='159.3' height='166.6' fill='#EA580C' fill-opacity='0.07' transform='rotate(2.2 70.9 594.3)'/><rect x='367.2' y='452.1' width='76.3' height='163.0' fill='#EA580C' fill-opacity='0.07' transform='rotate(6.0 367.2 452.1)'/><rect x='231.8' y='377.9' width='174.4' height='84.2' fill='#EA580C' fill-opacity='0.07' transform='rotate(3.5 231.8 377.9)'/><rect x='265.8' y='788.4' width='139.7' height='52.3' fill='#EA580C' fill-opacity='0.07' transform='rotate(2.2 265.8 788.4)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#EA580C'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Kulinarische</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Inselhüpfer</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Kochen auf Segelrouten</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#EA580C' font-family='Arial, sans-serif'>von Felix Mertens</text>
+  <text x='88' y='820' font-size='20' fill='#EA580C' font-family='Arial, sans-serif'>reisen-kulinarik</text>
+</svg>

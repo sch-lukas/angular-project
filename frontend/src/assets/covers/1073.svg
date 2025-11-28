@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='288.1' y='444.9' width='149.9' height='129.2' fill='#0369A1' fill-opacity='0.07' transform='rotate(5.0 288.1 444.9)'/><rect x='445.2' y='146.6' width='106.4' height='98.0' fill='#0369A1' fill-opacity='0.07' transform='rotate(8.7 445.2 146.6)'/><rect x='440.3' y='175.9' width='106.9' height='115.4' fill='#0369A1' fill-opacity='0.07' transform='rotate(4.1 440.3 175.9)'/><rect x='61.2' y='449.2' width='76.0' height='76.4' fill='#0369A1' fill-opacity='0.07' transform='rotate(4.0 61.2 449.2)'/><rect x='373.4' y='741.0' width='55.0' height='161.1' fill='#0369A1' fill-opacity='0.07' transform='rotate(-1.1 373.4 741.0)'/><rect x='259.8' y='813.5' width='129.2' height='168.1' fill='#0369A1' fill-opacity='0.07' transform='rotate(4.8 259.8 813.5)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0369A1'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Schlaf als</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Superkraft</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Routinen für mehr Energie</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0369A1' font-family='Arial, sans-serif'>von Dr. Emil Vargas</text>
+  <text x='88' y='820' font-size='20' fill='#0369A1' font-family='Arial, sans-serif'>wissenschaft-gesundheit</text>
+</svg>

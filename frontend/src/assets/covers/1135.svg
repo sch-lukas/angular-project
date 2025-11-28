@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='162.1' y='482.7' width='102.1' height='44.5' fill='#15803D' fill-opacity='0.07' transform='rotate(-8.8 162.1 482.7)'/><rect x='87.1' y='762.8' width='87.0' height='80.9' fill='#15803D' fill-opacity='0.07' transform='rotate(7.8 87.1 762.8)'/><rect x='417.1' y='754.6' width='74.7' height='144.1' fill='#15803D' fill-opacity='0.07' transform='rotate(5.1 417.1 754.6)'/><rect x='392.8' y='713.0' width='141.7' height='160.5' fill='#15803D' fill-opacity='0.07' transform='rotate(8.2 392.8 713.0)'/><rect x='234.7' y='59.4' width='128.2' height='43.0' fill='#15803D' fill-opacity='0.07' transform='rotate(-8.0 234.7 59.4)'/><rect x='457.7' y='639.2' width='150.0' height='121.7' fill='#15803D' fill-opacity='0.07' transform='rotate(4.3 457.7 639.2)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#15803D'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>Rewilding</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Wälder gewinnen zurück</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#15803D' font-family='Arial, sans-serif'>von Greta Lind</text>
+  <text x='88' y='820' font-size='20' fill='#15803D' font-family='Arial, sans-serif'>nachhaltigkeit-umwelt</text>
+</svg>

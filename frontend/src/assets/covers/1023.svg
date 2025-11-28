@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='411.0' y='787.3' width='54.1' height='144.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-2.3 411.0 787.3)'/><rect x='404.0' y='423.5' width='139.4' height='123.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-4.9 404.0 423.5)'/><rect x='368.3' y='260.3' width='137.1' height='88.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.5 368.3 260.3)'/><rect x='195.6' y='222.4' width='141.6' height='44.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.3 195.6 222.4)'/><rect x='244.6' y='771.1' width='52.0' height='160.3' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-3.4 244.6 771.1)'/><rect x='266.7' y='137.0' width='83.0' height='64.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(4.7 266.7 137.0)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Continuous</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Delivery</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Reliable Software Releases</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

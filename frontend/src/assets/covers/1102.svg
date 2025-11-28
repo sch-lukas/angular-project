@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='154.7' y='331.0' width='46.5' height='147.1' fill='#9D174D' fill-opacity='0.07' transform='rotate(6.5 154.7 331.0)'/><rect x='190.5' y='697.4' width='108.5' height='107.9' fill='#9D174D' fill-opacity='0.07' transform='rotate(0.9 190.5 697.4)'/><rect x='458.8' y='567.1' width='149.6' height='73.6' fill='#9D174D' fill-opacity='0.07' transform='rotate(-8.4 458.8 567.1)'/><rect x='96.7' y='72.6' width='114.9' height='155.3' fill='#9D174D' fill-opacity='0.07' transform='rotate(8.4 96.7 72.6)'/><rect x='305.4' y='333.3' width='136.1' height='84.7' fill='#9D174D' fill-opacity='0.07' transform='rotate(6.8 305.4 333.3)'/><rect x='391.1' y='109.5' width='171.6' height='105.7' fill='#9D174D' fill-opacity='0.07' transform='rotate(-2.2 391.1 109.5)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#9D174D'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Tanz über dem</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Abgrund</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Ein Leben als Hochseilartistin</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#9D174D' font-family='Arial, sans-serif'>von Hannah Giese</text>
+  <text x='88' y='820' font-size='20' fill='#9D174D' font-family='Arial, sans-serif'>biographien-memoiren</text>
+</svg>

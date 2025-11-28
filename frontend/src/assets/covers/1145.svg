@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='482.6' y='411.8' width='106.4' height='88.9' fill='#0369A1' fill-opacity='0.07' transform='rotate(8.8 482.6 411.8)'/><rect x='269.2' y='533.3' width='58.9' height='117.3' fill='#0369A1' fill-opacity='0.07' transform='rotate(1.3 269.2 533.3)'/><rect x='562.8' y='757.9' width='75.4' height='101.1' fill='#0369A1' fill-opacity='0.07' transform='rotate(-8.5 562.8 757.9)'/><rect x='471.7' y='154.1' width='148.1' height='41.4' fill='#0369A1' fill-opacity='0.07' transform='rotate(-6.9 471.7 154.1)'/><rect x='77.4' y='512.6' width='72.1' height='135.9' fill='#0369A1' fill-opacity='0.07' transform='rotate(2.6 77.4 512.6)'/><rect x='134.5' y='271.5' width='129.7' height='133.5' fill='#0369A1' fill-opacity='0.07' transform='rotate(3.1 134.5 271.5)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#0369A1'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='48' font-weight='700'>Das Mikrobiom</text>
+    <text x='80' y='166' font-size='48' font-weight='700'>verstehen –</text>
+    <text x='80' y='252' font-size='28' font-style='italic'>Bakterien als Verbündete · Expertise</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#0369A1' font-family='Arial, sans-serif'>von Dr. Emil Vargas</text>
+  <text x='88' y='820' font-size='20' fill='#0369A1' font-family='Arial, sans-serif'>wissenschaft-gesundheit</text>
+</svg>

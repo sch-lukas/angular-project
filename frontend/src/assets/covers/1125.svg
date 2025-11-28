@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='110.7' y='706.8' width='68.4' height='145.9' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-8.3 110.7 706.8)'/><rect x='252.1' y='353.2' width='152.4' height='69.4' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-0.7 252.1 353.2)'/><rect x='68.3' y='698.3' width='53.7' height='55.1' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(4.0 68.3 698.3)'/><rect x='146.7' y='238.1' width='162.5' height='70.1' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-5.7 146.7 238.1)'/><rect x='385.5' y='405.7' width='95.4' height='130.1' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(-1.3 385.5 405.7)'/><rect x='192.4' y='578.0' width='91.2' height='43.4' fill='#8B5E3C' fill-opacity='0.07' transform='rotate(1.7 192.4 578.0)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#8B5E3C'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Demokratie</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>verstehen</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Werkzeugkasten für Schulen</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#8B5E3C' font-family='Arial, sans-serif'>von Tobias Weigel</text>
+  <text x='88' y='820' font-size='20' fill='#8B5E3C' font-family='Arial, sans-serif'>geschichte-politik</text>
+</svg>

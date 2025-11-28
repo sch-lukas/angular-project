@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='317.4' y='713.6' width='162.7' height='141.6' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-8.0 317.4 713.6)'/><rect x='428.9' y='282.3' width='143.6' height='138.2' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(5.6 428.9 282.3)'/><rect x='77.8' y='534.0' width='61.2' height='44.3' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(0.8 77.8 534.0)'/><rect x='86.6' y='775.0' width='149.7' height='149.3' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-7.4 86.6 775.0)'/><rect x='190.7' y='814.6' width='112.6' height='56.9' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(-3.0 190.7 814.6)'/><rect x='228.9' y='98.5' width='80.2' height='63.6' fill='#1E3A8A' fill-opacity='0.07' transform='rotate(6.8 228.9 98.5)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#1E3A8A'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='48' font-weight='700'>Führen mit</text>
+    <text x='80' y='166' font-size='48' font-weight='700'>Klarheit –</text>
+    <text x='80' y='252' font-size='28' font-style='italic'>Feedback, Fokus, Fortschritt · Expertise</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#1E3A8A' font-family='Arial, sans-serif'>von Dr. Milan Becker</text>
+  <text x='88' y='820' font-size='20' fill='#1E3A8A' font-family='Arial, sans-serif'>business-leadership</text>
+</svg>

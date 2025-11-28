@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='201.4' y='323.6' width='62.7' height='118.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.6 201.4 323.6)'/><rect x='199.8' y='747.2' width='167.6' height='160.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-5.9 199.8 747.2)'/><rect x='142.7' y='244.1' width='79.9' height='118.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-1.5 142.7 244.1)'/><rect x='459.9' y='525.0' width='103.2' height='142.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(1.2 459.9 525.0)'/><rect x='486.3' y='269.3' width='134.7' height='138.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(7.1 486.3 269.3)'/><rect x='130.0' y='436.7' width='177.5' height='135.4' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.0 130.0 436.7)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Functional</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Programming</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Konzepte und Patterns</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

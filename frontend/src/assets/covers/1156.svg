@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <g fill='#6D28D9' fill-opacity='0.12'>
+                    <circle cx='270' cy='420' r='150'/>
+                    <circle cx='400' cy='500' r='120' fill-opacity='0.18'/>
+                    <circle cx='350' cy='350' r='80' fill-opacity='0.25'/>
+                </g>
+  <rect x='0' y='0' width='48' height='900' fill='#6D28D9'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='48' font-weight='700'>Sternenstaub</text>
+    <text x='80' y='166' font-size='48' font-weight='700'>Republik –</text>
+    <text x='80' y='252' font-size='28' font-style='italic'>Space Opera wider das Empire · Expertise</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#6D28D9' font-family='Arial, sans-serif'>von Mara Thalberg</text>
+  <text x='88' y='820' font-size='20' fill='#6D28D9' font-family='Arial, sans-serif'>fantasy-sci-fi</text>
+</svg>

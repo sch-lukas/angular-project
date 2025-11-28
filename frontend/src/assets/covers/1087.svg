@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='486.5' y='728.2' width='46.6' height='105.5' fill='#15803D' fill-opacity='0.07' transform='rotate(4.4 486.5 728.2)'/><rect x='181.5' y='254.6' width='107.6' height='47.7' fill='#15803D' fill-opacity='0.07' transform='rotate(4.7 181.5 254.6)'/><rect x='341.1' y='239.6' width='147.5' height='130.6' fill='#15803D' fill-opacity='0.07' transform='rotate(2.4 341.1 239.6)'/><rect x='265.6' y='369.8' width='125.0' height='153.3' fill='#15803D' fill-opacity='0.07' transform='rotate(4.3 265.6 369.8)'/><rect x='231.5' y='142.1' width='157.1' height='51.5' fill='#15803D' fill-opacity='0.07' transform='rotate(4.8 231.5 142.1)'/><rect x='577.7' y='75.2' width='107.9' height='143.2' fill='#15803D' fill-opacity='0.07' transform='rotate(0.8 577.7 75.2)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#15803D'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Solarfarmen der</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Nachbarschaft</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Energie teilen lernen</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#15803D' font-family='Arial, sans-serif'>von Greta Lind</text>
+  <text x='88' y='820' font-size='20' fill='#15803D' font-family='Arial, sans-serif'>nachhaltigkeit-umwelt</text>
+</svg>

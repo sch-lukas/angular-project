@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='348.3' y='734.4' width='66.2' height='134.1' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-1.8 348.3 734.4)'/><rect x='221.7' y='320.1' width='58.2' height='156.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(2.1 221.7 320.1)'/><rect x='112.1' y='422.2' width='55.0' height='147.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-6.0 112.1 422.2)'/><rect x='268.7' y='218.5' width='47.0' height='119.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-7.9 268.7 218.5)'/><rect x='338.3' y='706.4' width='72.1' height='125.3' fill='#7C3AED' fill-opacity='0.07' transform='rotate(2.0 338.3 706.4)'/><rect x='202.2' y='543.3' width='109.3' height='55.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-7.6 202.2 543.3)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Test-Driven</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>Development</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Tests effektiv einsetzen</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

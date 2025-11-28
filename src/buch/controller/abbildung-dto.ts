@@ -34,5 +34,13 @@ export class AbbildungDTO {
     @MaxLength(16)
     @ApiProperty({ example: 'image/png', type: String })
     readonly contentType!: string;
+
+    @MaxLength(256)
+    @ApiProperty({
+        example: 'assets/covers/1000.svg',
+        type: String,
+        required: false,
+    })
+    readonly pfad: string | undefined;
 }
 /* eslint-enable @typescript-eslint/no-magic-numbers */

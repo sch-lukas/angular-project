@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='211.0' y='499.4' width='72.7' height='63.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-7.7 211.0 499.4)'/><rect x='509.8' y='503.0' width='179.0' height='166.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(2.3 509.8 503.0)'/><rect x='181.6' y='649.9' width='114.0' height='114.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(1.5 181.6 649.9)'/><rect x='74.0' y='658.0' width='168.8' height='84.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(3.8 74.0 658.0)'/><rect x='529.1' y='503.9' width='151.1' height='49.6' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-1.3 529.1 503.9)'/><rect x='243.2' y='843.4' width='86.0' height='122.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.6 243.2 843.4)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='52' font-weight='700'>Netzwerke</text>
+    <text x='80' y='170' font-size='52' font-weight='700'>verständlich</text>
+    <text x='80' y='260' font-size='28' font-style='italic'>Grundlagen der Netzwerktechnik</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>

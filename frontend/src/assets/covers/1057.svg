@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='900'>
+  <defs>
+    <linearGradient id='bg' x1='0' y='0' x2='0' y2='1'>
+      <stop offset='0%' stop-color='#111827'/>
+      <stop offset='100%' stop-color='#1F2937'/>
+    </linearGradient>
+  </defs>
+  <rect width='600' height='900' fill='url(#bg)'/>
+  
+  <rect x='150.0' y='669.7' width='94.6' height='100.7' fill='#7C3AED' fill-opacity='0.07' transform='rotate(1.0 150.0 669.7)'/><rect x='503.1' y='81.5' width='136.5' height='76.9' fill='#7C3AED' fill-opacity='0.07' transform='rotate(5.0 503.1 81.5)'/><rect x='71.3' y='521.5' width='40.4' height='109.8' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-5.1 71.3 521.5)'/><rect x='420.4' y='798.2' width='170.9' height='155.3' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-5.4 420.4 798.2)'/><rect x='255.8' y='585.0' width='148.2' height='96.5' fill='#7C3AED' fill-opacity='0.07' transform='rotate(-8.0 255.8 585.0)'/><rect x='77.3' y='303.8' width='109.9' height='127.2' fill='#7C3AED' fill-opacity='0.07' transform='rotate(8.8 77.3 303.8)'/>
+  <rect x='0' y='0' width='48' height='900' fill='#7C3AED'/>
+  <g font-family='Arial, sans-serif' fill='white'>
+    <text x='80' y='110' font-size='56' font-weight='700'>GraphQL</text>
+    <text x='80' y='204' font-size='28' font-style='italic'>Schema Design &amp; Performance</text>
+  </g>
+  <rect x='68' y='720' width='512' height='150' rx='10' fill='rgba(255,255,255,0.9)'/>
+  <text x='88' y='775' font-size='32' font-weight='700' fill='#7C3AED' font-family='Arial, sans-serif'>Unbekannter Autor</text>
+  <text x='88' y='820' font-size='20' fill='#7C3AED' font-family='Arial, sans-serif'>genre</text>
+</svg>
