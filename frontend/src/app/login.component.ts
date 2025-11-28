@@ -277,15 +277,22 @@ export class LoginComponent implements OnInit {
         this.loginError = null;
 
         const { username, password } = this.form.value;
-        const result = this.authService.login(username, password);
 
-        if (result.success) {
-            // Erfolgreich eingeloggt - zur returnUrl navigieren
-            this.router.navigate([this.returnUrl]);
-        } else {
-            // Login fehlgeschlagen
-            this.loginError = result.message || 'Login fehlgeschlagen';
-            this.isSubmitting = false;
-        }
+        this.authService.login(username, password).subscribe({
+            next: (result) => {
+                if (result.success) {
+                    // Erfolgreich eingeloggt - zur returnUrl navigieren
+                    this.router.navigate([this.returnUrl]);
+                } else {
+                    // Login fehlgeschlagen
+                    this.loginError = result.message || 'Login fehlgeschlagen';
+                    this.isSubmitting = false;
+                }
+            },
+            error: () => {
+                this.loginError = 'Verbindungsfehler zum Server';
+                this.isSubmitting = false;
+            },
+        });
     }
 }

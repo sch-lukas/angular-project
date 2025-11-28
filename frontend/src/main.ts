@@ -1,11 +1,9 @@
-import {
-    provideHttpClient,
-    withInterceptorsFromDi,
-} from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, Routes } from '@angular/router';
 import { AppComponent } from './app/app.component';
 import { authGuard } from './app/auth.guard';
+import { authInterceptor } from './app/auth.interceptor';
 import { CarouselTestComponent } from './app/carousel-test.component';
 import { CartComponent } from './app/cart/cart.component';
 import { DetailComponent } from './app/detail.component';
@@ -34,8 +32,8 @@ const routes: Routes = [
 bootstrapApplication(AppComponent, {
     providers: [
         provideRouter(routes),
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withInterceptors([authInterceptor])),
     ],
-}).catch((err) => {
-    console.error(err);
+}).catch((err: Error) => {
+    console.error('Bootstrap-Fehler:', err);
 });

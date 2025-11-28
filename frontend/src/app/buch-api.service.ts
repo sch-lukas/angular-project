@@ -306,4 +306,12 @@ export class BuchApiService {
             }),
         );
     }
+
+    /**
+     * Löscht ein Buch über REST API (nur für Admins)
+     */
+    delete(id: number): Observable<void> {
+        const url = `${environment.apiUrl}/rest/${id}`;
+        return this.http.delete<void>(url);
+    }
 }
