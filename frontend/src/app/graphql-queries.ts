@@ -47,6 +47,9 @@ export const BUCH_BY_ID_QUERY = `
       datum
       homepage
       schlagwoerter
+      beschreibung
+      autor
+      autorBiographie
       coverUrl
       erzeugt
       aktualisiert

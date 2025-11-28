@@ -23,6 +23,8 @@ export interface BuchItem {
     homepage?: string;
     schlagwoerter?: string[];
     beschreibung?: string;
+    autor?: string;
+    autorBiographie?: string;
     erzeugt?: string;
     aktualisiert?: string;
     titel?: { titel: string; untertitel?: string } | null;

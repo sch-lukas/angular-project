@@ -24,7 +24,11 @@ import { BuchApiService, type BuchStats } from './buch-api.service';
                     <div class="stat-label">Bücher im Katalog</div>
                 </div>
 
-                <div class="stat-card" *ngIf="stats?.bestBook">
+                <div
+                    class="stat-card clickable"
+                    *ngIf="stats?.bestBook"
+                    (click)="goToBook(stats?.bestBook?.id)"
+                >
                     <div class="stat-icon">⭐</div>
                     <div class="stat-value">{{ animatedBestRating }}/5</div>
                     <div class="stat-label">Bestbewertetes Buch</div>
@@ -33,7 +37,11 @@ import { BuchApiService, type BuchStats } from './buch-api.service';
                     </div>
                 </div>
 
-                <div class="stat-card" *ngIf="stats?.cheapestBook">
+                <div
+                    class="stat-card clickable"
+                    *ngIf="stats?.cheapestBook"
+                    (click)="goToBook(stats?.cheapestBook?.id)"
+                >
                     <div class="stat-icon">🏆</div>
                     <div class="stat-value">
                         {{ animatedCheapestPrice | number: '1.2-2' }} €
@@ -86,6 +94,15 @@ import { BuchApiService, type BuchStats } from './buch-api.service';
                 transition:
                     transform 0.3s ease,
                     box-shadow 0.3s ease;
+            }
+
+            .stat-card.clickable {
+                cursor: pointer;
+            }
+
+            .stat-card.clickable:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             }
 
             .stat-card:hover {
@@ -245,5 +262,11 @@ export class LandingPageComponent implements OnInit {
 
     goToSearch(): void {
         this.router.navigate(['/search']);
+    }
+
+    goToBook(id: number | undefined): void {
+        if (id) {
+            this.router.navigate(['/detail', id]);
+        }
     }
 }

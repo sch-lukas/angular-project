@@ -21,6 +21,7 @@
 /* eslint-disable max-classes-per-file, @typescript-eslint/no-magic-numbers */
 
 import { ApiProperty } from '@nestjs/swagger';
+import BigNumber from 'bignumber.js';
 import { Transform, Type } from 'class-transformer';
 import {
     ArrayUnique,
@@ -40,10 +41,9 @@ import {
     ValidatorConstraint,
     type ValidatorConstraintInterface,
 } from 'class-validator';
-import BigNumber from 'bignumber.js';
+import { Buchart } from '../../generated/prisma/enums.js';
 import { AbbildungDTO } from './abbildung-dto.js';
 import { TitelDTO } from './titel-dto.js';
-import { Buchart } from '../../generated/prisma/enums.js';
 
 export const MAX_RATING = 5;
 
@@ -160,6 +160,20 @@ export class BuchDtoOhneRef {
     @ArrayUnique()
     @ApiProperty({ example: ['JAVASCRIPT', 'TYPESCRIPT', 'JAVA', 'PYTHON'] })
     readonly schlagwoerter: string[] | undefined;
+
+    @IsOptional()
+    @ApiProperty({ example: 'Eine spannende Einführung in die Programmierung' })
+    readonly beschreibung: string | undefined;
+
+    @IsOptional()
+    @ApiProperty({ example: 'Max Mustermann' })
+    readonly autor: string | undefined;
+
+    @IsOptional()
+    @ApiProperty({
+        example: 'Max Mustermann ist ein erfahrener Softwareentwickler...',
+    })
+    readonly autorBiographie: string | undefined;
 }
 
 /**
