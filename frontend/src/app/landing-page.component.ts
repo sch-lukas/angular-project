@@ -127,6 +127,11 @@ import {
                     box-shadow 0.3s ease;
             }
 
+            :host-context(.theme-dark) .stat-card {
+                background: #374151;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            }
+
             .stat-card.clickable {
                 cursor: pointer;
             }
@@ -136,9 +141,17 @@ import {
                 box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             }
 
+            :host-context(.theme-dark) .stat-card.clickable:hover {
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            }
+
             .stat-card:hover {
                 transform: translateY(-5px);
                 box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            }
+
+            :host-context(.theme-dark) .stat-card:hover {
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
             }
 
             .stat-icon {
@@ -153,10 +166,18 @@ import {
                 margin-bottom: 0.5rem;
             }
 
+            :host-context(.theme-dark) .stat-value {
+                color: #f3f4f6;
+            }
+
             .stat-label {
                 font-size: 1.1rem;
                 color: #7f8c8d;
                 margin-bottom: 0.5rem;
+            }
+
+            :host-context(.theme-dark) .stat-label {
+                color: #d1d5db;
             }
 
             .stat-subtitle {
@@ -164,6 +185,10 @@ import {
                 color: #95a5a6;
                 font-style: italic;
                 margin-top: 0.5rem;
+            }
+
+            :host-context(.theme-dark) .stat-subtitle {
+                color: #9ca3af;
             }
 
             .action-container {
@@ -207,6 +232,10 @@ import {
                 padding-bottom: 0.75rem;
             }
 
+            :host-context(.theme-dark) .carousel-title {
+                color: #f3f4f6;
+            }
+
             .carousel-title::after {
                 content: '';
                 position: absolute;
@@ -225,6 +254,10 @@ import {
                 text-align: center;
                 margin-top: -1rem;
                 margin-bottom: 1.5rem;
+            }
+
+            :host-context(.theme-dark) .carousel-subtitle {
+                color: #d1d5db;
             }
 
             @media (max-width: 768px) {
