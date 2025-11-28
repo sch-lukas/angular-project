@@ -76,6 +76,9 @@ CREATE TABLE IF NOT EXISTS buch (
                   -- https://www.postgresql.org/docs/current/datatype-json.html
     schlagwoerter JSONB,
     cover_url     TEXT,
+    beschreibung  TEXT,
+    autor         TEXT,
+    autor_biographie TEXT,
                   -- https://www.postgresql.org/docs/current/datatype-datetime.html
     erzeugt       TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     aktualisiert  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
