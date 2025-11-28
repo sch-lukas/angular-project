@@ -62,6 +62,9 @@ type Buch {
   datum: String
   homepage: String
   schlagwoerter: [String]
+  beschreibung: String
+  autor: String
+  autorBiographie: String
   coverUrl: String
   erzeugt: String
   aktualisiert: String
@@ -118,6 +121,9 @@ input BuchInput {
   datum: String
   homepage: String
   schlagwoerter: [String]
+  beschreibung: String
+  autor: String
+  autorBiographie: String
   titel: TitelInput!
   abbildungen: [AbbildungInput!]
 }
@@ -154,6 +160,9 @@ input BuchUpdateInput {
   datum: String
   homepage: String
   schlagwoerter: [String]
+  beschreibung: String
+  autor: String
+  autorBiographie: String
 }
 
 "Neue Versionsnummer als Resultat bei erfolgreichem Aktualisieren"

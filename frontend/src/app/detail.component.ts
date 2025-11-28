@@ -245,67 +245,6 @@ import { BuchApiService, type BuchItem } from './buch-api.service';
                             </div>
                         </div>
                     </div>
-
-                    <!-- Zusätzliche technische Details (zweispaltig) -->
-                    <hr class="my-4" />
-                    <h5 class="mb-3">Weitere Informationen</h5>
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <dl class="row mb-0 small">
-                                <dt class="col-sm-5 text-muted">Buch-ID</dt>
-                                <dd class="col-sm-7">{{ buch.id || '–' }}</dd>
-
-                                <dt class="col-sm-5 text-muted">Version</dt>
-                                <dd class="col-sm-7">
-                                    {{ buch.version ?? '–' }}
-                                </dd>
-
-                                <dt class="col-sm-5 text-muted">Erstellt am</dt>
-                                <dd class="col-sm-7">
-                                    {{
-                                        buch.erzeugt
-                                            ? (buch.erzeugt
-                                              | date: 'dd.MM.yyyy HH:mm')
-                                            : '–'
-                                    }}
-                                </dd>
-                            </dl>
-                        </div>
-                        <div class="col-md-6">
-                            <dl class="row mb-0 small">
-                                <dt class="col-sm-5 text-muted">
-                                    Aktualisiert am
-                                </dt>
-                                <dd class="col-sm-7">
-                                    {{
-                                        buch.aktualisiert
-                                            ? (buch.aktualisiert
-                                              | date: 'dd.MM.yyyy HH:mm')
-                                            : '–'
-                                    }}
-                                </dd>
-
-                                <dt
-                                    *ngIf="
-                                        buch.abbildungen &&
-                                        buch.abbildungen.length > 0
-                                    "
-                                    class="col-sm-5 text-muted"
-                                >
-                                    Abbildungen
-                                </dt>
-                                <dd
-                                    *ngIf="
-                                        buch.abbildungen &&
-                                        buch.abbildungen.length > 0
-                                    "
-                                    class="col-sm-7"
-                                >
-                                    {{ buch.abbildungen.length }} Datei(en)
-                                </dd>
-                            </dl>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -350,6 +289,40 @@ import { BuchApiService, type BuchItem } from './buch-api.service';
                 </button>
             </div>
         </ng-template>
+
+        <!-- Buchbeschreibung -->
+        <div
+            *ngIf="buch"
+            class="container py-4"
+            style="max-width: 1200px; margin-top: 40px;"
+        >
+            <div class="description-section" *ngIf="buch?.beschreibung">
+                <div class="section-header">
+                    <h4 class="section-title">📖 Über dieses Buch</h4>
+                </div>
+                <div class="section-content">
+                    <p class="description-text">{{ buch?.beschreibung }}</p>
+                </div>
+            </div>
+
+            <!-- Autorenbeschreibung -->
+            <div
+                class="author-section"
+                *ngIf="buch?.autor || buch?.autorBiographie"
+            >
+                <div class="section-header">
+                    <h4 class="section-title">✍️ Über den Autor</h4>
+                </div>
+                <div class="section-content">
+                    <h5 class="author-name" *ngIf="buch?.autor">
+                        {{ buch?.autor }}
+                    </h5>
+                    <p class="author-bio" *ngIf="buch?.autorBiographie">
+                        {{ buch?.autorBiographie }}
+                    </p>
+                </div>
+            </div>
+        </div>
 
         <!-- Empfehlungen / Ähnliche Bücher -->
         <div
@@ -504,6 +477,124 @@ import { BuchApiService, type BuchItem } from './buch-api.service';
                 <p class="mb-0 small text-muted">
                     Hinweis: Überprüfe die Browser-Console (F12) für Details
                 </p>
+            </div>
+        </div>
+
+        <!-- Produktdetails und weitere Informationen -->
+        <div
+            *ngIf="buch"
+            class="container py-4"
+            style="max-width: 1200px; margin-top: 20px;"
+        >
+            <div class="product-card shadow">
+                <div class="card-body p-4">
+                    <!-- Produktdetails -->
+                    <h5 class="mb-3">Produktdetails</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <strong>ISBN:</strong>
+                            {{ buch.isbn || '–' }}
+                        </li>
+                        <li class="mb-2">
+                            <strong>Erschienen:</strong>
+                            {{
+                                buch.datum
+                                    ? (buch.datum | date: 'dd.MM.yyyy')
+                                    : '–'
+                            }}
+                        </li>
+                        <li
+                            *ngIf="
+                                buch.schlagwoerter &&
+                                buch.schlagwoerter.length > 0
+                            "
+                            class="mb-2"
+                        >
+                            <strong>Themen:</strong>
+                            <div class="mt-1">
+                                <span
+                                    *ngFor="let s of buch.schlagwoerter"
+                                    class="badge bg-light text-dark me-1 mb-1"
+                                    style="border: 1px solid #dee2e6;"
+                                >
+                                    {{ s }}
+                                </span>
+                            </div>
+                        </li>
+                        <li *ngIf="buch.homepage" class="mb-2">
+                            <strong>Website:</strong>
+                            <button
+                                class="btn btn-link btn-sm p-0 ms-2"
+                                (click)="openHomepageWarning()"
+                                style="vertical-align: baseline;"
+                            >
+                                {{ buch.homepage }}
+                                <span style="font-size: 0.8rem;">↗</span>
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Zusätzliche technische Details (zweispaltig) -->
+                    <hr class="my-4" />
+                    <h5 class="mb-3">Weitere Informationen</h5>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <dl class="row mb-0 small">
+                                <dt class="col-sm-5 text-muted">Buch-ID</dt>
+                                <dd class="col-sm-7">{{ buch.id || '–' }}</dd>
+
+                                <dt class="col-sm-5 text-muted">Version</dt>
+                                <dd class="col-sm-7">
+                                    {{ buch.version ?? '–' }}
+                                </dd>
+
+                                <dt class="col-sm-5 text-muted">Erstellt am</dt>
+                                <dd class="col-sm-7">
+                                    {{
+                                        buch.erzeugt
+                                            ? (buch.erzeugt
+                                              | date: 'dd.MM.yyyy HH:mm')
+                                            : '–'
+                                    }}
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <dl class="row mb-0 small">
+                                <dt class="col-sm-5 text-muted">
+                                    Aktualisiert am
+                                </dt>
+                                <dd class="col-sm-7">
+                                    {{
+                                        buch.aktualisiert
+                                            ? (buch.aktualisiert
+                                              | date: 'dd.MM.yyyy HH:mm')
+                                            : '–'
+                                    }}
+                                </dd>
+
+                                <dt
+                                    *ngIf="
+                                        buch.abbildungen &&
+                                        buch.abbildungen.length > 0
+                                    "
+                                    class="col-sm-5 text-muted"
+                                >
+                                    Abbildungen
+                                </dt>
+                                <dd
+                                    *ngIf="
+                                        buch.abbildungen &&
+                                        buch.abbildungen.length > 0
+                                    "
+                                    class="col-sm-7"
+                                >
+                                    {{ buch.abbildungen.length }} Datei(en)
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     `,
@@ -911,6 +1002,77 @@ import { BuchApiService, type BuchItem } from './buch-api.service';
             ::ng-deep .carousel-control-prev:hover,
             ::ng-deep .carousel-control-next:hover {
                 opacity: 1;
+            }
+
+            /* Beschreibungs- und Autorensektionen */
+            .description-section,
+            .author-section {
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+                margin: 2rem 0;
+                overflow: hidden;
+            }
+
+            .section-header {
+                background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+                border-bottom: 2px solid #dee2e6;
+                padding: 1.25rem 1.5rem;
+            }
+
+            .section-title {
+                margin: 0;
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #212529;
+            }
+
+            .section-content {
+                padding: 1.5rem;
+            }
+
+            .description-text {
+                font-size: 1rem;
+                line-height: 1.8;
+                color: #495057;
+                margin: 0;
+                text-align: justify;
+            }
+
+            .author-name {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: #212529;
+                margin-bottom: 1rem;
+            }
+
+            .author-bio {
+                font-size: 1rem;
+                line-height: 1.8;
+                color: #495057;
+                margin: 0;
+                text-align: justify;
+            }
+
+            /* Responsive Anpassungen */
+            @media (max-width: 768px) {
+                .section-header {
+                    padding: 1rem;
+                }
+
+                .section-title {
+                    font-size: 1.25rem;
+                }
+
+                .section-content {
+                    padding: 1rem;
+                }
+
+                .description-text,
+                .author-bio {
+                    font-size: 0.95rem;
+                    text-align: left;
+                }
             }
         `,
     ],
