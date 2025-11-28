@@ -152,9 +152,18 @@ import type { BuchItem } from './buch-api.service';
                 overflow: hidden;
             }
 
+            :host-context(.theme-dark) .carousel-item-card {
+                background: #374151;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            }
+
             .carousel-item-card:hover {
                 transform: translateY(-5px);
                 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            }
+
+            :host-context(.theme-dark) .carousel-item-card:hover {
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
             }
 
             .item-link {
@@ -195,6 +204,10 @@ import type { BuchItem } from './buch-api.service';
                 line-height: 1.3;
             }
 
+            :host-context(.theme-dark) .item-title {
+                color: #f3f4f6;
+            }
+
             .item-rating {
                 display: flex;
                 align-items: center;
@@ -218,6 +231,10 @@ import type { BuchItem } from './buch-api.service';
                 margin-left: 0.25rem;
             }
 
+            :host-context(.theme-dark) .rating-value {
+                color: #d1d5db;
+            }
+
             .item-price {
                 display: flex;
                 align-items: center;
@@ -229,6 +246,10 @@ import type { BuchItem } from './buch-api.service';
                 font-size: 1.1rem;
                 font-weight: bold;
                 color: #2d3748;
+            }
+
+            :host-context(.theme-dark) .price-amount {
+                color: #34d399;
             }
 
             .price-discount {
@@ -275,10 +296,23 @@ import type { BuchItem } from './buch-api.service';
                 color: #2d3748;
             }
 
+            :host-context(.theme-dark) .carousel-arrow {
+                background: #374151;
+                border-color: #4b5563;
+                color: #f3f4f6;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            }
+
             .carousel-arrow:hover {
                 background: #f7fafc;
                 border-color: #cbd5e0;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            :host-context(.theme-dark) .carousel-arrow:hover {
+                background: #4b5563;
+                border-color: #6b7280;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             }
 
             .carousel-arrow:active {
@@ -299,6 +333,10 @@ import type { BuchItem } from './buch-api.service';
                 background: #f7fafc;
                 border-radius: 8px;
                 margin: 1rem 0;
+            }
+
+            :host-context(.theme-dark) .empty-state {
+                background: #374151;
             }
 
             /* Responsive */

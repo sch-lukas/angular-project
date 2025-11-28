@@ -648,11 +648,33 @@ import { WishlistService } from './wishlist/wishlist.service';
                 overflow: hidden;
             }
 
+            :host-context(.theme-dark) .product-card {
+                border-color: #374151;
+                background: #1f2937;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            }
+
+            /* Card Header (Titel-Bereich) */
+            .card-header {
+                background: white;
+                border-bottom: 1px solid #dee2e6;
+            }
+
+            :host-context(.theme-dark) .card-header {
+                background: #1f2937 !important;
+                border-bottom-color: #4b5563;
+            }
+
             /* Hero Header */
             .hero-header {
                 background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
                 border-bottom: 3px solid #dee2e6;
                 padding: 1.5rem 1.5rem;
+            }
+
+            :host-context(.theme-dark) .hero-header {
+                background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+                border-bottom-color: #4b5563;
             }
 
             .product-title {
@@ -662,10 +684,18 @@ import { WishlistService } from './wishlist/wishlist.service';
                 margin: 0;
             }
 
+            :host-context(.theme-dark) .product-title {
+                color: #f3f4f6;
+            }
+
             .product-subtitle {
                 font-size: 1.25rem;
                 color: #6c757d;
                 font-weight: 400;
+            }
+
+            :host-context(.theme-dark) .product-subtitle {
+                color: #d1d5db;
             }
 
             .rating-badge {
@@ -711,10 +741,18 @@ import { WishlistService } from './wishlist/wishlist.service';
                 border-radius: 8px;
             }
 
+            :host-context(.theme-dark) .price-section {
+                background-color: #374151;
+            }
+
             .product-price {
                 font-size: 2.5rem;
                 font-weight: 700;
                 color: #28a745;
+            }
+
+            :host-context(.theme-dark) .product-price {
+                color: #34d399;
             }
 
             .rabatt-badge {
@@ -753,10 +791,18 @@ import { WishlistService } from './wishlist/wishlist.service';
                 border-radius: 8px;
             }
 
+            :host-context(.theme-dark) .quick-info {
+                background-color: #374151;
+            }
+
             .quick-info h5 {
                 font-size: 1.1rem;
                 font-weight: 600;
                 color: #495057;
+            }
+
+            :host-context(.theme-dark) .quick-info h5 {
+                color: #f3f4f6;
             }
 
             /* Responsive Anpassungen */
@@ -783,8 +829,16 @@ import { WishlistService } from './wishlist/wishlist.service';
                 font-weight: 600;
             }
 
+            :host-context(.theme-dark) dl.row dt {
+                color: #f3f4f6;
+            }
+
             dl.row dd {
                 color: #495057;
+            }
+
+            :host-context(.theme-dark) dl.row dd {
+                color: #d1d5db;
             }
 
             /* Horizontal Scroll Karussell */
@@ -1066,10 +1120,21 @@ import { WishlistService } from './wishlist/wishlist.service';
                 overflow: hidden;
             }
 
+            :host-context(.theme-dark) .description-section,
+            :host-context(.theme-dark) .author-section {
+                background: #1f2937;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            }
+
             .section-header {
                 background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
                 border-bottom: 2px solid #dee2e6;
                 padding: 1.25rem 1.5rem;
+            }
+
+            :host-context(.theme-dark) .section-header {
+                background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+                border-bottom-color: #4b5563;
             }
 
             .section-title {
@@ -1077,6 +1142,10 @@ import { WishlistService } from './wishlist/wishlist.service';
                 font-size: 1.5rem;
                 font-weight: 600;
                 color: #212529;
+            }
+
+            :host-context(.theme-dark) .section-title {
+                color: #f3f4f6;
             }
 
             .section-content {
@@ -1091,11 +1160,19 @@ import { WishlistService } from './wishlist/wishlist.service';
                 text-align: justify;
             }
 
+            :host-context(.theme-dark) .description-text {
+                color: #d1d5db;
+            }
+
             .author-name {
                 font-size: 1.25rem;
                 font-weight: 600;
                 color: #212529;
                 margin-bottom: 1rem;
+            }
+
+            :host-context(.theme-dark) .author-name {
+                color: #f3f4f6;
             }
 
             .author-bio {
@@ -1104,6 +1181,10 @@ import { WishlistService } from './wishlist/wishlist.service';
                 color: #495057;
                 margin: 0;
                 text-align: justify;
+            }
+
+            :host-context(.theme-dark) .author-bio {
+                color: #d1d5db;
             }
 
             /* Responsive Anpassungen */
