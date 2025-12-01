@@ -29,11 +29,13 @@ const routes: Routes = [
     { path: '**', redirectTo: '' },
 ];
 
-bootstrapApplication(AppComponent, {
-    providers: [
-        provideRouter(routes),
-        provideHttpClient(withInterceptors([authInterceptor])),
-    ],
-}).catch((err: Error) => {
+try {
+    await bootstrapApplication(AppComponent, {
+        providers: [
+            provideRouter(routes),
+            provideHttpClient(withInterceptors([authInterceptor])),
+        ],
+    });
+} catch (err) {
     console.error('Bootstrap-Fehler:', err);
-});
+}
