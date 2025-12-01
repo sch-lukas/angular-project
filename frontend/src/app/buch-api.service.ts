@@ -209,7 +209,7 @@ export class BuchApiService {
     create(buch: CreateBuchPayload): Observable<void> {
         // Input-Objekt für GraphQL Mutation aufbauen
         const input: any = {
-            isbn: buch.isbn.replace(/[-\s]/g, ''), // Bindestriche und Leerzeichen entfernen
+            isbn: buch.isbn.replaceAll(/[-\s]/g, ''), // Bindestriche und Leerzeichen entfernen
             rating: buch.rating,
             preis: buch.preis,
             titel: {
