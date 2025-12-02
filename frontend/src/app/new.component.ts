@@ -649,7 +649,11 @@ export class NewComponent implements OnInit {
         return {
             isbn: formValue.isbn,
             rating: Number(formValue.rating),
-            art: this.getOptionalValue(formValue.art),
+            art: this.getOptionalValue(formValue.art) as
+                | 'EPUB'
+                | 'HARDCOVER'
+                | 'PAPERBACK'
+                | undefined,
             preis: Number(formValue.preis),
             rabatt:
                 formValue.rabatt && formValue.rabatt > 0
