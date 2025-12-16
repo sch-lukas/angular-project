@@ -1,3 +1,4 @@
+/* eslint-disable max-depth */
 import { provideHttpClient } from '@angular/common/http';
 import {
     HttpTestingController,
