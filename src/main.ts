@@ -63,13 +63,10 @@ const bootstrap = async () => {
     process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'; // eslint-disable-line n/no-process-env
 
     // Kein Logging bei Lasttests mit k6 oder locust
-    // Im Development-Modus: HTTP (kein HTTPS), um selbstsignierte Zertifikate zu vermeiden
+    // HTTPS ist aktiviert, wenn TLS-Zertifikate vorhanden sind
     // https://expressjs.com/en/advanced/best-practice-security.html#use-tls
-    const { nodeEnv } = nodeConfig;
-    const useHttps = nodeEnv !== 'development';
-
     let options: NestApplicationOptions = {};
-    if (useHttps) {
+    if (httpsOptions.key && httpsOptions.cert) {
         options.httpsOptions = httpsOptions;
     }
     if (logLevel !== 'debug') {

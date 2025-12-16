@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    // Backend läuft ohne TLS im Development-Modus
-    apiUrl: 'http://localhost:3000',
+    // Backend läuft mit HTTPS (selbstsigniertes Zertifikat)
+    apiUrl: 'https://localhost:3000',
 };

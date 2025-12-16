@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { environment } from '../environments/environment';
 import { executeGraphQL } from './graphql-client';
 import {
     BUCH_BY_ID_QUERY,
@@ -205,7 +204,8 @@ export class BuchApiService {
      * REST-Endpunkt für Statistiken (bleibt REST, da kein GraphQL-Äquivalent existiert)
      */
     getStats(): Observable<BuchStats> {
-        const url = `${environment.apiUrl}/rest/stats`;
+        // Relative URL - wird vom Proxy an das HTTPS-Backend weitergeleitet
+        const url = '/rest/stats';
         return this.http.get<BuchStats>(url);
     }
 
@@ -322,7 +322,8 @@ export class BuchApiService {
      * Löscht ein Buch über REST API (nur für Admins)
      */
     delete(id: number): Observable<void> {
-        const url = `${environment.apiUrl}/rest/${id}`;
+        // Relative URL - wird vom Proxy an das HTTPS-Backend weitergeleitet
+        const url = `/rest/${id}`;
         return this.http.delete<void>(url);
     }
 }

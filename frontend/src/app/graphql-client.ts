@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../environments/environment';
 
 export interface GraphQLResponse<T> {
     data?: T;
     errors?: Array<{ message: string; extensions?: any }>;
 }
 
-const GRAPHQL_ENDPOINT = `${environment.apiUrl}/graphql`;
+// Relative URL - wird vom Proxy an das HTTPS-Backend weitergeleitet
+const GRAPHQL_ENDPOINT = '/graphql';
 
 /**
  * Führt eine GraphQL-Query oder -Mutation aus
