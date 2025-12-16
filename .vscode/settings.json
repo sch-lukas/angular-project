@@ -15,6 +15,8 @@
     "source.addMissingImports.ts": "explicit",
     "source.removeUnused.ts": "explicit"
   },
+  // Prisma Extension: Deaktiviere Prisma 7-Validierung für Prisma 6.19.0
+  "prisma.schemaValidation": false,
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#2f7c47",
     "activityBar.background": "#2f7c47",

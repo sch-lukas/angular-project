@@ -1,5 +1,5 @@
-import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
@@ -7,21 +7,23 @@ import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
 @Component({
     selector: 'app-search',
     standalone: true,
-    imports: [CommonModule, NgFor, NgIf, FormsModule, RouterLink],
+    imports: [CommonModule, FormsModule, RouterLink],
     template: `
         <div style="max-width: 1000px; margin: 0 auto;">
             <h1>Suche</h1>
 
             <!-- Suchformular -->
             <div
-                style="border: 1px solid #ccc; padding: 16px; margin-bottom: 20px; border-radius: 4px;"
+                style="border: 1px solid var(--app-text, #ccc); padding: 16px; margin-bottom: 20px; border-radius: 4px; background: var(--app-surface); opacity: 0.9;"
             >
-                <h2 style="margin-top: 0;">Suchkriterien</h2>
+                <h2 style="margin-top: 0; color: var(--app-text);">
+                    Suchkriterien
+                </h2>
 
                 <div style="margin-bottom: 12px;">
                     <label
                         for="suchtext"
-                        style="display: block; margin-bottom: 4px; font-weight: 600;"
+                        style="display: block; margin-bottom: 4px; font-weight: 600; color: var(--app-text);"
                     >
                         Suchtext (Titel oder ISBN):
                     </label>
@@ -30,21 +32,21 @@ import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
                         type="text"
                         [(ngModel)]="formData.suchtext"
                         placeholder="z.B. TypeScript oder 978-3..."
-                        style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"
+                        style="width: 100%; padding: 8px; border: 1px solid var(--app-text, #ccc); border-radius: 4px; box-sizing: border-box; background: var(--app-surface); color: var(--app-text);"
                     />
                 </div>
 
                 <div style="margin-bottom: 12px;">
                     <label
                         for="ratingFilter"
-                        style="display: block; margin-bottom: 4px; font-weight: 600;"
+                        style="display: block; margin-bottom: 4px; font-weight: 600; color: var(--app-text);"
                     >
                         Bewertung (Rating):
                     </label>
                     <select
                         id="ratingFilter"
                         [(ngModel)]="formData.ratingFilter"
-                        style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"
+                        style="width: 100%; padding: 8px; border: 1px solid var(--app-text, #ccc); border-radius: 4px; box-sizing: border-box; background: var(--app-surface); color: var(--app-text);"
                     >
                         <option value="">– Alle –</option>
                         <option value="1">≥ 1 Stern</option>
@@ -55,11 +57,13 @@ import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
 
                 <div style="margin-bottom: 12px;">
                     <label
-                        style="display: block; margin-bottom: 4px; font-weight: 600;"
+                        style="display: block; margin-bottom: 4px; font-weight: 600; color: var(--app-text);"
                         >Sortierung:</label
                     >
                     <div>
-                        <label style="margin-right: 20px;">
+                        <label
+                            style="margin-right: 20px; color: var(--app-text);"
+                        >
                             <input
                                 type="radio"
                                 name="sortierung"
@@ -68,7 +72,7 @@ import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
                             />
                             Preis aufsteigend
                         </label>
-                        <label>
+                        <label style="color: var(--app-text);">
                             <input
                                 type="radio"
                                 name="sortierung"
@@ -81,7 +85,7 @@ import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
                 </div>
 
                 <div style="margin-bottom: 16px;">
-                    <label>
+                    <label style="color: var(--app-text);">
                         <input
                             type="checkbox"
                             [(ngModel)]="formData.nurMitRating"
@@ -107,30 +111,27 @@ import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
             </div>
 
             <!-- Ladezustand -->
-            <div *ngIf="isLoading" style="color: #666; font-style: italic;">
+            <div
+                *ngIf="isLoading"
+                style="color: var(--app-text); font-style: italic; opacity: 0.7;"
+            >
                 Lädt...
             </div>
 
             <!-- Ergebnisse -->
             <div *ngIf="!isLoading && items !== null">
-                <h2>Ergebnisse ({{ totalElements }} Einträge)</h2>
+                <h2 style="color: var(--app-text);">
+                    Ergebnisse ({{ totalElements }} Einträge)
+                </h2>
 
                 <table
                     *ngIf="items && items.length > 0"
                     style="width: 100%; border-collapse: collapse; margin-top: 12px;"
                 >
                     <thead>
-                        <tr
-                            style="background-color: #f5f5f5; border-bottom: 2px solid #ddd;"
-                        >
-                            <th
-                                style="text-align: left; padding: 8px; border-right: 1px solid #ddd;"
-                            >
-                                ID
-                            </th>
-                            <th
-                                style="text-align: left; padding: 8px; border-right: 1px solid #ddd;"
-                            >
+                        <tr>
+                            <th style="text-align: left; padding: 8px;">ID</th>
+                            <th style="text-align: left; padding: 8px;">
                                 Titel / ISBN
                             </th>
                             <th style="text-align: left; padding: 8px;">
@@ -139,22 +140,15 @@ import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
                         </tr>
                     </thead>
                     <tbody>
-                        <tr
-                            *ngFor="let b of items; let odd = odd"
-                            [style.background-color]="odd ? 'white' : '#f9f9f9'"
-                        >
-                            <td
-                                style="padding: 8px; border-right: 1px solid #ddd; border-bottom: 1px solid #eee;"
-                            >
+                        <tr *ngFor="let b of items; let odd = odd">
+                            <td style="padding: 8px;">
                                 <a
                                     [routerLink]="['/detail', b.id]"
                                     style="color: #007bff; text-decoration: none; font-weight: 600;"
                                     >{{ b.id }}</a
                                 >
                             </td>
-                            <td
-                                style="padding: 8px; border-right: 1px solid #ddd; border-bottom: 1px solid #eee;"
-                            >
+                            <td style="padding: 8px;">
                                 <a
                                     [routerLink]="['/detail', b.id]"
                                     style="color: #007bff; text-decoration: none;"
@@ -162,9 +156,7 @@ import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
                                     {{ b.titel?.titel || b.isbn || '–' }}
                                 </a>
                             </td>
-                            <td
-                                style="padding: 8px; border-bottom: 1px solid #eee;"
-                            >
+                            <td style="padding: 8px;">
                                 {{
                                     b.preis != null
                                         ? (b.preis
@@ -181,7 +173,7 @@ import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
 
                 <div
                     *ngIf="items && items.length === 0"
-                    style="color: #666; padding: 12px; background-color: #f9f9f9; border-radius: 4px;"
+                    style="color: var(--app-text); padding: 12px; background-color: var(--app-surface); border-radius: 4px; opacity: 0.8;"
                 >
                     Keine Einträge gefunden.
                 </div>
@@ -204,7 +196,7 @@ import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
                             ← Zurück
                         </button>
                         <span
-                            style="font-weight: 600; color: #333; font-size: 16px; min-width: 150px; text-align: center;"
+                            style="font-weight: 600; color: var(--app-text); font-size: 16px; min-width: 150px; text-align: center;"
                         >
                             Seite {{ currentPage + 1 }}
                             <span *ngIf="totalPages > 0">
@@ -224,7 +216,7 @@ import { BuchApiService, BuchItem, BuchPage } from './buch-api.service';
                         </button>
                     </div>
                     <span
-                        style="font-weight: 400; color: #666; font-size: 14px;"
+                        style="font-weight: 400; color: var(--app-text); font-size: 14px; opacity: 0.8;"
                     >
                         Zeige {{ currentPage * pageSize + 1 }} bis
                         {{
@@ -260,7 +252,10 @@ export class SearchComponent implements OnInit {
         nurMitRating: false,
     };
 
-    constructor(private readonly api: BuchApiService) {}
+    constructor(
+        private readonly api: BuchApiService,
+        private readonly cdr: ChangeDetectorRef,
+    ) {}
 
     ngOnInit(): void {
         // Initial laden - mit Fehlerbehandlung
@@ -316,11 +311,16 @@ export class SearchComponent implements OnInit {
         this.items = null;
 
         const params = this.buildSearchParams();
+        console.log('Search params:', params);
         this.api.list(params).subscribe({
             next: (page: BuchPage) => {
+                console.log('Received page data:', page);
                 this.processPageData(page);
             },
-            error: (err) => this.handleError(err),
+            error: (err) => {
+                console.error('Search error:', err);
+                this.handleError(err);
+            },
         });
     }
 
@@ -344,6 +344,14 @@ export class SearchComponent implements OnInit {
         this.hasMorePages = this.currentPage < this.totalPages - 1;
 
         this.isLoading = false;
+        this.cdr.detectChanges();
+
+        console.log(
+            'UI updated, items:',
+            this.items?.length,
+            'isLoading:',
+            this.isLoading,
+        );
     }
 
     private handleError(err: any): void {
@@ -379,6 +387,7 @@ export class SearchComponent implements OnInit {
             this.items = [];
         }
         this.isLoading = false;
+        this.cdr.detectChanges();
     }
 
     goToPreviousPage(): void {

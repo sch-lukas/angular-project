@@ -123,6 +123,8 @@ export class BuchApiService {
             { suchparameter, page: pageVar, size: sizeVar, sort: sortVar },
         ).pipe(
             map((response) => {
+                console.log('GraphQL raw response:', response);
+
                 // GraphQL-Fehler prüfen
                 if (response.errors && response.errors.length > 0) {
                     const errorMsg = response.errors
@@ -132,6 +134,7 @@ export class BuchApiService {
                 }
 
                 if (!response.data?.buecher) {
+                    console.error('No buecher data in response:', response);
                     throw new Error('Keine Daten vom Server erhalten');
                 }
 
@@ -143,6 +146,11 @@ export class BuchApiService {
                     totalElements: content.length,
                     totalPages: Math.ceil(content.length / sizeVar),
                 };
+
+                console.log('Processed page:', {
+                    content: content.length,
+                    pageInfo,
+                });
 
                 // Sortierung erfolgt jetzt server-seitig via sort-Parameter
                 return {

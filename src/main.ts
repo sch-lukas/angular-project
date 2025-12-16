@@ -63,11 +63,18 @@ const bootstrap = async () => {
     process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'; // eslint-disable-line n/no-process-env
 
     // Kein Logging bei Lasttests mit k6 oder locust
+    // Im Development-Modus: HTTP (kein HTTPS), um selbstsignierte Zertifikate zu vermeiden
     // https://expressjs.com/en/advanced/best-practice-security.html#use-tls
-    const options: NestApplicationOptions =
-        logLevel === 'debug'
-            ? { httpsOptions }
-            : { httpsOptions, logger: false };
+    const { nodeEnv } = nodeConfig;
+    const useHttps = nodeEnv !== 'development';
+
+    let options: NestApplicationOptions = {};
+    if (useHttps) {
+        options.httpsOptions = httpsOptions;
+    }
+    if (logLevel !== 'debug') {
+        options.logger = false;
+    }
     const app = await NestFactory.create(AppModule, options); // "Shorthand Properties" ab ES 2015
 
     // Beispiele fuer "Middleware" bei Express:
