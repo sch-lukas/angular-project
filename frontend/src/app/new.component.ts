@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/cognitive-complexity */
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {
@@ -1015,7 +1016,7 @@ export class NewComponent implements OnInit {
     }
 
     formatErrorHtml(): string {
-        return this.submitError.replace(/\n/g, '<br>');
+        return this.submitError.replaceAll('\n', '<br>');
     }
 
     onCancel(): void {

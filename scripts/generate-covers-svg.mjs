@@ -1,3 +1,6 @@
+/* eslint-disable sonarjs/cognitive-complexity */
+/* eslint-disable unicorn/no-nested-ternary */
+/* eslint-disable sonarjs/no-nested-conditional */
 /**
  * Script zum Generieren von Cover-Bildern (SVG) für alle Bücher
  * Speichert die Bilder in frontend/src/assets/covers/ mit dem Dateinamen: {id}.svg

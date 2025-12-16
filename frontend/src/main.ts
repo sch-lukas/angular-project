@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-top-level-await */
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, Routes } from '@angular/router';

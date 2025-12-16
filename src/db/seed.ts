@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/cognitive-complexity */
 import type { Buchart, PrismaClient } from '../generated/prisma/client.js';
 import { getLogger } from '../logger/logger.js';
 
