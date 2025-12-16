@@ -637,23 +637,23 @@ export class NewComponent implements OnInit {
         this.submitError = '';
         this.successMessage = '';
 
-        const formValue = this.form.value;
+        const payload = this.buildPayload(this.form.value);
+        this.submitPayload(payload);
+    }
 
-        // Schlagwörter von String zu Array konvertieren
-        const schlagwoerterArray = formValue.schlagwoerter
-            ? formValue.schlagwoerter
-                  .split(',')
-                  .map((s: string) => s.trim().toUpperCase())
-                  .filter((s: string) => s.length > 0)
-            : [];
+    private buildPayload(formValue: any): CreateBuchPayload {
+        const schlagwoerterArray = this.parseSchlagwoerter(
+            formValue.schlagwoerter,
+        );
 
-        const payload: CreateBuchPayload = {
+        return {
             isbn: formValue.isbn,
             rating: Number(formValue.rating),
-            art:
-                formValue.art && formValue.art !== ''
-                    ? formValue.art
-                    : undefined,
+            art: this.getOptionalValue(formValue.art) as
+                | 'EPUB'
+                | 'HARDCOVER'
+                | 'PAPERBACK'
+                | undefined,
             preis: Number(formValue.preis),
             rabatt:
                 formValue.rabatt && formValue.rabatt > 0
@@ -661,38 +661,38 @@ export class NewComponent implements OnInit {
                     : undefined,
             lieferbar: formValue.lieferbar || false,
             datum: formValue.datum || undefined,
-            homepage:
-                formValue.homepage && formValue.homepage !== ''
-                    ? formValue.homepage
-                    : undefined,
+            homepage: this.getOptionalValue(formValue.homepage),
             schlagwoerter:
                 schlagwoerterArray.length > 0 ? schlagwoerterArray : undefined,
-            beschreibung:
-                formValue.beschreibung && formValue.beschreibung !== ''
-                    ? formValue.beschreibung
-                    : undefined,
-            autor:
-                formValue.autor && formValue.autor !== ''
-                    ? formValue.autor
-                    : undefined,
-            autorBiographie:
-                formValue.autorBiographie && formValue.autorBiographie !== ''
-                    ? formValue.autorBiographie
-                    : undefined,
+            beschreibung: this.getOptionalValue(formValue.beschreibung),
+            autor: this.getOptionalValue(formValue.autor),
+            autorBiographie: this.getOptionalValue(formValue.autorBiographie),
             titel: {
                 titel: formValue.titel,
-                untertitel:
-                    formValue.untertitel && formValue.untertitel !== ''
-                        ? formValue.untertitel
-                        : undefined,
+                untertitel: this.getOptionalValue(formValue.untertitel),
             },
         };
+    }
 
+    private parseSchlagwoerter(schlagwoerter: string): string[] {
+        if (!schlagwoerter) {
+            return [];
+        }
+        return schlagwoerter
+            .split(',')
+            .map((s: string) => s.trim().toUpperCase())
+            .filter((s: string) => s.length > 0);
+    }
+
+    private getOptionalValue(value: string | undefined): string | undefined {
+        return value && value !== '' ? value : undefined;
+    }
+
+    private submitPayload(payload: CreateBuchPayload): void {
         this.api.create(payload).subscribe({
             next: () => {
                 this.isSubmitting = false;
                 this.successMessage = 'Buch wurde erfolgreich angelegt!';
-                // Nach 2 Sekunden zur Suche navigieren
                 setTimeout(() => {
                     this.router.navigate(['/search']);
                 }, 2000);

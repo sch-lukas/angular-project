@@ -11,7 +11,7 @@ Write-Host "========================================`n" -ForegroundColor Cyan
 Write-Host "1️⃣  Backend-Check..." -ForegroundColor Yellow
 try {
     $health = Invoke-RestMethod -Uri "http://localhost:3000" -TimeoutSec 3
-    Write-Host "   ✅ Backend erreichbar" -ForegroundColor Green
+    Write-Host "   ✅ Backend erreichbar (Version: $($health.version))" -ForegroundColor Green
 } catch {
     Write-Host "   ❌ Backend nicht erreichbar!" -ForegroundColor Red
     exit 1

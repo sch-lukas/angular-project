@@ -98,7 +98,7 @@ export class BuchMutationResolver {
             buch,
             version: versionStr,
         });
-        // TODO BadUserInputError
+
         this.#logger.debug('updateBuch: versionResult=%d', versionResult);
         const payload: UpdatePayload = { version: versionResult };
         return payload;

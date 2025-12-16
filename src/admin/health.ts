@@ -53,7 +53,6 @@ export class HealthController {
     @HealthCheck()
     @ApiOperation({ summary: 'Readiness überprüfen' })
     ready() {
-        // TODO "SELECT 1" mit Prisma
         return this.live();
     }
 }

@@ -19,10 +19,9 @@ generator client {
 }
 
 /// https://www.prisma.io/docs/orm/reference/prisma-schema-reference#datasource
-/// Note: url property will be moved to prisma.config.ts in Prisma 7
+/// URL is now configured in prisma.config.ts
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
   schemas  = ["buch"]
 }
 
