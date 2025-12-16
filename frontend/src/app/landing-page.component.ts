@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookCarouselComponent } from './book-carousel.component';
 import {
@@ -300,6 +300,7 @@ export class LandingPageComponent implements OnInit {
     constructor(
         private readonly api: BuchApiService,
         private readonly router: Router,
+        private readonly cdr: ChangeDetectorRef,
     ) {}
 
     ngOnInit(): void {
@@ -311,6 +312,7 @@ export class LandingPageComponent implements OnInit {
         this.api.getStats().subscribe({
             next: (data) => {
                 this.stats = data;
+                this.cdr.detectChanges();
                 this.animateCounters();
             },
             error: (err) => {
@@ -338,6 +340,7 @@ export class LandingPageComponent implements OnInit {
             } else {
                 this.animatedTotalCount = Math.floor(currentTotalCount);
             }
+            this.cdr.detectChanges();
         }, interval);
 
         // Best Rating Animation
@@ -355,6 +358,7 @@ export class LandingPageComponent implements OnInit {
                         currentRating.toFixed(1),
                     );
                 }
+                this.cdr.detectChanges();
             }, interval);
         }
 
@@ -374,6 +378,7 @@ export class LandingPageComponent implements OnInit {
                         currentPrice.toFixed(2),
                     );
                 }
+                this.cdr.detectChanges();
             }, interval);
         }
     }
@@ -397,6 +402,7 @@ export class LandingPageComponent implements OnInit {
             next: (result) => {
                 // Simuliere "neu" durch die ersten 10 Bücher
                 this.booksNew = result.content.slice(0, 10);
+                this.cdr.detectChanges();
             },
             error: (err) => {
                 console.error('Fehler beim Laden neuer Bücher:', err);
@@ -410,6 +416,7 @@ export class LandingPageComponent implements OnInit {
                 this.booksPopular = result.content
                     .filter((book) => (book.rating ?? 0) >= 4)
                     .slice(0, 10);
+                this.cdr.detectChanges();
             },
             error: (err) => {
                 console.error('Fehler beim Laden beliebter Bücher:', err);
@@ -427,6 +434,7 @@ export class LandingPageComponent implements OnInit {
                     )
                     .sort((a, b) => (a.preis || 0) - (b.preis || 0))
                     .slice(0, 10);
+                this.cdr.detectChanges();
             },
             error: (err) => {
                 console.error(

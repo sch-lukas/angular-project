@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+    ChangeDetectorRef,
     Component,
     ElementRef,
     OnInit,
@@ -422,7 +423,7 @@ import { WishlistService } from './wishlist/wishlist.service';
             class="container py-4"
             style="max-width: 1200px; margin-top: 40px;"
         >
-            <div class="description-section" *ngIf="buch?.beschreibung">
+            <div class="description-section" *ngIf="buch.beschreibung">
                 <div class="section-header">
                     <h4 class="section-title">📖 Über dieses Buch</h4>
                 </div>
@@ -434,16 +435,16 @@ import { WishlistService } from './wishlist/wishlist.service';
             <!-- Autorenbeschreibung -->
             <div
                 class="author-section"
-                *ngIf="buch?.autor || buch?.autorBiographie"
+                *ngIf="buch.autor || buch.autorBiographie"
             >
                 <div class="section-header">
                     <h4 class="section-title">✍️ Über den Autor</h4>
                 </div>
                 <div class="section-content">
-                    <h5 class="author-name" *ngIf="buch?.autor">
+                    <h5 class="author-name" *ngIf="buch.autor">
                         {{ buch.autor }}
                     </h5>
-                    <p class="author-bio" *ngIf="buch?.autorBiographie">
+                    <p class="author-bio" *ngIf="buch.autorBiographie">
                         {{ buch.autorBiographie }}
                     </p>
                 </div>
@@ -1334,6 +1335,7 @@ export class DetailComponent implements OnInit {
     constructor(
         private readonly route: ActivatedRoute,
         private readonly api: BuchApiService,
+        private readonly cdr: ChangeDetectorRef,
     ) {}
 
     ngOnInit(): void {
@@ -1377,6 +1379,7 @@ export class DetailComponent implements OnInit {
                 console.log('Buch geladen:', buch);
                 this.buch = buch;
                 this.isLoading = false;
+                this.cdr.detectChanges();
                 // Nach erfolgreichem Laden: Empfehlungen laden
                 this.loadRelated(id, buch.art);
             },
@@ -1388,6 +1391,7 @@ export class DetailComponent implements OnInit {
                     'Das Buch konnte nicht geladen werden';
                 this.error = `Fehler beim Laden des Buchs (ID ${id}): ${errMsg}`;
                 this.isLoading = false;
+                this.cdr.detectChanges();
             },
         });
     }
@@ -1410,6 +1414,7 @@ export class DetailComponent implements OnInit {
                 console.log('✅ Ähnliche Bücher geladen:', books);
                 this.related = books;
                 this.relatedLoading = false;
+                this.cdr.detectChanges();
 
                 // Fallback: Wenn keine ähnlichen Bücher gefunden wurden
                 if (this.related.length === 0) {
@@ -1424,6 +1429,7 @@ export class DetailComponent implements OnInit {
                 this.relatedError =
                     'Empfehlungen konnten nicht geladen werden.';
                 this.relatedLoading = false;
+                this.cdr.detectChanges();
 
                 // Fallback: Zeige Dummy-Daten bei Fehler
                 console.log('🎭 Fallback: Lade Dummy-Daten');
