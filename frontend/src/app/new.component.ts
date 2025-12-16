@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {
     FormBuilder,
     FormGroup,
@@ -17,14 +17,54 @@ import { BuchApiService, type CreateBuchPayload } from './buch-api.service';
         <div class="new-book-container">
             <h1>Neues Buch anlegen</h1>
 
-            <!-- Backend-Fehler -->
+            <!-- Fehler-Popup (Modal-Style) -->
+            <div
+                *ngIf="submitError"
+                class="error-popup-overlay"
+                (click)="closeError()"
+            >
+                <div class="error-popup" (click)="$event.stopPropagation()">
+                    <div class="error-popup-header">
+                        <span class="error-icon">⚠️</span>
+                        <strong>Fehler beim Anlegen</strong>
+                        <button class="close-btn" (click)="closeError()">
+                            ×
+                        </button>
+                    </div>
+                    <div
+                        class="error-popup-body"
+                        [innerHTML]="formatErrorHtml()"
+                    ></div>
+                    <div class="error-popup-footer">
+                        <button class="btn btn-primary" (click)="closeError()">
+                            Verstanden
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Erfolgs-Popup -->
+            <div *ngIf="successMessage" class="success-popup-overlay">
+                <div class="success-popup">
+                    <div class="success-popup-header">
+                        <span class="success-icon">✅</span>
+                        <strong>Erfolg!</strong>
+                    </div>
+                    <div class="success-popup-body">
+                        {{ successMessage }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inline-Fehleranzeige (zusätzlich oben auf der Seite) -->
             <div *ngIf="submitError" class="alert alert-error">
-                <strong>Fehler:</strong> {{ submitError }}
+                <strong>⚠️ Fehler:</strong>
+                <span [innerHTML]="formatErrorHtml()"></span>
             </div>
 
             <!-- Erfolgs-Meldung -->
             <div *ngIf="successMessage" class="alert alert-success">
-                {{ successMessage }}
+                ✅ {{ successMessage }}
             </div>
 
             <form [formGroup]="form" (ngSubmit)="onSubmit()" class="book-form">
@@ -86,39 +126,29 @@ import { BuchApiService, type CreateBuchPayload } from './buch-api.service';
                     </div>
                 </div>
 
-                <!-- ISBN -->
+                <!-- ISBN (automatisch generiert) -->
                 <div class="form-group">
-                    <label for="isbn">ISBN-13 *</label>
-                    <input
-                        id="isbn"
-                        type="text"
-                        formControlName="isbn"
-                        class="form-control"
-                        placeholder="978-3-16-148410-0"
-                        [class.is-invalid]="
-                            form.get('isbn')?.invalid &&
-                            form.get('isbn')?.touched
-                        "
-                    />
-                    <div
-                        *ngIf="
-                            form.get('isbn')?.invalid &&
-                            form.get('isbn')?.touched
-                        "
-                        class="error-message"
-                    >
-                        <span *ngIf="form.get('isbn')?.errors?.['required']"
-                            >ISBN ist erforderlich</span
+                    <label>ISBN-13 (automatisch generiert)</label>
+                    <div class="isbn-display">
+                        <span class="isbn-value">{{ generatedIsbn }}</span>
+                        <button
+                            type="button"
+                            class="btn-regenerate"
+                            (click)="regenerateIsbn()"
+                            title="Neue ISBN generieren"
                         >
-                        <span *ngIf="form.get('isbn')?.errors?.['pattern']"
-                            >Ungültige ISBN-13 (Format: 978-X-XX-XXXXXX-X)</span
-                        >
+                            🔄 Neu
+                        </button>
                     </div>
+                    <small class="hint-text"
+                        >Die ISBN wird automatisch generiert und ist
+                        gültig.</small
+                    >
                 </div>
 
                 <!-- Rating -->
                 <div class="form-group">
-                    <label for="rating">Rating (0-5) *</label>
+                    <label for="rating">Rating (0-5)</label>
                     <input
                         id="rating"
                         type="number"
@@ -446,6 +476,159 @@ import { BuchApiService, type CreateBuchPayload } from './buch-api.service';
                 border: 1px solid #336633;
             }
 
+            /* Error Popup Overlay */
+            .error-popup-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.6);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                animation: fadeIn 0.2s ease-out;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .error-popup {
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+                max-width: 500px;
+                width: 90%;
+                animation: slideIn 0.3s ease-out;
+                overflow: hidden;
+            }
+
+            :host-context(.theme-dark) .error-popup {
+                background: #2d3748;
+            }
+
+            @keyframes slideIn {
+                from {
+                    transform: translateY(-50px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+            .error-popup-header {
+                background: #e74c3c;
+                color: white;
+                padding: 1rem 1.5rem;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+            }
+
+            .error-icon {
+                font-size: 1.5rem;
+            }
+
+            .close-btn {
+                margin-left: auto;
+                background: transparent;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+                padding: 0;
+                line-height: 1;
+            }
+
+            .close-btn:hover {
+                opacity: 0.8;
+            }
+
+            .error-popup-body {
+                padding: 1.5rem;
+                color: #333;
+                font-size: 1.1rem;
+                line-height: 1.6;
+            }
+
+            :host-context(.theme-dark) .error-popup-body {
+                color: #e2e8f0;
+            }
+
+            .error-popup-footer {
+                padding: 1rem 1.5rem;
+                background: #f8f9fa;
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            :host-context(.theme-dark) .error-popup-footer {
+                background: #1a202c;
+            }
+
+            /* Success Popup */
+            .success-popup-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.6);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                animation: fadeIn 0.2s ease-out;
+            }
+
+            .success-popup {
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+                max-width: 400px;
+                width: 90%;
+                animation: slideIn 0.3s ease-out;
+                overflow: hidden;
+            }
+
+            :host-context(.theme-dark) .success-popup {
+                background: #2d3748;
+            }
+
+            .success-popup-header {
+                background: #27ae60;
+                color: white;
+                padding: 1rem 1.5rem;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                font-size: 1.1rem;
+            }
+
+            .success-icon {
+                font-size: 1.5rem;
+            }
+
+            .success-popup-body {
+                padding: 1.5rem;
+                color: #333;
+                font-size: 1.1rem;
+                text-align: center;
+            }
+
+            :host-context(.theme-dark) .success-popup-body {
+                color: #e2e8f0;
+            }
+
             .book-form {
                 background: white;
                 padding: 2rem;
@@ -580,6 +763,60 @@ import { BuchApiService, type CreateBuchPayload } from './buch-api.service';
             .btn-secondary:hover:not(:disabled) {
                 background: #7f8c8d;
             }
+
+            /* ISBN Display Styles */
+            .isbn-display {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 0.75rem;
+                background: #f8f9fa;
+                border: 2px solid #3498db;
+                border-radius: 4px;
+                font-family: 'Courier New', monospace;
+            }
+
+            :host-context(.theme-dark) .isbn-display {
+                background: #2d3238;
+                border-color: #5dade2;
+            }
+
+            .isbn-value {
+                font-size: 1.1rem;
+                font-weight: bold;
+                color: #2c3e50;
+                letter-spacing: 1px;
+            }
+
+            :host-context(.theme-dark) .isbn-value {
+                color: #ecf0f1;
+            }
+
+            .btn-regenerate {
+                padding: 0.4rem 0.8rem;
+                background: #27ae60;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.85rem;
+                transition: background 0.3s;
+            }
+
+            .btn-regenerate:hover {
+                background: #219a52;
+            }
+
+            .hint-text {
+                display: block;
+                margin-top: 0.5rem;
+                color: #7f8c8d;
+                font-size: 0.85rem;
+            }
+
+            :host-context(.theme-dark) .hint-text {
+                color: #95a5a6;
+            }
         `,
     ],
 })
@@ -588,25 +825,23 @@ export class NewComponent implements OnInit {
     submitError = '';
     successMessage = '';
     isSubmitting = false;
+    generatedIsbn = '';
 
     constructor(
         private readonly fb: FormBuilder,
         private readonly api: BuchApiService,
         private readonly router: Router,
+        private readonly cdr: ChangeDetectorRef,
     ) {}
 
     ngOnInit(): void {
+        // Generiere automatisch eine gültige ISBN
+        this.generatedIsbn = this.generateValidIsbn13();
+
         this.form = this.fb.group({
             titel: ['', [Validators.required, Validators.maxLength(40)]],
             untertitel: ['', [Validators.maxLength(40)]],
-            isbn: [
-                '',
-                [
-                    Validators.required,
-                    // Vereinfachte ISBN-13 Validierung: 978 oder 979 gefolgt von 10 Ziffern
-                    Validators.pattern(/^97[89][\d-]{10,17}$/),
-                ],
-            ],
+            // ISBN wird automatisch generiert, nicht vom Benutzer eingegeben
             rating: [
                 0,
                 [Validators.required, Validators.min(0), Validators.max(5)],
@@ -626,10 +861,56 @@ export class NewComponent implements OnInit {
 
     onSubmit(): void {
         this.form.markAllAsTouched();
+        this.submitError = '';
 
         if (this.form.invalid) {
+            // Sammle alle Validierungsfehler
+            const errors: string[] = [];
+
+            if (this.form.get('titel')?.errors) {
+                if (this.form.get('titel')?.errors?.['required']) {
+                    errors.push('Titel ist erforderlich');
+                }
+                if (this.form.get('titel')?.errors?.['maxlength']) {
+                    errors.push('Titel darf maximal 40 Zeichen lang sein');
+                }
+            }
+
+            if (this.form.get('rating')?.errors) {
+                if (this.form.get('rating')?.errors?.['required']) {
+                    errors.push('Rating ist erforderlich');
+                }
+                if (this.form.get('rating')?.errors?.['min']) {
+                    errors.push('Rating muss mindestens 0 sein');
+                }
+                if (this.form.get('rating')?.errors?.['max']) {
+                    errors.push('Rating darf maximal 5 sein');
+                }
+            }
+
+            if (this.form.get('preis')?.errors) {
+                if (this.form.get('preis')?.errors?.['required']) {
+                    errors.push('Preis ist erforderlich');
+                }
+                if (this.form.get('preis')?.errors?.['min']) {
+                    errors.push('Preis muss positiv sein (mindestens 0)');
+                }
+            }
+
+            if (this.form.get('homepage')?.errors?.['pattern']) {
+                errors.push(
+                    'Homepage muss eine gültige URL sein (http:// oder https://)',
+                );
+            }
+
             this.submitError =
-                'Bitte füllen Sie alle erforderlichen Felder korrekt aus.';
+                errors.length > 0
+                    ? 'Folgende Fehler müssen behoben werden:\n• ' +
+                      errors.join('\n• ')
+                    : 'Bitte füllen Sie alle erforderlichen Felder korrekt aus.';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            this.cdr.detectChanges();
             return;
         }
 
@@ -647,7 +928,7 @@ export class NewComponent implements OnInit {
         );
 
         return {
-            isbn: formValue.isbn,
+            isbn: this.generatedIsbn, // Automatisch generierte ISBN verwenden
             rating: Number(formValue.rating),
             art: this.getOptionalValue(formValue.art) as
                 | 'EPUB'
@@ -693,6 +974,7 @@ export class NewComponent implements OnInit {
             next: () => {
                 this.isSubmitting = false;
                 this.successMessage = 'Buch wurde erfolgreich angelegt!';
+                this.cdr.detectChanges();
                 setTimeout(() => {
                     this.router.navigate(['/search']);
                 }, 2000);
@@ -700,14 +982,91 @@ export class NewComponent implements OnInit {
             error: (err) => {
                 this.isSubmitting = false;
                 console.error('Fehler beim Anlegen:', err);
-                this.submitError =
-                    err.error?.message ||
+
+                // Extrahiere Fehlermeldung
+                let errorMessage =
                     'Beim Anlegen des Buches ist ein Fehler aufgetreten.';
+
+                if (err.message) {
+                    errorMessage = err.message;
+                }
+
+                // Prüfe auf ISBN-Duplikat und generiere neue ISBN
+                if (
+                    errorMessage.includes('existiert bereits') ||
+                    errorMessage.includes('ISBN')
+                ) {
+                    this.generatedIsbn = this.generateValidIsbn13();
+                    errorMessage +=
+                        ' Eine neue ISBN wurde automatisch generiert. Bitte versuchen Sie es erneut.';
+                }
+
+                this.submitError = errorMessage;
+
+                // Scroll nach oben, damit der Fehler sichtbar ist
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                this.cdr.detectChanges();
             },
         });
     }
 
+    closeError(): void {
+        this.submitError = '';
+    }
+
+    formatErrorHtml(): string {
+        return this.submitError.replace(/\n/g, '<br>');
+    }
+
     onCancel(): void {
         this.router.navigate(['/search']);
+    }
+
+    /**
+     * Generiert eine neue gültige ISBN-13
+     */
+    regenerateIsbn(): void {
+        this.generatedIsbn = this.generateValidIsbn13();
+    }
+
+    /**
+     * Generiert eine gültige ISBN-13 mit korrekter Prüfziffer
+     * Format: 978-X-XXXXX-XXX-C (wobei C die Prüfziffer ist)
+     */
+    private generateValidIsbn13(): string {
+        // ISBN-13 beginnt mit 978 oder 979
+        const prefix = '978';
+
+        // Generiere 9 zufällige Ziffern
+        const randomDigits = Array.from({ length: 9 }, () =>
+            Math.floor(Math.random() * 10),
+        ).join('');
+
+        // Kombiniere Prefix mit zufälligen Ziffern (12 Ziffern)
+        const isbnWithoutCheck = prefix + randomDigits;
+
+        // Berechne Prüfziffer
+        const checkDigit = this.calculateIsbn13CheckDigit(isbnWithoutCheck);
+
+        // Vollständige ISBN-13 (13 Ziffern)
+        return isbnWithoutCheck + checkDigit;
+    }
+
+    /**
+     * Berechnet die Prüfziffer für ISBN-13
+     * Die Prüfziffer wird so berechnet, dass die Summe aller Ziffern
+     * (abwechselnd mit Gewicht 1 und 3 multipliziert) durch 10 teilbar ist
+     */
+    private calculateIsbn13CheckDigit(isbn12: string): string {
+        let sum = 0;
+        for (let i = 0; i < 12; i++) {
+            const digit = Number.parseInt(isbn12[i], 10);
+            // Ungerade Position (0, 2, 4, ...) -> Gewicht 1
+            // Gerade Position (1, 3, 5, ...) -> Gewicht 3
+            sum += digit * (i % 2 === 0 ? 1 : 3);
+        }
+        const remainder = sum % 10;
+        const checkDigit = remainder === 0 ? 0 : 10 - remainder;
+        return checkDigit.toString();
     }
 }
