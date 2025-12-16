@@ -6,9 +6,11 @@ skinparam state {
   BorderColor<<new>> #059669
   BackgroundColor<<enhanced>> #3B82F6
   BorderColor<<enhanced>> #2563EB
+  BackgroundColor<<auth>> #F59E0B
+  BorderColor<<auth>> #D97706
 }
 
-title Buchhandlung SPA - Zustandsdiagramm\n(Neue Features seit GitHub-Start)
+title Buchhandlung SPA - Zustandsdiagramm\n(Stand: Dezember 2025)
 
 [*] --> Initialisierung
 
@@ -18,7 +20,11 @@ state Initialisierung {
   ThemeErkannt --> LightMode : prefers-color-scheme: light
   DarkMode --> ThemeGespeichert
   LightMode --> ThemeGespeichert
-  ThemeGespeichert --> [*]
+  ThemeGespeichert --> AuthStateCheck
+  AuthStateCheck --> SessionGueltig : Token vorhanden
+  AuthStateCheck --> NichtAngemeldet : Kein Token
+  SessionGueltig --> [*]
+  NichtAngemeldet --> [*]
 }
 
 Initialisierung --> Startseite
@@ -50,7 +56,43 @@ state Navigation {
   RouteAuswahl --> BuchDetail
   RouteAuswahl --> Warenkorb
   RouteAuswahl --> Merkliste
-  RouteAuswahl --> NeuesBuch
+  RouteAuswahl --> NeuesBuch : AuthGuard
+  RouteAuswahl --> Login
+  RouteAuswahl --> Impressum
+  RouteAuswahl --> Kontakt
+}
+
+state AuthGuard <<auth>> {
+  [*] --> TokenPruefen
+  TokenPruefen --> Autorisiert : Token gültig
+  TokenPruefen --> NichtAutorisiert : Kein/ungültiger Token
+  NichtAutorisiert --> ReturnUrlSpeichern
+  ReturnUrlSpeichern --> LoginRedirect
+  LoginRedirect --> Login
+  Autorisiert --> [*]
+}
+
+state Login <<auth>> {
+  [*] --> FormularAnzeigen
+  FormularAnzeigen --> CredentialsEingeben
+  CredentialsEingeben --> FormValidation
+  FormValidation --> CredentialsEingeben : Invalid
+  FormValidation --> KeycloakAuth : Valid
+
+  state KeycloakAuth {
+    [*] --> TokenRequest
+    TokenRequest --> AccessTokenErhalten : Erfolg
+    TokenRequest --> LoginFehler : 401/403
+    AccessTokenErhalten --> TokenSpeichern
+    TokenSpeichern --> LocalStoragePersist
+    LocalStoragePersist --> AuthStateUpdate
+    AuthStateUpdate --> [*]
+  }
+
+  KeycloakAuth --> ReturnUrlNavigate : Erfolg
+  KeycloakAuth --> FehlerAnzeigen : Fehler
+  FehlerAnzeigen --> FormularAnzeigen
+  ReturnUrlNavigate --> [*]
 }
 
 state Suche {
@@ -78,6 +120,7 @@ state BuchDetail <<enhanced>> {
     ProduktinfoAnzeigen : Preis, Rating,\nLieferbarkeit
     BeschreibungAnzeigen : Volltext-Beschreibung\nmit Card-Design
     AutorBiographieAnzeigen : Autor-Biographie\nmit Card-Design
+    AehnlicheBuecherLaden : GraphQL Query\ngleiche Buchart
   }
 
   DetailsAnzeigen --> InteraktionWarten
@@ -161,17 +204,68 @@ state Merkliste <<new>> {
   ZuDetails --> BuchDetail
 }
 
-state NeuesBuch {
-  [*] --> FormularAnzeigen
-  FormularAnzeigen --> DatenEingeben
-  DatenEingeben --> ValidationPruefen
-  ValidationPruefen --> FormularAnzeigen : Fehler
+state NeuesBuch <<enhanced>> {
+  [*] --> AuthPruefen
+  AuthPruefen --> FormularAnzeigen : Eingeloggt
+  AuthPruefen --> LoginRedirect : Nicht eingeloggt
+
+  state FormularAnzeigen {
+    [*] --> ISBNGenerieren
+    ISBNGenerieren : Automatische ISBN-13\nmit Prüfziffer
+    ISBNGenerieren --> FormularBereit
+  }
+
+  FormularBereit --> DatenEingeben
+  DatenEingeben --> ValidationPruefen : Submit
+
+  state ValidationPruefen {
+    [*] --> TitelPruefen
+    TitelPruefen --> PreisPruefen : OK
+    TitelPruefen --> FehlerSammeln : Fehler
+    PreisPruefen --> RatingPruefen : OK
+    PreisPruefen --> FehlerSammeln : Fehler
+    RatingPruefen --> HomepagePruefen : OK
+    RatingPruefen --> FehlerSammeln : Fehler
+    HomepagePruefen --> ValidationErgebnis : OK
+    HomepagePruefen --> FehlerSammeln : Fehler
+    FehlerSammeln --> ValidationErgebnis
+  }
+
+  ValidationPruefen --> ErrorPopupAnzeigen : Fehler
   ValidationPruefen --> BuchErstellen : Valid
+
+  state ErrorPopupAnzeigen <<new>> {
+    [*] --> PopupOeffnen
+    PopupOeffnen : Modal-Overlay\nmit Fehlerliste
+    PopupOeffnen --> BenutzerBestaetigt
+    BenutzerBestaetigt --> PopupSchliessen
+  }
+
+  ErrorPopupAnzeigen --> FormularBereit : "Verstanden"
+
   BuchErstellen --> GraphQLMutation
-  GraphQLMutation --> ErfolgAnzeigen : Erfolg
-  GraphQLMutation --> FehlerAnzeigen : Fehler
-  ErfolgAnzeigen --> [*]
-  FehlerAnzeigen --> FormularAnzeigen
+
+  state GraphQLMutation {
+    [*] --> AuthHeaderSetzen
+    AuthHeaderSetzen : Bearer Token
+    AuthHeaderSetzen --> MutationSenden
+    MutationSenden --> ErfolgAnzeigen : 201 Created
+    MutationSenden --> ISBNKonflikt : ISBN existiert
+    MutationSenden --> ServerFehler : 4xx/5xx
+  }
+
+  ISBNKonflikt --> NeueISBNGenerieren
+  NeueISBNGenerieren --> ErrorPopupAnzeigen
+  ServerFehler --> ErrorPopupAnzeigen
+
+  state ErfolgAnzeigen <<new>> {
+    [*] --> SuccessPopupOeffnen
+    SuccessPopupOeffnen : Grünes Modal\n"Buch wurde angelegt!"
+    SuccessPopupOeffnen --> AutoRedirect
+    AutoRedirect : Nach 2 Sekunden
+  }
+
+  ErfolgAnzeigen --> Suche : Redirect
 }
 
 state ThemeToggle <<enhanced>> {
@@ -188,24 +282,26 @@ state ThemeToggle <<enhanced>> {
 Navigation --> ThemeToggle : Theme-Button
 
 note right of Startseite
-  **Neu hinzugefügt:**
+  **Features:**
   - Statistik-Animation
   - 3 Buch-Carousels
   - Horizontales Scrolling
   - Responsive Design
+  - ChangeDetectorRef
 end note
 
 note right of BuchDetail
-  **Neu hinzugefügt:**
+  **Features:**
   - Beschreibungs-Sektion
   - Autor-Biographie
   - Ähnliche Bücher Carousel
   - Card-Design mit Gradient
   - Mobile-Optimierung
+  - ChangeDetectorRef
 end note
 
 note right of WarenkorbService
-  **Vollständig neu:**
+  **Features:**
   - BehaviorSubject State
   - localStorage Persistenz
   - Item-Management
@@ -214,7 +310,7 @@ note right of WarenkorbService
 end note
 
 note right of MerklisteService
-  **Vollständig neu:**
+  **Features:**
   - Toggle-Funktion
   - localStorage Persistenz
   - BehaviorSubject State
@@ -222,12 +318,39 @@ note right of MerklisteService
 end note
 
 note right of ThemeToggle
-  **Neu implementiert:**
+  **Features:**
   - Dark/Light Mode
   - System-Präferenz
   - localStorage Cache
   - CSS Custom Properties
   - Alle Komponenten
+end note
+
+note right of Login
+  **Keycloak Integration:**
+  - OAuth2 Token Flow
+  - Session-Persistenz
+  - Auto-Logout bei
+    Server-Neustart
+  - returnUrl Support
+end note
+
+note right of NeuesBuch
+  **Neu implementiert:**
+  - Auto ISBN-13 Generator
+  - Prüfziffer-Berechnung
+  - Error Popup Modal
+  - Success Popup Modal
+  - Detaillierte Validierung
+  - AuthGuard geschützt
+end note
+
+note right of AuthGuard
+  **Sicherheit:**
+  - canMatch Guard
+  - Token-Validierung
+  - returnUrl Parameter
+  - Automatischer Redirect
 end note
 
 @enduml

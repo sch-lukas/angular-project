@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
-import { environment } from '../environments/environment';
 
 export interface LoginResult {
     success: boolean;
@@ -49,7 +48,8 @@ export class AuthService {
     }
 
     login(username: string, password: string): Observable<LoginResult> {
-        const url = `${environment.apiUrl}/auth/token`;
+        // Relative URL - wird vom Proxy an das HTTPS-Backend weitergeleitet
+        const url = '/auth/token';
         const body = { username, password };
 
         return this.http.post<TokenResponse>(url, body).pipe(
@@ -147,7 +147,7 @@ export class AuthService {
         // Prüfe, ob das Token noch gültig ist
         // Wenn Server neu gestartet wurde, wird eine Anfrage mit dem alten Token fehlschlagen
         this.http
-            .get<any>(`${environment.apiUrl}/health/liveness`, {
+            .get<any>('/health/liveness', {
                 observe: 'response',
             })
             .pipe(
