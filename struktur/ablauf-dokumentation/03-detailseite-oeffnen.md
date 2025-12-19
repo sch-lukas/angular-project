@@ -6,7 +6,7 @@
 
 ## 🔄 Ablauf-Diagramm
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
 │ 1. NUTZER-AKTION: Klick auf Buch-Card                                                │
 │                                                                                      │
@@ -329,14 +329,14 @@
 
 ### Frontend
 
-| Datei                                           | Rolle                          |
-| ----------------------------------------------- | ------------------------------ |
-| `frontend/src/app/detail.component.ts`          | Haupt-Komponente (1756 Zeilen) |
-| `frontend/src/app/buch-api.service.ts`          | `getById()` Methode            |
-| `frontend/src/app/graphql-queries.ts`           | `BUCH_BY_ID_QUERY`             |
-| `frontend/src/app/book-carousel.component.ts`   | Für "Ähnliche Bücher"          |
-| `frontend/src/app/cart/cart.service.ts`         | Warenkorb-Integration          |
-| `frontend/src/app/wishlist/wishlist.service.ts` | Merklisten-Integration         |
+| Datei                                                           | Rolle                          |
+| --------------------------------------------------------------- | ------------------------------ |
+| `frontend/src/app/features/buch/pages/detail.component.ts`      | Haupt-Komponente (1756 Zeilen) |
+| `frontend/src/app/core/services/buch-api.service.ts`            | `getById()` Methode            |
+| `frontend/src/app/core/services/graphql-queries.ts`             | `BUCH_BY_ID_QUERY`             |
+| `frontend/src/app/shared/components/book-carousel.component.ts` | Für "Ähnliche Bücher"          |
+| `frontend/src/app/features/buch/cart/cart.service.ts`           | Warenkorb-Integration          |
+| `frontend/src/app/features/buch/wishlist/wishlist.service.ts`   | Merklisten-Integration         |
 
 ### Backend
 

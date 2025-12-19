@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import type { BuchItem } from './buch-api.service';
+import type { BuchItem } from '../core/services/buch-api.service';
 
 @Component({
     selector: 'app-book-carousel',
     standalone: true,
     imports: [CommonModule, RouterLink],
-    templateUrl: './templates/book-carousel.component.html',
-    styleUrls: ['./templates/book-carousel.component.css'],
+    templateUrl: '../templates/book-carousel.component.html',
+    styleUrls: ['../templates/book-carousel.component.css'],
 })
 export class BookCarouselComponent {
     @Input() books: BuchItem[] = [];

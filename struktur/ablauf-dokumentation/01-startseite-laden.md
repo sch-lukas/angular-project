@@ -6,7 +6,7 @@
 
 ## 🔄 Ablauf-Diagramm
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
 │ 1. BROWSER: Nutzer gibt URL ein                                                      │
 │    https://localhost:3000                                                            │
@@ -266,14 +266,14 @@
 
 ### Frontend
 
-| Datei                                         | Rolle                                  |
-| --------------------------------------------- | -------------------------------------- |
-| `frontend/src/main.ts`                        | Routing-Konfiguration                  |
-| `frontend/src/app/landing-page.component.ts`  | Haupt-Komponente der Startseite        |
-| `frontend/src/app/book-carousel.component.ts` | Wiederverwendbare Karussell-Komponente |
-| `frontend/src/app/buch-api.service.ts`        | API-Kommunikation via GraphQL          |
-| `frontend/src/app/graphql-queries.ts`         | GraphQL Query Definitionen             |
-| `frontend/src/app/graphql-client.ts`          | HTTP-Client für GraphQL                |
+| Datei                                                            | Rolle                                  |
+| ---------------------------------------------------------------- | -------------------------------------- |
+| `frontend/src/main.ts`                                           | Routing-Konfiguration                  |
+| `frontend/src/app/features/buch/pages/landing-page.component.ts` | Haupt-Komponente der Startseite        |
+| `frontend/src/app/shared/components/book-carousel.component.ts`  | Wiederverwendbare Karussell-Komponente |
+| `frontend/src/app/core/services/buch-api.service.ts`             | API-Kommunikation via GraphQL          |
+| `frontend/src/app/core/services/graphql-queries.ts`              | GraphQL Query Definitionen             |
+| `frontend/src/app/core/services/graphql-client.ts`               | HTTP-Client für GraphQL                |
 
 ### Backend
 

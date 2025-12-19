@@ -17,7 +17,7 @@
 
 ## 🔄 Ablauf-Diagramm: Zum Warenkorb hinzufügen
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
 │ 1. AUSGANGSPUNKT: Detailseite eines Buchs                                            │
 │                                                                                      │
@@ -166,7 +166,7 @@
 
 ## 🔄 Ablauf-Diagramm: Merkliste
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
 │ MERKLISTE: Gleicher Flow wie Warenkorb                                               │
 │                                                                                      │
@@ -214,14 +214,14 @@
 
 ## 📁 Beteiligte Dateien
 
-| Datei                                    | Rolle                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| `frontend/src/app/cart.service.ts`       | Warenkorb-Logik, localStorage            |
-| `frontend/src/app/wishlist.service.ts`   | Merkliste-Logik, localStorage            |
-| `frontend/src/app/detail.component.ts`   | Buttons "In Warenkorb" / "Auf Merkliste" |
-| `frontend/src/app/navbar.component.ts`   | Badge mit Anzahl                         |
-| `frontend/src/app/cart.component.ts`     | Warenkorb-Seite                          |
-| `frontend/src/app/wishlist.component.ts` | Merkliste-Seite                          |
+| Datei                                                           | Rolle                                    |
+| --------------------------------------------------------------- | ---------------------------------------- |
+| `frontend/src/app/features/buch/cart/cart.service.ts`           | Warenkorb-Logik, localStorage            |
+| `frontend/src/app/features/buch/wishlist/wishlist.service.ts`   | Merkliste-Logik, localStorage            |
+| `frontend/src/app/features/buch/pages/detail.component.ts`      | Buttons "In Warenkorb" / "Auf Merkliste" |
+| `frontend/src/app/app.component.ts`                             | Badge mit Anzahl (im Header)             |
+| `frontend/src/app/features/buch/cart/cart.component.ts`         | Warenkorb-Seite                          |
+| `frontend/src/app/features/buch/wishlist/wishlist.component.ts` | Merkliste-Seite                          |
 
 ---
 
@@ -277,7 +277,7 @@ isInWishlist$ = this.wishlistService.isInWishlist(this.buch.id);
 
 ## 🗺️ Architektur-Übersicht
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                         FRONTEND                                 │
 │                                                                  │
@@ -357,11 +357,13 @@ getTotalWithDiscount(): Observable<number> {
 | **Kein Account**  | User muss nicht eingeloggt sein      |
 | **Datenschutz**   | Daten bleiben beim User              |
 
-### Nachteil:
+### Nachteil
 
 - Warenkorb ist **nicht synchron** zwischen Geräten
 - Bei Löschen von Browser-Daten → Warenkorb weg
 
 ---
 
-_Ende der Ablauf-Dokumentation_
+## Erstellungsdatum
+
+Erstellt am 19.12.2025

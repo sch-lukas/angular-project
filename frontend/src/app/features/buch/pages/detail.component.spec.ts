@@ -7,7 +7,10 @@ import {
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { of, throwError } from 'rxjs';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { BuchApiService, type BuchItem } from './buch-api.service';
+import {
+    BuchApiService,
+    type BuchItem,
+} from '../../../core/services/buch-api.service';
 import { DetailComponent } from './detail.component';
 
 describe('DetailComponent', () => {

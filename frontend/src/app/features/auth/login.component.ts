@@ -7,14 +7,14 @@ import {
     Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from './auth.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
     selector: 'app-login',
     standalone: true,
     imports: [CommonModule, ReactiveFormsModule],
-    templateUrl: './templates/login.component.html',
-    styleUrls: ['./templates/login.component.css'],
+    templateUrl: '../../templates/login.component.html',
+    styleUrls: ['../../templates/login.component.css'],
 })
 export class LoginComponent implements OnInit {
     form!: FormGroup;
