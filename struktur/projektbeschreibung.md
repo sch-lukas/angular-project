@@ -95,8 +95,7 @@ angular-project/
 │   └── migrations/
 │
 ├── scripts/
-│   ├── regenerate-covers.ps1     # Cover-Generator (NEU)
-│   └── ...
+│   └── ...                       # Build-Tools, DB-Utilities
 │
 ├── struktur/                     # Projekt-Dokumentation (NEU)
 │   ├── zustandsdiagramm.puml
@@ -218,7 +217,7 @@ SVG-basierte Cover-Generierung:
 
 **Dateien**:
 
-- `scripts/regenerate-covers.ps1` (PowerShell Generator)
+- `frontend/src/assets/cover-generierung/regenerate-covers.ps1` (PowerShell Generator)
 - `frontend/src/assets/covers/*.svg` (159 SVG-Dateien)
 
 ### 7. **GraphQL-Erweiterungen** 🔄
