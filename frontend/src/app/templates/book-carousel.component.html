@@ -1,0 +1,80 @@
+<div class="carousel-wrapper" *ngIf="books && books.length > 0">
+  <!-- Linker Pfeil -->
+  <button
+    class="carousel-arrow carousel-arrow-left"
+    (click)="scrollCarousel('left')"
+    *ngIf="books.length > 5"
+    aria-label="Vorherige Bücher"
+  >
+    ‹
+  </button>
+
+  <!-- Scroll Container -->
+  <div class="carousel-scroll-container" #carouselContainer>
+    <div class="carousel-items">
+      <div *ngFor="let buch of books" class="carousel-item-card">
+        <a [routerLink]="['/detail', buch.id]" class="item-link">
+          <!-- Cover -->
+          <div class="item-image">
+            <img
+              [src]="getCoverUrl(buch)"
+              [alt]="buch.titel?.titel || 'Buch Cover'"
+              onerror="
+                this.src = 'https://via.placeholder.com/180x260?text=Kein+Cover'
+              "
+            />
+          </div>
+
+          <!-- Titel -->
+          <h6 class="item-title">
+            {{ buch.titel?.titel || '–' }}
+          </h6>
+
+          <!-- Rating -->
+          <div class="item-rating" *ngIf="buch.rating">
+            <span class="rating-stars">
+              <span
+                *ngFor="let star of [1, 2, 3, 4, 5]"
+                [class.filled]="star <= buch.rating"
+                >★</span
+              >
+            </span>
+            <span class="rating-value">{{ buch.rating }}</span>
+          </div>
+
+          <!-- Preis -->
+          <div class="item-price">
+            <span class="price-amount">
+              {{
+                buch.preis != null ? (buch.preis | number: '1.2-2') + ' €' : '–'
+              }}
+            </span>
+            <span *ngIf="buch.rabatt && buch.rabatt > 0" class="price-discount">
+              -{{ buch.rabatt * 100 | number: '1.0-0' }}%
+            </span>
+          </div>
+
+          <!-- Lieferbar -->
+          <div class="item-delivery" *ngIf="buch.lieferbar">
+            <span class="badge bg-success">✓ Lieferbar</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rechter Pfeil -->
+  <button
+    class="carousel-arrow carousel-arrow-right"
+    (click)="scrollCarousel('right')"
+    *ngIf="books.length > 5"
+    aria-label="Nächste Bücher"
+  >
+    ›
+  </button>
+</div>
+
+<!-- Leerer Zustand -->
+<div *ngIf="!books || books.length === 0" class="empty-state">
+  <p class="text-muted">Keine Bücher verfügbar</p>
+</div>

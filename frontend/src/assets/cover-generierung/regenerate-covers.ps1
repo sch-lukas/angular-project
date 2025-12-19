@@ -1,7 +1,7 @@
 # Regeneriere Book Cover mit vielfältiger Farbpalette
 # Dieses Script erstellt SVG-Cover mit verschiedenen Farben basierend auf Genres/Kategorien
 
-$coverDir = Join-Path $PSScriptRoot "..\frontend\src\assets\covers"
+$coverDir = Join-Path $PSScriptRoot "..\covers"
 
 # Diverse Farbpalette für verschiedene Genres
 $colors = @(

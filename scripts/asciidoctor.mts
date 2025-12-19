@@ -23,7 +23,6 @@
 
 import asciidoctor from '@asciidoctor/core';
 // https://github.com/eshepelyuk/asciidoctor-plantuml.js ist deprecated
-// @ts-expect-error keine .d.ts-Datei
 import kroki from 'asciidoctor-kroki';
 import { join } from 'node:path';
 import url from 'node:url';
@@ -57,13 +56,3 @@ console.log(
         'projekthandbuch.html',
     )}`,
 );
-
-// https://asciidoctor.github.io/asciidoctor.js/master
-// const htmlString = asciidoctor.convert(
-//     fs.readFileSync(join('extras', 'doc', 'projekthandbuch.adoc')),
-//     { safe: 'safe', attributes: { linkcss: true }, base_dir: 'doc' },
-// );
-// const htmlFile = join('extras', 'doc', 'projekthandbuch.html');
-// fs.writeFileSync(htmlFile, htmlString);
-
-// console.log(`HTML-Datei ${join(__dirname, '..', htmlFile)}`);

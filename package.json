@@ -41,7 +41,7 @@
     "dev": "nest start --env-file=.env --watch",
     "dev:backend": "nest start --env-file=.env --watch",
     "dev:frontend": "pnpm --dir frontend start",
-    "generate:covers:ai": "node --env-file=.env scripts/generate-covers-ai.mjs",
+    "generate:covers:ai": "node --env-file=.env frontend/src/assets/cover-generierung/generate-covers-ai.mjs",
     "test": "SET NODE_TLS_REJECT_UNAUTHORIZED=0&& vitest --ui",
     "test:unit": "vitest -c ./vitest.config.unit.ts --ui",
     "test:k6": "k6 run test\\lasttest\\script.ts",

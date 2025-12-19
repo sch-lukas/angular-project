@@ -1,0 +1,356 @@
+<div class="new-book-container">
+  <h1>Neues Buch anlegen</h1>
+
+  <!-- Fehler-Popup (Modal-Style) -->
+  <div *ngIf="submitError" class="error-popup-overlay" (click)="closeError()">
+    <div class="error-popup" (click)="$event.stopPropagation()">
+      <div class="error-popup-header">
+        <span class="error-icon">⚠️</span>
+        <strong>Fehler beim Anlegen</strong>
+        <button class="close-btn" (click)="closeError()">×</button>
+      </div>
+      <div class="error-popup-body" [innerHTML]="formatErrorHtml()"></div>
+      <div class="error-popup-footer">
+        <button class="btn btn-primary" (click)="closeError()">
+          Verstanden
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Erfolgs-Popup -->
+  <div *ngIf="successMessage" class="success-popup-overlay">
+    <div class="success-popup">
+      <div class="success-popup-header">
+        <span class="success-icon">✅</span>
+        <strong>Erfolg!</strong>
+      </div>
+      <div class="success-popup-body">
+        {{ successMessage }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Inline-Fehleranzeige (zusätzlich oben auf der Seite) -->
+  <div *ngIf="submitError" class="alert alert-error">
+    <strong>⚠️ Fehler:</strong>
+    <span [innerHTML]="formatErrorHtml()"></span>
+  </div>
+
+  <!-- Erfolgs-Meldung -->
+  <div *ngIf="successMessage" class="alert alert-success">
+    ✅ {{ successMessage }}
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="book-form">
+    <!-- Titel -->
+    <div class="form-group">
+      <label for="titel">Titel *</label>
+      <input
+        id="titel"
+        type="text"
+        formControlName="titel"
+        class="form-control"
+        [class.is-invalid]="
+          form.get('titel')?.invalid && form.get('titel')?.touched
+        "
+      />
+      <div
+        *ngIf="form.get('titel')?.invalid && form.get('titel')?.touched"
+        class="error-message"
+      >
+        <span *ngIf="form.get('titel')?.errors?.['required']"
+          >Titel ist erforderlich</span
+        >
+        <span *ngIf="form.get('titel')?.errors?.['maxlength']"
+          >Titel darf maximal 40 Zeichen lang sein</span
+        >
+      </div>
+    </div>
+
+    <!-- Untertitel -->
+    <div class="form-group">
+      <label for="untertitel">Untertitel</label>
+      <input
+        id="untertitel"
+        type="text"
+        formControlName="untertitel"
+        class="form-control"
+        [class.is-invalid]="
+          form.get('untertitel')?.invalid && form.get('untertitel')?.touched
+        "
+      />
+      <div
+        *ngIf="
+          form.get('untertitel')?.invalid && form.get('untertitel')?.touched
+        "
+        class="error-message"
+      >
+        <span *ngIf="form.get('untertitel')?.errors?.['maxlength']"
+          >Untertitel darf maximal 40 Zeichen lang sein</span
+        >
+      </div>
+    </div>
+
+    <!-- ISBN (automatisch generiert) -->
+    <div class="form-group">
+      <label>ISBN-13 (automatisch generiert)</label>
+      <div class="isbn-display">
+        <span class="isbn-value">{{ generatedIsbn }}</span>
+        <button
+          type="button"
+          class="btn-regenerate"
+          (click)="regenerateIsbn()"
+          title="Neue ISBN generieren"
+        >
+          🔄 Neu
+        </button>
+      </div>
+      <small class="hint-text"
+        >Die ISBN wird automatisch generiert und ist gültig.</small
+      >
+    </div>
+
+    <!-- Rating -->
+    <div class="form-group">
+      <label for="rating">Rating (0-5)</label>
+      <input
+        id="rating"
+        type="number"
+        formControlName="rating"
+        class="form-control"
+        min="0"
+        max="5"
+        [class.is-invalid]="
+          form.get('rating')?.invalid && form.get('rating')?.touched
+        "
+      />
+      <div
+        *ngIf="form.get('rating')?.invalid && form.get('rating')?.touched"
+        class="error-message"
+      >
+        <span *ngIf="form.get('rating')?.errors?.['required']"
+          >Rating ist erforderlich</span
+        >
+        <span *ngIf="form.get('rating')?.errors?.['min']"
+          >Rating muss mindestens 0 sein</span
+        >
+        <span *ngIf="form.get('rating')?.errors?.['max']"
+          >Rating darf maximal 5 sein</span
+        >
+      </div>
+    </div>
+
+    <!-- Art -->
+    <div class="form-group">
+      <label for="art">Buchart</label>
+      <select id="art" formControlName="art" class="form-control">
+        <option value="">-- Bitte wählen --</option>
+        <option value="EPUB">E-Book (EPUB)</option>
+        <option value="HARDCOVER">Hardcover</option>
+        <option value="PAPERBACK">Paperback</option>
+      </select>
+    </div>
+
+    <!-- Preis -->
+    <div class="form-group">
+      <label for="preis">Preis (€) *</label>
+      <input
+        id="preis"
+        type="number"
+        formControlName="preis"
+        class="form-control"
+        step="0.01"
+        min="0"
+        [class.is-invalid]="
+          form.get('preis')?.invalid && form.get('preis')?.touched
+        "
+      />
+      <div
+        *ngIf="form.get('preis')?.invalid && form.get('preis')?.touched"
+        class="error-message"
+      >
+        <span *ngIf="form.get('preis')?.errors?.['required']"
+          >Preis ist erforderlich</span
+        >
+        <span *ngIf="form.get('preis')?.errors?.['min']"
+          >Preis muss positiv sein</span
+        >
+      </div>
+    </div>
+
+    <!-- Rabatt -->
+    <div class="form-group">
+      <label for="rabatt">Rabatt (0-1)</label>
+      <input
+        id="rabatt"
+        type="number"
+        formControlName="rabatt"
+        class="form-control"
+        step="0.01"
+        min="0"
+        max="1"
+        placeholder="z.B. 0.1 für 10%"
+        [class.is-invalid]="
+          form.get('rabatt')?.invalid && form.get('rabatt')?.touched
+        "
+      />
+      <div
+        *ngIf="form.get('rabatt')?.invalid && form.get('rabatt')?.touched"
+        class="error-message"
+      >
+        <span *ngIf="form.get('rabatt')?.errors?.['min']"
+          >Rabatt muss mindestens 0 sein</span
+        >
+        <span *ngIf="form.get('rabatt')?.errors?.['max']"
+          >Rabatt darf maximal 1 sein</span
+        >
+      </div>
+    </div>
+
+    <!-- Lieferbar -->
+    <div class="form-group form-checkbox">
+      <label>
+        <input type="checkbox" formControlName="lieferbar" />
+        Lieferbar
+      </label>
+    </div>
+
+    <!-- Datum -->
+    <div class="form-group">
+      <label for="datum">Erscheinungsdatum</label>
+      <input
+        id="datum"
+        type="date"
+        formControlName="datum"
+        class="form-control"
+      />
+    </div>
+
+    <!-- Homepage -->
+    <div class="form-group">
+      <label for="homepage">Homepage</label>
+      <input
+        id="homepage"
+        type="url"
+        formControlName="homepage"
+        class="form-control"
+        placeholder="https://example.com"
+        [class.is-invalid]="
+          form.get('homepage')?.invalid && form.get('homepage')?.touched
+        "
+      />
+      <div
+        *ngIf="form.get('homepage')?.invalid && form.get('homepage')?.touched"
+        class="error-message"
+      >
+        <span *ngIf="form.get('homepage')?.errors?.['pattern']"
+          >Ungültige URL (muss mit http:// oder https:// beginnen)</span
+        >
+      </div>
+    </div>
+
+    <!-- Schlagwörter -->
+    <div class="form-group">
+      <label for="schlagwoerter">Schlagwörter</label>
+      <input
+        id="schlagwoerter"
+        type="text"
+        formControlName="schlagwoerter"
+        class="form-control"
+        placeholder="z.B. JAVASCRIPT, TYPESCRIPT (kommagetrennt)"
+      />
+      <small class="form-text">Mehrere Wörter mit Komma trennen</small>
+    </div>
+
+    <!-- Beschreibung -->
+    <div class="form-group">
+      <label for="beschreibung">Beschreibung</label>
+      <textarea
+        id="beschreibung"
+        formControlName="beschreibung"
+        class="form-control"
+        rows="4"
+        placeholder="Eine kurze Beschreibung des Buches..."
+        [class.is-invalid]="
+          form.get('beschreibung')?.invalid && form.get('beschreibung')?.touched
+        "
+      ></textarea>
+      <div
+        *ngIf="
+          form.get('beschreibung')?.invalid && form.get('beschreibung')?.touched
+        "
+        class="error-message"
+      >
+        <span *ngIf="form.get('beschreibung')?.errors?.['maxlength']"
+          >Beschreibung darf maximal 1000 Zeichen lang sein</span
+        >
+      </div>
+    </div>
+
+    <!-- Autor -->
+    <div class="form-group">
+      <label for="autor">Autor</label>
+      <input
+        id="autor"
+        type="text"
+        formControlName="autor"
+        class="form-control"
+        placeholder="Name des Autors"
+        [class.is-invalid]="
+          form.get('autor')?.invalid && form.get('autor')?.touched
+        "
+      />
+      <div
+        *ngIf="form.get('autor')?.invalid && form.get('autor')?.touched"
+        class="error-message"
+      >
+        <span *ngIf="form.get('autor')?.errors?.['maxlength']"
+          >Autor darf maximal 100 Zeichen lang sein</span
+        >
+      </div>
+    </div>
+
+    <!-- Autor Biographie -->
+    <div class="form-group">
+      <label for="autorBiographie">Autor-Biographie</label>
+      <textarea
+        id="autorBiographie"
+        formControlName="autorBiographie"
+        class="form-control"
+        rows="3"
+        placeholder="Informationen über den Autor..."
+        [class.is-invalid]="
+          form.get('autorBiographie')?.invalid &&
+          form.get('autorBiographie')?.touched
+        "
+      ></textarea>
+      <div
+        *ngIf="
+          form.get('autorBiographie')?.invalid &&
+          form.get('autorBiographie')?.touched
+        "
+        class="error-message"
+      >
+        <span *ngIf="form.get('autorBiographie')?.errors?.['maxlength']"
+          >Biographie darf maximal 1000 Zeichen lang sein</span
+        >
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Wird gespeichert...' : 'Speichern' }}
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="onCancel()"
+        [disabled]="isSubmitting"
+      >
+        Abbrechen
+      </button>
+    </div>
+  </form>
+</div>

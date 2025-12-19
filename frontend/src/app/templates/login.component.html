@@ -1,0 +1,65 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1>Login</h1>
+
+    <!-- Fehlermeldung -->
+    <div *ngIf="loginError" class="alert alert-error">
+      <strong>Fehler:</strong> {{ loginError }}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <!-- Benutzername -->
+      <div class="form-group">
+        <label for="username">Benutzername</label>
+        <input
+          id="username"
+          type="text"
+          formControlName="username"
+          class="form-control"
+          placeholder="admin"
+          [class.is-invalid]="
+            form.get('username')?.invalid && form.get('username')?.touched
+          "
+        />
+        <div
+          *ngIf="form.get('username')?.invalid && form.get('username')?.touched"
+          class="error-message"
+        >
+          Benutzername ist erforderlich
+        </div>
+      </div>
+
+      <!-- Passwort -->
+      <div class="form-group">
+        <label for="password">Passwort</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          class="form-control"
+          placeholder="••••••"
+          [class.is-invalid]="
+            form.get('password')?.invalid && form.get('password')?.touched
+          "
+        />
+        <div
+          *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+          class="error-message"
+        >
+          Passwort ist erforderlich
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="form-actions">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="form.invalid || isSubmitting"
+        >
+          {{ isSubmitting ? 'Wird angemeldet...' : 'Anmelden' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

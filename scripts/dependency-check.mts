@@ -17,9 +17,6 @@
 //              node dependency-check.mts
 // ggf. z.B.    pnpm why express
 
-// TODO dset https://github.com/lukeed/dset/issues/44#issuecomment-2122866311
-// TODO graphql https://nvd.nist.gov/vuln/detail/CVE-2024-50312
-
 import { exec } from 'node:child_process';
 import { platform } from 'node:os';
 import { resolve } from 'node:path';
