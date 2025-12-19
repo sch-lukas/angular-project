@@ -6,7 +6,7 @@
 
 ## 🔄 Ablauf-Diagramm
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
 │ 1. NUTZER-AKTION: Klick auf "Anmelden" im Header                                     │
 │                                                                                      │
@@ -267,7 +267,7 @@
 
 Nach dem Login wird der JWT Token automatisch zu allen HTTP Requests hinzugefügt:
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
 │ AUTH INTERCEPTOR: Token zu Requests hinzufügen                                       │
 │                                                                                      │
@@ -303,7 +303,7 @@ Nach dem Login wird der JWT Token automatisch zu allen HTTP Requests hinzugefüg
 
 ## 🛡️ Auth-Guard für geschützte Routen
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
 │ AUTH GUARD: Route schützen                                                           │
 │                                                                                      │
@@ -343,13 +343,13 @@ Nach dem Login wird der JWT Token automatisch zu allen HTTP Requests hinzugefüg
 
 ### Frontend
 
-| Datei                                  | Rolle                              |
-| -------------------------------------- | ---------------------------------- |
-| `frontend/src/app/login.component.ts`  | Login-Formular (290 Zeilen)        |
-| `frontend/src/app/auth.service.ts`     | Auth-State Management (175 Zeilen) |
-| `frontend/src/app/auth.guard.ts`       | Route Protection (22 Zeilen)       |
-| `frontend/src/app/auth.interceptor.ts` | Token zu Requests (27 Zeilen)      |
-| `frontend/proxy.conf.json`             | Dev-Server Proxy Konfiguration     |
+| Datei                                                     | Rolle                              |
+| --------------------------------------------------------- | ---------------------------------- |
+| `frontend/src/app/features/auth/pages/login.component.ts` | Login-Formular (290 Zeilen)        |
+| `frontend/src/app/core/services/auth.service.ts`          | Auth-State Management (175 Zeilen) |
+| `frontend/src/app/core/guards/auth.guard.ts`              | Route Protection (22 Zeilen)       |
+| `frontend/src/app/core/interceptors/auth.interceptor.ts`  | Token zu Requests (27 Zeilen)      |
+| `frontend/proxy.conf.json`                                | Dev-Server Proxy Konfiguration     |
 
 ### Backend
 
@@ -365,7 +365,7 @@ Nach dem Login wird der JWT Token automatisch zu allen HTTP Requests hinzugefüg
 
 ### 1. JWT Token Struktur
 
-```
+```text
 Header.Payload.Signature
 
 Header: { "alg": "RS256", "typ": "JWT" }

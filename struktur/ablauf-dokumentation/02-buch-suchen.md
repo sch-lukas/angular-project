@@ -6,7 +6,7 @@
 
 ## 🔄 Ablauf-Diagramm
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
 │ 1. NAVIGATION: User klickt auf "Suche" in der Navigation                             │
 │                                                                                      │
@@ -317,10 +317,10 @@
 
 ### Frontend
 
-| Datei                                  | Rolle                              |
-| -------------------------------------- | ---------------------------------- |
-| `frontend/src/app/search.component.ts` | Suchformular, Ergebnis-Darstellung |
-| `frontend/src/app/buch-api.service.ts` | `search()` GraphQL Query           |
+| Datei                                                      | Rolle                              |
+| ---------------------------------------------------------- | ---------------------------------- |
+| `frontend/src/app/features/buch/pages/search.component.ts` | Suchformular, Ergebnis-Darstellung |
+| `frontend/src/app/core/services/buch-api.service.ts`       | `search()` GraphQL Query           |
 
 ### Backend
 

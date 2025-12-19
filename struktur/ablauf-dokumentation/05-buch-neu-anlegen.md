@@ -6,7 +6,7 @@
 
 ## 🔄 Ablauf-Diagramm
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
 │ 1. VORAUSSETZUNG: User ist eingeloggt als Admin                                      │
 │                                                                                      │
@@ -357,13 +357,13 @@
 
 ### Frontend
 
-| Datei                                  | Rolle                             |
-| -------------------------------------- | --------------------------------- |
-| `frontend/src/app/new.component.ts`    | Formular-Komponente (1073 Zeilen) |
-| `frontend/src/app/buch-api.service.ts` | `create()` Methode                |
-| `frontend/src/app/graphql-queries.ts`  | `CREATE_BUCH_MUTATION`            |
-| `frontend/src/app/auth.guard.ts`       | Route Protection                  |
-| `frontend/src/app/auth.interceptor.ts` | JWT Token hinzufügen              |
+| Datei                                                    | Rolle                             |
+| -------------------------------------------------------- | --------------------------------- |
+| `frontend/src/app/features/buch/pages/new.component.ts`  | Formular-Komponente (1073 Zeilen) |
+| `frontend/src/app/core/services/buch-api.service.ts`     | `create()` Methode                |
+| `frontend/src/app/core/services/graphql-queries.ts`      | `CREATE_BUCH_MUTATION`            |
+| `frontend/src/app/core/guards/auth.guard.ts`             | Route Protection                  |
+| `frontend/src/app/core/interceptors/auth.interceptor.ts` | JWT Token hinzufügen              |
 
 ### Backend
 

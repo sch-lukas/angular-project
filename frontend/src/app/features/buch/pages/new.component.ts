@@ -8,14 +8,17 @@ import {
     Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BuchApiService, type CreateBuchPayload } from './buch-api.service';
+import {
+    BuchApiService,
+    type CreateBuchPayload,
+} from '../../../core/services/buch-api.service';
 
 @Component({
     selector: 'app-new',
     standalone: true,
     imports: [CommonModule, ReactiveFormsModule],
-    templateUrl: './templates/new.component.html',
-    styleUrls: ['./templates/new.component.css'],
+    templateUrl: '../../../templates/new.component.html',
+    styleUrls: ['../../../templates/new.component.css'],
 })
 export class NewComponent implements OnInit {
     form!: FormGroup;

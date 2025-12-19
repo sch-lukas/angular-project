@@ -55,26 +55,49 @@ angular-project/
 ├── frontend/                    # Angular Frontend
 │   ├── src/
 │   │   ├── app/
-│   │   │   ├── app.component.ts          # Root Component mit Navigation
-│   │   │   ├── landing-page.component.ts # Startseite mit Carousels
-│   │   │   ├── detail.component.ts       # Buch-Detailseite
-│   │   │   ├── search.component.ts       # Such-/Ergebnisseite
-│   │   │   ├── login.component.ts        # Login-Seite
-│   │   │   ├── new.component.ts          # Neues Buch erstellen
-│   │   │   ├── cart/                     # Warenkorb (NEU)
-│   │   │   │   ├── cart.service.ts
-│   │   │   │   └── cart.component.ts
-│   │   │   ├── wishlist/                 # Merkliste (NEU)
-│   │   │   │   ├── wishlist.service.ts
-│   │   │   │   └── wishlist.component.ts
-│   │   │   ├── book-carousel.component.ts # Wiederverwendbares Carousel (NEU)
-│   │   │   ├── buch-api.service.ts       # GraphQL API Service
-│   │   │   ├── auth.service.ts           # Authentifizierung
-│   │   │   └── graphql-queries.ts        # GraphQL Query Definitionen
+│   │   │   ├── app.component.ts                    # Root Component
+│   │   │   ├── core/                               # Kern-Infrastruktur
+│   │   │   │   ├── guards/
+│   │   │   │   │   └── auth.guard.ts               # Route Protection
+│   │   │   │   ├── interceptors/
+│   │   │   │   │   └── auth.interceptor.ts         # JWT Token Injection
+│   │   │   │   └── services/
+│   │   │   │       ├── auth.service.ts             # Authentifizierung
+│   │   │   │       ├── buch-api.service.ts         # GraphQL API Service
+│   │   │   │       ├── graphql-client.ts           # GraphQL Client Setup
+│   │   │   │       └── graphql-queries.ts          # Query Definitionen
+│   │   │   ├── features/                           # Feature-Module
+│   │   │   │   ├── auth/pages/
+│   │   │   │   │   └── login.component.ts          # Login-Seite
+│   │   │   │   ├── buch/
+│   │   │   │   │   ├── cart/                       # Warenkorb (NEU)
+│   │   │   │   │   │   ├── cart.service.ts
+│   │   │   │   │   │   └── cart.component.ts
+│   │   │   │   │   ├── pages/
+│   │   │   │   │   │   ├── detail.component.ts     # Buch-Detailseite
+│   │   │   │   │   │   ├── landing-page.component.ts # Startseite
+│   │   │   │   │   │   ├── new.component.ts        # Neues Buch erstellen
+│   │   │   │   │   │   └── search.component.ts     # Such-/Ergebnisseite
+│   │   │   │   │   └── wishlist/                   # Merkliste (NEU)
+│   │   │   │   │       ├── wishlist.service.ts
+│   │   │   │   │       └── wishlist.component.ts
+│   │   │   │   └── static/pages/
+│   │   │   │       ├── impressum.component.ts
+│   │   │   │       └── kontakt.component.ts
+│   │   │   ├── shared/                             # Wiederverwendbare Komponenten
+│   │   │   │   └── components/
+│   │   │   │       └── book-carousel.component.ts  # Buch-Karussell
+│   │   │   └── templates/                          # HTML & CSS Templates
+│   │   │       ├── *.component.html
+│   │   │       └── *.component.css
 │   │   ├── assets/
 │   │   │   └── covers/                   # 159 generierte SVG-Cover (NEU)
 │   │   ├── styles.css                    # Globale Styles mit Dark Mode
 │   │   └── main.ts                       # App Bootstrap + Routing
+│   ├── e2e/                              # Playwright Tests
+│   │   ├── specs/
+│   │   ├── pages/
+│   │   └── fixtures/
 │   ├── angular.json
 │   ├── package.json
 │   └── proxy.conf.json
@@ -94,13 +117,28 @@ angular-project/
 │   ├── schema.prisma             # Datenbank Schema
 │   └── migrations/
 │
-├── scripts/
-│   └── ...                       # Build-Tools, DB-Utilities
+├── scripts/                      # Organisierte Scripts
+│   ├── db/                       # Datenbank-Utilities
+│   │   ├── list-books.mjs
+│   │   ├── list-books-pg.mjs
+│   │   └── migrate-add-pfad.mjs
+│   ├── build/                    # Build-Tools
+│   │   ├── asciidoctor.mts
+│   │   ├── copy-resources.mts
+│   │   ├── sonar-scanner.mts
+│   │   └── dependency-check.mts
+│   └── dev/                      # Entwicklungs-Scripts
+│       ├── static-serve.mjs
+│       ├── generate-load.mts
+│       └── temp-graphql-*.mjs
 │
 ├── struktur/                     # Projekt-Dokumentation (NEU)
-│   ├── zustandsdiagramm.puml
 │   ├── projektbeschreibung.md
-│   └── technische-details.md
+│   ├── technische-details.md
+│   ├── neue-dateien-uebersicht.md
+│   ├── zustandsdiagramm.puml
+│   └── ablauf-dokumentation/
+│       └── 00-07 Workflow-Dokumente
 │
 ├── test/
 │   ├── integration/              # GraphQL Integration Tests
@@ -129,8 +167,8 @@ Vollständig implementiertes Shopping Cart mit:
 
 **Dateien**:
 
-- `frontend/src/app/cart/cart.service.ts` (173 Zeilen)
-- `frontend/src/app/cart/cart.component.ts` (467 Zeilen)
+- `frontend/src/app/features/buch/cart/cart.service.ts` (173 Zeilen)
+- `frontend/src/app/features/buch/cart/cart.component.ts` (467 Zeilen)
 
 ### 2. **Merkliste/Wishlist** ❤️
 
@@ -144,8 +182,8 @@ Benutzerfreundliche Favoriten-Verwaltung:
 
 **Dateien**:
 
-- `frontend/src/app/wishlist/wishlist.service.ts` (156 Zeilen)
-- `frontend/src/app/wishlist/wishlist.component.ts` (295 Zeilen)
+- `frontend/src/app/features/buch/wishlist/wishlist.service.ts` (156 Zeilen)
+- `frontend/src/app/features/buch/wishlist/wishlist.component.ts` (295 Zeilen)
 
 ### 3. **Startseiten-Carousels** 📚
 
@@ -164,8 +202,8 @@ Features:
 
 **Dateien**:
 
-- `frontend/src/app/book-carousel.component.ts` (361 Zeilen)
-- `frontend/src/app/landing-page.component.ts` (407 Zeilen - erweitert)
+- `frontend/src/app/shared/components/book-carousel.component.ts` (361 Zeilen)
+- `frontend/src/app/features/buch/pages/landing-page.component.ts` (407 Zeilen - erweitert)
 
 ### 4. **Erweiterte Buch-Detailseite** 📖
 
@@ -180,7 +218,7 @@ Komplett überarbeitetes Layout:
 
 **Dateien**:
 
-- `frontend/src/app/detail.component.ts` (1576 Zeilen - massiv erweitert)
+- `frontend/src/app/features/buch/pages/detail.component.ts` (1576 Zeilen - massiv erweitert)
 
 ### 5. **Dark/Light Mode** 🌓
 
@@ -231,8 +269,8 @@ Optimierte API-Abfragen:
 
 **Dateien**:
 
-- `frontend/src/app/graphql-queries.ts` (erweitert)
-- `frontend/src/app/buch-api.service.ts` (erweitert)
+- `frontend/src/app/core/services/graphql-queries.ts` (erweitert)
+- `frontend/src/app/core/services/buch-api.service.ts` (erweitert)
 
 ---
 

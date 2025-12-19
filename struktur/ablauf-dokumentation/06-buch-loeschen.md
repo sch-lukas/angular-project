@@ -6,7 +6,7 @@
 
 ## 🔄 Ablauf-Diagramm
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
 │ 1. VORAUSSETZUNG: Admin ist auf Detailseite eines Buchs                              │
 │                                                                                      │
@@ -295,12 +295,12 @@
 
 ### Frontend
 
-| Datei                                  | Rolle                          |
-| -------------------------------------- | ------------------------------ |
-| `frontend/src/app/detail.component.ts` | Delete-Button, Modal, API-Call |
-| `frontend/src/app/buch-api.service.ts` | `delete()` Methode (REST)      |
-| `frontend/src/app/auth.service.ts`     | `isLoggedIn()` Prüfung         |
-| `frontend/src/app/auth.interceptor.ts` | JWT Token hinzufügen           |
+| Datei                                                      | Rolle                          |
+| ---------------------------------------------------------- | ------------------------------ |
+| `frontend/src/app/features/buch/pages/detail.component.ts` | Delete-Button, Modal, API-Call |
+| `frontend/src/app/core/services/buch-api.service.ts`       | `delete()` Methode (REST)      |
+| `frontend/src/app/core/services/auth.service.ts`           | `isLoggedIn()` Prüfung         |
+| `frontend/src/app/core/interceptors/auth.interceptor.ts`   | JWT Token hinzufügen           |
 
 ### Backend
 

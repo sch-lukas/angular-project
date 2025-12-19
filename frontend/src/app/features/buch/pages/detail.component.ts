@@ -10,17 +10,20 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AuthService } from './auth.service';
-import { BuchApiService, type BuchItem } from './buch-api.service';
-import { CartService } from './cart/cart.service';
-import { WishlistService } from './wishlist/wishlist.service';
+import { AuthService } from '../../../core/services/auth.service';
+import {
+    BuchApiService,
+    type BuchItem,
+} from '../../../core/services/buch-api.service';
+import { CartService } from '../cart/cart.service';
+import { WishlistService } from '../wishlist/wishlist.service';
 
 @Component({
     selector: 'app-detail',
     standalone: true,
     imports: [CommonModule, RouterLink, NgbAlert],
-    templateUrl: './templates/detail.component.html',
-    styleUrls: ['./templates/detail.component.css'],
+    templateUrl: '../../../templates/detail.component.html',
+    styleUrls: ['../../../templates/detail.component.css'],
 })
 export class DetailComponent implements OnInit {
     buch: BuchItem | null = null;

@@ -1,6 +1,6 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { AuthService } from './auth.service';
+import { AuthService } from '../services/auth.service';
 
 /**
  * HTTP-Interceptor, der den Authorization-Header mit JWT-Token zu jedem Request hinzufügt

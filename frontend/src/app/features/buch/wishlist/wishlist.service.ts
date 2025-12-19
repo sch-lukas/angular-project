@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import type { BuchItem } from '../buch-api.service';
+import type { BuchItem } from '../../../core/services/buch-api.service';
 
 export interface WishlistItem {
     id: number;
