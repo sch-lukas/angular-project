@@ -1,7 +1,7 @@
 // Script: set-cover-url.mjs
 // Zweck: cover_url in Tabelle buch.buch auf Pfade zu generierten SVGs setzen
 // Pfad-Schema: assets/covers/<id>.svg (vom Angular-Frontend nutzbar)
-// Aufruf: node --env-file=.env scripts/set-cover-url.mjs
+// Aufruf: node --env-file=.env frontend/src/assets/cover-generierung/set-cover-url.mjs
 
 import pg from 'pg';
 

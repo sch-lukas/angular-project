@@ -1,0 +1,67 @@
+<div class="landing-page">
+  <div class="logo-container">
+    <img src="assets/logo-buch-spa.svg" alt="Buchhandlung Logo" class="logo" />
+  </div>
+
+  <div class="stats-container">
+    <div class="stat-card">
+      <div class="stat-icon">📚</div>
+      <div class="stat-value">{{ animatedTotalCount }}</div>
+      <div class="stat-label">Bücher im Katalog</div>
+    </div>
+
+    <div
+      class="stat-card clickable"
+      *ngIf="stats?.bestBook"
+      (click)="goToBook(stats?.bestBook?.id)"
+    >
+      <div class="stat-icon">⭐</div>
+      <div class="stat-value">{{ animatedBestRating }}/5</div>
+      <div class="stat-label">Bestbewertetes Buch</div>
+      <div class="stat-subtitle">
+        {{ stats?.bestBook?.titel }}
+      </div>
+    </div>
+
+    <div
+      class="stat-card clickable"
+      *ngIf="stats?.cheapestBook"
+      (click)="goToBook(stats?.cheapestBook?.id)"
+    >
+      <div class="stat-icon">🏆</div>
+      <div class="stat-value">
+        {{ animatedCheapestPrice | number: '1.2-2' }} €
+      </div>
+      <div class="stat-label">Schwabenpreis</div>
+      <div class="stat-subtitle">
+        {{ stats?.cheapestBook?.titel }}
+      </div>
+    </div>
+  </div>
+
+  <div class="action-container">
+    <button class="btn-primary" (click)="goToSearch()">Zur Buchsuche</button>
+  </div>
+
+  <!-- Buch-Carousels -->
+  <section class="carousel-section">
+    <!-- Neu im Programm -->
+    <div class="carousel-block">
+      <h2 class="carousel-title">📚 Neu im Programm</h2>
+      <app-book-carousel [books]="booksNew"></app-book-carousel>
+    </div>
+
+    <!-- Beliebte Bücher -->
+    <div class="carousel-block">
+      <h2 class="carousel-title">⭐ Beliebte Bücher</h2>
+      <app-book-carousel [books]="booksPopular"></app-book-carousel>
+    </div>
+
+    <!-- Schwabenpreis -->
+    <div class="carousel-block">
+      <h2 class="carousel-title">🏆 Schwabenpreis</h2>
+      <p class="carousel-subtitle">Die günstigsten Bücher</p>
+      <app-book-carousel [books]="booksRecommended"></app-book-carousel>
+    </div>
+  </section>
+</div>
