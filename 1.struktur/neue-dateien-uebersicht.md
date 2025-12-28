@@ -1,7 +1,7 @@
 # Neue Dateien - Übersicht
 
 > **Dokumentation aller Dateien, die seit dem Start-Commit (`3191d43`) neu hinzugefügt wurden.**
-> Stand: 19. Dezember 2025
+> Stand: 28. Dezember 2025
 
 ---
 
@@ -9,16 +9,17 @@
 
 | Kategorie              | Dateien  | Zeilen      | Anteil |
 | ---------------------- | -------- | ----------- | ------ |
-| Frontend Components    | 12       | ~6.500      | 40%    |
-| Frontend Services      | 4        | ~850        | 5%     |
+| Frontend Components    | 12       | ~6.500      | 38%    |
+| Frontend Services      | 7        | ~1.100      | 6%     |
+| Frontend Templates     | 13       | ~1.500      | 9%     |
 | Frontend Tests         | 2        | ~850        | 5%     |
 | E2E Tests (Playwright) | 8        | ~600        | 4%     |
-| Cover Assets (SVG)     | 159      | ~3.200      | 20%    |
+| Cover Assets (SVG)     | 159      | ~3.200      | 19%    |
 | Cover Scripts          | 7        | ~1.000      | 6%     |
 | Backend-Erweiterungen  | 8        | ~1.200      | 7%     |
-| Dokumentation          | 5        | ~1.800      | 11%    |
+| Dokumentation          | 5        | ~1.800      | 10%    |
 | Config/Sonstiges       | 6        | ~300        | 2%     |
-| **TOTAL**              | **~211** | **~16.300** | 100%   |
+| **TOTAL**              | **~227** | **~17.050** | 100%   |
 
 ---
 
@@ -28,7 +29,10 @@
 
 | Datei                                                    | Zeilen | Beschreibung                                        |
 | -------------------------------------------------------- | ------ | --------------------------------------------------- |
-| `frontend/src/app/app.component.ts`                      | 249    | App Shell: Header, Navigation, Theme-Toggle, Footer |
+| `frontend/src/app/app.component.ts`                      | 68     | App Shell: Header, Navigation, Theme-Toggle, Footer |
+| `frontend/src/app/auth.guard.ts`                         | 22     | Route Guard für geschützte Seiten                   |
+| `frontend/src/app/auth.interceptor.ts`                   | 27     | HTTP Interceptor für JWT Token                      |
+| `frontend/src/app/carousel-test.component.ts`            | ~50    | Test-Komponente für Karussell                       |
 | `frontend/src/app/components/landing-page.component.ts`  | 447    | Startseite mit Statistiken und 3 Buch-Karussells    |
 | `frontend/src/app/components/search.component.ts`        | 406    | Buchsuche mit Filtern, Sortierung und Paging        |
 | `frontend/src/app/components/detail.component.ts`        | 1756   | Buch-Detailseite mit allen Produktinfos             |
@@ -44,23 +48,35 @@
 
 ## 2️⃣ Frontend - Services (State Management)
 
-| Datei                                           | Zeilen | Beschreibung                       |
-| ----------------------------------------------- | ------ | ---------------------------------- |
-| `frontend/src/app/services/buch-api.service.ts` | 329    | GraphQL API-Kommunikation, Caching |
-| `frontend/src/app/services/auth.service.ts`     | 175    | JWT Token-Handling, Login/Logout   |
-| `frontend/src/app/services/cart.service.ts`     | 186    | Warenkorb-State mit localStorage   |
-| `frontend/src/app/services/wishlist.service.ts` | 161    | Merklisten-State mit localStorage  |
+| Datei                                                | Zeilen | Beschreibung                       |
+| ---------------------------------------------------- | ------ | ---------------------------------- |
+| `frontend/src/app/services/buch-api.service.ts`      | 330    | GraphQL API-Kommunikation, Caching |
+| `frontend/src/app/services/auth.service.ts`          | 175    | JWT Token-Handling, Login/Logout   |
+| `frontend/src/app/services/cart.service.ts`          | 187    | Warenkorb-State mit localStorage   |
+| `frontend/src/app/services/wishlist.service.ts`      | 162    | Merklisten-State mit localStorage  |
+| `frontend/src/app/services/graphql-queries.ts`       | 112    | Alle GraphQL Queries & Mutations   |
+| `frontend/src/app/services/graphql-client.ts`        | 28     | GraphQL Client Setup               |
+| `frontend/src/app/services/buch-api.service.spec.ts` | 322    | Tests für BuchApiService           |
 
 ---
 
-## 3️⃣ Frontend - GraphQL & Auth
+## 3️⃣ Frontend - Templates (HTML & CSS)
 
-| Datei                                          | Zeilen | Beschreibung                      |
-| ---------------------------------------------- | ------ | --------------------------------- |
-| `frontend/src/app/services/graphql-queries.ts` | 112    | Alle GraphQL Queries & Mutations  |
-| `frontend/src/app/services/graphql-client.ts`  | 28     | GraphQL Client Setup              |
-| `frontend/src/app/auth.guard.ts`               | 22     | Route Guard für geschützte Seiten |
-| `frontend/src/app/auth.interceptor.ts`         | 27     | HTTP Interceptor für JWT Token    |
+| Datei                                                     | Zeilen | Beschreibung         |
+| --------------------------------------------------------- | ------ | -------------------- |
+| `frontend/src/app/templates/app.component.html`           | ~150   | App Shell Template   |
+| `frontend/src/app/templates/app.component.css`            | ~100   | App Shell Styles     |
+| `frontend/src/app/templates/book-carousel.component.html` | ~80    | Karussell Template   |
+| `frontend/src/app/templates/book-carousel.component.css`  | ~60    | Karussell Styles     |
+| `frontend/src/app/templates/detail.component.html`        | ~300   | Detailseite Template |
+| `frontend/src/app/templates/detail.component.css`         | ~200   | Detailseite Styles   |
+| `frontend/src/app/templates/landing-page.component.html`  | ~200   | Startseite Template  |
+| `frontend/src/app/templates/landing-page.component.css`   | ~150   | Startseite Styles    |
+| `frontend/src/app/templates/login.component.html`         | ~80    | Login Template       |
+| `frontend/src/app/templates/login.component.css`          | ~50    | Login Styles         |
+| `frontend/src/app/templates/new.component.html`           | ~250   | Neues Buch Template  |
+| `frontend/src/app/templates/new.component.css`            | ~100   | Neues Buch Styles    |
+| `frontend/src/app/templates/search.component.html`        | ~180   | Suchseite Template   |
 
 ---
 
@@ -70,7 +86,6 @@
 
 | Datei                                                  | Zeilen | Beschreibung              |
 | ------------------------------------------------------ | ------ | ------------------------- |
-| `frontend/src/app/services/buch-api.service.spec.ts`   | 322    | Tests für BuchApiService  |
 | `frontend/src/app/components/detail.component.spec.ts` | 525    | Tests für DetailComponent |
 
 ### E2E Tests (Playwright)
@@ -84,13 +99,12 @@
 
 ### Page Objects
 
-| Datei                                    | Zeilen | Beschreibung       |
-| ---------------------------------------- | ------ | ------------------ |
-| `frontend/e2e/pages/search.page.ts`      | 83     | Search Page Object |
-| `frontend/e2e/pages/detail.page.ts`      | 101    | Detail Page Object |
-| `frontend/e2e/pages/create.page.ts`      | 156    | Create Page Object |
-| `frontend/e2e/pages/login.page.ts`       | 40     | Login Page Object  |
-| `frontend/e2e/fixtures/test-fixtures.ts` | 56     | Test Fixtures      |
+| Datei                               | Zeilen | Beschreibung       |
+| ----------------------------------- | ------ | ------------------ |
+| `frontend/e2e/pages/search.page.ts` | 83     | Search Page Object |
+| `frontend/e2e/pages/detail.page.ts` | 101    | Detail Page Object |
+| `frontend/e2e/pages/create.page.ts` | 156    | Create Page Object |
+| `frontend/e2e/pages/login.page.ts`  | 40     | Login Page Object  |
 
 ---
 
@@ -223,10 +237,12 @@ angular-project/
 │   │   │   ├── app.component.ts       # Root Component
 │   │   │   ├── auth.guard.ts          # Route Protection
 │   │   │   ├── auth.interceptor.ts    # JWT Token Injection
+│   │   │   ├── carousel-test.component.ts # Karussell Test
 │   │   │   ├── components/            # Alle Komponenten
 │   │   │   │   ├── book-carousel.component.ts
 │   │   │   │   ├── cart.component.ts
 │   │   │   │   ├── detail.component.ts
+│   │   │   │   ├── detail.component.spec.ts
 │   │   │   │   ├── impressum.component.ts
 │   │   │   │   ├── kontakt.component.ts
 │   │   │   │   ├── landing-page.component.ts
@@ -237,6 +253,7 @@ angular-project/
 │   │   │   ├── services/              # Alle Services
 │   │   │   │   ├── auth.service.ts
 │   │   │   │   ├── buch-api.service.ts
+│   │   │   │   ├── buch-api.service.spec.ts
 │   │   │   │   ├── cart.service.ts
 │   │   │   │   ├── graphql-client.ts
 │   │   │   │   ├── graphql-queries.ts
@@ -254,8 +271,7 @@ angular-project/
 │   │   │       ├── login.component.css
 │   │   │       ├── new.component.html
 │   │   │       ├── new.component.css
-│   │   │       ├── search.component.html
-│   │   │       └── wishlist.component.html
+│   │   │       └── search.component.html
 │   │   ├── assets/
 │   │   │   ├── covers/               # 159 SVG-Dateien
 │   │   │   ├── cover-generierung/    # 7 Generator-Scripts
@@ -265,8 +281,15 @@ angular-project/
 │   │   └── index.html
 │   ├── e2e/                          # Playwright Tests
 │   │   ├── specs/
-│   │   ├── pages/
-│   │   └── fixtures/
+│   │   │   ├── create.spec.ts
+│   │   │   ├── detail.spec.ts
+│   │   │   ├── login.spec.ts
+│   │   │   └── search.spec.ts
+│   │   └── pages/
+│   │       ├── create.page.ts
+│   │       ├── detail.page.ts
+│   │       ├── login.page.ts
+│   │       └── search.page.ts
 │   └── *.json, *.ts                  # Konfiguration
 │
 ├── scripts/                          # Organisierte Scripts
@@ -300,7 +323,7 @@ angular-project/
 │   ├── home/                         # 🆕
 │   └── buch/, config/                # Erweitert
 │
-└── struktur/                         # 🆕 KOMPLETT NEU
+└── 1.struktur/                       # 🆕 KOMPLETT NEU
     ├── projektbeschreibung.md
     ├── technische-details.md
     ├── neue-dateien-uebersicht.md
@@ -339,10 +362,10 @@ angular-project/
 | `37955ef` - `30d0469` | Dez 2025   | Warenkorb & Löschen           |
 | `3cda869` - `af38b16` | Dez 2025   | Neu Anlegen                   |
 | `6c98cea`             | Dez 2025   | HTTPS                         |
-| `1cbe90a`             | Dez 2025   | **Aktuell**                   |
+| `...`                 | Dez 2025   | **Aktuell**                   |
 
 ---
 
 ## Erstellungsdatum
 
-Erstellt am 19.12.2025
+Erstellt am 19.12.2025, aktualisiert am 28.12.2025
