@@ -36,7 +36,7 @@ DetailComponent                    CartService                 CartComponent
 
 #### Implementierungsdetails
 
-##### CartService (cart.service.ts)
+##### CartService (services/cart.service.ts)
 
 ```typescript
 export class CartService {
@@ -105,7 +105,7 @@ DetailComponent                WishlistService            WishlistComponent
 
 #### Besonderheit Synchroner UI-Feedback
 
-##### DetailComponent Template
+##### DetailComponent Template (templates/detail.component.html)
 
 ```html
 <button
@@ -116,7 +116,7 @@ DetailComponent                WishlistService            WishlistComponent
 </button>
 ```
 
-##### Synchronisation über Observable
+##### Synchronisation über Observable (components/detail.component.ts)
 
 ```typescript
 export class DetailComponent {
@@ -176,7 +176,7 @@ LandingPageComponent          BuchApiService          BookCarouselComponent
 
 #### GraphQL Query-Optimierung
 
-##### Schwabenpreis Query (günstigste Bücher)
+##### Schwabenpreis Query (components/landing-page.component.ts)
 
 ```typescript
 this.api.list({ size: 15, sortierung: 'preisAsc' }).subscribe({
@@ -264,10 +264,10 @@ body {
 }
 ```
 
-##### Komponenten-Level Styles
+##### Komponenten-Level Styles (templates/detail.component.css)
 
 ```css
-/* detail.component.ts */
+/* templates/detail.component.css */
 .product-card {
   background: white;
   color: #212529;
@@ -340,7 +340,7 @@ Component              BuchApiService         HttpClient        Backend
 
 #### Error Handling Strategy
 
-##### BuchApiService
+##### BuchApiService (services/buch-api.service.ts)
 
 ```typescript
 getById(id: number): Observable<BuchItem> {
@@ -410,16 +410,29 @@ Browser URL Change        Router               AuthGuard          Component
 
 #### Route-Konfiguration
 
-##### main.ts
+##### main.ts (mit Imports aus components/)
 
 ```typescript
+// Imports aus components/
+import { LandingPageComponent } from './app/components/landing-page.component';
+import { LoginComponent } from './app/components/login.component';
+import { SearchComponent } from './app/components/search.component';
+import { DetailComponent } from './app/components/detail.component';
+import { CartComponent } from './app/components/cart.component';
+import { WishlistComponent } from './app/components/wishlist.component';
+import { NewComponent } from './app/components/new.component';
+import { KontaktComponent } from './app/components/kontakt.component';
+import { ImpressumComponent } from './app/components/impressum.component';
+// Auth aus app/
+import { authGuard } from './app/auth.guard';
+
 export const routes: Route[] = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'search', component: SearchComponent },
   { path: 'detail/:id', component: DetailComponent },
-  { path: 'cart', component: CartComponent }, // NEU
-  { path: 'wishlist', component: WishlistComponent }, // NEU
+  { path: 'cart', component: CartComponent },
+  { path: 'wishlist', component: WishlistComponent },
   {
     path: 'new',
     component: NewComponent,
@@ -437,12 +450,13 @@ export const routes: Route[] = [
 ### 1. **Standalone Components** (Angular 19)
 
 ```typescript
+// Beispiel: components/cart.component.ts
 @Component({
   selector: 'app-cart',
   standalone: true,
   imports: [CommonModule, RouterLink, FormsModule, NgbAlert],
-  template: `...`,
-  styles: [`...`]
+  templateUrl: '../templates/cart.component.html',
+  styleUrls: ['../templates/cart.component.css']
 })
 ```
 
@@ -453,9 +467,10 @@ export const routes: Route[] = [
 - Bessere Tree-Shaking
 - Explizite Abhängigkeiten
 
-### 2. **RxJS BehaviorSubject für State**
+### 2. **RxJS BehaviorSubject für State** (services/)
 
 ```typescript
+// services/cart.service.ts
 private itemsSubject = new BehaviorSubject<CartItem[]>([]);
 public items$ = this.itemsSubject.asObservable();
 ```

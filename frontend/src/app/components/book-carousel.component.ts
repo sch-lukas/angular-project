@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import type { BuchItem } from '../core/services/buch-api.service';
+import type { BuchItem } from '../services/buch-api.service';
 
 @Component({
     selector: 'app-book-carousel',

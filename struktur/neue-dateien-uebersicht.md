@@ -24,53 +24,43 @@
 
 ## 1️⃣ Frontend - Angular Components
 
-### Haupt-Komponenten (features/buch/pages/)
+### Komponenten (components/)
 
-| Datei                                                            | Zeilen | Beschreibung                                        |
-| ---------------------------------------------------------------- | ------ | --------------------------------------------------- |
-| `frontend/src/app/app.component.ts`                              | 249    | App Shell: Header, Navigation, Theme-Toggle, Footer |
-| `frontend/src/app/features/buch/pages/landing-page.component.ts` | 447    | Startseite mit Statistiken und 3 Buch-Karussells    |
-| `frontend/src/app/features/buch/pages/search.component.ts`       | 406    | Buchsuche mit Filtern, Sortierung und Paging        |
-| `frontend/src/app/features/buch/pages/detail.component.ts`       | 1756   | Buch-Detailseite mit allen Produktinfos             |
-| `frontend/src/app/features/buch/pages/new.component.ts`          | 1073   | Formular zum Anlegen neuer Bücher                   |
-| `frontend/src/app/features/auth/pages/login.component.ts`        | 290    | Login-Formular mit JWT-Authentifizierung            |
-
-### Feature-Komponenten
-
-| Datei                                                           | Zeilen | Beschreibung                      |
-| --------------------------------------------------------------- | ------ | --------------------------------- |
-| `frontend/src/app/features/buch/cart/cart.component.ts`         | 526    | Warenkorb mit Mengensteuerung     |
-| `frontend/src/app/features/buch/wishlist/wishlist.component.ts` | 294    | Merkliste/Favoriten-Verwaltung    |
-| `frontend/src/app/shared/components/book-carousel.component.ts` | 398    | Wiederverwendbares Buch-Karussell |
-
-### Statische Seiten (features/static/pages/)
-
-| Datei                                                           | Zeilen | Beschreibung |
-| --------------------------------------------------------------- | ------ | ------------ |
-| `frontend/src/app/features/static/pages/impressum.component.ts` | 75     | Impressum    |
-| `frontend/src/app/features/static/pages/kontakt.component.ts`   | 73     | Kontaktseite |
+| Datei                                                    | Zeilen | Beschreibung                                        |
+| -------------------------------------------------------- | ------ | --------------------------------------------------- |
+| `frontend/src/app/app.component.ts`                      | 249    | App Shell: Header, Navigation, Theme-Toggle, Footer |
+| `frontend/src/app/components/landing-page.component.ts`  | 447    | Startseite mit Statistiken und 3 Buch-Karussells    |
+| `frontend/src/app/components/search.component.ts`        | 406    | Buchsuche mit Filtern, Sortierung und Paging        |
+| `frontend/src/app/components/detail.component.ts`        | 1756   | Buch-Detailseite mit allen Produktinfos             |
+| `frontend/src/app/components/new.component.ts`           | 1073   | Formular zum Anlegen neuer Bücher                   |
+| `frontend/src/app/components/login.component.ts`         | 290    | Login-Formular mit JWT-Authentifizierung            |
+| `frontend/src/app/components/cart.component.ts`          | 526    | Warenkorb mit Mengensteuerung                       |
+| `frontend/src/app/components/wishlist.component.ts`      | 294    | Merkliste/Favoriten-Verwaltung                      |
+| `frontend/src/app/components/book-carousel.component.ts` | 398    | Wiederverwendbares Buch-Karussell                   |
+| `frontend/src/app/components/impressum.component.ts`     | 75     | Impressum                                           |
+| `frontend/src/app/components/kontakt.component.ts`       | 73     | Kontaktseite                                        |
 
 ---
 
 ## 2️⃣ Frontend - Services (State Management)
 
-| Datei                                                         | Zeilen | Beschreibung                       |
-| ------------------------------------------------------------- | ------ | ---------------------------------- |
-| `frontend/src/app/core/services/buch-api.service.ts`          | 329    | GraphQL API-Kommunikation, Caching |
-| `frontend/src/app/core/services/auth.service.ts`              | 175    | JWT Token-Handling, Login/Logout   |
-| `frontend/src/app/features/buch/cart/cart.service.ts`         | 186    | Warenkorb-State mit localStorage   |
-| `frontend/src/app/features/buch/wishlist/wishlist.service.ts` | 161    | Merklisten-State mit localStorage  |
+| Datei                                           | Zeilen | Beschreibung                       |
+| ----------------------------------------------- | ------ | ---------------------------------- |
+| `frontend/src/app/services/buch-api.service.ts` | 329    | GraphQL API-Kommunikation, Caching |
+| `frontend/src/app/services/auth.service.ts`     | 175    | JWT Token-Handling, Login/Logout   |
+| `frontend/src/app/services/cart.service.ts`     | 186    | Warenkorb-State mit localStorage   |
+| `frontend/src/app/services/wishlist.service.ts` | 161    | Merklisten-State mit localStorage  |
 
 ---
 
 ## 3️⃣ Frontend - GraphQL & Auth
 
-| Datei                                                    | Zeilen | Beschreibung                      |
-| -------------------------------------------------------- | ------ | --------------------------------- |
-| `frontend/src/app/core/services/graphql-queries.ts`      | 112    | Alle GraphQL Queries & Mutations  |
-| `frontend/src/app/core/services/graphql-client.ts`       | 28     | GraphQL Client Setup              |
-| `frontend/src/app/core/guards/auth.guard.ts`             | 22     | Route Guard für geschützte Seiten |
-| `frontend/src/app/core/interceptors/auth.interceptor.ts` | 27     | HTTP Interceptor für JWT Token    |
+| Datei                                          | Zeilen | Beschreibung                      |
+| ---------------------------------------------- | ------ | --------------------------------- |
+| `frontend/src/app/services/graphql-queries.ts` | 112    | Alle GraphQL Queries & Mutations  |
+| `frontend/src/app/services/graphql-client.ts`  | 28     | GraphQL Client Setup              |
+| `frontend/src/app/auth.guard.ts`               | 22     | Route Guard für geschützte Seiten |
+| `frontend/src/app/auth.interceptor.ts`         | 27     | HTTP Interceptor für JWT Token    |
 
 ---
 
@@ -78,10 +68,10 @@
 
 ### Unit Tests
 
-| Datei                                       | Zeilen | Beschreibung              |
-| ------------------------------------------- | ------ | ------------------------- |
-| `frontend/src/app/buch-api.service.spec.ts` | 322    | Tests für BuchApiService  |
-| `frontend/src/app/detail.component.spec.ts` | 525    | Tests für DetailComponent |
+| Datei                                                  | Zeilen | Beschreibung              |
+| ------------------------------------------------------ | ------ | ------------------------- |
+| `frontend/src/app/services/buch-api.service.spec.ts`   | 322    | Tests für BuchApiService  |
+| `frontend/src/app/components/detail.component.spec.ts` | 525    | Tests für DetailComponent |
 
 ### E2E Tests (Playwright)
 
@@ -156,6 +146,10 @@
 | `scripts/db/list-books.mjs`       | 21     | Bücher aus DB auflisten (Prisma)     |
 | `scripts/db/list-books-pg.mjs`    | 28     | Bücher aus DB auflisten (PostgreSQL) |
 | `scripts/db/migrate-add-pfad.mjs` | 39     | Migrations-Script für Pfad-Feld      |
+| `scripts/db/count-books.mjs`      | -      | Bücher zählen                        |
+| `scripts/db/dist-reset-db.mjs`    | -      | DB zurücksetzen (Distribution)       |
+| `scripts/db/reset-db.mjs`         | -      | DB zurücksetzen (Entwicklung)        |
+| `scripts/db/run-seed.mjs`         | -      | Seed-Daten laden                     |
 
 ### scripts/build/ - Build-Scripts
 
@@ -166,15 +160,20 @@
 | `scripts/build/sonar-scanner.mts`                | -      | SonarQube Code-Analyse    |
 | `scripts/build/dependency-check.mts`             | -      | Dependency Security Check |
 | `scripts/build/dependency-check-suppression.xml` | -      | Suppression-Regeln        |
+| `scripts/build/typedoc.mjs`                      | -      | TypeDoc Dokumentation     |
 
 ### scripts/dev/ - Entwicklungs-/Test-Scripts
 
-| Datei                                | Zeilen | Beschreibung                   |
-| ------------------------------------ | ------ | ------------------------------ |
-| `scripts/dev/static-serve.mjs`       | 52     | Statischer HTTP-Server für SPA |
-| `scripts/dev/generate-load.mts`      | -      | Lasttest-Generator             |
-| `scripts/dev/temp-graphql-pages.mjs` | 58     | GraphQL Pagination Test        |
-| `scripts/dev/temp-graphql-test.mjs`  | 39     | GraphQL Query Test             |
+| Datei                                  | Zeilen | Beschreibung                   |
+| -------------------------------------- | ------ | ------------------------------ |
+| `scripts/dev/static-serve.mjs`         | 52     | Statischer HTTP-Server für SPA |
+| `scripts/dev/generate-load.mts`        | -      | Lasttest-Generator             |
+| `scripts/dev/temp-graphql-pages.mjs`   | 58     | GraphQL Pagination Test        |
+| `scripts/dev/temp-graphql-test.mjs`    | 39     | GraphQL Query Test             |
+| `scripts/dev/test-delete.ps1`          | -      | PowerShell: Buch löschen Test  |
+| `scripts/dev/test-post.ps1`            | -      | PowerShell: POST Test          |
+| `scripts/dev/test-frontend-create.ps1` | -      | PowerShell: Frontend Create    |
+| `scripts/dev/test-frontend-delete.ps1` | -      | PowerShell: Frontend Delete    |
 
 ---
 
@@ -221,47 +220,32 @@ angular-project/
 ├── frontend/                          # 🆕 KOMPLETT NEU
 │   ├── src/
 │   │   ├── app/
-│   │   │   ├── app.component.ts
-│   │   │   ├── core/                  # Kern-Infrastruktur
-│   │   │   │   ├── guards/
-│   │   │   │   │   └── auth.guard.ts
-│   │   │   │   ├── interceptors/
-│   │   │   │   │   └── auth.interceptor.ts
-│   │   │   │   └── services/
-│   │   │   │       ├── auth.service.ts
-│   │   │   │       ├── buch-api.service.ts
-│   │   │   │       ├── graphql-client.ts
-│   │   │   │       └── graphql-queries.ts
-│   │   │   ├── features/              # Feature-Module
-│   │   │   │   ├── auth/
-│   │   │   │   │   └── pages/
-│   │   │   │   │       └── login.component.ts
-│   │   │   │   ├── buch/
-│   │   │   │   │   ├── cart/
-│   │   │   │   │   │   ├── cart.component.ts
-│   │   │   │   │   │   └── cart.service.ts
-│   │   │   │   │   ├── pages/
-│   │   │   │   │   │   ├── detail.component.ts
-│   │   │   │   │   │   ├── landing-page.component.ts
-│   │   │   │   │   │   ├── new.component.ts
-│   │   │   │   │   │   └── search.component.ts
-│   │   │   │   │   └── wishlist/
-│   │   │   │   │       ├── wishlist.component.ts
-│   │   │   │   │       └── wishlist.service.ts
-│   │   │   │   └── static/
-│   │   │   │       └── pages/
-│   │   │   │           ├── impressum.component.ts
-│   │   │   │           └── kontakt.component.ts
-│   │   │   ├── shared/                # Wiederverwendbare Komponenten
-│   │   │   │   └── components/
-│   │   │   │       └── book-carousel.component.ts
+│   │   │   ├── app.component.ts       # Root Component
+│   │   │   ├── auth.guard.ts          # Route Protection
+│   │   │   ├── auth.interceptor.ts    # JWT Token Injection
+│   │   │   ├── components/            # Alle Komponenten
+│   │   │   │   ├── book-carousel.component.ts
+│   │   │   │   ├── cart.component.ts
+│   │   │   │   ├── detail.component.ts
+│   │   │   │   ├── impressum.component.ts
+│   │   │   │   ├── kontakt.component.ts
+│   │   │   │   ├── landing-page.component.ts
+│   │   │   │   ├── login.component.ts
+│   │   │   │   ├── new.component.ts
+│   │   │   │   ├── search.component.ts
+│   │   │   │   └── wishlist.component.ts
+│   │   │   ├── services/              # Alle Services
+│   │   │   │   ├── auth.service.ts
+│   │   │   │   ├── buch-api.service.ts
+│   │   │   │   ├── cart.service.ts
+│   │   │   │   ├── graphql-client.ts
+│   │   │   │   ├── graphql-queries.ts
+│   │   │   │   └── wishlist.service.ts
 │   │   │   └── templates/             # HTML & CSS Templates
 │   │   │       ├── app.component.html
 │   │   │       ├── app.component.css
 │   │   │       ├── book-carousel.component.html
 │   │   │       ├── book-carousel.component.css
-│   │   │       ├── cart.component.html
-│   │   │       ├── cart.component.css
 │   │   │       ├── detail.component.html
 │   │   │       ├── detail.component.css
 │   │   │       ├── landing-page.component.html
@@ -287,20 +271,29 @@ angular-project/
 │
 ├── scripts/                          # Organisierte Scripts
 │   ├── db/                           # Datenbank-Scripts
+│   │   ├── count-books.mjs
+│   │   ├── dist-reset-db.mjs
 │   │   ├── list-books.mjs
 │   │   ├── list-books-pg.mjs
-│   │   └── migrate-add-pfad.mjs
+│   │   ├── migrate-add-pfad.mjs
+│   │   ├── reset-db.mjs
+│   │   └── run-seed.mjs
 │   ├── build/                        # Build-Scripts
 │   │   ├── asciidoctor.mts
 │   │   ├── copy-resources.mts
-│   │   ├── sonar-scanner.mts
 │   │   ├── dependency-check.mts
-│   │   └── dependency-check-suppression.xml
+│   │   ├── dependency-check-suppression.xml
+│   │   ├── sonar-scanner.mts
+│   │   └── typedoc.mjs
 │   └── dev/                          # Entwicklungs-Scripts
-│       ├── static-serve.mjs
 │       ├── generate-load.mts
+│       ├── static-serve.mjs
 │       ├── temp-graphql-pages.mjs
-│       └── temp-graphql-test.mjs
+│       ├── temp-graphql-test.mjs
+│       ├── test-delete.ps1
+│       ├── test-frontend-create.ps1
+│       ├── test-frontend-delete.ps1
+│       └── test-post.ps1
 │
 ├── src/                              # Backend (erweitert)
 │   ├── db/seed.ts                    # 🆕
