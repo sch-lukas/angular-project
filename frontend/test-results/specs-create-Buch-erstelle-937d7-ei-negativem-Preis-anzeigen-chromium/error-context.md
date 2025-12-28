@@ -1,0 +1,41 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - img "Buch SPA Logo" [ref=e6]
+    - generic [ref=e7]:
+      - navigation [ref=e8]:
+        - link "Home" [ref=e9] [cursor=pointer]:
+          - /url: /
+        - link "Suche" [ref=e10] [cursor=pointer]:
+          - /url: /search
+        - link "🛒 Warenkorb" [ref=e11] [cursor=pointer]:
+          - /url: /cart
+        - link "❤️ Merkliste" [ref=e12] [cursor=pointer]:
+          - /url: /wishlist
+        - link "Login" [ref=e13] [cursor=pointer]:
+          - /url: /login
+      - button "Light" [ref=e14] [cursor=pointer]
+  - main [ref=e15]:
+    - generic [ref=e18]:
+      - heading "Login" [level=1] [ref=e19]
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e22]: Benutzername
+          - textbox "Benutzername" [ref=e23]:
+            - /placeholder: admin
+        - generic [ref=e24]:
+          - generic [ref=e25]: Passwort
+          - textbox "Passwort" [ref=e26]:
+            - /placeholder: ••••••
+        - generic [ref=e27]:
+          - button "Anmelden" [disabled]
+  - contentinfo [ref=e28]:
+    - generic [ref=e29]: © Buch SPA
+    - generic [ref=e30]:
+      - link "Kontakt" [ref=e31] [cursor=pointer]:
+        - /url: /kontakt
+      - link "Impressum" [ref=e32] [cursor=pointer]:
+        - /url: /impressum
+```

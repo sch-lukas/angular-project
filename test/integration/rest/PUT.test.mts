@@ -45,7 +45,7 @@ const geaendertesBuch: Omit<BuchDtoOhneRef, 'preis' | 'rabatt'> & {
     homepage: 'https://geaendert.put.rest',
     schlagwoerter: ['JAVA'],
 };
-const idVorhanden = '30';
+const idVorhanden = '1030';
 
 const geaendertesBuchIdNichtVorhanden: Omit<
     BuchDtoOhneRef,
@@ -103,9 +103,14 @@ describe('PUT /rest/:id', () => {
     test('Vorhandenes Buch aendern', async () => {
         // given
         const url = `${restURL}/${idVorhanden}`;
+
+        // Zuerst aktuelle Version abrufen
+        const getResponse = await fetch(url);
+        const etag = getResponse.headers.get('ETag') ?? '"0"';
+
         const headers = new Headers();
         headers.append(CONTENT_TYPE, APPLICATION_JSON);
-        headers.append(IF_MATCH, '"0"');
+        headers.append(IF_MATCH, etag);
         headers.append(AUTHORIZATION, `${BEARER} ${token}`);
 
         // when

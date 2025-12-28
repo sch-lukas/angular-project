@@ -17,16 +17,16 @@ import { HttpStatus } from '@nestjs/common';
 import BigNumber from 'bignumber.js';
 import { describe, expect, test } from 'vitest';
 import { type Page } from '../../../src/buch/controller/page.js';
-import { CONTENT_TYPE, restURL } from '../constants.mjs';
-import { Buch } from '../../../src/generated/prisma/client.js';
 import { BuchMitTitel } from '../../../src/buch/service/buch-service.js';
+import { Buch } from '../../../src/generated/prisma/client.js';
+import { CONTENT_TYPE, restURL } from '../constants.mjs';
 
 // -----------------------------------------------------------------------------
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
 const titelArray = ['a', 'l', 't'];
 const titelNichtVorhanden = ['xxx', 'yyy', 'zzz'];
-const isbns = ['978-3-897-22583-1', '978-3-827-31552-6', '978-0-201-63361-0'];
+const isbns = ['9780006000001', '9780006000002', '9780006000003'];
 const ratingMin = [3, 4];
 const preisMax = [33.5, 66.6];
 const schlagwoerter = ['javascript', 'typescript'];

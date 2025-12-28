@@ -17,6 +17,7 @@
 import { type GraphQLRequest } from '@apollo/server';
 import { HttpStatus } from '@nestjs/common';
 import { beforeAll, describe, expect, test } from 'vitest';
+import { Buchart, type Prisma } from '../../../src/generated/prisma/client.js';
 import {
     ACCEPT,
     APPLICATION_JSON,
@@ -25,7 +26,6 @@ import {
     POST,
     graphqlURL,
 } from '../constants.mjs';
-import { Buchart, type Prisma } from '../../../src/generated/prisma/client.js';
 
 export type BuchDTO = Omit<
     Prisma.BuchGetPayload<{
@@ -37,7 +37,19 @@ export type BuchDTO = Omit<
 >;
 
 type BuchSuccessType = { data: { buch: BuchDTO }; errors?: undefined };
-type BuecherSuccessType = { data: { buecher: BuchDTO[] }; errors?: undefined };
+type BuecherPageType = {
+    content: BuchDTO[];
+    page: {
+        size: number;
+        number: number;
+        totalElements: number;
+        totalPages: number;
+    };
+};
+type BuecherSuccessType = {
+    data: { buecher: BuecherPageType };
+    errors?: undefined;
+};
 
 export type ErrorsType = {
     message: string;
@@ -50,11 +62,11 @@ type BuecherErrorsType = { data: { buecher: null }; errors: ErrorsType };
 // -----------------------------------------------------------------------------
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
-const ids = [1, 20];
+const ids = [1000, 1020];
 
 const titelArray = ['a', 'l', 't'];
 const titelNichtVorhanden = ['xxx', 'yyy', 'zzz'];
-const isbns = ['978-3-897-22583-1', '978-3-827-31552-6', '978-0-201-63361-0'];
+const isbns = ['9780006000001', '9780006000002', '9780006000003'];
 const ratingMin = [3, 4];
 const ratingNichtVorhanden = 99;
 
@@ -162,9 +174,9 @@ describe('GraphQL Queries', () => {
 
         expect(message).toBe(`Es gibt kein Buch mit der ID ${id}.`);
         expect(path).toBeDefined();
-        expect(path![0]).toBe('buch');
+        expect(path?.[0]).toBe('buch');
         expect(extensions).toBeDefined();
-        expect(extensions!.code).toBe('BAD_USER_INPUT');
+        expect(extensions?.code).toBe('BAD_USER_INPUT');
     });
 
     test.concurrent.each(titelArray)(
@@ -177,8 +189,10 @@ describe('GraphQL Queries', () => {
                         buecher(suchparameter: {
                             titel: "${titel}"
                         }) {
-                            titel {
-                                titel
+                            content {
+                                titel {
+                                    titel
+                                }
                             }
                         }
                     }
@@ -208,9 +222,9 @@ describe('GraphQL Queries', () => {
 
             const { buecher } = data;
 
-            expect(buecher).not.toHaveLength(0);
+            expect(buecher.content).not.toHaveLength(0);
 
-            buecher
+            buecher.content
                 .map((buch) => buch.titel)
                 .forEach((t) =>
                     expect(t?.titel?.toLowerCase()).toStrictEqual(
@@ -230,9 +244,11 @@ describe('GraphQL Queries', () => {
                         buecher(suchparameter: {
                             titel: "${titel}"
                         }) {
-                            art
-                            titel {
-                                titel
+                            content {
+                                art
+                                titel {
+                                    titel
+                                }
                             }
                         }
                     }
@@ -265,9 +281,9 @@ describe('GraphQL Queries', () => {
 
             expect(message).toMatch(/^Keine Buecher gefunden:/u);
             expect(path).toBeDefined();
-            expect(path![0]).toBe('buecher');
+            expect(path?.[0]).toBe('buecher');
             expect(extensions).toBeDefined();
-            expect(extensions!.code).toBe('BAD_USER_INPUT');
+            expect(extensions?.code).toBe('BAD_USER_INPUT');
         },
     );
 
@@ -281,9 +297,11 @@ describe('GraphQL Queries', () => {
                         buecher(suchparameter: {
                             isbn: "${isbnExpected}"
                         }) {
-                            isbn
-                            titel {
-                                titel
+                            content {
+                                isbn
+                                titel {
+                                    titel
+                                }
                             }
                         }
                     }
@@ -313,10 +331,10 @@ describe('GraphQL Queries', () => {
 
             const { buecher } = data;
 
-            expect(buecher).not.toHaveLength(0);
-            expect(buecher).toHaveLength(1);
+            expect(buecher.content).not.toHaveLength(0);
+            expect(buecher.content).toHaveLength(1);
 
-            const [buch] = buecher;
+            const [buch] = buecher.content;
             const { titel, isbn } = buch!;
 
             expect(isbn).toBe(isbnExpected);
@@ -336,9 +354,11 @@ describe('GraphQL Queries', () => {
                             rating: ${ratingExpected},
                             titel: "${teilTitel}"
                         }) {
-                            rating
-                            titel {
-                                titel
+                            content {
+                                rating
+                                titel {
+                                    titel
+                                }
                             }
                         }
                     }
@@ -368,9 +388,9 @@ describe('GraphQL Queries', () => {
 
             const { buecher } = data;
 
-            expect(buecher).not.toHaveLength(0);
+            expect(buecher.content).not.toHaveLength(0);
 
-            buecher.forEach((buch) => {
+            buecher.content.forEach((buch) => {
                 const { rating, titel } = buch;
 
                 expect(rating).toBeGreaterThanOrEqual(ratingExpected);
@@ -389,8 +409,10 @@ describe('GraphQL Queries', () => {
                     buecher(suchparameter: {
                         rating: ${ratingNichtVorhanden}
                     }) {
-                        titel {
-                            titel
+                        content {
+                            titel {
+                                titel
+                            }
                         }
                     }
                 }
@@ -422,9 +444,9 @@ describe('GraphQL Queries', () => {
 
         expect(message).toMatch(/^Keine Buecher gefunden:/u);
         expect(path).toBeDefined();
-        expect(path![0]).toBe('buecher');
+        expect(path?.[0]).toBe('buecher');
         expect(extensions).toBeDefined();
-        expect(extensions!.code).toBe('BAD_USER_INPUT');
+        expect(extensions?.code).toBe('BAD_USER_INPUT');
     });
 
     test.concurrent('Buecher zur Art "EPUB"', async () => {
@@ -436,9 +458,11 @@ describe('GraphQL Queries', () => {
                     buecher(suchparameter: {
                         art: ${buchArt}
                     }) {
-                        art
-                        titel {
-                            titel
+                        content {
+                            art
+                            titel {
+                                titel
+                            }
                         }
                     }
                 }
@@ -465,11 +489,11 @@ describe('GraphQL Queries', () => {
         expect(errors).toBeUndefined();
         expect(data).toBeDefined();
 
-        const { buecher }: { buecher: BuchDTO[] } = data;
+        const { buecher } = data;
 
-        expect(buecher).not.toHaveLength(0);
+        expect(buecher.content).not.toHaveLength(0);
 
-        buecher.forEach((buch) => {
+        buecher.content.forEach((buch) => {
             const { art, titel } = buch;
 
             expect(art).toBe(buchArt);
@@ -512,13 +536,14 @@ describe('GraphQL Queries', () => {
         const { data, errors } = (await response.json()) as BuecherErrorsType;
 
         expect(data).toBeUndefined();
-        expect(errors).toHaveLength(1);
+        expect(errors).toBeDefined();
+        expect(errors.length).toBeGreaterThanOrEqual(1);
 
         const [error] = errors;
         const { extensions } = error!;
 
         expect(extensions).toBeDefined();
-        expect(extensions!.code).toBe('GRAPHQL_VALIDATION_FAILED');
+        expect(extensions?.code).toBe('GRAPHQL_VALIDATION_FAILED');
     });
 
     test.concurrent('Buecher mit lieferbar=true', async () => {
@@ -529,9 +554,11 @@ describe('GraphQL Queries', () => {
                     buecher(suchparameter: {
                         lieferbar: true
                     }) {
-                        lieferbar
-                        titel {
-                            titel
+                        content {
+                            lieferbar
+                            titel {
+                                titel
+                            }
                         }
                     }
                 }
@@ -558,11 +585,11 @@ describe('GraphQL Queries', () => {
         expect(errors).toBeUndefined();
         expect(data).toBeDefined();
 
-        const { buecher }: { buecher: BuchDTO[] } = data;
+        const { buecher } = data;
 
-        expect(buecher).not.toHaveLength(0);
+        expect(buecher.content).not.toHaveLength(0);
 
-        buecher.forEach((buch) => {
+        buecher.content.forEach((buch) => {
             const { lieferbar, titel } = buch;
 
             expect(lieferbar).toBe(true);

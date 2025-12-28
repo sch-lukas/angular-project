@@ -29,7 +29,7 @@ describe('BuchWriteService create', () => {
     let service: BuchWriteService;
     let prismaServiceMock: PrismaService;
     let readService: BuchService;
-    let mailService: MailService;
+    let mailServiceMock: MailService;
     let buchCreateMock: ReturnType<typeof vi.fn>;
 
     beforeEach(() => {
@@ -60,13 +60,15 @@ describe('BuchWriteService create', () => {
 
         readService = new BuchService(prismaServiceMock, whereBuilder);
 
-        // TODO Mocking der Funktion sendMail()
-        mailService = new MailService();
+        // Mock MailService - sendmail soll sofort resolven ohne echte E-Mail
+        mailServiceMock = {
+            sendmail: vi.fn().mockResolvedValue(undefined),
+        } as unknown as MailService;
 
         service = new BuchWriteService(
             prismaServiceMock,
             readService,
-            mailService,
+            mailServiceMock,
         );
     });
 
