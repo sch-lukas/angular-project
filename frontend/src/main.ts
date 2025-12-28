@@ -3,18 +3,18 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, Routes } from '@angular/router';
 import { AppComponent } from './app/app.component';
+import { authGuard } from './app/auth.guard';
+import { authInterceptor } from './app/auth.interceptor';
 import { CarouselTestComponent } from './app/carousel-test.component';
-import { authGuard } from './app/core/auth.guard';
-import { authInterceptor } from './app/core/auth.interceptor';
-import { LoginComponent } from './app/features/auth/login.component';
-import { CartComponent } from './app/features/buch/cart/cart.component';
-import { DetailComponent } from './app/features/buch/pages/detail.component';
-import { LandingPageComponent } from './app/features/buch/pages/landing-page.component';
-import { NewComponent } from './app/features/buch/pages/new.component';
-import { SearchComponent } from './app/features/buch/pages/search.component';
-import { WishlistComponent } from './app/features/buch/wishlist/wishlist.component';
-import { ImpressumComponent } from './app/features/static/pages/impressum.component';
-import { KontaktComponent } from './app/features/static/pages/kontakt.component';
+import { CartComponent } from './app/components/cart.component';
+import { DetailComponent } from './app/components/detail.component';
+import { ImpressumComponent } from './app/components/impressum.component';
+import { KontaktComponent } from './app/components/kontakt.component';
+import { LandingPageComponent } from './app/components/landing-page.component';
+import { LoginComponent } from './app/components/login.component';
+import { NewComponent } from './app/components/new.component';
+import { SearchComponent } from './app/components/search.component';
+import { WishlistComponent } from './app/components/wishlist.component';
 
 const routes: Routes = [
     { path: '', component: LandingPageComponent },

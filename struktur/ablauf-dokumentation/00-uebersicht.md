@@ -20,7 +20,7 @@ Diese Dokumentation erklärt anhand eines **Beispiel-Nutzerflusses**, wie die ve
 
 ## 🏗️ Architektur-Überblick
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                              BROWSER                                         │
 │  ┌────────────────────────────────────────────────────────────────────────┐ │
@@ -102,7 +102,7 @@ Diese Dokumentation erklärt anhand eines **Beispiel-Nutzerflusses**, wie die ve
 
 ## 📍 Beispiel-User-Flow (Komplettübersicht)
 
-```
+```text
 1. STARTSEITE
    └── Nutzer öffnet https://localhost:3000
        └── LandingPageComponent lädt

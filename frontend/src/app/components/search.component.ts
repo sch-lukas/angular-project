@@ -6,13 +6,13 @@ import {
     BuchApiService,
     BuchItem,
     BuchPage,
-} from '../../../core/services/buch-api.service';
+} from '../services/buch-api.service';
 
 @Component({
     selector: 'app-search',
     standalone: true,
     imports: [CommonModule, FormsModule, RouterLink],
-    templateUrl: '../../../templates/search.component.html',
+    templateUrl: '../templates/search.component.html',
 })
 export class SearchComponent implements OnInit {
     items: BuchItem[] | null = null;

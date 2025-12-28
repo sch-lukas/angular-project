@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
-import type { WishlistItem } from './wishlist.service';
-import { WishlistService } from './wishlist.service';
+import type { WishlistItem } from '../services/wishlist.service';
+import { WishlistService } from '../services/wishlist.service';
 
 @Component({
     selector: 'app-wishlist',

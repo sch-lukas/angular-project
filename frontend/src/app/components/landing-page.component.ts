@@ -5,15 +5,15 @@ import {
     BuchApiService,
     type BuchItem,
     type BuchStats,
-} from '../../../core/services/buch-api.service';
-import { BookCarouselComponent } from '../../../shared/book-carousel.component';
+} from '../services/buch-api.service';
+import { BookCarouselComponent } from './book-carousel.component';
 
 @Component({
     selector: 'app-landing-page',
     standalone: true,
     imports: [CommonModule, BookCarouselComponent],
-    templateUrl: '../../../templates/landing-page.component.html',
-    styleUrls: ['../../../templates/landing-page.component.css'],
+    templateUrl: '../templates/landing-page.component.html',
+    styleUrls: ['../templates/landing-page.component.css'],
 })
 export class LandingPageComponent implements OnInit {
     stats: BuchStats | null = null;
