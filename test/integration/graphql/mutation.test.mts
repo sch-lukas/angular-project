@@ -33,7 +33,7 @@ import { getToken } from './token.mjs';
 // -----------------------------------------------------------------------------
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
-const idLoeschen = '60';
+const idLoeschen = '1060';
 
 type CreateSuccessType = {
     data: { create: { id: string } };
@@ -61,6 +61,22 @@ describe('GraphQL Mutations', () => {
     let token: string;
     let tokenUser: string;
 
+    // Generate unique ISBN for tests to avoid conflicts
+    const generateTestIsbn = () => {
+        // Erzeuge einzigartige ISBN mit korrekter Check-Digit Berechnung
+        const randomPart = Math.floor(Math.random() * 100000000)
+            .toString()
+            .padStart(8, '0');
+        const base = `9783${randomPart}`; // 978 + 3 + 8 Ziffern = 12 Ziffern
+        let sum = 0;
+        for (let i = 0; i < 12; i++) {
+            const digit = Number.parseInt(base[i]!, 10);
+            sum += i % 2 === 0 ? digit : digit * 3;
+        }
+        const checkDigit = (10 - (sum % 10)) % 10;
+        return base + checkDigit.toString();
+    };
+
     beforeAll(async () => {
         token = await getToken('admin', 'p');
         tokenUser = await getToken('user', 'p');
@@ -69,12 +85,13 @@ describe('GraphQL Mutations', () => {
     // -------------------------------------------------------------------------
     test('Neues Buch', async () => {
         // given
+        const testIsbn = generateTestIsbn();
         const mutation: GraphQLQuery = {
             query: `
                 mutation {
                     create(
                         input: {
-                            isbn: "978-1-491-95035-7",
+                            isbn: "${testIsbn}",
                             rating: 1,
                             art: EPUB,
                             preis: 99.99,
@@ -89,7 +106,8 @@ describe('GraphQL Mutations', () => {
                             },
                             abbildungen: [{
                                 beschriftung: "Abb. 1",
-                                contentType: "img/png"
+                                contentType: "img/png",
+                                pfad: "test-create.png"
                             }]
                         }
                     ) {
@@ -129,7 +147,7 @@ describe('GraphQL Mutations', () => {
 
         const { id } = create;
 
-        expect(parseInt(id, 10)).toBeGreaterThan(0);
+        expect(Number.parseInt(id, 10)).toBeGreaterThan(0);
     });
 
     // -------------------------------------------------------------------------
@@ -207,14 +225,49 @@ describe('GraphQL Mutations', () => {
     // -------------------------------------------------------------------------
     test('Buch aktualisieren', async () => {
         // given
+        // Verwende ID 1020, die definitiv existiert und von anderen Tests nicht gelöscht wird
+        const buchId = '1020';
+
+        // Zuerst die aktuelle Version des Buches abfragen
+        const versionQuery: GraphQLQuery = {
+            query: `
+                {
+                    buch(id: "${buchId}") {
+                        version
+                    }
+                }
+            `,
+        };
+        const queryHeaders = new Headers();
+        queryHeaders.append(CONTENT_TYPE, APPLICATION_JSON);
+        queryHeaders.append(ACCEPT, GRAPHQL_RESPONSE_JSON);
+
+        const versionResponse = await fetch(graphqlURL, {
+            method: POST,
+            body: JSON.stringify(versionQuery),
+            headers: queryHeaders,
+        });
+
+        const versionData = (await versionResponse.json()) as {
+            data: { buch: { version: number } | null };
+        };
+
+        // Sicherstellen, dass das Buch existiert
+        expect(versionData.data.buch).not.toBeNull();
+
+        const currentVersion = versionData.data.buch!.version;
+
+        // Generiere eine neue eindeutige ISBN für das Update
+        const newIsbn = generateTestIsbn();
+
         const mutation: GraphQLQuery = {
             query: `
                 mutation {
                     update(
                         input: {
-                            id: "40",
-                            version: 0,
-                            isbn: "978-0-007-09732-6",
+                            id: "${buchId}",
+                            version: ${currentVersion},
+                            isbn: "${newIsbn}",
                             rating: 5,
                             art: HARDCOVER,
                             preis: 444.44,
@@ -256,8 +309,8 @@ describe('GraphQL Mutations', () => {
 
         const { update } = data;
 
-        // Der Wert der Mutation ist die neue Versionsnummer
-        expect(update.version).toBe(1);
+        // Der Wert der Mutation ist die neue Versionsnummer (currentVersion + 1)
+        expect(update.version).toBe(currentVersion + 1);
     });
 
     // -------------------------------------------------------------------------
@@ -320,7 +373,7 @@ describe('GraphQL Mutations', () => {
         expect(data.update).toBeNull();
         expect(errors).toHaveLength(1);
 
-        const [error] = errors!;
+        const [error] = errors;
         const { message } = error!;
         const messages: string[] = message.split(',');
 
@@ -381,7 +434,7 @@ describe('GraphQL Mutations', () => {
         expect(data.update).toBeNull();
         expect(errors).toHaveLength(1);
 
-        const [error] = errors!;
+        const [error] = errors;
 
         expect(error).toBeDefined();
 
@@ -391,9 +444,9 @@ describe('GraphQL Mutations', () => {
             `Es gibt kein Buch mit der ID ${id.toLowerCase()}.`,
         );
         expect(path).toBeDefined();
-        expect(path![0]).toBe('update');
+        expect(path?.[0]).toBe('update');
         expect(extensions).toBeDefined();
-        expect(extensions!.code).toBe('BAD_USER_INPUT');
+        expect(extensions?.code).toBe('BAD_USER_INPUT');
     });
 
     // -------------------------------------------------------------------------
@@ -471,7 +524,7 @@ describe('GraphQL Mutations', () => {
 
         expect(data.delete).toBeNull();
 
-        const [error] = errors!;
+        const [error] = errors;
 
         expect(error).toBeDefined();
 

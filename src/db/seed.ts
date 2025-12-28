@@ -59,8 +59,25 @@ const slugify = (value: string) =>
 const formatDecimal = (value: number, fractionDigits: number) =>
     value.toFixed(fractionDigits);
 
-const generateIsbn = (index: number) =>
-    (9780006000000n + BigInt(index)).toString();
+const calculateIsbn13CheckDigit = (isbn12: string): string => {
+    let sum = 0;
+    for (let i = 0; i < 12; i++) {
+        const char = isbn12[i];
+        if (char !== undefined) {
+            const digit = Number.parseInt(char, 10);
+            sum += i % 2 === 0 ? digit : digit * 3;
+        }
+    }
+    const checkDigit = (10 - (sum % 10)) % 10;
+    return isbn12 + checkDigit.toString();
+};
+
+const generateIsbn = (index: number) => {
+    // Generate valid ISBN-13: 978-0-006-XXX-C where XXX is from index and C is check digit
+    const baseNum = (index % 1000).toString().padStart(3, '0');
+    const isbn12 = `978000600${baseNum}`;
+    return calculateIsbn13CheckDigit(isbn12);
+};
 
 const generatePublicationDate = (index: number, genreIndex: number) => {
     const year = 2008 + ((index + genreIndex) % 16);

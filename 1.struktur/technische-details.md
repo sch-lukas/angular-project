@@ -663,4 +663,4 @@ frontend/src/app/
 
 ---
 
-_Aktualisiert am 28.12.2025_
+Aktualisiert am 28.12.2025
