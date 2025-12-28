@@ -8,9 +8,9 @@ import {
     RouterOutlet,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './core/services/auth.service';
-import { CartService } from './features/buch/cart/cart.service';
-import { WishlistService } from './features/buch/wishlist/wishlist.service';
+import { AuthService } from './services/auth.service';
+import { CartService } from './services/cart.service';
+import { WishlistService } from './services/wishlist.service';
 
 @Component({
     selector: 'app-root',
