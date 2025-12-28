@@ -58,10 +58,12 @@ angular-project/
 │   │   │   ├── app.component.ts                    # Root Component
 │   │   │   ├── auth.guard.ts                       # Route Protection
 │   │   │   ├── auth.interceptor.ts                 # JWT Token Injection
+│   │   │   ├── carousel-test.component.ts          # Karussell Test
 │   │   │   ├── components/                         # Alle Komponenten
 │   │   │   │   ├── book-carousel.component.ts      # Buch-Karussell
 │   │   │   │   ├── cart.component.ts               # Warenkorb
 │   │   │   │   ├── detail.component.ts             # Buch-Detailseite
+│   │   │   │   ├── detail.component.spec.ts        # Detail Tests
 │   │   │   │   ├── impressum.component.ts          # Impressum
 │   │   │   │   ├── kontakt.component.ts            # Kontaktseite
 │   │   │   │   ├── landing-page.component.ts       # Startseite
@@ -72,21 +74,36 @@ angular-project/
 │   │   │   ├── services/                           # Alle Services
 │   │   │   │   ├── auth.service.ts                 # Authentifizierung
 │   │   │   │   ├── buch-api.service.ts             # GraphQL API Service
+│   │   │   │   ├── buch-api.service.spec.ts        # API Tests
 │   │   │   │   ├── cart.service.ts                 # Warenkorb-State
 │   │   │   │   ├── graphql-client.ts               # GraphQL Client Setup
 │   │   │   │   ├── graphql-queries.ts              # Query Definitionen
 │   │   │   │   └── wishlist.service.ts             # Merklisten-State
 │   │   │   └── templates/                          # HTML & CSS Templates
-│   │   │       ├── *.component.html
-│   │   │       └── *.component.css
+│   │   │       ├── app.component.html/css
+│   │   │       ├── book-carousel.component.html/css
+│   │   │       ├── detail.component.html/css
+│   │   │       ├── landing-page.component.html/css
+│   │   │       ├── login.component.html/css
+│   │   │       ├── new.component.html/css
+│   │   │       └── search.component.html
 │   │   ├── assets/
-│   │   │   └── covers/                   # 159 generierte SVG-Cover (NEU)
+│   │   │   ├── covers/                   # 159 generierte SVG-Cover
+│   │   │   ├── cover-generierung/        # Cover-Generator Scripts
+│   │   │   └── logo-buch-spa.svg
 │   │   ├── styles.css                    # Globale Styles mit Dark Mode
 │   │   └── main.ts                       # App Bootstrap + Routing
 │   ├── e2e/                              # Playwright Tests
-│   │   ├── specs/
-│   │   ├── pages/
-│   │   └── fixtures/
+│   │   ├── specs/                        # Test Specs
+│   │   │   ├── create.spec.ts
+│   │   │   ├── detail.spec.ts
+│   │   │   ├── login.spec.ts
+│   │   │   └── search.spec.ts
+│   │   └── pages/                        # Page Objects
+│   │       ├── create.page.ts
+│   │       ├── detail.page.ts
+│   │       ├── login.page.ts
+│   │       └── search.page.ts
 │   ├── angular.json
 │   ├── package.json
 │   └── proxy.conf.json
@@ -100,6 +117,11 @@ angular-project/
 │   │   └── service/
 │   ├── admin/
 │   ├── config/
+│   ├── db/                       # Datenbank-Seeding
+│   ├── generated/                # Prisma Client
+│   ├── home/                     # SPA Serving
+│   ├── logger/
+│   ├── mail/
 │   └── security/
 │
 ├── prisma/
@@ -127,7 +149,7 @@ angular-project/
 │       ├── temp-graphql-*.mjs
 │       └── test-*.ps1
 │
-├── struktur/                     # Projekt-Dokumentation (NEU)
+├── 1.struktur/                   # Projekt-Dokumentation
 │   ├── projektbeschreibung.md
 │   ├── technische-details.md
 │   ├── neue-dateien-uebersicht.md

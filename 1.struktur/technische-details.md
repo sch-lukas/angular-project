@@ -598,6 +598,46 @@ trackByBookId(index: number, item: BuchItem): number {
 
 ---
 
+## � Aktuelle Dateistruktur (Stand: 28.12.2025)
+
+```text
+frontend/src/app/
+├── app.component.ts              # Root Component (68 Zeilen)
+├── auth.guard.ts                 # Route Guard
+├── auth.interceptor.ts           # JWT Token Injection
+├── carousel-test.component.ts    # Karussell Test
+├── components/                   # Alle Komponenten
+│   ├── book-carousel.component.ts
+│   ├── cart.component.ts
+│   ├── detail.component.ts
+│   ├── detail.component.spec.ts  # Tests
+│   ├── impressum.component.ts
+│   ├── kontakt.component.ts
+│   ├── landing-page.component.ts
+│   ├── login.component.ts
+│   ├── new.component.ts
+│   ├── search.component.ts
+│   └── wishlist.component.ts
+├── services/                     # Alle Services
+│   ├── auth.service.ts
+│   ├── buch-api.service.ts
+│   ├── buch-api.service.spec.ts  # Tests
+│   ├── cart.service.ts
+│   ├── graphql-client.ts
+│   ├── graphql-queries.ts
+│   └── wishlist.service.ts
+└── templates/                    # HTML & CSS Templates
+    ├── app.component.html/css
+    ├── book-carousel.component.html/css
+    ├── detail.component.html/css
+    ├── landing-page.component.html/css
+    ├── login.component.html/css
+    ├── new.component.html/css
+    └── search.component.html
+```
+
+---
+
 ## 🚀 Weiterentwicklungs-Potenzial
 
 ### Kurzfristig (nächste Sprints)
@@ -620,3 +660,7 @@ trackByBookId(index: number, item: BuchItem): number {
 - [ ] Multi-Language Support (i18n)
 - [ ] Real-time Notifications (WebSockets)
 - [ ] Micro-Frontend Architecture
+
+---
+
+_Aktualisiert am 28.12.2025_
