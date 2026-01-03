@@ -17,6 +17,10 @@
   },
   // Prisma Extension: Deaktiviere Prisma 7-Validierung für Prisma 6.19.0
   "prisma.schemaValidation": false,
+  // TypeScript: Ignoriere node_modules für Fehleranzeige
+  "typescript.tsserver.watchOptions": {
+    "excludeDirectories": ["**/node_modules"]
+  },
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#2f7c47",
     "activityBar.background": "#2f7c47",
