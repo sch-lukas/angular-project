@@ -100,7 +100,31 @@ Diese Dokumentation erklärt anhand eines **Beispiel-Nutzerflusses**, wie die ve
 
 ---
 
-## 📍 Beispiel-User-Flow (Komplettübersicht)
+## � Login-Zugangsdaten
+
+| Benutzer | Passwort    | Rolle           |
+| -------- | ----------- | --------------- |
+| admin    | `CHANGE_ME_DEV_PASSWORD` | Administrator   |
+| user     | `CHANGE_ME_DEV_PASSWORD` | Standard-Nutzer |
+
+---
+
+## 🚀 Entwicklungsserver starten
+
+```powershell
+# Standard-Modus (nur localhost)
+.\Start-All.ps1
+
+# LAN-Modus (von anderen Geräten im Netzwerk erreichbar)
+.\Start-All.ps1 -lan
+
+# Tunnel-Modus (über Internet erreichbar via Cloudflare) 🌐
+.\Start-All.ps1 -tunnel
+```
+
+---
+
+## �📍 Beispiel-User-Flow (Komplettübersicht)
 
 ```text
 1. STARTSEITE

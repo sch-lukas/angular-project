@@ -670,26 +670,75 @@ frontend/src/app/
 
 Startet den gesamten Development Stack mit einem Befehl:
 
-- PostgreSQL Docker Container
-- Keycloak Docker Container
+```powershell
+.\Start-All.ps1              # Standard-Modus (nur localhost)
+.\Start-All.ps1 -lan         # LAN-Modus (von anderen Geräten erreichbar)
+.\Start-All.ps1 -tunnel      # Tunnel-Modus (über Internet erreichbar) 🌐
+```
+
+**Features:**
+
+- PostgreSQL Docker Container starten
+- Keycloak Docker Container starten
 - NestJS Backend (mit `.env` Umgebungsvariablen)
-- Angular Frontend
+- Angular Frontend (mit LAN/Tunnel Support)
+- Automatische cloudflared URL-Erkennung im Tunnel-Modus
+- URL wird in Zwischenablage kopiert
 
 ### Stop-All.ps1
 
 Stoppt alle Services sauber:
 
-- Beendet Node-Prozesse
+- Beendet cloudflared Tunnel (falls aktiv)
+- Beendet Node-Prozesse (Backend + Frontend)
 - Stoppt Docker Container
 
 ### frontend/start-server.mjs
 
-Angular Dev-Server mit LAN-Modus Option:
+Angular Dev-Server mit verschiedenen Modi:
 
 ```bash
-node start-server.mjs --lan   # Server im lokalen Netzwerk verfügbar
-node start-server.mjs         # Nur localhost
+pnpm start           # Nur localhost
+pnpm start:lan       # LAN-Modus (0.0.0.0)
+pnpm start:tunnel    # Tunnel-Modus (Host-Check deaktiviert)
 ```
+
+### Cloudflare Tunnel 🌐
+
+Internet-Zugriff ohne Port-Forwarding:
+
+```powershell
+.\Start-All.ps1 -tunnel
+```
+
+**Was passiert:**
+
+1. Frontend startet im Tunnel-Modus (`--disable-host-check`)
+2. cloudflared erstellt Quick Tunnel zum Frontend
+3. Öffentliche URL wird angezeigt (z.B. `https://xyz-abc.trycloudflare.com`)
+4. URL wird automatisch in Zwischenablage kopiert
+
+**Sicherheit:**
+
+- ✅ Nur Frontend (Port 4200) ist exponiert
+- ✅ Backend (Port 3000) bleibt lokal
+- ✅ API-Calls: Browser → Tunnel → Frontend → Proxy → Backend
+
+---
+
+## 🔐 Keycloak Authentifizierung
+
+### Login-Zugangsdaten
+
+| Benutzer | Passwort    | Rollen                    |
+| -------- | ----------- | ------------------------- |
+| admin    | `CHANGE_ME_DEV_PASSWORD` | admin, default-roles-nest |
+| user     | `CHANGE_ME_DEV_PASSWORD` | default-roles-nest        |
+
+### Admin-Konsole
+
+- URL: `https://localhost:8843/admin`
+- Realm: `nest`
 
 ---
 

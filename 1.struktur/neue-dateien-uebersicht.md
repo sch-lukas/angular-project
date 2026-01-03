@@ -29,12 +29,12 @@
 
 ### Start/Stop/Setup Scripts
 
-| Datei                       | Zeilen | Beschreibung                                 |
-| --------------------------- | ------ | -------------------------------------------- |
-| `Setup-Komplett.ps1`        | ~300   | Vollautomatisches Setup (installiert alles!) |
-| `Start-All.ps1`             | ~110   | Startet kompletten Dev-Stack mit einem Klick |
-| `Stop-All.ps1`              | ~50    | Stoppt alle Services und Docker-Container    |
-| `frontend/start-server.mjs` | ~90    | Angular Server mit LAN-Modus Option          |
+| Datei                       | Zeilen | Beschreibung                                    |
+| --------------------------- | ------ | ----------------------------------------------- |
+| `Setup-Komplett.ps1`        | ~300   | Vollautomatisches Setup (installiert alles!)    |
+| `Start-All.ps1`             | ~240   | Startet Dev-Stack (Normal/LAN/Tunnel-Modus)     |
+| `Stop-All.ps1`              | ~80    | Stoppt alle Services inkl. Cloudflare Tunnel    |
+| `frontend/start-server.mjs` | ~110   | Angular Server mit LAN- und Tunnel-Modus Option |
 
 #### Setup-Komplett.ps1 Features (NEU)
 
@@ -53,12 +53,15 @@
 - Startet NestJS Backend (neues Fenster)
 - Startet Angular Frontend (neues Fenster)
 - `-lan` Flag für LAN-Zugriff vom Handy
+- `-tunnel` Flag für Internet-Zugriff via Cloudflare Tunnel 🌐 (NEU!)
 - Farbige Status-Ausgabe
+- Automatische URL-Erkennung beim Tunnel-Modus
 
 #### start-server.mjs Features
 
 - `pnpm start` → Nur localhost
 - `pnpm start:lan` → LAN-Modus (0.0.0.0)
+- `pnpm start:tunnel` → Tunnel-Modus (Host-Check deaktiviert) 🌐 (NEU!)
 - Zeigt alle verfügbaren IP-Adressen an
 
 ### Setup-Vorlagen (NEU)
@@ -70,6 +73,7 @@
 | `setup-vorlagen/db_password.txt.example` | Vorlage für PostgreSQL Passwort |
 | `setup-vorlagen/key.pem.example`         | Platzhalter für TLS Private Key |
 | `setup-vorlagen/copy-to-project.ps1`     | Automatisches Kopier-Script     |
+| `setup-vorlagen/Setup-Keycloak.ps1`      | Keycloak Realm-Konfiguration 🆕 |
 
 #### Verwendung
 
@@ -439,29 +443,36 @@ angular-project/
 
 ---
 
-## 🧪 Test-Status (Stand: Januar 2026)
+## 🧪 Test-Status (Stand: 3. Januar 2026)
 
 | Test-Suite           | Framework    | Ergebnis     | Anmerkung                       |
 | -------------------- | ------------ | ------------ | ------------------------------- |
-| E2E Tests            | Playwright   | ✅ 29 passed | Alle Selektoren aktualisiert    |
-| Integration Tests    | Vitest       | ✅ 67 passed | REST + GraphQL Tests            |
-| Unit Tests (Backend) | Vitest       | ✅ Bereit    | Benötigt laufendes Backend      |
+| E2E Tests (Chromium) | Playwright   | ✅ 29 passed | Alle Selektoren aktualisiert    |
+| Integration Tests    | Vitest       | ✅ 63 passed | REST + GraphQL Tests            |
+| Unit Tests (Backend) | Vitest       | ✅ 5 passed  | Service-Tests                   |
 | API Tests (manuell)  | REST/GraphQL | ✅ 4/4       | Health, GraphQL, Stats, Swagger |
 
 ### Voraussetzungen für Tests
 
-```bash
+```powershell
 # 1. Stack starten (Backend + Keycloak müssen laufen!)
-./Start-All.ps1
+.\Start-All.ps1
 
 # 2. Backend Integration Tests
 $env:NODE_TLS_REJECT_UNAUTHORIZED="0"
-pnpm exec vitest run
+npx vitest run
 
-# 3. E2E Tests (in neuem Terminal)
+# 3. E2E Tests (in neuem Terminal, nur Chromium)
 cd frontend
-pnpm test:e2e
+npx playwright test --project=chromium
 ```
+
+### Keycloak Login-Credentials
+
+| Benutzer | Passwort    | Rolle |
+| -------- | ----------- | ----- |
+| admin    | `CHANGE_ME_DEV_PASSWORD` | Admin |
+| user     | `CHANGE_ME_DEV_PASSWORD` | User  |
 
 ### Reparierte E2E Page-Objects
 
