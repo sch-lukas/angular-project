@@ -45,6 +45,7 @@ Entwicklung einer vollständigen E-Commerce-Plattform für Bücher mit:
 - **Testing**: Vitest (Unit), Playwright (E2E)
 - **Linting**: ESLint
 - **Formatting**: Prettier
+- **Tunnel**: Cloudflare Quick Tunnel (für Internet-Zugriff)
 
 ---
 
@@ -408,29 +409,80 @@ pnpm test:e2e
 ### Development Stack starten
 
 ```powershell
-# Gesamten Stack starten (PostgreSQL, Keycloak, Backend, Frontend)
-./Start-All.ps1
+# Standard-Modus (nur localhost)
+.\Start-All.ps1
+
+# LAN-Modus (von anderen Geräten im Netzwerk erreichbar)
+.\Start-All.ps1 -lan
+
+# Tunnel-Modus (über Internet erreichbar via Cloudflare) 🌐
+.\Start-All.ps1 -tunnel
 ```
 
 ### Services stoppen
 
 ```powershell
-# Alle Services beenden
-./Stop-All.ps1
+# Alle Services beenden (inkl. Cloudflare Tunnel)
+.\Stop-All.ps1
 ```
 
-### Frontend mit LAN-Zugriff
+### Frontend Modi
 
 ```bash
 # Im frontend/ Verzeichnis
-node start-server.mjs --lan
+pnpm start           # Nur localhost
+pnpm start:lan       # LAN-Modus (0.0.0.0)
+pnpm start:tunnel    # Tunnel-Modus (Host-Check deaktiviert)
 ```
+
+### Keycloak Login-Daten
+
+| Benutzer | Passwort    | Beschreibung             |
+| -------- | ----------- | ------------------------ |
+| admin    | `MnPfKCid!` | Admin mit vollen Rechten |
+| user     | `MnPfKCid!` | Normaler Benutzer        |
 
 ---
 
 ## 📝 Fazit
 
 Das Projekt demonstriert eine vollständige E-Commerce-Lösung mit modernen Web-Technologien. Besonderer Fokus liegt auf **User Experience**, **Performance** und **Code-Qualität**. Die implementierten Features zeigen praktische Anwendung von Angular-Best-Practices und bereiten optimal auf reale Enterprise-Projekte vor.
+
+---
+
+---
+
+## 🌐 Cloudflare Tunnel (Internet-Zugriff)
+
+### Funktionsweise
+
+Mit dem `-tunnel` Flag kann das Projekt über das Internet erreichbar gemacht werden:
+
+```powershell
+.\Start-All.ps1 -tunnel
+```
+
+**Was passiert:**
+
+1. PostgreSQL, Keycloak, Backend und Frontend starten normal
+2. cloudflared erstellt einen Quick Tunnel zum Frontend
+3. Eine öffentliche URL wird generiert (z.B. `https://xyz-abc.trycloudflare.com`)
+4. URL wird automatisch in die Zwischenablage kopiert
+
+**Sicherheit:**
+
+- ✅ Nur das Frontend (Port 4200) ist von außen erreichbar
+- ✅ Backend (Port 3000) bleibt lokal geschützt
+- ✅ API-Calls gehen: Browser → Tunnel → Frontend → Proxy → Backend
+- ⚠️ URL ändert sich bei jedem Neustart
+
+### Voraussetzungen
+
+cloudflared muss installiert sein:
+
+```powershell
+Invoke-WebRequest -Uri "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-windows-amd64.exe" -OutFile "$env:USERPROFILE\cloudflared.exe"
+```
 
 ---
 
