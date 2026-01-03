@@ -3,12 +3,14 @@
  * Start-Script für Angular Dev Server
  *
  * Verwendung:
- *   node start-server.mjs          → Nur localhost (Standard)
- *   node start-server.mjs --lan    → LAN-Modus (von anderen Geräten erreichbar)
+ *   node start-server.mjs            → Nur localhost (Standard)
+ *   node start-server.mjs --lan      → LAN-Modus (von anderen Geräten erreichbar)
+ *   node start-server.mjs --tunnel   → Tunnel-Modus (für Cloudflare Tunnel)
  *
  * Oder über npm/pnpm:
- *   pnpm start                     → Nur localhost
- *   pnpm start:lan                 → LAN-Modus
+ *   pnpm start                       → Nur localhost
+ *   pnpm start:lan                   → LAN-Modus
+ *   pnpm start:tunnel                → Tunnel-Modus
  */
 
 import { spawn } from 'node:child_process';
@@ -22,8 +24,9 @@ const CONFIG = {
     proxyConfig: 'proxy.conf.json',
 };
 
-// Prüfe ob --lan Flag gesetzt ist
+// Prüfe Flags
 const isLanMode = process.argv.includes('--lan');
+const isTunnelMode = process.argv.includes('--tunnel');
 
 // Basis-Argumente für ng serve
 const args = [
@@ -39,8 +42,18 @@ const args = [
     CONFIG.port.toString(),
 ];
 
+// Tunnel-Modus: Host-Check deaktivieren für Cloudflare Tunnel
+if (isTunnelMode) {
+    args.push('--disable-host-check');
+
+    console.log('\n🌐 TUNNEL-MODUS AKTIVIERT');
+    console.log('━'.repeat(50));
+    console.log('Host-Check deaktiviert für Cloudflare Tunnel.');
+    console.log(`Server läuft auf: https://localhost:${CONFIG.port}`);
+    console.log('━'.repeat(50) + '\n');
+}
 // Im LAN-Modus: Host auf 0.0.0.0 setzen
-if (isLanMode) {
+else if (isLanMode) {
     args.push('--host', '0.0.0.0');
     args.push('--disable-host-check');
 

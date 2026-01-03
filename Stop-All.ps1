@@ -25,8 +25,37 @@ Write-Host "╔═════════════════════�
 Write-Host "║           🛑 Buchhandlung SPA - Stack stoppen             ║" -ForegroundColor Red
 Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Red
 
+# Schritt 0: Tunnel-Job beenden (falls vorhanden)
+$tunnelJobFile = Join-Path $ProjectRoot ".tunnel-job-id"
+if (Test-Path $tunnelJobFile) {
+    Write-Step "0/4" "Cloudflare Tunnel beenden..."
+    $tunnelJobId = Get-Content $tunnelJobFile
+    $job = Get-Job -Id $tunnelJobId -ErrorAction SilentlyContinue
+    if ($job) {
+        Stop-Job -Job $job -ErrorAction SilentlyContinue
+        Remove-Job -Job $job -Force -ErrorAction SilentlyContinue
+        Write-Success "Tunnel-Job beendet"
+    }
+    Remove-Item $tunnelJobFile -Force
+
+    # Beende auch cloudflared Prozesse
+    $cloudflaredProcesses = Get-Process -Name "cloudflared" -ErrorAction SilentlyContinue
+    if ($cloudflaredProcesses) {
+        $cloudflaredProcesses | Stop-Process -Force
+        Write-Success "cloudflared Prozesse beendet"
+    }
+} else {
+    # Prüfe trotzdem auf laufende cloudflared Prozesse
+    $cloudflaredProcesses = Get-Process -Name "cloudflared" -ErrorAction SilentlyContinue
+    if ($cloudflaredProcesses) {
+        Write-Step "0/4" "Cloudflare Tunnel beenden..."
+        $cloudflaredProcesses | Stop-Process -Force
+        Write-Success "cloudflared Prozesse beendet"
+    }
+}
+
 # Schritt 1: Node Prozesse beenden (Backend + Frontend)
-Write-Step "1/3" "Node.js Prozesse beenden..."
+Write-Step "1/4" "Node.js Prozesse beenden..."
 $nodeProcesses = Get-Process -Name "node" -ErrorAction SilentlyContinue
 if ($nodeProcesses) {
     $nodeProcesses | Stop-Process -Force
@@ -36,7 +65,7 @@ if ($nodeProcesses) {
 }
 
 # Schritt 2: Angular CLI Prozesse
-Write-Step "2/3" "Angular CLI Prozesse beenden..."
+Write-Step "2/4" "Angular CLI Prozesse beenden..."
 $ngProcesses = Get-Process -Name "ng" -ErrorAction SilentlyContinue
 if ($ngProcesses) {
     $ngProcesses | Stop-Process -Force
@@ -47,7 +76,7 @@ if ($ngProcesses) {
 
 # Schritt 3: Docker Container stoppen (wenn nicht KeepDB)
 if (-not $KeepDB) {
-    Write-Step "3/3" "Docker Container stoppen..."
+    Write-Step "3/4" "Docker Container stoppen..."
 
     $postgresCompose = Join-Path $ProjectRoot ".extras\compose\postgres"
     $keycloakCompose = Join-Path $ProjectRoot ".extras\compose\keycloak"
@@ -57,7 +86,7 @@ if (-not $KeepDB) {
 
     Write-Success "Docker Container gestoppt"
 } else {
-    Write-Step "3/3" "Docker Container bleiben aktiv (--KeepDB)"
+    Write-Step "3/4" "Docker Container bleiben aktiv (--KeepDB)"
 }
 
 # Zusammenfassung

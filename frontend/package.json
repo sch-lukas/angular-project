@@ -7,6 +7,7 @@
     "ng": "ng",
     "start": "node start-server.mjs",
     "start:lan": "node start-server.mjs --lan",
+    "start:tunnel": "node start-server.mjs --tunnel",
     "start:legacy": "ng serve --ssl --ssl-key ../src/config/resources/tls/key.pem --ssl-cert ../src/config/resources/tls/certificate.crt --proxy-config proxy.conf.json",
     "dev": "ng serve --ssl --ssl-key ../src/config/resources/tls/key.pem --ssl-cert ../src/config/resources/tls/certificate.crt --proxy-config proxy.conf.json --open",
     "dev:http": "ng serve --proxy-config proxy.conf.json --open",

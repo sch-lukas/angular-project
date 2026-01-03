@@ -1,15 +1,17 @@
 # Start-All.ps1 - Startet den kompletten Entwicklungsstack
 #
 # Verwendung:
-#   .\Start-All.ps1           → Startet alles (DB, Keycloak, Backend, Frontend)
-#   .\Start-All.ps1 -lan      → Startet alles + Frontend im LAN-Modus
-#   .\Start-All.ps1 -NoFrontend → Nur Backend-Stack (DB, Keycloak, Backend)
+#   .\Start-All.ps1              → Startet alles (DB, Keycloak, Backend, Frontend)
+#   .\Start-All.ps1 -lan         → Startet alles + Frontend im LAN-Modus
+#   .\Start-All.ps1 -tunnel      → Startet alles + Cloudflare Tunnel (Internet-Zugriff)
+#   .\Start-All.ps1 -NoFrontend  → Nur Backend-Stack (DB, Keycloak, Backend)
 #
 # Von überall starten:
 #   & "C:\software-engeneering\angular-project\Start-All.ps1"
 
 param(
     [switch]$lan,
+    [switch]$tunnel,
     [switch]$NoFrontend,
     [switch]$NoBrowser
 )
@@ -33,8 +35,26 @@ function Write-Info($message) {
 # Banner
 Write-Host "`n" -NoNewline
 Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Magenta
-Write-Host "║           🚀 Buchhandlung SPA - Dev Stack                 ║" -ForegroundColor Magenta
+if ($tunnel) {
+    Write-Host "║       🌐 Buchhandlung SPA - TUNNEL Modus                  ║" -ForegroundColor Magenta
+} elseif ($lan) {
+    Write-Host "║       📱 Buchhandlung SPA - LAN Modus                     ║" -ForegroundColor Magenta
+} else {
+    Write-Host "║       🚀 Buchhandlung SPA - Dev Stack                     ║" -ForegroundColor Magenta
+}
 Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Magenta
+
+# Tunnel-Modus: Prüfe cloudflared
+if ($tunnel) {
+    $cloudflared = "$env:USERPROFILE\cloudflared.exe"
+    if (-not (Test-Path $cloudflared)) {
+        Write-Host "`n❌ cloudflared nicht gefunden!" -ForegroundColor Red
+        Write-Host "   Bitte installieren mit:" -ForegroundColor Yellow
+        Write-Host '   Invoke-WebRequest -Uri "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-windows-amd64.exe" -OutFile "$env:USERPROFILE\cloudflared.exe"' -ForegroundColor Gray
+        exit 1
+    }
+    Write-Host "`n🔒 SICHERHEIT: Nur Frontend wird exponiert, Backend bleibt lokal!" -ForegroundColor Yellow
+}
 
 # Schritt 1: PostgreSQL
 Write-Step "1/4" "PostgreSQL Datenbank starten..."
@@ -66,7 +86,10 @@ if (-not $NoFrontend) {
     Write-Step "4/4" "Angular Frontend starten..."
     $frontendPath = Join-Path $ProjectRoot "frontend"
 
-    if ($lan) {
+    if ($tunnel) {
+        $frontendCmd = "Set-Location '$frontendPath'; Write-Host '🌐 Frontend Server (TUNNEL-Modus) startet...' -ForegroundColor Cyan; pnpm start:tunnel"
+        Write-Info "Tunnel-Modus aktiviert - Host-Check deaktiviert"
+    } elseif ($lan) {
         $frontendCmd = "Set-Location '$frontendPath'; Write-Host '🌐 Frontend Server (LAN-Modus) startet...' -ForegroundColor Cyan; pnpm start:lan"
         Write-Info "LAN-Modus aktiviert - von anderen Geräten erreichbar"
     } else {
@@ -125,6 +148,85 @@ if ($lan -and -not $NoFrontend) {
     Write-Host "║  💡 Tipp: WLAN-Adresse für Handy im gleichen Netzwerk     ║" -ForegroundColor Cyan
     Write-Host "║  ⚠️  SSL-Warnung im Browser akzeptieren!                  ║" -ForegroundColor Cyan
     Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
+}
+
+# Tunnel starten wenn aktiviert
+if ($tunnel -and -not $NoFrontend) {
+    Write-Host "`n"
+    Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
+    Write-Host "║              🌐 Cloudflare Tunnel starten...              ║" -ForegroundColor Cyan
+    Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
+
+    Write-Host "`n⏳ Warte auf Frontend (15 Sek.)..." -ForegroundColor Yellow
+    Start-Sleep -Seconds 15
+
+    # Starte Tunnel als Hintergrund-Job und fange die URL ab
+    $cloudflared = "$env:USERPROFILE\cloudflared.exe"
+    $tunnelJob = Start-Job -ScriptBlock {
+        param($exe)
+        & $exe tunnel --url https://localhost:4200 --no-tls-verify 2>&1
+    } -ArgumentList $cloudflared
+
+    Write-Host "⏳ Warte auf Tunnel-URL..." -ForegroundColor Yellow
+
+    $tunnelUrl = $null
+    $timeout = 30
+    $elapsed = 0
+
+    while ($elapsed -lt $timeout -and -not $tunnelUrl) {
+        Start-Sleep -Seconds 1
+        $elapsed++
+
+        # Hole aktuelle Ausgabe vom Job
+        $output = Receive-Job -Job $tunnelJob -Keep 2>$null
+        if ($output) {
+            foreach ($line in $output) {
+                if ($line -match "https://[a-z0-9-]+\.trycloudflare\.com") {
+                    $tunnelUrl = $matches[0]
+                    break
+                }
+            }
+        }
+
+        # Fortschrittsanzeige
+        Write-Host "." -NoNewline -ForegroundColor Yellow
+    }
+    Write-Host ""
+
+    if ($tunnelUrl) {
+        Write-Host "`n"
+        Write-Host "╔═══════════════════════════════════════════════════════════════════════════╗" -ForegroundColor Green
+        Write-Host "║                        🌐 TUNNEL AKTIV!                                   ║" -ForegroundColor Green
+        Write-Host "╠═══════════════════════════════════════════════════════════════════════════╣" -ForegroundColor Green
+        Write-Host "║                                                                           ║" -ForegroundColor Green
+        $urlLine = "║  🔗 URL: $tunnelUrl"
+        $urlPadding = 75 - $urlLine.Length
+        Write-Host "$urlLine$(' ' * $urlPadding)║" -ForegroundColor Green
+        Write-Host "║                                                                           ║" -ForegroundColor Green
+        Write-Host "║  🔐 Login: admin / MnPfKCid!                                              ║" -ForegroundColor Green
+        Write-Host "║                                                                           ║" -ForegroundColor Green
+        Write-Host "║  🔒 Sicherheit:                                                           ║" -ForegroundColor Green
+        Write-Host "║     • Nur Frontend ist von außen erreichbar                               ║" -ForegroundColor Green
+        Write-Host "║     • Backend bleibt lokal geschützt                                      ║" -ForegroundColor Green
+        Write-Host "║     • URL ändert sich bei jedem Neustart                                  ║" -ForegroundColor Green
+        Write-Host "║                                                                           ║" -ForegroundColor Green
+        Write-Host "║  📋 Diese URL kannst du teilen! (Gültig bis Script-Stopp)                 ║" -ForegroundColor Green
+        Write-Host "║                                                                           ║" -ForegroundColor Green
+        Write-Host "╚═══════════════════════════════════════════════════════════════════════════╝" -ForegroundColor Green
+
+        # URL in Zwischenablage kopieren
+        $tunnelUrl | Set-Clipboard
+        Write-Host "`n📋 URL wurde in die Zwischenablage kopiert!" -ForegroundColor Cyan
+
+        # Speichere Job-ID für Stop-All.ps1
+        $tunnelJob.Id | Out-File -FilePath "$ProjectRoot\.tunnel-job-id" -Force
+    } else {
+        Write-Host "`n⚠️  Tunnel gestartet, aber URL konnte nicht automatisch erkannt werden." -ForegroundColor Yellow
+        Write-Host "   Prüfe das Tunnel-Fenster für die URL." -ForegroundColor Yellow
+    }
+
+    Write-Host "`n💡 Tunnel läuft im Hintergrund. Beenden mit: " -NoNewline -ForegroundColor Yellow
+    Write-Host ".\Stop-All.ps1" -ForegroundColor Cyan
 }
 
 # Browser öffnen (optional)
