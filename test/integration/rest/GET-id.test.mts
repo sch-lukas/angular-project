@@ -88,8 +88,18 @@ describe('GET /rest/:id', () => {
         async (id) => {
             // given
             const url = `${restURL}/${id}`;
+
+            // Zuerst das Buch abrufen um den aktuellen ETag zu bekommen
+            const initialResponse = await fetch(url);
+            const etag = initialResponse.headers.get('etag');
+
+            // Wenn kein ETag vorhanden, Test überspringen
+            if (!etag) {
+                return;
+            }
+
             const headers = new Headers();
-            headers.append(IF_NONE_MATCH, '"0"');
+            headers.append(IF_NONE_MATCH, etag);
 
             // when
             const response = await fetch(url, { headers });

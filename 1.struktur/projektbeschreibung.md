@@ -2,7 +2,7 @@
 
 ## 📚 Überblick
 
-Die Buchhandlung SPA ist eine moderne Single-Page-Application für eine Online-Buchhandlung, entwickelt mit **Angular 19**, **NestJS**, **GraphQL** und **Prisma**. Das Projekt demonstriert moderne Web-Entwicklung mit Fokus auf User Experience, Responsive Design und State Management.
+Die Buchhandlung SPA ist eine moderne Single-Page-Application für eine Online-Buchhandlung, entwickelt mit **Angular 21**, **NestJS**, **GraphQL** und **Prisma**. Das Projekt demonstriert moderne Web-Entwicklung mit Fokus auf User Experience, Responsive Design und State Management.
 
 ---
 
@@ -23,7 +23,7 @@ Entwicklung einer vollständigen E-Commerce-Plattform für Bücher mit:
 
 ### Frontend Stack
 
-- **Framework**: Angular 19 (Standalone Components)
+- **Framework**: Angular 21 (Standalone Components)
 - **UI Library**: Bootstrap 5.3.2 + NG Bootstrap 18.0.0
 - **State Management**: RxJS BehaviorSubject
 - **Persistenz**: Browser localStorage
@@ -403,6 +403,35 @@ pnpm test:e2e
 
 ---
 
+## � Automation Scripts
+
+### Development Stack starten
+
+```powershell
+# Gesamten Stack starten (PostgreSQL, Keycloak, Backend, Frontend)
+./Start-All.ps1
+```
+
+### Services stoppen
+
+```powershell
+# Alle Services beenden
+./Stop-All.ps1
+```
+
+### Frontend mit LAN-Zugriff
+
+```bash
+# Im frontend/ Verzeichnis
+node start-server.mjs --lan
+```
+
+---
+
 ## 📝 Fazit
 
 Das Projekt demonstriert eine vollständige E-Commerce-Lösung mit modernen Web-Technologien. Besonderer Fokus liegt auf **User Experience**, **Performance** und **Code-Qualität**. Die implementierten Features zeigen praktische Anwendung von Angular-Best-Practices und bereiten optimal auf reale Enterprise-Projekte vor.
+
+---
+
+Aktualisiert am 3. Januar 2026

@@ -27,6 +27,22 @@
 > Nur in den ersten beiden Vorlesungswochen kann es Unterstützung bei
 > Installationsproblemen geben.
 
+---
+
+## 🚀 Schnellstart für neue Entwickler
+
+**Für eine vollständige Setup-Anleitung nach dem Klonen des Repositories siehe: [SETUP.md](SETUP.md)**
+
+```powershell
+# Nach dem Klonen:
+pnpm install && cd frontend && pnpm install && cd ..
+pnpm exec prisma generate
+pnpm build
+.\Start-All.ps1
+```
+
+---
+
 ## Inhalt
 
 - [Hinweise zum Programmierbeispiel](#hinweise-zum-programmierbeispiel)

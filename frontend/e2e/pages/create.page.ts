@@ -22,30 +22,33 @@ export class CreatePage {
     readonly successMessage: Locator;
     readonly errorMessage: Locator;
     readonly validationErrors: Locator;
+    readonly isbnDisplay: Locator;
+    readonly schlagwoerterInput: Locator;
 
     constructor(page: Page) {
         this.page = page;
-        this.isbnInput = page.locator('input[name="isbn"]');
-        this.titelInput = page.locator('input[name="titel"]');
-        this.artDropdown = page.locator('select[name="art"]');
-        this.preisInput = page.locator('input[name="preis"]');
-        this.rabattInput = page.locator('input[name="rabatt"]');
-        this.lieferbarCheckbox = page.locator('input[name="lieferbar"]');
-        this.datumPicker = page.locator('input[name="datum"]');
-        this.homepageInput = page.locator('input[name="homepage"]');
-        this.javascriptCheckbox = page.locator('input[value="JAVASCRIPT"]');
-        this.typescriptCheckbox = page.locator('input[value="TYPESCRIPT"]');
-        this.beschreibungTextarea = page.locator(
-            'textarea[name="beschreibung"]',
-        );
-        this.autorInput = page.locator('input[name="autor"]');
-        this.autorBiographieTextarea = page.locator(
-            'textarea[name="autorBiographie"]',
-        );
+        // Selektoren an aktuelles new.component.html angepasst (id statt name)
+        // ISBN wird automatisch generiert, nicht manuell eingegeben
+        this.isbnDisplay = page.locator('.isbn-value');
+        this.isbnInput = page.locator('.isbn-value'); // Nur Anzeige
+        this.titelInput = page.locator('#titel');
+        this.artDropdown = page.locator('#art');
+        this.preisInput = page.locator('#preis');
+        this.rabattInput = page.locator('#rabatt');
+        this.lieferbarCheckbox = page.locator('input[type="checkbox"]').first();
+        this.datumPicker = page.locator('#datum');
+        this.homepageInput = page.locator('#homepage');
+        this.schlagwoerterInput = page.locator('#schlagwoerter');
+        // Schlagwörter werden jetzt als Text-Input eingegeben
+        this.javascriptCheckbox = page.locator('#schlagwoerter'); // Fallback
+        this.typescriptCheckbox = page.locator('#schlagwoerter'); // Fallback
+        this.beschreibungTextarea = page.locator('#beschreibung');
+        this.autorInput = page.locator('#autor');
+        this.autorBiographieTextarea = page.locator('#autorBiographie');
         this.submitButton = page.locator('button[type="submit"]');
-        this.successMessage = page.locator('.alert-success');
-        this.errorMessage = page.locator('.alert-danger');
-        this.validationErrors = page.locator('.invalid-feedback');
+        this.successMessage = page.locator('.alert-success, .success-popup');
+        this.errorMessage = page.locator('.alert-error, .error-popup');
+        this.validationErrors = page.locator('.error-message');
     }
 
     async goto() {
@@ -53,14 +56,16 @@ export class CreatePage {
     }
 
     async fillBasicInfo(
-        isbn: string,
+        _isbn: string, // ISBN wird automatisch generiert
         titel: string,
         art: string,
         preis: string,
     ) {
-        await this.isbnInput.fill(isbn);
+        // ISBN wird nicht manuell eingegeben - automatisch generiert
         await this.titelInput.fill(titel);
-        await this.artDropdown.selectOption(art);
+        if (art) {
+            await this.artDropdown.selectOption(art);
+        }
         await this.preisInput.fill(preis);
     }
 
@@ -80,16 +85,26 @@ export class CreatePage {
         if (autorBio) await this.autorBiographieTextarea.fill(autorBio);
     }
 
+    async fillSchlagwoerter(schlagwoerter: string) {
+        await this.schlagwoerterInput.fill(schlagwoerter);
+    }
+
     async toggleLieferbar() {
         await this.lieferbarCheckbox.click();
     }
 
     async selectSchlagwortJavascript() {
-        await this.javascriptCheckbox.click();
+        // Schlagwörter werden als Text eingegeben
+        const current = await this.schlagwoerterInput.inputValue();
+        const newValue = current ? `${current}, JAVASCRIPT` : 'JAVASCRIPT';
+        await this.schlagwoerterInput.fill(newValue);
     }
 
     async selectSchlagwortTypescript() {
-        await this.typescriptCheckbox.click();
+        // Schlagwörter werden als Text eingegeben
+        const current = await this.schlagwoerterInput.inputValue();
+        const newValue = current ? `${current}, TYPESCRIPT` : 'TYPESCRIPT';
+        await this.schlagwoerterInput.fill(newValue);
     }
 
     async submit() {
