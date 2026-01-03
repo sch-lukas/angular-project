@@ -1,0 +1,54 @@
+{
+  "realm" : "nest",
+  "users" : [ {
+    "id" : "fd7417a8-fc20-4d06-a072-83db41f1c67b",
+    "username" : "admin",
+    "firstName" : "Nest",
+    "lastName" : "Admin",
+    "email" : "admin@acme.com",
+    "emailVerified" : false,
+    "enabled" : true,
+    "createdTimestamp" : 1759844243090,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "325d84d9-5300-48ad-800d-9625ca01f967",
+      "type" : "password",
+      "createdDate" : 1767469531251,
+      "secretData" : "{\"value\":\"bJo+eujFz7ejlRt5fAxl9R267TeqdZ+enza7BSgW01s=\",\"salt\":\"S2fzD94WSU75Oks6Nb5+lg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-nest" ],
+    "clientRoles" : {
+      "nest-client" : [ "admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "4f556385-40c2-41d9-a801-5c74c97e1bc1",
+    "username" : "user",
+    "firstName" : "Nest",
+    "lastName" : "User",
+    "email" : "user@acme.com",
+    "emailVerified" : false,
+    "enabled" : true,
+    "createdTimestamp" : 1759844394938,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "f44f319c-79af-4882-8941-33836b453e55",
+      "type" : "password",
+      "createdDate" : 1767469531405,
+      "secretData" : "{\"value\":\"5e+IRBm9KqGzfZIXmvozZ471TMo0N1Wm2gdujoA27zU=\",\"salt\":\"SE2JG4+Hm7kaS+pj+6QxfA==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-nest" ],
+    "clientRoles" : {
+      "nest-client" : [ "user" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  } ]
+}

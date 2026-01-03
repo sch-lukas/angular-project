@@ -1,0 +1,49 @@
+{
+  "realm" : "master",
+  "users" : [ {
+    "id" : "38f7c975-4e0d-4291-92a6-72c85cd6e5c8",
+    "username" : "admin",
+    "firstName" : "Keycloak",
+    "lastName" : "Admin",
+    "email" : "admin@acme.com",
+    "emailVerified" : false,
+    "enabled" : true,
+    "createdTimestamp" : 1751022747990,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "971c8555-b9ab-4d9b-9738-0f124d40e06c",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1767468027617,
+      "secretData" : "{\"value\":\"5k4raDzYl5YmTdItTTLAHfMKaSM7kj1f07uYjcoVzeE=\",\"salt\":\"RgXH6CyLPBV8iiCCZbt5RQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ "UPDATE_PASSWORD" ],
+    "realmRoles" : [ "default-roles-master", "admin" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "99540269-87d3-47f8-9c4c-db6becfdaef0",
+    "username" : "tmp",
+    "emailVerified" : false,
+    "attributes" : {
+      "is_temporary_admin" : [ "true" ]
+    },
+    "enabled" : true,
+    "createdTimestamp" : 1751022499085,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "5f443a1d-e438-4beb-a43d-8c908da44b40",
+      "type" : "password",
+      "createdDate" : 1751022499543,
+      "secretData" : "{\"value\":\"WAOsJrHoGC2+Qqhcels0deYVlKlokn3FE1rx8RpXSX4=\",\"salt\":\"Fjb3I/Yh0DYZKsHJPKhbQg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-master", "admin" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  } ]
+}

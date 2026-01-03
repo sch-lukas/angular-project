@@ -38,7 +38,7 @@ export const test = base.extend<Fixtures>({
 
     /**
      * Authenticated Page Fixture - automatisch eingeloggt
-     * Nutzt Admin-Credentials (admin/p)
+     * Nutzt Admin-Credentials (admin/CHANGE_ME_DEV_PASSWORD)
      */
     authenticatedPage: async ({ page }, use) => {
         const loginPage = new LoginPage(page);
@@ -47,7 +47,7 @@ export const test = base.extend<Fixtures>({
         // Warte bis Login-Seite geladen ist
         await page.waitForSelector('#username', { timeout: 10000 });
 
-        await loginPage.login('admin', 'p');
+        await loginPage.login('admin', 'CHANGE_ME_DEV_PASSWORD');
 
         // Warte auf erfolgreiche Navigation weg von /login
         // Die App navigiert standardmäßig zu "/" nach dem Login

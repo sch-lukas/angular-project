@@ -32,8 +32,8 @@ describe('DELETE /rest', () => {
     let tokenUser: string;
 
     beforeAll(async () => {
-        token = await getToken('admin', 'p');
-        tokenUser = await getToken('user', 'p');
+        token = await getToken('admin', 'CHANGE_ME_DEV_PASSWORD');
+        tokenUser = await getToken('user', 'CHANGE_ME_DEV_PASSWORD');
     });
 
     test.concurrent('Vorhandenes Buch loeschen', async () => {

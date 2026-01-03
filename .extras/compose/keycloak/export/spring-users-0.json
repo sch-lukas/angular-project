@@ -1,0 +1,56 @@
+{
+  "realm" : "spring",
+  "users" : [ {
+    "id" : "41927a4f-4e7d-44f7-aabe-cdeef259f2d3",
+    "username" : "admin",
+    "firstName" : "Spring",
+    "lastName" : "Admin",
+    "email" : "admin@acme.com",
+    "emailVerified" : false,
+    "enabled" : true,
+    "createdTimestamp" : 1751023285162,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "487adcef-c37d-4f9b-aa97-cdfe5ed304c7",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1751023323973,
+      "secretData" : "{\"value\":\"hfJxoX8XtkXp6lwoyom0LwyaVi8jKoKfJVN8kCsM/kw=\",\"salt\":\"xgRm6I9N8/QqMPsk49hwmg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-spring" ],
+    "clientRoles" : {
+      "spring-client" : [ "ADMIN" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "3ce9a08a-6193-40c6-a49b-3802594483b8",
+    "username" : "user",
+    "firstName" : "Spring",
+    "lastName" : "User",
+    "email" : "user@acme.com",
+    "emailVerified" : false,
+    "enabled" : true,
+    "createdTimestamp" : 1751023488257,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "2644d8fc-8cde-4c29-b7da-c6cfe450b9d7",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1751023503239,
+      "secretData" : "{\"value\":\"bouif43tC74gMgm7mtqMdqI+Skio9ByOVRnIEYUgT3Q=\",\"salt\":\"4z5gRGGDnYwukCAluWtQJw==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-spring" ],
+    "clientRoles" : {
+      "spring-client" : [ "USER" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  } ]
+}

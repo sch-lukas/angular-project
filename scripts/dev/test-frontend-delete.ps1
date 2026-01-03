@@ -9,10 +9,10 @@ $baseUrl = "http://localhost:3000"
 
 try {
     # 1. Login und Token holen (wie AuthService)
-    Write-Host "1️⃣  Login mit admin/p..." -ForegroundColor Yellow
+    Write-Host "1️⃣  Login mit admin/CHANGE_ME_DEV_PASSWORD..." -ForegroundColor Yellow
     $loginBody = @{
         username = "admin"
-        password = "p"
+        password = "CHANGE_ME_DEV_PASSWORD"
     } | ConvertTo-Json
 
     $tokenResponse = Invoke-RestMethod `
