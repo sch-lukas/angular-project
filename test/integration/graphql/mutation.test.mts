@@ -78,8 +78,8 @@ describe('GraphQL Mutations', () => {
     };
 
     beforeAll(async () => {
-        token = await getToken('admin', 'p');
-        tokenUser = await getToken('user', 'p');
+        token = await getToken('admin', 'MnPfKCid!');
+        tokenUser = await getToken('user', 'MnPfKCid!');
     });
 
     // -------------------------------------------------------------------------

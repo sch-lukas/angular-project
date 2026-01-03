@@ -93,6 +93,40 @@ Write-Host "║  Frontend:    https://localhost:4200                      ║" -
 }
 Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Green
 
+# LAN-Adressen anzeigen wenn im LAN-Modus
+if ($lan -and -not $NoFrontend) {
+    Write-Host "`n"
+    Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
+    Write-Host "║              📱 LAN-Zugriff (andere Geräte)               ║" -ForegroundColor Cyan
+    Write-Host "╠═══════════════════════════════════════════════════════════╣" -ForegroundColor Cyan
+
+    # Alle IPv4-Adressen sammeln
+    $networkAdapters = Get-NetIPAddress -AddressFamily IPv4 | Where-Object {
+        $_.IPAddress -ne "127.0.0.1" -and
+        $_.PrefixOrigin -ne "WellKnown"
+    }
+
+    foreach ($adapter in $networkAdapters) {
+        $adapterName = (Get-NetAdapter -InterfaceIndex $adapter.InterfaceIndex -ErrorAction SilentlyContinue).Name
+        if ($adapterName) {
+            $url = "https://$($adapter.IPAddress):4200"
+            $displayName = $adapterName.PadRight(20).Substring(0, 20)
+            Write-Host "║  $displayName  $url" -ForegroundColor Cyan -NoNewline
+            # Padding bis zum Ende der Box
+            $padding = 59 - 4 - 20 - 2 - $url.Length
+            if ($padding -gt 0) {
+                Write-Host (" " * $padding) -NoNewline
+            }
+            Write-Host "║" -ForegroundColor Cyan
+        }
+    }
+
+    Write-Host "╠═══════════════════════════════════════════════════════════╣" -ForegroundColor Cyan
+    Write-Host "║  💡 Tipp: WLAN-Adresse für Handy im gleichen Netzwerk     ║" -ForegroundColor Cyan
+    Write-Host "║  ⚠️  SSL-Warnung im Browser akzeptieren!                  ║" -ForegroundColor Cyan
+    Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
+}
+
 # Browser öffnen (optional)
 if (-not $NoBrowser -and -not $NoFrontend) {
     Write-Host "`n⏳ Warte 8 Sekunden, dann öffne Browser..." -ForegroundColor Yellow

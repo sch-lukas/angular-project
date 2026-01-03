@@ -54,6 +54,21 @@ Führe dieses Script aus, um alle Dateien auf einmal zu kopieren:
 | `db_password.txt.example` | `.extras/compose/postgres/db_password.txt` | PostgreSQL Passwort               |
 | `key.pem.example`         | `src/config/resources/tls/key.pem`         | TLS Private Key (selbst-signiert) |
 | `copy-to-project.ps1`     | -                                          | Automatisches Kopier-Script       |
+| `Setup-Keycloak.ps1`      | -                                          | Keycloak Ersteinrichtung          |
+| `keycloak/nest-realm.json`| Keycloak Volume                            | Realm "nest" Konfiguration        |
+| `keycloak/nest-users-0.json`| Keycloak Volume                          | Benutzer (admin, user)            |
+
+---
+
+## 🔐 Keycloak Ersteinrichtung
+
+Beim ersten Setup wird Keycloak automatisch mit dem Realm "nest" und den Benutzern eingerichtet.
+
+Falls du Keycloak manuell einrichten musst:
+
+```powershell
+.\setup-vorlagen\Setup-Keycloak.ps1
+```
 
 ---
 

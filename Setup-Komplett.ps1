@@ -249,6 +249,53 @@ if (Test-Path $vorlagenScript) {
 }
 
 # ============================================
+# SCHRITT 3b: Keycloak einrichten
+# ============================================
+
+Write-Step "3b/7" "Richte Keycloak ein..."
+
+$keycloakVolume = "C:\Zimmermann\volumes\keycloak"
+$keycloakDbExists = Test-Path "$keycloakVolume\data\h2\keycloakdb.mv.db"
+
+if (-not $keycloakDbExists -or $Force) {
+    Write-Info "Erstelle Keycloak-Verzeichnisse..."
+
+    # Erstelle Verzeichnisse
+    $folders = @(
+        "$keycloakVolume\data",
+        "$keycloakVolume\data\h2",
+        "$keycloakVolume\data\import",
+        "$keycloakVolume\tls"
+    )
+    foreach ($folder in $folders) {
+        if (-not (Test-Path $folder)) {
+            New-Item -ItemType Directory -Path $folder -Force | Out-Null
+        }
+    }
+
+    # Kopiere TLS-Zertifikate
+    $tlsSource = Join-Path $ProjectRoot "src\config\resources\tls"
+    if (Test-Path "$tlsSource\certificate.crt") {
+        Copy-Item "$tlsSource\certificate.crt" "$keycloakVolume\tls\" -Force
+    }
+    if (Test-Path "$tlsSource\key.pem") {
+        Copy-Item "$tlsSource\key.pem" "$keycloakVolume\tls\" -Force
+    }
+
+    # Kopiere Realm-Export für Import
+    $realmSource = Join-Path $ProjectRoot "setup-vorlagen\keycloak"
+    if (Test-Path "$realmSource\nest-realm.json") {
+        Copy-Item "$realmSource\nest-realm.json" "$keycloakVolume\data\import\" -Force
+        Copy-Item "$realmSource\nest-users-0.json" "$keycloakVolume\data\import\" -Force
+        Write-Success "Keycloak Realm-Konfiguration kopiert"
+    }
+
+    Write-Success "Keycloak-Verzeichnisse erstellt"
+} else {
+    Write-Info "Keycloak ist bereits eingerichtet"
+}
+
+# ============================================
 # SCHRITT 4: Dependencies installieren
 # ============================================
 
@@ -341,7 +388,7 @@ Write-Host "║    Frontend:  https://localhost:4200                          �
 Write-Host "║    Backend:   https://localhost:3000                          ║" -ForegroundColor Green
 Write-Host "║    Swagger:   https://localhost:3000/swagger                  ║" -ForegroundColor Green
 Write-Host "║                                                               ║" -ForegroundColor Green
-Write-Host "║  Login: admin / p                                             ║" -ForegroundColor Green
+Write-Host "║  Login: admin / MnPfKCid!                                     ║" -ForegroundColor Green
 } else {
 Write-Host "║  Zum Starten: .\Start-All.ps1                                 ║" -ForegroundColor Green
 }

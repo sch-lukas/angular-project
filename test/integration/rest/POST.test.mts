@@ -114,7 +114,7 @@ describe('POST /rest', () => {
     let token: string;
 
     beforeAll(async () => {
-        token = await getToken('admin', 'p');
+        token = await getToken('admin', 'MnPfKCid!');
     });
 
     test('Neues Buch', async () => {

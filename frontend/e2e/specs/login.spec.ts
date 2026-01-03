@@ -15,7 +15,7 @@ test.describe('Login Funktionalität', () => {
     test('sollte mit gültigen Credentials erfolgreich einloggen', async ({
         loginPage,
     }) => {
-        await loginPage.login('admin', 'p');
+        await loginPage.login('admin', 'MnPfKCid!');
 
         // Warte auf Navigation weg von /login (Redirect zu / oder Landing Page)
         await loginPage.page.waitForURL(

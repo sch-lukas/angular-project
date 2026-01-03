@@ -37,7 +37,7 @@ const dbPopulate = async (token: string) => {
 
 // https://vitest.dev/config/#globalsetup
 export default async function setup() {
-    const token = await getToken('admin', 'p');
+    const token = await getToken('admin', 'MnPfKCid!');
     console.log(`setup: token=${token}`);
     await dbPopulate(token);
 }

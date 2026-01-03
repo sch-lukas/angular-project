@@ -120,7 +120,7 @@ DB_SCHEMA=buch
 # Keycloak
 KEYCLOAK_HOST=localhost
 KEYCLOAK_PORT=8843
-KEYCLOAK_CLIENT_ID=buch-client
+KEYCLOAK_CLIENT_ID=nest-client
 KEYCLOAK_CLIENT_SECRET=
 
 # Server
@@ -236,7 +236,7 @@ Nachdem das Backend gestartet wurde:
 
 ```powershell
 # Option A: Via curl (mit Bearer Token)
-$token = (Invoke-RestMethod -Uri "https://localhost:8843/realms/buch/protocol/openid-connect/token" -Method POST -Body @{grant_type="password"; client_id="buch-client"; username="admin"; password="p"} -SkipCertificateCheck).access_token
+$token = (Invoke-RestMethod -Uri "https://localhost:8843/realms/nest/protocol/openid-connect/token" -Method POST -Body @{grant_type="password"; client_id="nest-client"; username="admin"; password="MnPfKCid!"} -SkipCertificateCheck).access_token
 
 Invoke-RestMethod -Uri "https://localhost:3000/dev/db_populate" -Method POST -Headers @{Authorization="Bearer $token"} -SkipCertificateCheck
 
@@ -303,21 +303,25 @@ pnpm start
 
 ## 🌐 URLs nach dem Start
 
-| Service     | URL                            | Zugangsdaten  |
-| ----------- | ------------------------------ | ------------- |
-| Frontend    | https://localhost:4200         | -             |
-| Backend API | https://localhost:3000         | -             |
-| Swagger     | https://localhost:3000/swagger | -             |
-| GraphQL     | https://localhost:3000/graphql | -             |
-| Keycloak    | https://localhost:8843         | admin / admin |
-| PostgreSQL  | localhost:5432                 | postgres / p  |
+| Service     | URL                            | Zugangsdaten    |
+| ----------- | ------------------------------ | --------------- |
+| Frontend    | https://localhost:4200         | -               |
+| Backend API | https://localhost:3000         | -               |
+| Swagger     | https://localhost:3000/swagger | -               |
+| GraphQL     | https://localhost:3000/graphql | -               |
+| Keycloak    | https://localhost:8843/admin   | (siehe Hinweis) |
+| PostgreSQL  | localhost:5432                 | postgres / p    |
+
+> **Hinweis Keycloak Admin:** Die Admin-Konsole verwendet separate Zugangsdaten.
+> Bei Ersteinrichtung wird ein temporärer Admin erstellt. Für die App selbst
+> nutze die folgenden Benutzer:
 
 ### Login-Daten für die App
 
-| Benutzer | Passwort | Rolle    |
-| -------- | -------- | -------- |
-| admin    | p        | Admin    |
-| user     | p        | Benutzer |
+| Benutzer | Passwort  | Rolle    |
+| -------- | --------- | -------- |
+| admin    | MnPfKCid! | Admin    |
+| user     | MnPfKCid! | Benutzer |
 
 ---
 

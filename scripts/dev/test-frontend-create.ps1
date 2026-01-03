@@ -20,7 +20,7 @@ try {
 # 2. Admin-Token holen (wie im Frontend)
 Write-Host "`n2️⃣  Admin-Login (simuliert Frontend)..." -ForegroundColor Yellow
 try {
-    $loginBody = '{"username":"admin","password":"p"}'
+    $loginBody = '{"username":"admin","password":"MnPfKCid!"}'
     $loginResult = Invoke-RestMethod -Uri "http://localhost:3000/auth/token" -Method Post -Body $loginBody -ContentType "application/json"
     $token = $loginResult.access_token
     Write-Host "   🔑 Token erhalten" -ForegroundColor Green
@@ -159,7 +159,7 @@ Write-Host "   ✅ DELETE-Operation funktioniert" -ForegroundColor White
 
 Write-Host "`n🎯 NÄCHSTER SCHRITT:" -ForegroundColor Yellow
 Write-Host "   Teste das Frontend unter: http://localhost:4200/new" -ForegroundColor Yellow
-Write-Host "   1. Als 'admin' mit Passwort 'p' einloggen" -ForegroundColor White
+Write-Host "   1. Als 'admin' mit Passwort 'MnPfKCid!' einloggen" -ForegroundColor White
 Write-Host "   2. Formular ausfüllen (alle Felder inkl. Beschreibung, Autor, Autor-Bio)" -ForegroundColor White
 Write-Host "   3. 'Speichern' klicken" -ForegroundColor White
 Write-Host "   4. Erfolgsmeldung sollte erscheinen und zu /search weitergeleitet werden" -ForegroundColor White

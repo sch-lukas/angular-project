@@ -97,7 +97,7 @@ describe('PUT /rest/:id', () => {
     let token: string;
 
     beforeAll(async () => {
-        token = await getToken('admin', 'p');
+        token = await getToken('admin', 'MnPfKCid!');
     });
 
     test('Vorhandenes Buch aendern', async () => {
