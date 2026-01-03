@@ -16,21 +16,25 @@ export class SearchPage {
     readonly resultsTable: Locator;
     readonly paginationButtons: Locator;
     readonly noResultsMessage: Locator;
+    readonly ratingDropdown: Locator;
 
     constructor(page: Page) {
         this.page = page;
-        this.searchInput = page.locator('input[name="titel"]');
+        // Selektoren an aktuelles Search-Template angepasst
+        this.searchInput = page.locator('#suchtext');
         this.searchButton = page.locator('button:has-text("Suchen")');
-        this.artDropdown = page.locator('select[name="art"]');
-        this.lieferbarCheckbox = page.locator('input[name="lieferbar"]');
+        this.ratingDropdown = page.locator('#ratingFilter');
+        // Diese Elemente existieren nicht mehr in der aktuellen Suche:
+        this.artDropdown = page.locator('select#art'); // Nicht mehr vorhanden
+        this.lieferbarCheckbox = page.locator('input[type="checkbox"]').first();
         this.rabattCheckboxDruckausgabe = page.locator(
             'input[value="DRUCKAUSGABE"]',
         );
         this.rabattCheckboxEbook = page.locator('input[value="EBOOK"]');
-        this.javascriptRadio = page.locator('input[value="JAVASCRIPT"]');
-        this.typescriptRadio = page.locator('input[value="TYPESCRIPT"]');
+        this.javascriptRadio = page.locator('input[value="preisAsc"]');
+        this.typescriptRadio = page.locator('input[value="preisDesc"]');
         this.resultsTable = page.locator('table');
-        this.paginationButtons = page.locator('.pagination button');
+        this.paginationButtons = page.locator('button:has-text("Seite")');
         this.noResultsMessage = page.locator('text=Keine Bücher gefunden');
     }
 

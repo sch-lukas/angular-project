@@ -13,10 +13,11 @@ export class LoginPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.usernameInput = page.locator('input[name="username"]');
-        this.passwordInput = page.locator('input[name="password"]');
+        // Selektoren an aktuelles Login-Template angepasst (id statt name)
+        this.usernameInput = page.locator('#username');
+        this.passwordInput = page.locator('#password');
         this.loginButton = page.locator('button[type="submit"]');
-        this.errorMessage = page.locator('.alert-danger');
+        this.errorMessage = page.locator('.alert-error');
         this.loginHeading = page.locator('h1');
     }
 

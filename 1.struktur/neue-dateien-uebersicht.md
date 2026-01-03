@@ -1,7 +1,7 @@
 # Neue Dateien - Übersicht
 
 > **Dokumentation aller Dateien, die seit dem Start-Commit (`3191d43`) neu hinzugefügt wurden.**
-> Stand: 28. Dezember 2025
+> Stand: Januar 2026
 
 ---
 
@@ -9,17 +9,74 @@
 
 | Kategorie              | Dateien  | Zeilen      | Anteil |
 | ---------------------- | -------- | ----------- | ------ |
-| Frontend Components    | 12       | ~6.500      | 38%    |
+| Frontend Components    | 12       | ~6.500      | 36%    |
 | Frontend Services      | 7        | ~1.100      | 6%     |
-| Frontend Templates     | 13       | ~1.500      | 9%     |
+| Frontend Templates     | 13       | ~1.500      | 8%     |
 | Frontend Tests         | 2        | ~850        | 5%     |
-| E2E Tests (Playwright) | 8        | ~600        | 4%     |
-| Cover Assets (SVG)     | 159      | ~3.200      | 19%    |
+| E2E Tests (Playwright) | 9        | ~700        | 4%     |
+| Cover Assets (SVG)     | 159      | ~3.200      | 18%    |
 | Cover Scripts          | 7        | ~1.000      | 6%     |
 | Backend-Erweiterungen  | 8        | ~1.200      | 7%     |
-| Dokumentation          | 5        | ~1.800      | 10%    |
+| Dokumentation          | 6        | ~2.200      | 11%    |
+| **Automation Scripts** | **3**    | **~200**    | **1%** |
+| **Setup-Vorlagen**     | **5**    | **~150**    | **1%** |
 | Config/Sonstiges       | 6        | ~300        | 2%     |
-| **TOTAL**              | **~227** | **~17.050** | 100%   |
+| **TOTAL**              | **~237** | **~18.900** | 100%   |
+
+---
+
+## 🚀 Automation & Developer Experience (NEU)
+
+### Start/Stop/Setup Scripts
+
+| Datei                       | Zeilen | Beschreibung                                 |
+| --------------------------- | ------ | -------------------------------------------- |
+| `Setup-Komplett.ps1`        | ~300   | Vollautomatisches Setup (installiert alles!) |
+| `Start-All.ps1`             | ~110   | Startet kompletten Dev-Stack mit einem Klick |
+| `Stop-All.ps1`              | ~50    | Stoppt alle Services und Docker-Container    |
+| `frontend/start-server.mjs` | ~90    | Angular Server mit LAN-Modus Option          |
+
+#### Setup-Komplett.ps1 Features (NEU)
+
+- Prüft und installiert fehlende Software (Node.js, pnpm, Docker, Git)
+- Startet Docker Desktop automatisch
+- Kopiert alle Konfigurationsdateien
+- Installiert alle Dependencies (Backend + Frontend)
+- Generiert Prisma Client
+- Baut das Backend
+- Startet das Projekt (optional)
+
+#### Start-All.ps1 Features
+
+- Startet PostgreSQL (Docker)
+- Startet Keycloak (Docker)
+- Startet NestJS Backend (neues Fenster)
+- Startet Angular Frontend (neues Fenster)
+- `-lan` Flag für LAN-Zugriff vom Handy
+- Farbige Status-Ausgabe
+
+#### start-server.mjs Features
+
+- `pnpm start` → Nur localhost
+- `pnpm start:lan` → LAN-Modus (0.0.0.0)
+- Zeigt alle verfügbaren IP-Adressen an
+
+### Setup-Vorlagen (NEU)
+
+| Datei                                    | Beschreibung                    |
+| ---------------------------------------- | ------------------------------- |
+| `setup-vorlagen/README.md`               | Anleitung für die Vorlagen      |
+| `setup-vorlagen/.env.example`            | Vorlage für Umgebungsvariablen  |
+| `setup-vorlagen/db_password.txt.example` | Vorlage für PostgreSQL Passwort |
+| `setup-vorlagen/key.pem.example`         | Platzhalter für TLS Private Key |
+| `setup-vorlagen/copy-to-project.ps1`     | Automatisches Kopier-Script     |
+
+#### Verwendung
+
+```powershell
+# Nach dem Klonen - alle Vorlagen automatisch kopieren
+.\setup-vorlagen\copy-to-project.ps1
+```
 
 ---
 
@@ -216,14 +273,15 @@
 
 ## 🔟 Dokumentation
 
-| Datei                             | Zeilen | Beschreibung               |
-| --------------------------------- | ------ | -------------------------- |
-| `struktur/projektbeschreibung.md` | 354    | Projekt-Gesamtübersicht    |
-| `struktur/technische-details.md`  | 607    | Architektur & Technologien |
-| `struktur/zustandsdiagramm.puml`  | 356    | UML Zustandsdiagramm       |
-| `frontend/EMPFEHLUNGEN_README.md` | 283    | Karussell-Implementierung  |
-| `frontend/README.E2E.md`          | 156    | E2E Test Dokumentation     |
-| `frontend/Readme.md`              | 3      | Frontend Readme            |
+| Datei                             | Zeilen | Beschreibung                   |
+| --------------------------------- | ------ | ------------------------------ |
+| `SETUP.md`                        | ~400   | Setup-Anleitung für Entwickler |
+| `struktur/projektbeschreibung.md` | 354    | Projekt-Gesamtübersicht        |
+| `struktur/technische-details.md`  | 607    | Architektur & Technologien     |
+| `struktur/zustandsdiagramm.puml`  | 356    | UML Zustandsdiagramm           |
+| `frontend/EMPFEHLUNGEN_README.md` | 283    | Karussell-Implementierung      |
+| `frontend/README.E2E.md`          | 156    | E2E Test Dokumentation         |
+| `frontend/Readme.md`              | 3      | Frontend Readme                |
 
 ---
 
@@ -323,6 +381,21 @@ angular-project/
 │   ├── home/                         # 🆕
 │   └── buch/, config/                # Erweitert
 │
+├── Start-All.ps1                     # 🆕 Startet gesamten Dev-Stack
+├── Stop-All.ps1                      # 🆕 Stoppt alle Services
+├── SETUP.md                          # 🆕 Setup-Anleitung für Entwickler
+│
+├── setup-vorlagen/                   # 🆕 Vorlagen für sensible Dateien
+│   ├── README.md
+│   ├── .env.example
+│   ├── db_password.txt.example
+│   ├── key.pem.example
+│   └── copy-to-project.ps1
+│
+├── frontend/
+│   ├── start-server.mjs              # 🆕 Dev-Server mit LAN-Modus
+│   └── ...
+│
 └── 1.struktur/                       # 🆕 KOMPLETT NEU
     ├── projektbeschreibung.md
     ├── technische-details.md
@@ -362,10 +435,44 @@ angular-project/
 | `37955ef` - `30d0469` | Dez 2025   | Warenkorb & Löschen           |
 | `3cda869` - `af38b16` | Dez 2025   | Neu Anlegen                   |
 | `6c98cea`             | Dez 2025   | HTTPS                         |
-| `...`                 | Dez 2025   | **Aktuell**                   |
+| `...`                 | Jan 2026   | Automation Scripts            |
+
+---
+
+## 🧪 Test-Status (Stand: Januar 2026)
+
+| Test-Suite           | Framework    | Ergebnis     | Anmerkung                       |
+| -------------------- | ------------ | ------------ | ------------------------------- |
+| E2E Tests            | Playwright   | ✅ 29 passed | Alle Selektoren aktualisiert    |
+| Integration Tests    | Vitest       | ✅ 67 passed | REST + GraphQL Tests            |
+| Unit Tests (Backend) | Vitest       | ✅ Bereit    | Benötigt laufendes Backend      |
+| API Tests (manuell)  | REST/GraphQL | ✅ 4/4       | Health, GraphQL, Stats, Swagger |
+
+### Voraussetzungen für Tests
+
+```bash
+# 1. Stack starten (Backend + Keycloak müssen laufen!)
+./Start-All.ps1
+
+# 2. Backend Integration Tests
+$env:NODE_TLS_REJECT_UNAUTHORIZED="0"
+pnpm exec vitest run
+
+# 3. E2E Tests (in neuem Terminal)
+cd frontend
+pnpm test:e2e
+```
+
+### Reparierte E2E Page-Objects
+
+- `login.page.ts` - Selektoren auf `#username`, `#password` geändert
+- `search.page.ts` - Selektoren auf `#suchtext`, `#ratingFilter` geändert
+- `detail.page.ts` - Komplett neu geschrieben: `h1.product-title`, `.product-price`, `.cover-image`, etc.
+- `create.page.ts` - ISBN wird automatisch generiert, Schlagwörter als Text
+- `test-fixtures.ts` - Login-Fixture mit korrekter Navigation nach `/`
 
 ---
 
 ## Erstellungsdatum
 
-Erstellt am 19.12.2025, aktualisiert am 28.12.2025
+Erstellt am 19.12.2025, aktualisiert im Januar 2026

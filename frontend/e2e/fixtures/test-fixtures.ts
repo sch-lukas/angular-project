@@ -43,12 +43,31 @@ export const test = base.extend<Fixtures>({
     authenticatedPage: async ({ page }, use) => {
         const loginPage = new LoginPage(page);
         await loginPage.goto();
+
+        // Warte bis Login-Seite geladen ist
+        await page.waitForSelector('#username', { timeout: 10000 });
+
         await loginPage.login('admin', 'p');
 
-        // Warte auf erfolgreiche Navigation
-        await page.waitForURL('**/search');
+        // Warte auf erfolgreiche Navigation weg von /login
+        // Die App navigiert standardmäßig zu "/" nach dem Login
+        try {
+            await page.waitForURL((url) => !url.pathname.includes('/login'), {
+                timeout: 15000,
+            });
+        } catch {
+            // Falls Login fehlschlägt, prüfe ob wir noch auf Login sind
+            const currentUrl = page.url();
+            if (currentUrl.includes('/login')) {
+                throw new Error(
+                    `Login failed - still on login page. Check if backend and Keycloak are running.`,
+                );
+            }
+        }
 
         const searchPage = new SearchPage(page);
+        // Navigiere zu /search nach erfolgreichem Login
+        await searchPage.goto();
         await use(searchPage);
     },
 });

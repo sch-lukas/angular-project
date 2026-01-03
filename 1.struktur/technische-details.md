@@ -646,6 +646,7 @@ frontend/src/app/
 - [ ] Benutzer-Authentifizierung persistieren
 - [ ] Filterung nach Genres/Kategorien
 - [ ] Volltextsuche mit Highlighting
+- [ ] E2E Test Login-Selektoren aktualisieren
 
 ### Mittelfristig (nächste Monate)
 
@@ -663,4 +664,33 @@ frontend/src/app/
 
 ---
 
-Aktualisiert am 28.12.2025
+## 🔧 Automation & Developer Experience
+
+### Start-All.ps1
+
+Startet den gesamten Development Stack mit einem Befehl:
+
+- PostgreSQL Docker Container
+- Keycloak Docker Container
+- NestJS Backend (mit `.env` Umgebungsvariablen)
+- Angular Frontend
+
+### Stop-All.ps1
+
+Stoppt alle Services sauber:
+
+- Beendet Node-Prozesse
+- Stoppt Docker Container
+
+### frontend/start-server.mjs
+
+Angular Dev-Server mit LAN-Modus Option:
+
+```bash
+node start-server.mjs --lan   # Server im lokalen Netzwerk verfügbar
+node start-server.mjs         # Nur localhost
+```
+
+---
+
+Aktualisiert am 3. Januar 2026
