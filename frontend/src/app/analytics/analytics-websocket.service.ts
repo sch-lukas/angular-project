@@ -94,24 +94,20 @@ export class AnalyticsWebSocketService implements OnDestroy {
             return;
         }
 
-        // WebSocket zum Backend - über gleichen Host wie Frontend (Proxy leitet weiter)
+        // WebSocket zum Backend - IMMER über gleichen Host wie Frontend
         // Bei localhost:4200 geht es über Proxy zu localhost:3000
-        // Bei Tunnel geht es direkt zu localhost:3000 (Backend muss erreichbar sein)
+        // Bei Tunnel (trycloudflare.com) geht es auch über den gleichen Host,
+        // damit der Cloudflare Tunnel den WebSocket weiterleitet
         const protocol =
             globalThis.location.protocol === 'https:' ? 'https:' : 'http:';
         const host = globalThis.location.hostname;
         const port = globalThis.location.port;
 
-        // Wenn wir auf localhost:4200 sind, nutze den Proxy
-        // Ansonsten (Tunnel) verbinde direkt zum Backend
-        let wsUrl: string;
-        if (host === 'localhost' && port === '4200') {
-            // Lokale Entwicklung - nutze Proxy (kein Namespace, nur Basis-URL)
-            wsUrl = `${protocol}//${host}:${port}`;
-        } else {
-            // Tunnel oder Produktion - verbinde direkt zum Backend
-            wsUrl = `https://localhost:3000`;
-        }
+        // IMMER über den aktuellen Host verbinden - egal ob localhost oder Tunnel
+        // Der Angular-Proxy (lokal) bzw. Cloudflare Tunnel leitet zum Backend weiter
+        const wsUrl = port
+            ? `${protocol}//${host}:${port}`
+            : `${protocol}//${host}`;
 
         console.log('Analytics: Connecting to', wsUrl, 'isAdmin:', isAdmin);
 

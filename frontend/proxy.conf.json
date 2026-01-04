@@ -28,6 +28,9 @@
     "secure": false,
     "changeOrigin": true,
     "ws": true,
-    "logLevel": "debug"
+    "logLevel": "debug",
+    "headers": {
+      "Connection": "Upgrade"
+    }
   }
 }
