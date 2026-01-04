@@ -1,50 +1,46 @@
+/* New Book Component - Verwendet zentrale CSS-Variablen */
 .new-book-container {
   max-width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
 h1 {
   margin-bottom: 2rem;
-  color: #2c3e50;
+  color: var(--app-text);
+  font-size: 2rem;
 }
 
-:host-context(.theme-dark) h1 {
-  color: #ecf0f1;
-}
-
+/* Alerts */
 .alert {
   padding: 1rem;
   margin-bottom: 1.5rem;
-  border-radius: 4px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .alert-error {
-  background: #fee;
-  color: #c33;
-  border: 1px solid #fcc;
-}
-
-:host-context(.theme-dark) .alert-error {
-  background: #4a2222;
-  color: #ffaaaa;
-  border: 1px solid #663333;
+  background: var(--app-danger-light);
+  color: var(--app-danger-dark);
+  border: 1px solid var(--app-danger);
 }
 
 .alert-success {
-  background: #efe;
-  color: #3c3;
-  border: 1px solid #cfc;
+  background: var(--app-success-light);
+  color: var(--app-success-dark);
+  border: 1px solid var(--app-success);
 }
 
-:host-context(.theme-dark) .alert-success {
-  background: #224422;
-  color: #aaffaa;
-  border: 1px solid #336633;
-}
-
-/* Error Popup Overlay */
-.error-popup-overlay {
+/* Error Popup */
+.popup-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -52,10 +48,10 @@ h1 {
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 9999;
-  animation: fadeIn 0.2s ease-out;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
 }
 
 @keyframes fadeIn {
@@ -67,245 +63,309 @@ h1 {
   }
 }
 
-.error-popup {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  max-width: 500px;
+.error-popup,
+.success-popup {
+  background: var(--app-surface);
+  border-radius: 16px;
   width: 90%;
-  animation: slideIn 0.3s ease-out;
+  max-width: 500px;
   overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
 }
 
-:host-context(.theme-dark) .error-popup {
-  background: #2d3748;
-}
-
-@keyframes slideIn {
+@keyframes slideUp {
   from {
-    transform: translateY(-50px);
     opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
   }
+}
+
+.error-popup-header,
+.success-popup-header {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .error-popup-header {
-  background: #e74c3c;
+  background: linear-gradient(135deg, var(--app-danger), #c0392b);
   color: white;
-  padding: 1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.error-icon {
-  font-size: 1.5rem;
-}
-
-.close-btn {
-  margin-left: auto;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0;
-  line-height: 1;
-}
-
-.close-btn:hover {
-  opacity: 0.8;
-}
-
-.error-popup-body {
-  padding: 1.5rem;
-  color: #333;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-:host-context(.theme-dark) .error-popup-body {
-  color: #e2e8f0;
-}
-
-.error-popup-footer {
-  padding: 1rem 1.5rem;
-  background: #f8f9fa;
-  display: flex;
-  justify-content: flex-end;
-}
-
-:host-context(.theme-dark) .error-popup-footer {
-  background: #1a202c;
-}
-
-/* Success Popup */
-.success-popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  animation: fadeIn 0.2s ease-out;
-}
-
-.success-popup {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  max-width: 400px;
-  width: 90%;
-  animation: slideIn 0.3s ease-out;
-  overflow: hidden;
-}
-
-:host-context(.theme-dark) .success-popup {
-  background: #2d3748;
 }
 
 .success-popup-header {
-  background: #27ae60;
+  background: linear-gradient(135deg, var(--app-success), #1d8348);
   color: white;
-  padding: 1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 1.1rem;
 }
 
-.success-icon {
-  font-size: 1.5rem;
+.error-popup-header i,
+.success-popup-header i {
+  font-size: 2rem;
 }
 
+.error-popup-header h3,
+.success-popup-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.error-popup-body,
 .success-popup-body {
   padding: 1.5rem;
-  color: #333;
-  font-size: 1.1rem;
-  text-align: center;
+  color: var(--app-text);
 }
 
-:host-context(.theme-dark) .success-popup-body {
-  color: #e2e8f0;
+.error-popup-body p,
+.success-popup-body p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
 }
 
-.book-form {
-  background: white;
-  padding: 2rem;
+.error-popup-body ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.error-popup-body li {
+  margin-bottom: 0.5rem;
+  color: var(--app-text-secondary);
+}
+
+.error-popup-footer,
+.success-popup-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--app-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.popup-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s;
 }
 
-:host-context(.theme-dark) .book-form {
-  background: #3a4a5c;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+.popup-btn-secondary {
+  background: var(--app-surface-alt);
+  color: var(--app-text);
+  border: 1px solid var(--app-border);
+}
+
+.popup-btn-secondary:hover {
+  background: var(--app-surface-hover);
+}
+
+.popup-btn-primary {
+  background: var(--app-danger);
+  color: white;
+}
+
+.popup-btn-primary:hover {
+  background: #c0392b;
+}
+
+.popup-btn-success {
+  background: var(--app-success);
+  color: white;
+}
+
+.popup-btn-success:hover {
+  background: #1d8348;
+}
+
+/* Book Form */
+.book-form {
+  background: var(--app-surface);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: var(--app-card-shadow);
+  border: 1px solid var(--app-border);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .form-group {
   margin-bottom: 1.5rem;
 }
 
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #555;
-}
-
-:host-context(.theme-dark) .form-group label {
-  color: #bdc3c7;
+  font-weight: 600;
+  color: var(--app-text-secondary);
 }
 
 .form-control {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 0.875rem;
+  border: 2px solid var(--app-input-border, #d1d5db);
+  border-radius: 10px;
   font-size: 1rem;
-  transition: border-color 0.3s;
-  background: white;
-  color: #2c3e50;
-}
-
-textarea.form-control {
-  resize: vertical;
-  min-height: 100px;
-  font-family: inherit;
-  line-height: 1.5;
-}
-
-:host-context(.theme-dark) .form-control {
-  background: #445566;
-  border-color: #556677;
-  color: #ecf0f1;
-}
-
-:host-context(.theme-dark) .form-control::placeholder {
-  color: #7f8c8d;
+  background: var(--app-input-bg, #ffffff);
+  color: var(--app-text);
+  transition: all 0.3s;
 }
 
 .form-control:focus {
   outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  border-color: var(--app-primary);
+  box-shadow: var(--app-input-focus-shadow, 0 0 0 3px rgba(59, 130, 246, 0.2));
 }
 
 .form-control.is-invalid {
-  border-color: #e74c3c;
+  border-color: var(--app-danger);
 }
 
-.error-message {
-  color: #e74c3c;
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
+.form-control::placeholder {
+  color: var(--app-text-muted);
 }
 
 .form-text {
-  display: block;
-  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--app-text-muted);
+  margin-top: 0.4rem;
+}
+
+.error-message {
+  color: var(--app-danger);
   font-size: 0.875rem;
-  color: #777;
+  margin-top: 0.5rem;
 }
 
-:host-context(.theme-dark) .form-text {
-  color: #95a5a6;
-}
-
-.form-checkbox label {
+/* Checkbox */
+.form-checkbox {
   display: flex;
   align-items: center;
-  font-weight: normal;
-}
-
-:host-context(.theme-dark) .form-checkbox label {
-  color: #bdc3c7;
+  gap: 0.75rem;
 }
 
 .form-checkbox input[type='checkbox'] {
-  width: auto;
-  margin-right: 0.5rem;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--app-primary);
 }
 
+.form-checkbox label {
+  margin-bottom: 0;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--app-text-secondary);
+}
+
+/* ISBN Display */
+.isbn-display {
+  margin-top: 1rem;
+  padding: 1.25rem;
+  background: var(--app-surface-alt);
+  border-radius: 12px;
+  border: 1px solid var(--app-border);
+}
+
+.isbn-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--app-text-muted);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.isbn-value {
+  font-size: 1.25rem;
+  font-family: 'Courier New', monospace;
+  color: var(--app-primary);
+  font-weight: 600;
+}
+
+/* Schlagwörter */
+.schlagwoerter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.schlagwort-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--app-surface-alt);
+  border: 2px solid var(--app-border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.schlagwort-chip:hover {
+  border-color: var(--app-primary);
+  background: var(--app-primary-light);
+}
+
+.schlagwort-chip.selected {
+  background: var(--app-primary-light);
+  border-color: var(--app-primary);
+}
+
+.schlagwort-chip input {
+  display: none;
+}
+
+.schlagwort-chip span {
+  font-size: 0.9rem;
+  color: var(--app-text);
+}
+
+/* Hint Text */
+.hint-text {
+  font-size: 0.85rem;
+  color: var(--app-text-muted);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* Form Actions */
 .form-actions {
   display: flex;
   gap: 1rem;
   margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--app-border);
 }
 
 .btn {
-  padding: 0.75rem 2rem;
+  padding: 0.875rem 2rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .btn:disabled {
@@ -314,73 +374,83 @@ textarea.form-control {
 }
 
 .btn-primary {
-  background: #3498db;
+  background: linear-gradient(
+    135deg,
+    var(--app-primary) 0%,
+    var(--app-primary-hover) 100%
+  );
   color: white;
+  box-shadow: 0 4px 12px var(--app-primary-shadow);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--app-primary-shadow);
 }
 
 .btn-secondary {
-  background: #95a5a6;
-  color: white;
+  background: var(--app-surface-alt);
+  color: var(--app-text);
+  border: 2px solid var(--app-border);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background: #7f8c8d;
+  border-color: var(--app-primary);
+  color: var(--app-primary);
 }
 
-/* ISBN Display Styles */
-.isbn-display {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.75rem;
-  background: #f8f9fa;
-  border: 2px solid #3498db;
-  border-radius: 4px;
-  font-family: 'Courier New', monospace;
+/* ===== Dark Mode Support ===== */
+:host-context(.theme-dark) .book-form {
+  background: var(--app-surface);
+  border-color: var(--app-border);
+}
+
+:host-context(.theme-dark) .form-control {
+  background: var(--app-input-bg, #1f2937);
+  border-color: var(--app-input-border, #4b5563);
+  color: var(--app-text);
+}
+
+:host-context(.theme-dark) .form-control:focus {
+  border-color: var(--app-primary);
+  box-shadow: var(--app-input-focus-shadow, 0 0 0 3px rgba(59, 130, 246, 0.3));
+}
+
+:host-context(.theme-dark) .form-control::placeholder {
+  color: var(--app-text-muted);
+}
+
+:host-context(.theme-dark) .form-group label {
+  color: var(--app-text-secondary);
 }
 
 :host-context(.theme-dark) .isbn-display {
-  background: #2d3238;
-  border-color: #5dade2;
+  background: var(--app-surface-alt);
+  border-color: var(--app-border);
 }
 
-.isbn-value {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #2c3e50;
-  letter-spacing: 1px;
+:host-context(.theme-dark) .schlagwort-item {
+  background: var(--app-surface-alt);
+  border-color: var(--app-border);
+  color: var(--app-text);
 }
 
-:host-context(.theme-dark) .isbn-value {
-  color: #ecf0f1;
+:host-context(.theme-dark) .schlagwort-item:hover {
+  border-color: var(--app-primary);
 }
 
-.btn-regenerate {
-  padding: 0.4rem 0.8rem;
-  background: #27ae60;
+:host-context(.theme-dark) .schlagwort-item.selected {
+  background: var(--app-primary);
+  border-color: var(--app-primary);
   color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: background 0.3s;
 }
 
-.btn-regenerate:hover {
-  background: #219a52;
+:host-context(.theme-dark) .btn-secondary {
+  background: var(--app-surface-alt);
+  color: var(--app-text);
+  border-color: var(--app-border);
 }
 
-.hint-text {
-  display: block;
-  margin-top: 0.5rem;
-  color: #7f8c8d;
-  font-size: 0.85rem;
-}
-
-:host-context(.theme-dark) .hint-text {
-  color: #95a5a6;
+:host-context(.theme-dark) h1 {
+  color: var(--app-text);
 }

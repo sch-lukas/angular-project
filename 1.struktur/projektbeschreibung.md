@@ -4,6 +4,10 @@
 
 Die Buchhandlung SPA ist eine moderne Single-Page-Application für eine Online-Buchhandlung, entwickelt mit **Angular 21**, **NestJS**, **GraphQL** und **Prisma**. Das Projekt demonstriert moderne Web-Entwicklung mit Fokus auf User Experience, Responsive Design und State Management.
 
+**Version:** 2026.01.1 (Finale Version)
+**Autor:** Leon Jungkind
+**Stand:** 4. Januar 2026
+
 ---
 
 ## 🎯 Projektziel
@@ -16,6 +20,8 @@ Entwicklung einer vollständigen E-Commerce-Plattform für Bücher mit:
 - ✅ Dark/Light Mode mit automatischer System-Erkennung
 - ✅ Responsive Design für Mobile, Tablet und Desktop
 - ✅ Moderne GraphQL-API für effiziente Datenabfragen
+- ✅ **Echtzeit Analytics Dashboard** für Administratoren (NEU)
+- ✅ **WebSocket-basierte Live-Metriken** (NEU)
 
 ---
 
@@ -24,16 +30,16 @@ Entwicklung einer vollständigen E-Commerce-Plattform für Bücher mit:
 ### Frontend Stack
 
 - **Framework**: Angular 21 (Standalone Components)
-- **UI Library**: Bootstrap 5.3.2 + NG Bootstrap 18.0.0
+- **UI Library**: Bootstrap 5.3.2 + NG Bootstrap 19.0.1
 - **State Management**: RxJS BehaviorSubject
 - **Persistenz**: Browser localStorage
-- **API Communication**: GraphQL Client
-- **Styling**: CSS Custom Properties, Responsive Design
+- **API Communication**: GraphQL Client + WebSocket (Socket.io)
+- **Styling**: CSS Custom Properties, Responsive Design, Dark Mode
 
 ### Backend Stack
 
 - **Framework**: NestJS
-- **API**: GraphQL (Apollo Server)
+- **API**: GraphQL (Apollo Server) + WebSocket Gateway
 - **ORM**: Prisma
 - **Datenbank**: PostgreSQL
 - **Authentifizierung**: Keycloak (OAuth2/OIDC)
@@ -43,7 +49,7 @@ Entwicklung einer vollständigen E-Commerce-Plattform für Bücher mit:
 - **Build**: Angular CLI, Vite
 - **Package Manager**: pnpm
 - **Testing**: Vitest (Unit), Playwright (E2E)
-- **Linting**: ESLint
+- **Linting**: ESLint mit Plugins
 - **Formatting**: Prettier
 - **Tunnel**: Cloudflare Quick Tunnel (für Internet-Zugriff)
 
@@ -290,6 +296,39 @@ Optimierte API-Abfragen:
 - `frontend/src/app/services/graphql-queries.ts` (erweitert)
 - `frontend/src/app/services/buch-api.service.ts` (erweitert)
 
+### 8. **Analytics Dashboard** 📊 (NEU - Januar 2026)
+
+Echtzeit-Überwachung für Administratoren:
+
+- **WebSocket-Verbindung**: Socket.io für Live-Updates
+- **Metriken in Echtzeit**:
+  - Aktive Seitenaufrufe
+  - Beliebte Buchseiten
+  - Server-Status und Systemmetriken
+  - Benutzer-Aktivitäten
+- **Nur für eingeloggte Admins**: Route-Guard schützt den Zugriff
+- **Responsive Cards**: Moderne Darstellung der Statistiken
+- **Dark Mode Support**: Vollständig integriert
+
+**Dateien**:
+
+- `frontend/src/app/analytics/analytics-dashboard.component.ts` (~200 Zeilen)
+- `frontend/src/app/analytics/analytics-dashboard.component.css` (~230 Zeilen)
+- `frontend/src/app/analytics/analytics-websocket.service.ts` (~300 Zeilen)
+
+### 9. **Custom Favicon & Branding** 🔖 (NEU - Januar 2026)
+
+Individuelles Erscheinungsbild im Browser:
+
+- **Custom Favicon**: Book-Icon als SVG im Browser-Tab
+- **Title**: "Buch SPA" als Seitentitel
+- **Konsistentes Branding**: Logo im Header passend zum Favicon
+
+**Dateien**:
+
+- `frontend/src/assets/book-icon.svg` (optimiert für Favicon-Darstellung)
+- `frontend/src/index.html` (Favicon- und Title-Referenz)
+
 ---
 
 ## 👥 Benutzer-Flows
@@ -317,6 +356,14 @@ Optimierte API-Abfragen:
 2. Theme umschalten → Sofortige Änderung
 3. localStorage speichert Präferenz
 4. Beim nächsten Besuch: Automatisch gewähltes Theme
+
+### Flow 4: Analytics einsehen (Admin)
+
+1. Login als Admin (admin / CHANGE_ME_DEV_PASSWORD)
+2. Navigation → "Analytics" Link im Header
+3. Dashboard lädt → WebSocket-Verbindung wird aufgebaut
+4. Echtzeit-Metriken werden angezeigt
+5. Automatische Updates bei neuen Daten
 
 ---
 

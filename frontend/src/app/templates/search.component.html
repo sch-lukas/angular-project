@@ -1,287 +1,255 @@
-<div style="max-width: 1000px; margin: 0 auto">
-  <h1>Suche</h1>
+<div class="search-page">
+  <h1 class="page-title">
+    <span class="icon">🔍</span>
+    Buchsuche
+  </h1>
 
-  <!-- Suchformular -->
-  <div
-    style="
-      border: 1px solid var(--app-text, #ccc);
-      padding: 16px;
-      margin-bottom: 20px;
-      border-radius: 4px;
-      background: var(--app-surface);
-      opacity: 0.9;
-    "
-  >
-    <h2 style="margin-top: 0; color: var(--app-text)">Suchkriterien</h2>
+  <!-- Suchformular Card -->
+  <div class="search-card">
+    <h2 class="search-card-title"><span>🎯</span> Suchkriterien</h2>
 
-    <div style="margin-bottom: 12px">
-      <label
-        for="suchtext"
-        style="
-          display: block;
-          margin-bottom: 4px;
-          font-weight: 600;
-          color: var(--app-text);
-        "
-      >
-        Suchtext (Titel oder ISBN):
-      </label>
-      <input
-        id="suchtext"
-        type="text"
-        [(ngModel)]="formData.suchtext"
-        placeholder="z.B. TypeScript oder 978-3..."
-        style="
-          width: 100%;
-          padding: 8px;
-          border: 1px solid var(--app-text, #ccc);
-          border-radius: 4px;
-          box-sizing: border-box;
-          background: var(--app-surface);
-          color: var(--app-text);
-        "
-      />
+    <div class="search-form-grid">
+      <!-- Titel-Suche -->
+      <div class="form-group">
+        <label for="suchtext" class="form-label">Titel</label>
+        <input
+          id="suchtext"
+          type="text"
+          class="form-input"
+          [(ngModel)]="formData.suchtext"
+          placeholder="Nach Titel suchen..."
+        />
+      </div>
+
+      <!-- ISBN-Suche -->
+      <div class="form-group">
+        <label for="isbn" class="form-label">ISBN</label>
+        <input
+          id="isbn"
+          type="text"
+          class="form-input"
+          [(ngModel)]="formData.isbn"
+          placeholder="ISBN-Nummer..."
+        />
+      </div>
+
+      <!-- Art Dropdown -->
+      <div class="form-group">
+        <label for="art" class="form-label">Art</label>
+        <select id="art" class="form-select" [(ngModel)]="formData.art">
+          <option value="">ALLE</option>
+          <option value="EPUB">EPUB</option>
+          <option value="HARDCOVER">HARDCOVER</option>
+          <option value="PAPERBACK">PAPERBACK</option>
+        </select>
+      </div>
     </div>
 
-    <div style="margin-bottom: 12px">
-      <label
-        for="ratingFilter"
-        style="
-          display: block;
-          margin-bottom: 4px;
-          font-weight: 600;
-          color: var(--app-text);
-        "
-      >
-        Bewertung (Rating):
-      </label>
-      <select
-        id="ratingFilter"
-        [(ngModel)]="formData.ratingFilter"
-        style="
-          width: 100%;
-          padding: 8px;
-          border: 1px solid var(--app-text, #ccc);
-          border-radius: 4px;
-          box-sizing: border-box;
-          background: var(--app-surface);
-          color: var(--app-text);
-        "
-      >
-        <option value="">– Alle –</option>
-        <option value="1">≥ 1 Stern</option>
-        <option value="3">≥ 3 Sterne</option>
-        <option value="5">≥ 5 Sterne</option>
-      </select>
-    </div>
+    <!-- Filter Options -->
+    <div class="filter-options">
+      <!-- Rating Filter -->
+      <div class="filter-group">
+        <span class="filter-group-label">Rating</span>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input
+              type="radio"
+              name="ratingFilter"
+              [(ngModel)]="formData.ratingFilter"
+              value=""
+            />
+            Alle
+          </label>
+          <label class="radio-label">
+            <input
+              type="radio"
+              name="ratingFilter"
+              [(ngModel)]="formData.ratingFilter"
+              value="1"
+            />
+            1 Stern
+          </label>
+          <label class="radio-label">
+            <input
+              type="radio"
+              name="ratingFilter"
+              [(ngModel)]="formData.ratingFilter"
+              value="2"
+            />
+            2 Sterne
+          </label>
+          <label class="radio-label">
+            <input
+              type="radio"
+              name="ratingFilter"
+              [(ngModel)]="formData.ratingFilter"
+              value="3"
+            />
+            3 Sterne
+          </label>
+          <label class="radio-label">
+            <input
+              type="radio"
+              name="ratingFilter"
+              [(ngModel)]="formData.ratingFilter"
+              value="4"
+            />
+            4 Sterne
+          </label>
+          <label class="radio-label">
+            <input
+              type="radio"
+              name="ratingFilter"
+              [(ngModel)]="formData.ratingFilter"
+              value="5"
+            />
+            5 Sterne
+          </label>
+        </div>
+      </div>
 
-    <div style="margin-bottom: 12px">
-      <label
-        style="
-          display: block;
-          margin-bottom: 4px;
-          font-weight: 600;
-          color: var(--app-text);
-        "
-        >Sortierung:</label
-      >
-      <div>
-        <label style="margin-right: 20px; color: var(--app-text)">
-          <input
-            type="radio"
-            name="sortierung"
-            [(ngModel)]="formData.sortierung"
-            value="preisAsc"
-          />
-          Preis aufsteigend
-        </label>
-        <label style="color: var(--app-text)">
-          <input
-            type="radio"
-            name="sortierung"
-            [(ngModel)]="formData.sortierung"
-            value="preisDesc"
-          />
-          Preis absteigend
+      <!-- Lieferbar Filter -->
+      <div class="filter-group">
+        <label class="checkbox-label">
+          <input type="checkbox" [(ngModel)]="formData.nurLieferbar" />
+          Nur lieferbare Bücher
         </label>
       </div>
     </div>
 
-    <div style="margin-bottom: 16px">
-      <label style="color: var(--app-text)">
-        <input type="checkbox" [(ngModel)]="formData.nurMitRating" />
-        Nur Bücher mit gesetztem Rating anzeigen
-      </label>
+    <!-- Search Button -->
+    <div class="search-actions">
+      <button class="btn-search" (click)="onSearch()">
+        <span>🔍</span> Suchen
+      </button>
     </div>
-
-    <button
-      (click)="onSearch()"
-      style="
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-weight: 600;
-      "
-    >
-      Suchen
-    </button>
   </div>
 
   <!-- Fehleranzeige -->
-  <div
-    *ngIf="error"
-    style="
-      color: white;
-      background-color: crimson;
-      padding: 12px;
-      margin-bottom: 12px;
-      border-radius: 4px;
-      font-weight: 600;
-    "
-  >
-    ⚠ Fehler beim Laden der Daten: {{ error }}
-  </div>
+  @if (error) {
+    <div class="error-alert">
+      <span class="error-icon">⚠️</span>
+      <span>{{ error }}</span>
+    </div>
+  }
 
   <!-- Ladezustand -->
-  <div
-    *ngIf="isLoading"
-    style="color: var(--app-text); font-style: italic; opacity: 0.7"
-  >
-    Lädt...
-  </div>
+  @if (isLoading) {
+    <div class="loading-state">
+      <div class="loading-spinner"></div>
+      <span>Suche läuft...</span>
+    </div>
+  }
 
   <!-- Ergebnisse -->
-  <div *ngIf="!isLoading && items !== null">
-    <h2 style="color: var(--app-text)">
-      Ergebnisse ({{ totalElements }} Einträge)
-    </h2>
-
-    <table
-      *ngIf="items && items.length > 0"
-      style="width: 100%; border-collapse: collapse; margin-top: 12px"
-    >
-      <thead>
-        <tr>
-          <th style="text-align: left; padding: 8px">ID</th>
-          <th style="text-align: left; padding: 8px">Titel / ISBN</th>
-          <th style="text-align: left; padding: 8px">Preis</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let b of items; let odd = odd">
-          <td style="padding: 8px">
-            <a
-              [routerLink]="['/detail', b.id]"
-              style="color: #007bff; text-decoration: none; font-weight: 600"
-              >{{ b.id }}</a
-            >
-          </td>
-          <td style="padding: 8px">
-            <a
-              [routerLink]="['/detail', b.id]"
-              style="color: #007bff; text-decoration: none"
-            >
-              {{ b.titel?.titel || b.isbn || '–' }}
-            </a>
-          </td>
-          <td style="padding: 8px">
-            {{
-              b.preis != null
-                ? (b.preis | currency: 'EUR' : 'symbol' : '1.2-2')
-                : '–'
-            }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div
-      *ngIf="items && items.length === 0"
-      style="
-        color: var(--app-text);
-        padding: 12px;
-        background-color: var(--app-surface);
-        border-radius: 4px;
-        opacity: 0.8;
-      "
-    >
-      Keine Einträge gefunden.
-    </div>
-
-    <!-- Simple Pagination -->
-    <div
-      *ngIf="items && items.length > 0"
-      style="
-        margin-top: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-      "
-    >
-      <div style="display: flex; gap: 12px; align-items: center">
-        <button
-          (click)="goToPreviousPage()"
-          [disabled]="currentPage <= 0"
-          style="
-            padding: 10px 20px;
-            background: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 14px;
-          "
-          [style.opacity]="currentPage <= 0 ? '0.4' : '1'"
-          [style.cursor]="currentPage <= 0 ? 'not-allowed' : 'pointer'"
-        >
-          ← Zurück
-        </button>
-        <span
-          style="
-            font-weight: 600;
-            color: var(--app-text);
-            font-size: 16px;
-            min-width: 150px;
-            text-align: center;
-          "
-        >
-          Seite {{ currentPage + 1 }}
-          <span *ngIf="totalPages > 0"> / {{ totalPages }} </span>
-        </span>
-        <button
-          (click)="goToNextPage()"
-          [disabled]="!hasMorePages"
-          style="
-            padding: 10px 20px;
-            background: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 14px;
-          "
-          [style.opacity]="!hasMorePages ? '0.4' : '1'"
-          [style.cursor]="!hasMorePages ? 'not-allowed' : 'pointer'"
-        >
-          Weiter →
-        </button>
+  @if (!isLoading && items !== null) {
+    <div class="results-section">
+      <div class="results-header">
+        <div class="results-title">
+          <span>📚</span> Ergebnisse
+          <span class="results-count">{{ totalElements }}</span>
+        </div>
       </div>
-      <span
-        style="
-          font-weight: 400;
-          color: var(--app-text);
-          font-size: 14px;
-          opacity: 0.8;
-        "
-      >
-        Zeige {{ currentPage * pageSize + 1 }} bis
-        {{ Math.min((currentPage + 1) * pageSize, totalElements) }}
-        von {{ totalElements }} Einträgen
-      </span>
+
+      @if (items && items.length > 0) {
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>Titel</th>
+              <th>Preis</th>
+              <th>Rating</th>
+              <th>Lieferbar</th>
+              <th>Aktionen</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (book of items; track book.id) {
+              <tr>
+                <td>
+                  <div class="book-title-cell">
+                    <a [routerLink]="['/detail', book.id]" class="book-title">
+                      {{ book.titel?.titel || '–' }}
+                    </a>
+                    @if (book.isbn) {
+                      <span class="book-isbn">{{ book.isbn }}</span>
+                    }
+                  </div>
+                </td>
+                <td class="price-cell">
+                  {{
+                    book.preis != null
+                      ? (book.preis | currency: 'EUR' : 'symbol' : '1.2-2')
+                      : '–'
+                  }}
+                </td>
+                <td>
+                  <div class="rating-cell">
+                    @for (star of [1, 2, 3, 4, 5]; track star) {
+                      <span
+                        class="star"
+                        [class.empty]="star > (book.rating || 0)"
+                        >★</span
+                      >
+                    }
+                  </div>
+                </td>
+                <td>
+                  @if (book.lieferbar) {
+                    <span class="badge badge-success">✓ Ja</span>
+                  } @else {
+                    <span class="badge badge-warning">✗ Nein</span>
+                  }
+                </td>
+                <td>
+                  <a [routerLink]="['/detail', book.id]" class="btn-detail">
+                    Details
+                  </a>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <div class="pagination-controls">
+            <button
+              class="btn-page"
+              (click)="goToPreviousPage()"
+              [disabled]="currentPage <= 0"
+            >
+              ← Zurück
+            </button>
+
+            <div class="page-indicator">
+              <span class="page-current">Seite {{ currentPage + 1 }}</span>
+              @if (totalPages > 0) {
+                <span class="page-total">von {{ totalPages }}</span>
+              }
+            </div>
+
+            <button
+              class="btn-page"
+              (click)="goToNextPage()"
+              [disabled]="!hasMorePages"
+            >
+              Weiter →
+            </button>
+          </div>
+
+          <span class="pagination-info">
+            Zeige {{ currentPage * pageSize + 1 }} bis
+            {{ Math.min((currentPage + 1) * pageSize, totalElements) }}
+            von {{ totalElements }} Einträgen
+          </span>
+        </div>
+      } @else {
+        <div class="empty-state">
+          <div class="empty-icon">📭</div>
+          <div class="empty-title">Keine Bücher gefunden</div>
+          <div class="empty-subtitle">Versuche andere Suchkriterien</div>
+        </div>
+      }
     </div>
-  </div>
+  }
 </div>

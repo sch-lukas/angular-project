@@ -1,0 +1,230 @@
+.analytics-dashboard {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  color: var(--app-text, #333);
+}
+
+h1,
+h2 {
+  color: var(--app-text, #333);
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  margin: 2rem 0 1rem;
+}
+
+.access-denied {
+  text-align: center;
+  padding: 3rem;
+  background: var(--app-surface, #fff);
+  border-radius: 12px;
+  border: 2px solid #ff6b6b;
+  color: var(--app-text, #333);
+}
+
+.access-denied h2 {
+  color: #d63031;
+}
+
+.btn-home {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: #0066b3;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.2s;
+  font-weight: 600;
+}
+
+.btn-home:hover {
+  background: #004d8c;
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 107, 107, 0.2);
+  color: var(--app-text, #333);
+  border-radius: 20px;
+  width: fit-content;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.connection-status.connected {
+  background: rgba(0, 184, 148, 0.2);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff6b6b;
+  animation: pulse 1.5s infinite;
+}
+
+.connection-status.connected .status-dot {
+  background: #00b894;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.stats-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: var(--app-surface, #fff);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-card.visitors {
+  border-top: 4px solid #0984e3;
+}
+.stat-card.cart {
+  border-top: 4px solid #00b894;
+}
+.stat-card.wishlist {
+  border-top: 4px solid #e84393;
+}
+.stat-card.revenue {
+  border-top: 4px solid #fdcb6e;
+}
+
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--app-text, #333);
+}
+
+.stat-label {
+  color: var(--app-text, #666);
+  opacity: 0.7;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.no-sessions,
+.loading {
+  text-align: center;
+  padding: 2rem;
+  background: var(--app-surface, #f8f9fa);
+  border-radius: 12px;
+  color: var(--app-text, #666);
+  opacity: 0.8;
+}
+
+.sessions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.session-card {
+  background: var(--app-surface, #fff);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #0984e3;
+  color: var(--app-text, #333);
+}
+
+.session-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.session-id {
+  font-family: monospace;
+  background: rgba(128, 128, 128, 0.1);
+  color: var(--app-text, #333);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.session-browser {
+  color: var(--app-text, #666);
+  opacity: 0.7;
+  font-size: 0.85rem;
+}
+
+.session-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--app-text, #666);
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+
+.session-section {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  color: var(--app-text, #333);
+}
+
+.session-section h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--app-text, #333);
+}
+
+.session-section ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--app-text, #333);
+}
+
+.session-section li {
+  margin: 0.25rem 0;
+}
+
+.cart-section {
+  background: rgba(0, 184, 148, 0.15);
+}
+
+.wishlist-section {
+  background: rgba(232, 67, 147, 0.15);
+}
+
+.viewed-section {
+  background: rgba(9, 132, 227, 0.15);
+}

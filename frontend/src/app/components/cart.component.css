@@ -1,0 +1,27 @@
+.img-thumbnail {
+  border: 1px solid #dee2e6;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+.table > :not(caption) > * > * {
+  padding: 1rem 0.75rem;
+}
+
+.input-group .form-control {
+  border-left: none;
+  border-right: none;
+}
+
+.card {
+  transition: box-shadow 0.2s ease;
+}
+
+@media (max-width: 991px) {
+  .card {
+    border-radius: 0.5rem;
+  }
+}

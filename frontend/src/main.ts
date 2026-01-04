@@ -2,6 +2,7 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, Routes } from '@angular/router';
+import { AnalyticsDashboardComponent } from './app/analytics/analytics-dashboard.component';
 import { AppComponent } from './app/app.component';
 import { authGuard } from './app/auth.guard';
 import { authInterceptor } from './app/auth.interceptor';
@@ -27,6 +28,11 @@ const routes: Routes = [
     { path: 'new', component: NewComponent, canMatch: [authGuard] },
     { path: 'kontakt', component: KontaktComponent },
     { path: 'impressum', component: ImpressumComponent },
+    {
+        path: 'analytics',
+        component: AnalyticsDashboardComponent,
+        canMatch: [authGuard],
+    },
     { path: '**', redirectTo: '' },
 ];
 

@@ -11,18 +11,41 @@
 /* CSS-Variablen für Farben */
 :root {
   --color-bg-light: #f3f4f6;
-  --color-bg-dark: #3a3f47;
+  --color-bg-dark: #1a1d23;
   --color-surface-light: #ffffff;
-  --color-surface-dark: #2d3238;
+  --color-surface-dark: #252a31;
   --color-text-light: #111827;
-  --color-text-dark: #eceff4;
+  --color-text-dark: #f1f5f9;
   --color-accent: #3b82f6;
   --color-footer-bg-light: #e5e7eb;
-  --color-footer-bg-dark: #2d3238;
+  --color-footer-bg-dark: #1e2228;
   --table-bg-light: #f9fafb;
-  --table-bg-dark: #f9fafb;
+  --table-bg-dark: #2d3238;
   --table-row-light: #ffffff;
-  --table-row-dark: #ffffff;
+  --table-row-dark: #333942;
+
+  /* Zusätzliche UI-Variablen */
+  --app-primary: #3b82f6;
+  --app-primary-hover: #60a5fa;
+  --app-primary-shadow: rgba(59, 130, 246, 0.3);
+  --app-success: #10b981;
+  --app-warning: #f59e0b;
+  --app-danger: #ef4444;
+  --app-danger-light: rgba(239, 68, 68, 0.1);
+  --app-border: #e5e7eb;
+  --app-card-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --app-card-shadow-hover:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --app-text-secondary: #6b7280;
+  --app-text-muted: #9ca3af;
+  --app-surface-alt: #f9fafb;
+  --app-surface-hover: #f3f4f6;
+
+  /* Input/Form Defaults */
+  --app-input-bg: #ffffff;
+  --app-input-border: #d1d5db;
+  --app-input-focus-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 /* Light Theme */
@@ -33,6 +56,12 @@
   --app-footer-bg: var(--color-footer-bg-light);
   --table-bg: var(--table-bg-light);
   --table-row: var(--table-row-light);
+  --app-border: #d1d5db;
+  --app-surface-alt: #f9fafb;
+  --app-surface-hover: #f3f4f6;
+  --app-input-bg: #ffffff;
+  --app-input-border: #d1d5db;
+  --app-input-focus-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 /* Dark Theme */
@@ -43,6 +72,19 @@
   --app-footer-bg: var(--color-footer-bg-dark);
   --table-bg: var(--table-bg-dark);
   --table-row: var(--table-row-dark);
+  --app-border: #4b5563;
+  --app-surface-alt: #2d333b;
+  --app-surface-hover: #363d47;
+  --app-text-secondary: #cbd5e1;
+  --app-text-muted: #94a3b8;
+  --app-input-bg: #1f2937;
+  --app-input-border: #4b5563;
+  --app-input-focus-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+  --app-card-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --app-card-shadow-hover:
+    0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --app-danger-light: rgba(239, 68, 68, 0.2);
 }
 
 html,
@@ -103,6 +145,17 @@ body {
 
 .app-logo:hover {
   opacity: 0.85;
+}
+
+.app-icon {
+  height: 32px;
+  width: auto;
+  color: var(--app-text);
+  transition: transform 0.3s ease;
+}
+
+.app-icon:hover {
+  transform: scale(1.1);
 }
 
 .app-header-right {
@@ -334,4 +387,78 @@ tbody td {
 
 tbody tr:last-child td {
   border-bottom: none;
+}
+
+/* ===== Global Form Styles (override Bootstrap) ===== */
+.form-control,
+input.form-control,
+select.form-control,
+textarea.form-control {
+  background-color: var(--app-input-bg, #ffffff) !important;
+  border: 2px solid var(--app-input-border, #d1d5db) !important;
+  border-radius: 10px !important;
+  color: var(--app-text, #111827) !important;
+  padding: 0.875rem !important;
+  font-size: 1rem !important;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s !important;
+}
+
+.form-control:focus,
+input.form-control:focus,
+select.form-control:focus,
+textarea.form-control:focus {
+  border-color: var(--app-primary, #3b82f6) !important;
+  box-shadow: var(
+    --app-input-focus-shadow,
+    0 0 0 3px rgba(59, 130, 246, 0.2)
+  ) !important;
+  outline: none !important;
+}
+
+.form-control::placeholder {
+  color: var(--app-text-muted, #9ca3af) !important;
+}
+
+.theme-dark .form-control,
+.theme-dark input.form-control,
+.theme-dark select.form-control,
+.theme-dark textarea.form-control {
+  background-color: var(--app-input-bg, #1f2937) !important;
+  border-color: var(--app-input-border, #4b5563) !important;
+  color: var(--app-text, #f1f5f9) !important;
+}
+
+.theme-dark .form-control:focus,
+.theme-dark input.form-control:focus,
+.theme-dark select.form-control:focus,
+.theme-dark textarea.form-control:focus {
+  border-color: var(--app-primary, #3b82f6) !important;
+  box-shadow: var(
+    --app-input-focus-shadow,
+    0 0 0 3px rgba(59, 130, 246, 0.3)
+  ) !important;
+}
+
+/* Form Labels */
+.form-group label,
+label {
+  color: var(--app-text-secondary, #6b7280);
+}
+
+.theme-dark .form-group label,
+.theme-dark label {
+  color: var(--app-text-secondary, #cbd5e1);
+}
+
+/* Cards with borders */
+.card,
+.book-form {
+  border: 1px solid var(--app-border, #e5e7eb) !important;
+}
+
+.theme-dark .card,
+.theme-dark .book-form {
+  border-color: var(--app-border, #4b5563) !important;
 }

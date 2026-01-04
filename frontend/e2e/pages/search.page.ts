@@ -9,32 +9,39 @@ export class SearchPage {
     readonly searchButton: Locator;
     readonly artDropdown: Locator;
     readonly lieferbarCheckbox: Locator;
-    readonly rabattCheckboxDruckausgabe: Locator;
-    readonly rabattCheckboxEbook: Locator;
-    readonly javascriptRadio: Locator;
-    readonly typescriptRadio: Locator;
-    readonly resultsTable: Locator;
+    readonly ratingRadioAll: Locator;
+    readonly ratingRadio1: Locator;
+    readonly ratingRadio5: Locator;
+    readonly resultsContainer: Locator;
+    readonly bookCards: Locator;
     readonly paginationButtons: Locator;
     readonly noResultsMessage: Locator;
-    readonly ratingDropdown: Locator;
 
     constructor(page: Page) {
         this.page = page;
         // Selektoren an aktuelles Search-Template angepasst
         this.searchInput = page.locator('#suchtext');
         this.searchButton = page.locator('button:has-text("Suchen")');
-        this.ratingDropdown = page.locator('#ratingFilter');
-        // Diese Elemente existieren nicht mehr in der aktuellen Suche:
-        this.artDropdown = page.locator('select#art'); // Nicht mehr vorhanden
+        this.artDropdown = page.locator('select#art');
         this.lieferbarCheckbox = page.locator('input[type="checkbox"]').first();
-        this.rabattCheckboxDruckausgabe = page.locator(
-            'input[value="DRUCKAUSGABE"]',
+        // Rating Radio Buttons (nach value)
+        this.ratingRadioAll = page.locator(
+            'input[name="ratingFilter"][value=""]',
         );
-        this.rabattCheckboxEbook = page.locator('input[value="EBOOK"]');
-        this.javascriptRadio = page.locator('input[value="preisAsc"]');
-        this.typescriptRadio = page.locator('input[value="preisDesc"]');
-        this.resultsTable = page.locator('table');
-        this.paginationButtons = page.locator('button:has-text("Seite")');
+        this.ratingRadio1 = page.locator(
+            'input[name="ratingFilter"][value="1"]',
+        );
+        this.ratingRadio5 = page.locator(
+            'input[name="ratingFilter"][value="5"]',
+        );
+        // Ergebnis-Container (Karten statt Tabelle)
+        this.resultsContainer = page.locator(
+            '.results-grid, .book-list, .search-results',
+        );
+        this.bookCards = page.locator('.book-card, .result-card, .book-item');
+        this.paginationButtons = page.locator(
+            '.pagination button, .pagination-controls button',
+        );
         this.noResultsMessage = page.locator('text=Keine Bücher gefunden');
     }
 
@@ -55,26 +62,39 @@ export class SearchPage {
         await this.lieferbarCheckbox.click();
     }
 
-    async selectSchlagwortJavascript() {
-        await this.javascriptRadio.click();
+    async selectRating(rating: string) {
+        await this.page
+            .locator(`input[name="ratingFilter"][value="${rating}"]`)
+            .click();
     }
 
-    async selectSchlagwortTypescript() {
-        await this.typescriptRadio.click();
+    async selectRating5Stars() {
+        await this.ratingRadio5.click();
     }
 
     async getResultsCount(): Promise<number> {
-        const rows = await this.resultsTable.locator('tbody tr').count();
+        // Versuche verschiedene mögliche Selektoren
+        const cards = await this.bookCards.count();
+        if (cards > 0) return cards;
+        // Fallback auf Tabelle falls vorhanden
+        const rows = await this.page.locator('table tbody tr').count();
         return rows;
     }
 
     async clickBookDetail(index: number) {
-        await this.resultsTable
-            .locator('tbody tr')
-            .nth(index)
-            .locator('a')
-            .first()
-            .click();
+        // Klicke auf erstes Buch in Ergebnisliste
+        const card = this.bookCards.nth(index);
+        if ((await card.count()) > 0) {
+            await card.click();
+        } else {
+            // Fallback auf Tabelle
+            await this.page
+                .locator('table tbody tr')
+                .nth(index)
+                .locator('a')
+                .first()
+                .click();
+        }
     }
 
     async goToNextPage() {

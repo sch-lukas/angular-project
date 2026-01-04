@@ -16,13 +16,12 @@
     class="d-flex justify-content-center my-5"
     style="padding: 80px 0"
   >
-    <div
+    <output
       class="spinner-border text-primary"
-      role="status"
       style="width: 4rem; height: 4rem"
     >
       <span class="visually-hidden">Lädt...</span>
-    </div>
+    </output>
   </div>
 
   <!-- Fehleranzeige -->
@@ -54,7 +53,7 @@
   <!-- Produktseite (Shop-Layout) -->
   <div *ngIf="buch && !isLoading" class="product-card card shadow">
     <!-- Titel und Rating über allem -->
-    <div class="card-header bg-white border-bottom">
+    <div class="card-header product-header border-bottom">
       <h1 class="product-title mb-2">
         {{ buch.titel?.titel || '–' }}
       </h1>
@@ -336,7 +335,6 @@
       <span *ngIf="isDeleting">
         <span
           class="spinner-border spinner-border-sm me-2"
-          role="status"
           aria-hidden="true"
         ></span>
         Wird gelöscht...
@@ -390,13 +388,12 @@
 
   <!-- Lade-Spinner -->
   <div *ngIf="relatedLoading" class="text-center py-5">
-    <div
+    <output
       class="spinner-border text-primary"
-      role="status"
       style="width: 2rem; height: 2rem"
     >
       <span class="visually-hidden">Lädt Empfehlungen...</span>
-    </div>
+    </output>
     <p class="text-muted mt-2">Lädt Empfehlungen...</p>
   </div>
 

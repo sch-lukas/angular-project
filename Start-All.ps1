@@ -74,6 +74,7 @@ Start-Sleep -Seconds 2
 # Schritt 3: Backend in neuem Fenster
 Write-Step "3/4" "NestJS Backend starten..."
 $backendCmd = @"
+`$host.UI.RawUI.WindowTitle = 'Buchhandlung - Backend (NestJS)'
 Set-Location '$ProjectRoot'
 Write-Host '🔧 Backend Server startet...' -ForegroundColor Cyan
 node --env-file=.env dist/main.js
@@ -87,13 +88,13 @@ if (-not $NoFrontend) {
     $frontendPath = Join-Path $ProjectRoot "frontend"
 
     if ($tunnel) {
-        $frontendCmd = "Set-Location '$frontendPath'; Write-Host '🌐 Frontend Server (TUNNEL-Modus) startet...' -ForegroundColor Cyan; pnpm start:tunnel"
+        $frontendCmd = "`$host.UI.RawUI.WindowTitle = 'Buchhandlung - Frontend (Angular)'; Set-Location '$frontendPath'; Write-Host '🌐 Frontend Server (TUNNEL-Modus) startet...' -ForegroundColor Cyan; pnpm start:tunnel"
         Write-Info "Tunnel-Modus aktiviert - Host-Check deaktiviert"
     } elseif ($lan) {
-        $frontendCmd = "Set-Location '$frontendPath'; Write-Host '🌐 Frontend Server (LAN-Modus) startet...' -ForegroundColor Cyan; pnpm start:lan"
+        $frontendCmd = "`$host.UI.RawUI.WindowTitle = 'Buchhandlung - Frontend (Angular)'; Set-Location '$frontendPath'; Write-Host '🌐 Frontend Server (LAN-Modus) startet...' -ForegroundColor Cyan; pnpm start:lan"
         Write-Info "LAN-Modus aktiviert - von anderen Geräten erreichbar"
     } else {
-        $frontendCmd = "Set-Location '$frontendPath'; Write-Host '🏠 Frontend Server startet...' -ForegroundColor Cyan; pnpm start"
+        $frontendCmd = "`$host.UI.RawUI.WindowTitle = 'Buchhandlung - Frontend (Angular)'; Set-Location '$frontendPath'; Write-Host '🏠 Frontend Server startet...' -ForegroundColor Cyan; pnpm start"
     }
 
     Start-Process pwsh -ArgumentList "-NoExit", "-Command", $frontendCmd
@@ -195,24 +196,40 @@ if ($tunnel -and -not $NoFrontend) {
 
     if ($tunnelUrl) {
         Write-Host "`n"
-        Write-Host "╔═══════════════════════════════════════════════════════════════════════════╗" -ForegroundColor Green
-        Write-Host "║                        🌐 TUNNEL AKTIV!                                   ║" -ForegroundColor Green
-        Write-Host "╠═══════════════════════════════════════════════════════════════════════════╣" -ForegroundColor Green
-        Write-Host "║                                                                           ║" -ForegroundColor Green
-        $urlLine = "║  🔗 URL: $tunnelUrl"
-        $urlPadding = 75 - $urlLine.Length
-        Write-Host "$urlLine$(' ' * $urlPadding)║" -ForegroundColor Green
-        Write-Host "║                                                                           ║" -ForegroundColor Green
-        Write-Host "║  🔐 Login: admin / CHANGE_ME_DEV_PASSWORD                                              ║" -ForegroundColor Green
-        Write-Host "║                                                                           ║" -ForegroundColor Green
-        Write-Host "║  🔒 Sicherheit:                                                           ║" -ForegroundColor Green
-        Write-Host "║     • Nur Frontend ist von außen erreichbar                               ║" -ForegroundColor Green
-        Write-Host "║     • Backend bleibt lokal geschützt                                      ║" -ForegroundColor Green
-        Write-Host "║     • URL ändert sich bei jedem Neustart                                  ║" -ForegroundColor Green
-        Write-Host "║                                                                           ║" -ForegroundColor Green
-        Write-Host "║  📋 Diese URL kannst du teilen! (Gültig bis Script-Stopp)                 ║" -ForegroundColor Green
-        Write-Host "║                                                                           ║" -ForegroundColor Green
-        Write-Host "╚═══════════════════════════════════════════════════════════════════════════╝" -ForegroundColor Green
+        # Dynamische Box-Breite basierend auf URL-Länge
+        $urlDisplay = "  🔗 URL: $tunnelUrl"
+        $boxWidth = [Math]::Max(75, $urlDisplay.Length + 4)
+        $horizontalLine = "═" * ($boxWidth - 2)
+        $emptyLine = " " * ($boxWidth - 2)
+
+        Write-Host "╔$horizontalLine╗" -ForegroundColor Green
+        Write-Host "║$(' ' * [Math]::Floor(($boxWidth - 22) / 2))🌐 TUNNEL AKTIV!$(' ' * [Math]::Ceiling(($boxWidth - 22) / 2))║" -ForegroundColor Green
+        Write-Host "╠$horizontalLine╣" -ForegroundColor Green
+        Write-Host "║$emptyLine║" -ForegroundColor Green
+
+        $urlPadding = [Math]::Max(0, $boxWidth - 2 - $urlDisplay.Length)
+        Write-Host "║$urlDisplay$(' ' * $urlPadding)║" -ForegroundColor Green
+        Write-Host "║$emptyLine║" -ForegroundColor Green
+
+        $loginLine = "  🔐 Login: admin / CHANGE_ME_DEV_PASSWORD"
+        $loginPadding = $boxWidth - 2 - $loginLine.Length
+        Write-Host "║$loginLine$(' ' * $loginPadding)║" -ForegroundColor Green
+        Write-Host "║$emptyLine║" -ForegroundColor Green
+
+        $secLine1 = "  🔒 Sicherheit:"
+        Write-Host "║$secLine1$(' ' * ($boxWidth - 2 - $secLine1.Length))║" -ForegroundColor Green
+        $secLine2 = "     • Nur Frontend ist von außen erreichbar"
+        Write-Host "║$secLine2$(' ' * ($boxWidth - 2 - $secLine2.Length))║" -ForegroundColor Green
+        $secLine3 = "     • Backend bleibt lokal geschützt"
+        Write-Host "║$secLine3$(' ' * ($boxWidth - 2 - $secLine3.Length))║" -ForegroundColor Green
+        $secLine4 = "     • URL ändert sich bei jedem Neustart"
+        Write-Host "║$secLine4$(' ' * ($boxWidth - 2 - $secLine4.Length))║" -ForegroundColor Green
+        Write-Host "║$emptyLine║" -ForegroundColor Green
+
+        $shareLine = "  📋 Diese URL kannst du teilen! (Gültig bis Script-Stopp)"
+        Write-Host "║$shareLine$(' ' * ($boxWidth - 2 - $shareLine.Length))║" -ForegroundColor Green
+        Write-Host "║$emptyLine║" -ForegroundColor Green
+        Write-Host "╚$horizontalLine╝" -ForegroundColor Green
 
         # URL in Zwischenablage kopieren
         $tunnelUrl | Set-Clipboard

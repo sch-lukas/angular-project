@@ -1,3 +1,4 @@
+/* Login Component - Verwendet zentrale CSS-Variablen */
 .login-container {
   min-height: 80vh;
   display: flex;
@@ -9,43 +10,28 @@
 .login-card {
   max-width: 400px;
   width: 100%;
-  background: white;
+  background: var(--app-surface);
   padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-:host-context(.theme-dark) .login-card {
-  background: #3a4a5c;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  box-shadow: var(--app-card-shadow);
 }
 
 h1 {
   margin-bottom: 2rem;
   text-align: center;
-  color: #2c3e50;
-}
-
-:host-context(.theme-dark) h1 {
-  color: #ecf0f1;
+  color: var(--app-text);
 }
 
 .alert {
   padding: 1rem;
   margin-bottom: 1.5rem;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .alert-error {
-  background: #fee;
-  color: #c33;
-  border: 1px solid #fcc;
-}
-
-:host-context(.theme-dark) .alert-error {
-  background: #4a2222;
-  color: #ffaaaa;
-  border: 1px solid #663333;
+  background: var(--app-danger-light);
+  color: var(--app-danger-dark);
+  border: 1px solid var(--app-danger);
 }
 
 .form-group {
@@ -56,42 +42,36 @@ h1 {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
-  color: #555;
-}
-
-:host-context(.theme-dark) .form-group label {
-  color: #bdc3c7;
+  color: var(--app-text-secondary);
 }
 
 .form-control {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 2px solid var(--app-input-border);
+  border-radius: 8px;
   font-size: 1rem;
   transition: border-color 0.3s;
-  background: white;
-  color: #2c3e50;
-}
-
-:host-context(.theme-dark) .form-control {
-  background: #445566;
-  border-color: #556677;
-  color: #ecf0f1;
+  background: var(--app-input-bg);
+  color: var(--app-text);
 }
 
 .form-control:focus {
   outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  border-color: var(--app-primary);
+  box-shadow: var(--app-input-focus-shadow);
 }
 
 .form-control.is-invalid {
-  border-color: #e74c3c;
+  border-color: var(--app-danger);
+}
+
+.form-control::placeholder {
+  color: var(--app-text-muted);
 }
 
 .error-message {
-  color: #e74c3c;
+  color: var(--app-danger);
   font-size: 0.875rem;
   margin-top: 0.5rem;
 }
@@ -104,7 +84,7 @@ h1 {
   width: 100%;
   padding: 0.75rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s;
@@ -116,23 +96,26 @@ h1 {
 }
 
 .btn-primary {
-  background: #3498db;
+  background: linear-gradient(
+    135deg,
+    var(--app-primary) 0%,
+    var(--app-primary-hover) 100%
+  );
   color: white;
+  box-shadow: 0 4px 12px var(--app-primary-shadow);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--app-primary-shadow);
 }
 
 .demo-hint {
   margin-top: 1.5rem;
   padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 4px;
+  background: var(--app-surface-alt);
+  border-radius: 8px;
   text-align: center;
-}
-
-:host-context(.theme-dark) .demo-hint {
-  background: #2c3544;
-  color: #95a5a6;
+  color: var(--app-text-secondary);
+  border: 1px solid var(--app-border);
 }

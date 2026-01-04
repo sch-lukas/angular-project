@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AnalyticsWebSocketService } from '../analytics/analytics-websocket.service';
 import { AuthService } from '../services/auth.service';
 import { BuchApiService, type BuchItem } from '../services/buch-api.service';
 import { CartService } from '../services/cart.service';
@@ -56,6 +57,7 @@ export class DetailComponent implements OnInit {
     private readonly cartService = inject(CartService);
     private readonly wishlistService = inject(WishlistService);
     private readonly authService = inject(AuthService);
+    private readonly analyticsService = inject(AnalyticsWebSocketService);
 
     constructor(
         private readonly route: ActivatedRoute,
@@ -105,6 +107,13 @@ export class DetailComponent implements OnInit {
                 this.buch = buch;
                 this.isLoading = false;
                 this.cdr.detectChanges();
+                // Analytics: Buch-Ansicht tracken
+                if (buch.id && buch.titel?.titel) {
+                    this.analyticsService.sendBookViewed(
+                        buch.id,
+                        buch.titel.titel,
+                    );
+                }
                 // Nach erfolgreichem Laden: Empfehlungen laden
                 this.loadRelated(id, buch.art);
             },

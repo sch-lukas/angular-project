@@ -54,8 +54,33 @@ if (Test-Path $tunnelJobFile) {
     }
 }
 
-# Schritt 1: Node Prozesse beenden (Backend + Frontend)
-Write-Step "1/4" "Node.js Prozesse beenden..."
+# Schritt 1: Konsolenfenster schließen (Backend + Frontend)
+Write-Step "1/4" "Konsolenfenster schließen..."
+
+# Finde PowerShell-Fenster mit unseren Titeln
+$pwshProcesses = Get-Process -Name "pwsh", "powershell" -ErrorAction SilentlyContinue
+$closedWindows = 0
+
+foreach ($proc in $pwshProcesses) {
+    try {
+        $title = $proc.MainWindowTitle
+        if ($title -like "*Buchhandlung - Backend*" -or $title -like "*Buchhandlung - Frontend*") {
+            $proc | Stop-Process -Force
+            $closedWindows++
+        }
+    } catch {
+        # Ignoriere Fehler bei Prozessen ohne Fenster
+    }
+}
+
+if ($closedWindows -gt 0) {
+    Write-Success "$closedWindows Konsolenfenster geschlossen"
+} else {
+    Write-Success "Keine Buchhandlung-Fenster gefunden"
+}
+
+# Node Prozesse beenden (Backend + Frontend)
+Write-Step "2/4" "Node.js Prozesse beenden..."
 $nodeProcesses = Get-Process -Name "node" -ErrorAction SilentlyContinue
 if ($nodeProcesses) {
     $nodeProcesses | Stop-Process -Force
@@ -64,8 +89,8 @@ if ($nodeProcesses) {
     Write-Success "Keine Node Prozesse gefunden"
 }
 
-# Schritt 2: Angular CLI Prozesse
-Write-Step "2/4" "Angular CLI Prozesse beenden..."
+# Schritt 3: Angular CLI Prozesse
+Write-Step "3/4" "Angular CLI Prozesse beenden..."
 $ngProcesses = Get-Process -Name "ng" -ErrorAction SilentlyContinue
 if ($ngProcesses) {
     $ngProcesses | Stop-Process -Force
@@ -74,9 +99,9 @@ if ($ngProcesses) {
     Write-Success "Keine Angular Prozesse gefunden"
 }
 
-# Schritt 3: Docker Container stoppen (wenn nicht KeepDB)
+# Schritt 4: Docker Container stoppen (wenn nicht KeepDB)
 if (-not $KeepDB) {
-    Write-Step "3/4" "Docker Container stoppen..."
+    Write-Step "4/4" "Docker Container stoppen..."
 
     $postgresCompose = Join-Path $ProjectRoot ".extras\compose\postgres"
     $keycloakCompose = Join-Path $ProjectRoot ".extras\compose\keycloak"
@@ -86,7 +111,7 @@ if (-not $KeepDB) {
 
     Write-Success "Docker Container gestoppt"
 } else {
-    Write-Step "3/4" "Docker Container bleiben aktiv (--KeepDB)"
+    Write-Step "4/4" "Docker Container bleiben aktiv (--KeepDB)"
 }
 
 # Zusammenfassung

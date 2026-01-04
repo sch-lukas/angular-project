@@ -22,6 +22,7 @@ import {
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { AdminModule } from './admin/module.js';
+import { AnalyticsModule } from './analytics/analytics.module.js';
 import { BuchController } from './buch/controller/buch-controller.js';
 import { BuchWriteController } from './buch/controller/buch-write-controller.js';
 import { BuchModule } from './buch/module.js';
@@ -35,6 +36,7 @@ import { KeycloakModule } from './security/keycloak/module.js';
 @Module({
     imports: [
         AdminModule,
+        AnalyticsModule,
         BuchModule,
         // Umgebungsvariable DATABASE_URL fuer PrismaPg
         ConfigModule,

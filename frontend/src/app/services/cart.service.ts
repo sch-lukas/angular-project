@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { inject, Injectable, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { AnalyticsWebSocketService } from '../analytics/analytics-websocket.service';
 import type { BuchItem } from './buch-api.service';
 
 export interface CartItem {
@@ -14,14 +16,28 @@ export interface CartItem {
 }
 
 @Injectable({ providedIn: 'root' })
-export class CartService {
+export class CartService implements OnDestroy {
     private readonly STORAGE_KEY = 'buchshop-cart';
     private readonly cartSubject: BehaviorSubject<CartItem[]>;
+    private readonly analyticsService = inject(AnalyticsWebSocketService);
+    private readonly serverRestartSubscription: Subscription;
 
     constructor() {
         // Warenkorb aus localStorage laden oder leeres Array initialisieren
         const savedCart = this.loadFromStorage();
         this.cartSubject = new BehaviorSubject<CartItem[]>(savedCart);
+
+        // Auf Server-Restart reagieren und Warenkorb leeren
+        this.serverRestartSubscription = this.analyticsService.serverRestart$
+            .pipe(filter((restarted) => restarted))
+            .subscribe(() => {
+                console.log('Server restart detected - clearing cart');
+                this.clearCart();
+            });
+    }
+
+    ngOnDestroy(): void {
+        this.serverRestartSubscription.unsubscribe();
     }
 
     /**
@@ -57,6 +73,21 @@ export class CartService {
     private updateCart(cart: CartItem[]): void {
         this.cartSubject.next(cart);
         this.saveToStorage(cart);
+        // Analytics-Update senden
+        this.sendAnalyticsUpdate(cart);
+    }
+
+    /**
+     * Sendet Warenkorb-Update an Analytics-Service
+     */
+    private sendAnalyticsUpdate(cart: CartItem[]): void {
+        const analyticsItems = cart.map((item) => ({
+            id: item.id,
+            titel: item.title,
+            preis: item.price,
+            quantity: item.quantity,
+        }));
+        this.analyticsService.sendCartUpdate(analyticsItems);
     }
 
     /**

@@ -54,8 +54,7 @@ if (isTunnelMode) {
 }
 // Im LAN-Modus: Host auf 0.0.0.0 setzen
 else if (isLanMode) {
-    args.push('--host', '0.0.0.0');
-    args.push('--disable-host-check');
+    args.push('--host', '0.0.0.0', '--disable-host-check');
 
     console.log('\n🌐 LAN-MODUS AKTIVIERT');
     console.log('━'.repeat(50));

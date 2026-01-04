@@ -33,6 +33,15 @@
           [routerLinkActiveOptions]="{ exact: true }"
           >Neu</a
         >
+        <!-- Analytics Dashboard nur für Admins -->
+        <a
+          *ngIf="isAdmin$ | async"
+          routerLink="/analytics"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="analytics-link"
+          >📊 Analytics</a
+        >
         <!-- Warenkorb mit Badge -->
         <a
           routerLink="/cart"

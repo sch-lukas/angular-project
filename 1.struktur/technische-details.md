@@ -742,4 +742,72 @@ Internet-Zugriff ohne Port-Forwarding:
 
 ---
 
-Aktualisiert am 3. Januar 2026
+## 📊 Analytics Dashboard - Echtzeit-Metriken
+
+### WebSocket-Kommunikation
+
+```text
+┌─────────────────────────────────────────────────────────────────┐
+│              Analytics WebSocket Datenfluss                      │
+└─────────────────────────────────────────────────────────────────┘
+
+AnalyticsDashboard        AnalyticsWebSocketService        Backend Gateway
+     │                              │                            │
+     │  ngOnInit()                  │                            │
+     ├──────────────────────────────>│                            │
+     │                              │                            │
+     │                    connect()  │                            │
+     │                    ────────────────────────────────────────>
+     │                              │       Socket.io Handshake   │
+     │                              │<────────────────────────────│
+     │                              │                            │
+     │  subscribe()                 │       on('metrics')        │
+     │<─────────────────────────────│<───────────────────────────│
+     │                              │                            │
+     │  Automatische Updates        │       emit('metrics')      │
+     │<─────────────────────────────│<───────────────────────────│
+     │                              │                            │
+     │  Dashboard Anzeige           │                            │
+     │  - Active Users              │                            │
+     │  - Page Views                │                            │
+     │  - Popular Books             │                            │
+     │  - Server Status             │                            │
+```
+
+### Service-Implementierung
+
+```typescript
+// analytics-websocket.service.ts
+export class AnalyticsWebSocketService {
+  private readonly sessionId: string;
+  private socket: Socket | null = null;
+
+  constructor() {
+    this.sessionId = globalThis.crypto?.randomUUID();
+  }
+
+  connect(): Observable<AnalyticsData> {
+    this.socket = io('wss://localhost:3000/analytics', {
+      transports: ['websocket'],
+      query: { sessionId: this.sessionId }
+    });
+
+    return new Observable(observer => {
+      this.socket?.on('metrics', (data) => observer.next(data));
+      this.socket?.on('error', (err) => observer.error(err));
+    });
+  }
+}
+```
+
+### Zugriffsschutz
+
+Das Analytics Dashboard ist nur für eingeloggte Admins zugänglich:
+
+- **Route Guard**: Prüft `isAdmin` aus AuthService
+- **Menü-Integration**: "Analytics" Link nur sichtbar für Admins
+- **Redirect**: Nicht-Admins werden zur Startseite umgeleitet
+
+---
+
+Aktualisiert am 4. Januar 2026 - Finale Version Leon Jungkind

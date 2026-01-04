@@ -13,6 +13,7 @@ import {
     standalone: true,
     imports: [CommonModule, FormsModule, RouterLink],
     templateUrl: '../templates/search.component.html',
+    styleUrls: ['../templates/search.component.css'],
 })
 export class SearchComponent implements OnInit {
     items: BuchItem[] | null = null;
@@ -29,9 +30,10 @@ export class SearchComponent implements OnInit {
 
     formData = {
         suchtext: '',
+        isbn: '',
+        art: '',
         ratingFilter: '',
-        sortierung: 'preisAsc',
-        nurMitRating: false,
+        nurLieferbar: false,
     };
 
     constructor(
@@ -56,28 +58,41 @@ export class SearchComponent implements OnInit {
         page: number;
         size: number;
         titel?: string;
+        isbn?: string;
+        art?: string;
         rating?: number;
-        sortierung?: 'preisAsc' | 'preisDesc';
+        lieferbar?: boolean;
     } {
         const params: any = {
             page: this.currentPage,
             size: this.pageSize,
         };
 
-        // Sortierung (nur wenn explizit gesetzt)
-        if (this.formData.sortierung) {
-            params.sortierung = this.formData.sortierung;
-        }
-
-        // Titel-Suche (Backend unterstützt titel-Parameter)
+        // Titel-Suche
         const suchtext = (this.formData.suchtext || '').trim();
         if (suchtext.length > 0) {
             params.titel = suchtext;
         }
 
-        // Rating-Filter (Backend unterstützt rating-Parameter)
+        // ISBN-Suche
+        const isbn = (this.formData.isbn || '').trim();
+        if (isbn.length > 0) {
+            params.isbn = isbn;
+        }
+
+        // Art-Filter
+        if (this.formData.art) {
+            params.art = this.formData.art;
+        }
+
+        // Rating-Filter
         if (this.formData.ratingFilter) {
             params.rating = Number.parseInt(this.formData.ratingFilter, 10);
+        }
+
+        // Lieferbar-Filter
+        if (this.formData.nurLieferbar) {
+            params.lieferbar = true;
         }
 
         return params;
@@ -107,20 +122,11 @@ export class SearchComponent implements OnInit {
     }
 
     private processPageData(page: BuchPage): void {
-        let filtered = page.content;
-
-        // Clientseitige Filter (nur für Optionen, die Backend nicht unterstützt)
-        if (this.formData.nurMitRating) {
-            filtered = filtered.filter(
-                (b) => b.rating !== undefined && b.rating !== null,
-            );
-        }
-
         // Verwende Backend-Metadaten direkt
         this.currentPage = page.page.number;
         this.totalPages = page.page.totalPages;
         this.totalElements = page.page.totalElements;
-        this.items = filtered;
+        this.items = page.content;
 
         // Prüfe ob weitere Seiten verfügbar sind
         this.hasMorePages = this.currentPage < this.totalPages - 1;

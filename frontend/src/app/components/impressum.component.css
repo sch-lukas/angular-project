@@ -1,0 +1,24 @@
+.impressum-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+.impressum-content {
+  background: var(--app-surface);
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.impressum-content h2 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.impressum-content p {
+  margin: 12px 0;
+  line-height: 1.6;
+}

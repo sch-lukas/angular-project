@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { inject, Injectable, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { AnalyticsWebSocketService } from '../analytics/analytics-websocket.service';
 import type { BuchItem } from './buch-api.service';
 
 export interface WishlistItem {
@@ -13,13 +15,27 @@ export interface WishlistItem {
 }
 
 @Injectable({ providedIn: 'root' })
-export class WishlistService {
+export class WishlistService implements OnDestroy {
     private readonly STORAGE_KEY = 'buchshop-wishlist';
     private readonly itemsSubject: BehaviorSubject<WishlistItem[]>;
+    private readonly analyticsService = inject(AnalyticsWebSocketService);
+    private readonly serverRestartSubscription: Subscription;
 
     constructor() {
         const savedItems = this.loadFromStorage();
         this.itemsSubject = new BehaviorSubject<WishlistItem[]>(savedItems);
+
+        // Auf Server-Restart reagieren und Merkliste leeren
+        this.serverRestartSubscription = this.analyticsService.serverRestart$
+            .pipe(filter((restarted) => restarted))
+            .subscribe(() => {
+                console.log('Server restart detected - clearing wishlist');
+                this.clear();
+            });
+    }
+
+    ngOnDestroy(): void {
+        this.serverRestartSubscription.unsubscribe();
     }
 
     /**
@@ -55,6 +71,19 @@ export class WishlistService {
     private updateItems(items: WishlistItem[]): void {
         this.itemsSubject.next(items);
         this.saveToStorage(items);
+        // Analytics-Update senden
+        this.sendAnalyticsUpdate(items);
+    }
+
+    /**
+     * Sendet Merklisten-Update an Analytics-Service
+     */
+    private sendAnalyticsUpdate(items: WishlistItem[]): void {
+        const analyticsItems = items.map((item) => ({
+            id: item.id,
+            titel: item.title,
+        }));
+        this.analyticsService.sendWishlistUpdate(analyticsItems);
     }
 
     /**

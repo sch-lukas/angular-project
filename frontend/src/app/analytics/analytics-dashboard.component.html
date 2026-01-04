@@ -1,0 +1,122 @@
+<div class="analytics-dashboard">
+  <h1>📊 Live Analytics Dashboard</h1>
+
+  @if (!isAdmin) {
+    <div class="access-denied">
+      <h2>⛔ Zugriff verweigert</h2>
+      <p>Nur Administratoren können dieses Dashboard sehen.</p>
+      <a routerLink="/home" class="btn-home">Zur Startseite</a>
+    </div>
+  } @else {
+    <div class="connection-status" [class.connected]="isConnected">
+      <span class="status-dot"></span>
+      {{ isConnected ? 'Verbunden' : 'Verbindung wird hergestellt...' }}
+    </div>
+
+    @if (analyticsData) {
+      <div class="stats-overview">
+        <div class="stat-card visitors">
+          <div class="stat-icon">👥</div>
+          <div class="stat-value">
+            {{ analyticsData.activeVisitors }}
+          </div>
+          <div class="stat-label">Aktive Besucher</div>
+        </div>
+        <div class="stat-card cart">
+          <div class="stat-icon">🛒</div>
+          <div class="stat-value">
+            {{ analyticsData.totalCartItems }}
+          </div>
+          <div class="stat-label">Artikel im Warenkorb</div>
+        </div>
+        <div class="stat-card wishlist">
+          <div class="stat-icon">💜</div>
+          <div class="stat-value">
+            {{ analyticsData.totalWishlistItems }}
+          </div>
+          <div class="stat-label">Merklisten-Einträge</div>
+        </div>
+        <div class="stat-card revenue">
+          <div class="stat-icon">💰</div>
+          <div class="stat-value">
+            {{ analyticsData.totalCartValue | currency: 'EUR' }}
+          </div>
+          <div class="stat-label">Potentieller Umsatz</div>
+        </div>
+      </div>
+
+      <h2>🔴 Live Besucher-Sessions</h2>
+
+      @if (analyticsData.sessions.length === 0) {
+        <div class="no-sessions">
+          <p>Keine aktiven Besucher momentan.</p>
+        </div>
+      } @else {
+        <div class="sessions-grid">
+          @for (session of analyticsData.sessions; track session.sessionId) {
+            <div class="session-card">
+              <div class="session-header">
+                <span class="session-id">{{ session.sessionId }}</span>
+                <span class="session-browser">{{ session.userAgent }}</span>
+              </div>
+
+              <div class="session-meta">
+                <span
+                  >🕐 Verbunden seit:
+                  {{ session.connectedAt | date: 'HH:mm:ss' }}</span
+                >
+                @if (session.currentPage) {
+                  <span>📍 Aktuelle Seite: {{ session.currentPage }}</span>
+                }
+              </div>
+
+              @if (session.cart.length > 0) {
+                <div class="session-section cart-section">
+                  <h4>
+                    🛒 Warenkorb ({{ session.cartValue | currency: 'EUR' }})
+                  </h4>
+                  <ul>
+                    @for (item of session.cart; track item.id) {
+                      <li>
+                        {{ item.titel }} ({{ item.quantity }}x) -
+                        {{ item.preis | currency: 'EUR' }}
+                      </li>
+                    }
+                  </ul>
+                </div>
+              }
+
+              @if (session.wishlist.length > 0) {
+                <div class="session-section wishlist-section">
+                  <h4>💜 Merkliste</h4>
+                  <ul>
+                    @for (item of session.wishlist; track item.id) {
+                      <li>{{ item.titel }}</li>
+                    }
+                  </ul>
+                </div>
+              }
+
+              @if (session.viewedBooks.length > 0) {
+                <div class="session-section viewed-section">
+                  <h4>👁️ Angesehene Bücher</h4>
+                  <ul>
+                    @for (book of session.viewedBooks; track book.id) {
+                      <li>
+                        {{ book.title }} ({{ book.viewedAt | date: 'HH:mm' }})
+                      </li>
+                    }
+                  </ul>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      }
+    } @else {
+      <div class="loading">
+        <p>Lade Analytics-Daten...</p>
+      </div>
+    }
+  }
+</div>

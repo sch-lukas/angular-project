@@ -102,6 +102,14 @@ export class AuthService {
         return this.authState$.value.username;
     }
 
+    /**
+     * Prüft ob der aktuelle Benutzer ein Admin ist
+     */
+    isAdmin(): boolean {
+        const username = this.authState$.value.username;
+        return username === 'admin';
+    }
+
     getToken(): string | null {
         return localStorage.getItem(this.TOKEN_KEY);
     }

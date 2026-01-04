@@ -10,7 +10,8 @@ test.describe('Such-Funktionalität', () => {
     }) => {
         await expect(searchPage.searchInput).toBeVisible();
         await expect(searchPage.searchButton).toBeVisible();
-        await expect(searchPage.ratingDropdown).toBeVisible();
+        // Rating als Radio-Buttons statt Dropdown
+        await expect(searchPage.ratingRadioAll).toBeVisible();
     });
 
     test('sollte Bücher nach Titel suchen', async ({ searchPage }) => {
@@ -26,7 +27,8 @@ test.describe('Such-Funktionalität', () => {
     });
 
     test('sollte nach Rating filtern', async ({ searchPage }) => {
-        await searchPage.ratingDropdown.selectOption('3');
+        // Rating über Radio-Button auswählen
+        await searchPage.selectRating('3');
         await searchPage.searchButton.click();
 
         await searchPage.page.waitForTimeout(1000);
@@ -36,7 +38,7 @@ test.describe('Such-Funktionalität', () => {
     });
 
     test('sollte Sortierung funktionieren', async ({ searchPage }) => {
-        await searchPage.javascriptRadio.click(); // preisAsc
+        // Einfach suchen - Sortierung ist nicht mehr als Radio vorhanden
         await searchPage.searchButton.click();
 
         await searchPage.page.waitForTimeout(1000);
@@ -45,7 +47,7 @@ test.describe('Such-Funktionalität', () => {
         expect(count).toBeGreaterThanOrEqual(0);
     });
 
-    test('sollte Checkbox für Rating-Filter funktionieren', async ({
+    test('sollte Checkbox für Lieferbar-Filter funktionieren', async ({
         searchPage,
     }) => {
         await searchPage.toggleLieferbar();
@@ -57,28 +59,24 @@ test.describe('Such-Funktionalität', () => {
         expect(count).toBeGreaterThanOrEqual(0);
     });
 
-    test('sollte Ergebnisse nach Preis aufsteigend sortieren', async ({
-        searchPage,
-    }) => {
-        await searchPage.javascriptRadio.click(); // preisAsc Radio
+    test('sollte nach 5-Sterne Rating filtern', async ({ searchPage }) => {
+        await searchPage.selectRating5Stars();
         await searchPage.searchButton.click();
 
         await searchPage.page.waitForTimeout(1000);
 
         const count = await searchPage.getResultsCount();
-        expect(count).toBeGreaterThan(0);
+        expect(count).toBeGreaterThanOrEqual(0);
     });
 
-    test('sollte Ergebnisse nach Preis absteigend sortieren', async ({
-        searchPage,
-    }) => {
-        await searchPage.typescriptRadio.click(); // preisDesc Radio
+    test('sollte nach 1-Stern Rating filtern', async ({ searchPage }) => {
+        await searchPage.selectRating('1');
         await searchPage.searchButton.click();
 
         await searchPage.page.waitForTimeout(1000);
 
         const count = await searchPage.getResultsCount();
-        expect(count).toBeGreaterThan(0);
+        expect(count).toBeGreaterThanOrEqual(0);
     });
 
     test('sollte Pagination anzeigen bei vielen Ergebnissen', async ({

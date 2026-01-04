@@ -1,7 +1,7 @@
 # Neue Dateien - Übersicht
 
 > **Dokumentation aller Dateien, die seit dem Start-Commit (`3191d43`) neu hinzugefügt wurden.**
-> Stand: Januar 2026
+> Stand: 4. Januar 2026 - **Finale Version**
 
 ---
 
@@ -9,23 +9,46 @@
 
 | Kategorie              | Dateien  | Zeilen      | Anteil |
 | ---------------------- | -------- | ----------- | ------ |
-| Frontend Components    | 12       | ~6.500      | 36%    |
-| Frontend Services      | 7        | ~1.100      | 6%     |
-| Frontend Templates     | 13       | ~1.500      | 8%     |
-| Frontend Tests         | 2        | ~850        | 5%     |
+| Frontend Components    | 14       | ~7.500      | 38%    |
+| Frontend Services      | 8        | ~1.400      | 7%     |
+| Frontend Templates     | 15       | ~1.800      | 9%     |
+| Frontend Tests         | 2        | ~850        | 4%     |
 | E2E Tests (Playwright) | 9        | ~700        | 4%     |
-| Cover Assets (SVG)     | 159      | ~3.200      | 18%    |
-| Cover Scripts          | 7        | ~1.000      | 6%     |
-| Backend-Erweiterungen  | 8        | ~1.200      | 7%     |
+| Cover Assets (SVG)     | 160      | ~3.300      | 17%    |
+| Cover Scripts          | 7        | ~1.000      | 5%     |
+| Backend-Erweiterungen  | 10       | ~1.500      | 8%     |
 | Dokumentation          | 6        | ~2.200      | 11%    |
-| **Automation Scripts** | **3**    | **~200**    | **1%** |
+| **Automation Scripts** | **4**    | **~350**    | **2%** |
 | **Setup-Vorlagen**     | **5**    | **~150**    | **1%** |
 | Config/Sonstiges       | 6        | ~300        | 2%     |
-| **TOTAL**              | **~237** | **~18.900** | 100%   |
+| **TOTAL**              | **~246** | **~21.050** | 100%   |
 
 ---
 
-## 🚀 Automation & Developer Experience (NEU)
+## 🆕 Finale Features (Januar 2026)
+
+### Analytics Dashboard (NEU)
+
+- **Echtzeit-WebSocket-Verbindung** zum Backend für Live-Metriken
+- **Session-Tracking** mit einzigartiger Session-ID
+- **Server-Restart-Erkennung** - leert automatisch Warenkorb/Merkliste
+- **Zugangsschutz** - Nur für Admin-Benutzer sichtbar
+
+### Dark Mode (VERBESSERT)
+
+- **System-Präferenz-Erkennung** via `prefers-color-scheme`
+- **Persistierung** im localStorage
+- **Konsistente Theme-Variablen** über alle Komponenten
+- **Logout-Button** passt sich ans Theme an
+
+### Favicon & Branding
+
+- **Custom SVG Favicon** (book-icon.svg) im Browser-Tab
+- **Titel**: "Buch SPA" statt "SPA Frontend"
+
+---
+
+## 🚀 Automation & Developer Experience
 
 ### Start/Stop/Setup Scripts
 
@@ -90,7 +113,7 @@
 
 | Datei                                                    | Zeilen | Beschreibung                                        |
 | -------------------------------------------------------- | ------ | --------------------------------------------------- |
-| `frontend/src/app/app.component.ts`                      | 68     | App Shell: Header, Navigation, Theme-Toggle, Footer |
+| `frontend/src/app/app.component.ts`                      | 126    | App Shell: Header, Navigation, Theme-Toggle, Footer |
 | `frontend/src/app/auth.guard.ts`                         | 22     | Route Guard für geschützte Seiten                   |
 | `frontend/src/app/auth.interceptor.ts`                   | 27     | HTTP Interceptor für JWT Token                      |
 | `frontend/src/app/carousel-test.component.ts`            | ~50    | Test-Komponente für Karussell                       |
@@ -104,6 +127,14 @@
 | `frontend/src/app/components/book-carousel.component.ts` | 398    | Wiederverwendbares Buch-Karussell                   |
 | `frontend/src/app/components/impressum.component.ts`     | 75     | Impressum                                           |
 | `frontend/src/app/components/kontakt.component.ts`       | 73     | Kontaktseite                                        |
+
+### Analytics Module (NEU)
+
+| Datei                                                          | Zeilen | Beschreibung                               |
+| -------------------------------------------------------------- | ------ | ------------------------------------------ |
+| `frontend/src/app/analytics/analytics-dashboard.component.ts`  | ~200   | Admin Dashboard mit Echtzeit-Metriken      |
+| `frontend/src/app/analytics/analytics-dashboard.component.css` | ~230   | Dashboard Styles mit Dark Mode Support     |
+| `frontend/src/app/analytics/analytics-websocket.service.ts`    | ~300   | WebSocket-Service für Server-Kommunikation |
 
 ---
 

@@ -1,0 +1,32 @@
+.kontakt-page {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+.kontakt-content {
+  background: var(--app-surface);
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.kontakt-content h2 {
+  margin-top: 0;
+}
+
+.kontakt-content p {
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+.kontakt-content a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.kontakt-content a:hover {
+  text-decoration: underline;
+}

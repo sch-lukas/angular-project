@@ -1,3 +1,4 @@
+/* Landing Page Component - Verwendet zentrale CSS-Variablen */
 .landing-page {
   max-width: 1200px;
   margin: 0 auto;
@@ -15,21 +16,33 @@
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
 }
 
+/* Statistik-Karten - HORIZONTAL nebeneinander */
 .stats-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-bottom: 3rem;
 }
 
+@media (max-width: 900px) {
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+}
+
 .stat-card {
-  background: white;
-  border-radius: 12px;
+  background: var(--app-surface, #fff);
   padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 :host-context(.theme-dark) .stat-card {
@@ -39,15 +52,6 @@
 
 .stat-card.clickable {
   cursor: pointer;
-}
-
-.stat-card.clickable:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-:host-context(.theme-dark) .stat-card.clickable:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 .stat-card:hover {
@@ -67,7 +71,7 @@
 .stat-value {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #2c3e50;
+  color: var(--app-text, #2c3e50);
   margin-bottom: 0.5rem;
 }
 
@@ -76,113 +80,89 @@
 }
 
 .stat-label {
-  font-size: 1.1rem;
-  color: #7f8c8d;
-  margin-bottom: 0.5rem;
-}
-
-:host-context(.theme-dark) .stat-label {
-  color: #d1d5db;
+  font-size: 0.875rem;
+  color: var(--app-text-secondary, #7f8c8d);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .stat-subtitle {
-  font-size: 0.9rem;
-  color: #95a5a6;
-  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--app-text-muted, #95a5a6);
   margin-top: 0.5rem;
 }
 
-:host-context(.theme-dark) .stat-subtitle {
-  color: #9ca3af;
-}
-
+/* Action Button */
 .action-container {
-  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 .btn-primary {
-  background: #3498db;
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
+  padding: 1rem 2.5rem;
   font-size: 1.1rem;
-  border-radius: 8px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.3s ease;
-  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .btn-primary:hover {
-  background: #2980b9;
-  box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
 }
 
 /* Carousel Section */
 .carousel-section {
-  margin-top: 5rem;
-  padding: 0 1rem;
+  margin-top: 3rem;
 }
 
 .carousel-block {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .carousel-title {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 2rem;
-  position: relative;
-  padding-bottom: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--app-text, #2c3e50);
+  text-align: left;
 }
 
 :host-context(.theme-dark) .carousel-title {
   color: #f3f4f6;
 }
 
-.carousel-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, #3498db, #2ecc71);
-  border-radius: 2px;
-}
-
 .carousel-subtitle {
-  font-size: 1.1rem;
-  color: #7f8c8d;
+  font-size: 0.9rem;
+  color: var(--app-text-secondary, #7f8c8d);
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+/* Loading State */
+.loading-container {
   text-align: center;
-  margin-top: -1rem;
-  margin-bottom: 1.5rem;
+  padding: 3rem;
 }
 
-:host-context(.theme-dark) .carousel-subtitle {
-  color: #d1d5db;
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #e5e7eb;
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
 }
 
-@media (max-width: 768px) {
-  .stats-container {
-    grid-template-columns: 1fr;
-  }
-
-  .logo {
-    max-width: 200px;
-  }
-
-  .stat-value {
-    font-size: 2rem;
-  }
-
-  .carousel-title {
-    font-size: 1.5rem;
-  }
-
-  .carousel-section {
-    padding: 0;
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
