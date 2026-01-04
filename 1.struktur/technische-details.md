@@ -789,10 +789,10 @@ export class AnalyticsWebSocketService {
   connect(): Observable<AnalyticsData> {
     this.socket = io('wss://localhost:3000/analytics', {
       transports: ['websocket'],
-      query: { sessionId: this.sessionId }
+      query: { sessionId: this.sessionId },
     });
 
-    return new Observable(observer => {
+    return new Observable((observer) => {
       this.socket?.on('metrics', (data) => observer.next(data));
       this.socket?.on('error', (err) => observer.error(err));
     });
