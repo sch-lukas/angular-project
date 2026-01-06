@@ -2,355 +2,254 @@
 !theme vibrant
 skinparam backgroundColor #F8F9FA
 skinparam state {
-  BackgroundColor<<new>> #10B981
-  BorderColor<<new>> #059669
-  BackgroundColor<<enhanced>> #3B82F6
-  BorderColor<<enhanced>> #2563EB
-  BackgroundColor<<auth>> #F59E0B
-  BorderColor<<auth>> #D97706
+  BackgroundColor #FFFFFF
+  BorderColor #6B7280
+  FontSize 11
+}
+skinparam ArrowColor #374151
+skinparam ArrowThickness 1.5
+skinparam Padding 6
+skinparam RoundCorner 8
+
+title Buchhandlung SPA - Vollständiges Zustandsdiagramm\n(Stand: Januar 2026)
+
+' ============================================================================
+' LAYOUT: Links-nach-Rechts Flow
+' ============================================================================
+left to right direction
+
+[*] --> Init
+
+' ----------------------------------------------------------------------------
+' INITIALISIERUNG
+' ----------------------------------------------------------------------------
+state "Initialisierung" as Init #E0F2FE {
+  [*] --> ThemeCheck : Start
+  ThemeCheck : System-Präferenz
+  ThemeCheck --> AuthCheck
+  AuthCheck : Token vorhanden?
+  AuthCheck --> [*]
 }
 
-title Buchhandlung SPA - Zustandsdiagramm\n(Stand: Dezember 2025)
+Init --> Nav
 
-[*] --> Initialisierung
-
-state Initialisierung {
-  [*] --> ThemeErkannt
-  ThemeErkannt --> DarkMode : prefers-color-scheme: dark
-  ThemeErkannt --> LightMode : prefers-color-scheme: light
-  DarkMode --> ThemeGespeichert
-  LightMode --> ThemeGespeichert
-  ThemeGespeichert --> AuthStateCheck
-  AuthStateCheck --> SessionGueltig : Token vorhanden
-  AuthStateCheck --> NichtAngemeldet : Kein Token
-  SessionGueltig --> [*]
-  NichtAngemeldet --> [*]
+' ----------------------------------------------------------------------------
+' NAVIGATION (Zentrale Weiche)
+' ----------------------------------------------------------------------------
+state "Navigation" as Nav #F3F4F6 {
+  state "Routen" as Routes
+  Routes : /home | /search
+  Routes : /books/:id | /cart
+  Routes : /wishlist | /login
+  Routes : /create (geschützt)
 }
 
-Initialisierung --> Startseite
+' ----------------------------------------------------------------------------
+' ÖFFENTLICHE SEITEN
+' ----------------------------------------------------------------------------
+state "Öffentliche Seiten" as Public #ECFDF5 {
 
-state Startseite <<enhanced>> {
-  [*] --> StatistikenLaden
-  StatistikenLaden --> AnimationStarten : Daten geladen
-  AnimationStarten --> CarouselsLaden
-
-  state CarouselsLaden {
-    [*] --> NeuImProgramm
-    [*] --> BeliebteeBuecher
-    [*] --> Schwabenpreis
-
-    NeuImProgramm : GraphQL Query\n(sortierung: preisDesc)
-    BeliebteeBuecher : Filter Rating >= 4
-    Schwabenpreis : Filter lieferbar\nsortierung: preisAsc
+  state "🏠 Startseite" as Home {
+    [*] --> Stats
+    Stats : Statistiken laden
+    Stats --> Carousels
+    Carousels : Neu | Beliebt | Günstig
+    Carousels --> [*]
   }
 
-  CarouselsLaden --> InteraktiveBereit
-  InteraktiveBereit --> [*]
-}
-
-Startseite --> Navigation
-
-state Navigation {
-  [*] --> RouteAuswahl
-  RouteAuswahl --> Suche
-  RouteAuswahl --> BuchDetail
-  RouteAuswahl --> Warenkorb
-  RouteAuswahl --> Merkliste
-  RouteAuswahl --> NeuesBuch : AuthGuard
-  RouteAuswahl --> Login
-  RouteAuswahl --> Impressum
-  RouteAuswahl --> Kontakt
-}
-
-state AuthGuard <<auth>> {
-  [*] --> TokenPruefen
-  TokenPruefen --> Autorisiert : Token gültig
-  TokenPruefen --> NichtAutorisiert : Kein/ungültiger Token
-  NichtAutorisiert --> ReturnUrlSpeichern
-  ReturnUrlSpeichern --> LoginRedirect
-  LoginRedirect --> Login
-  Autorisiert --> [*]
-}
-
-state Login <<auth>> {
-  [*] --> FormularAnzeigen
-  FormularAnzeigen --> CredentialsEingeben
-  CredentialsEingeben --> FormValidation
-  FormValidation --> CredentialsEingeben : Invalid
-  FormValidation --> KeycloakAuth : Valid
-
-  state KeycloakAuth {
-    [*] --> TokenRequest
-    TokenRequest --> AccessTokenErhalten : Erfolg
-    TokenRequest --> LoginFehler : 401/403
-    AccessTokenErhalten --> TokenSpeichern
-    TokenSpeichern --> LocalStoragePersist
-    LocalStoragePersist --> AuthStateUpdate
-    AuthStateUpdate --> [*]
+  state "🔍 Suche" as Search {
+    [*] --> Form
+    Form : Filter eingeben
+    Form --> Query
+    Query : GraphQL
+    Query --> Results
+    Results : Pagination
+    Results --> [*]
   }
 
-  KeycloakAuth --> ReturnUrlNavigate : Erfolg
-  KeycloakAuth --> FehlerAnzeigen : Fehler
-  FehlerAnzeigen --> FormularAnzeigen
-  ReturnUrlNavigate --> [*]
+  state "📖 Buchdetail" as Detail {
+    [*] --> Load
+    Load : GraphQL getById
+    Load --> Display
+    Display : Cover | Info | Autor
+    Display --> Actions
+    Actions : Warenkorb | Merken
+    Actions --> [*]
+  }
 }
 
-state Suche {
-  [*] --> SuchformularAnzeigen
-  SuchformularAnzeigen --> SucheAusfuehren : Suchkriterien eingeben
-  SucheAusfuehren --> ErgebnisseLaden : GraphQL Query
-  ErgebnisseLaden --> ErgebnisseAnzeigen
-  ErgebnisseAnzeigen --> Pagination
-  Pagination --> ErgebnisseAnzeigen : Seite wechseln
-  ErgebnisseAnzeigen --> BuchDetail : Buch auswählen
-}
+' ----------------------------------------------------------------------------
+' STATE MANAGEMENT
+' ----------------------------------------------------------------------------
+state "State Management" as State #F5F3FF {
 
-state BuchDetail <<enhanced>> {
-  [*] --> BuchLaden
-  BuchLaden --> DetailsAnzeigen : GraphQL getById
-
-  state DetailsAnzeigen {
-    [*] --> CoverAnzeigen
-    [*] --> ProduktinfoAnzeigen
-    [*] --> BeschreibungAnzeigen
-    [*] --> AutorBiographieAnzeigen
-    [*] --> AehnlicheBuecherLaden
-
-    CoverAnzeigen : Dynamisches SVG\n16 Farbvarianten
-    ProduktinfoAnzeigen : Preis, Rating,\nLieferbarkeit
-    BeschreibungAnzeigen : Volltext-Beschreibung\nmit Card-Design
-    AutorBiographieAnzeigen : Autor-Biographie\nmit Card-Design
-    AehnlicheBuecherLaden : GraphQL Query\ngleiche Buchart
+  state "🛒 CartService" as CartSvc {
+    [*] --> CheckItem
+    CheckItem --> SaveCart
+    SaveCart : localStorage
+    SaveCart --> Notify
+    Notify : BehaviorSubject
+    Notify --> [*]
   }
 
-  DetailsAnzeigen --> InteraktionWarten
-  InteraktionWarten --> WarenkorbHinzufuegen : "In den Warenkorb"
-  InteraktionWarten --> MerklisteToggle : "Merken"
-
-  WarenkorbHinzufuegen --> WarenkorbService
-  MerklisteToggle --> MerklisteService
+  state "❤️ WishService" as WishSvc {
+    [*] --> Toggle
+    Toggle --> SaveWish
+    SaveWish : localStorage
+    SaveWish --> NotifyWish
+    NotifyWish : BehaviorSubject
+    NotifyWish --> [*]
+  }
 }
 
-state WarenkorbService <<new>> {
-  [*] --> ItemPruefen
-  ItemPruefen --> ItemVorhanden : existiert
-  ItemPruefen --> ItemNeu : neu
+' ----------------------------------------------------------------------------
+' BENUTZER-VIEWS
+' ----------------------------------------------------------------------------
+state "Benutzer-Views" as Views #FDF2F8 {
 
-  ItemVorhanden --> MengeErhoehen
-  ItemNeu --> ItemHinzufuegen
+  state "🛒 Warenkorb" as Cart {
+    [*] --> LoadCart
+    LoadCart : localStorage
+    LoadCart --> ShowItems
+    ShowItems : Tabelle/Cards
+    ShowItems --> CalcTotal
+    CalcTotal : Gesamtpreis
+    CalcTotal --> [*]
+  }
 
-  MengeErhoehen --> LocalStorageSpeichern
-  ItemHinzufuegen --> LocalStorageSpeichern
-  LocalStorageSpeichern --> BehaviorSubjectUpdate
-  BehaviorSubjectUpdate --> [*]
+  state "❤️ Merkliste" as Wish {
+    [*] --> LoadWish
+    LoadWish : localStorage
+    LoadWish --> Grid
+    Grid : Responsive Grid
+    Grid --> [*]
+  }
 }
 
-state Warenkorb <<new>> {
-  [*] --> WarenkorbLaden
-  WarenkorbLaden --> LocalStorageAbrufen
-  LocalStorageAbrufen --> ItemsAnzeigen
+' ----------------------------------------------------------------------------
+' AUTHENTIFIZIERUNG
+' ----------------------------------------------------------------------------
+state "Authentifizierung" as Auth #FEF9C3 {
 
-  state ItemsAnzeigen {
-    [*] --> TabelleDesktop
-    [*] --> CardsMobile
-    [*] -> GesamtpreisBerechnen
-
-    TabelleDesktop : Responsive Table\nab lg-Breakpoint
-    CardsMobile : Bootstrap Cards\nbis md-Breakpoint
+  state "🔐 Login" as Login {
+    [*] --> LoginForm
+    LoginForm : Credentials
+    LoginForm --> Keycloak
+    Keycloak : OAuth2 Token
+    Keycloak --> StoreToken
+    StoreToken : localStorage
+    StoreToken --> [*]
   }
 
-  ItemsAnzeigen --> InteraktionWarten
-  InteraktionWarten --> MengeAendern : +/- Button
-  InteraktionWarten --> ItemEntfernen : Entfernen
-  InteraktionWarten --> WarenkorbLeeren : Alle entfernen
-
-  MengeAendern --> WarenkorbService
-  ItemEntfernen --> WarenkorbService
-  WarenkorbLeeren --> WarenkorbService
+  state "🛡️ AuthGuard" as Guard {
+    [*] --> CheckToken
+    CheckToken : Token gültig?
+    CheckToken --> Allow : ✓
+    CheckToken --> Deny : ✗
+    Allow --> [*]
+    Deny --> Login
+  }
 }
 
-state MerklisteService <<new>> {
-  [*] --> ItemPruefen
-  ItemPruefen --> ItemVorhanden : existiert
-  ItemPruefen --> ItemNeu : neu
+' ----------------------------------------------------------------------------
+' GESCHÜTZTER BEREICH
+' ----------------------------------------------------------------------------
+state "Geschützt" as Protected #FEE2E2 {
 
-  ItemVorhanden --> ItemEntfernen : Toggle aus
-  ItemNeu --> ItemHinzufuegen : Toggle an
-
-  ItemEntfernen --> LocalStorageSpeichern
-  ItemHinzufuegen --> LocalStorageSpeichern
-  LocalStorageSpeichern --> BehaviorSubjectUpdate
-  BehaviorSubjectUpdate --> [*]
+  state "➕ Neues Buch" as Create {
+    [*] --> GenISBN
+    GenISBN : Auto ISBN-13
+    GenISBN --> BookForm
+    BookForm : Formular
+    BookForm --> Validate
+    Validate : Prüfung
+    Validate --> Mutation : ✓
+    Validate --> ErrorPopup : ✗
+    ErrorPopup --> BookForm
+    Mutation : GraphQL
+    Mutation --> Success : 201
+    Mutation --> ErrorPopup : 4xx
+    Success : Popup + Redirect
+    Success --> [*]
+  }
 }
 
-state Merkliste <<new>> {
-  [*] --> MerklisteLaden
-  MerklisteLaden --> LocalStorageAbrufen
-  LocalStorageAbrufen --> GridAnzeigen
-
-  state GridAnzeigen {
-    [*] --> ResponsivesGrid
-    ResponsivesGrid : col-12 col-md-6\ncol-lg-4
-    ResponsivesGrid --> BuchCards
-    BuchCards --> RatingSterne
-    BuchCards --> Preis
-  }
-
-  GridAnzeigen --> InteraktionWarten
-  InteraktionWarten --> ItemEntfernen : "Entfernen"
-  InteraktionWarten --> ZuDetails : "Details ansehen"
-
-  ItemEntfernen --> MerklisteService
-  ZuDetails --> BuchDetail
+' ----------------------------------------------------------------------------
+' THEME
+' ----------------------------------------------------------------------------
+state "🌓 Theme" as Theme #E5E7EB {
+  [*] --> ToggleTheme
+  ToggleTheme : Dark ↔ Light
+  ToggleTheme --> UpdateCSS
+  UpdateCSS : CSS Variables
+  UpdateCSS --> [*]
 }
 
-state NeuesBuch <<enhanced>> {
-  [*] --> AuthPruefen
-  AuthPruefen --> FormularAnzeigen : Eingeloggt
-  AuthPruefen --> LoginRedirect : Nicht eingeloggt
+' ============================================================================
+' VERBINDUNGEN
+' ============================================================================
 
-  state FormularAnzeigen {
-    [*] --> ISBNGenerieren
-    ISBNGenerieren : Automatische ISBN-13\nmit Prüfziffer
-    ISBNGenerieren --> FormularBereit
-  }
+' Navigation
+Nav --> Home
+Nav --> Search
+Nav --> Detail
+Nav --> Cart
+Nav --> Wish
+Nav --> Login
+Nav --> Guard
+Nav --> Theme
 
-  FormularBereit --> DatenEingeben
-  DatenEingeben --> ValidationPruefen : Submit
+' Öffentliche Flows
+Home --> Search
+Home --> Detail
+Search --> Detail
 
-  state ValidationPruefen {
-    [*] --> TitelPruefen
-    TitelPruefen --> PreisPruefen : OK
-    TitelPruefen --> FehlerSammeln : Fehler
-    PreisPruefen --> RatingPruefen : OK
-    PreisPruefen --> FehlerSammeln : Fehler
-    RatingPruefen --> HomepagePruefen : OK
-    RatingPruefen --> FehlerSammeln : Fehler
-    HomepagePruefen --> ValidationErgebnis : OK
-    HomepagePruefen --> FehlerSammeln : Fehler
-    FehlerSammeln --> ValidationErgebnis
-  }
+' Detail zu Services
+Detail --> CartSvc
+Detail --> WishSvc
 
-  ValidationPruefen --> ErrorPopupAnzeigen : Fehler
-  ValidationPruefen --> BuchErstellen : Valid
+' Services zu Views
+CartSvc --> Cart
+WishSvc --> Wish
 
-  state ErrorPopupAnzeigen <<new>> {
-    [*] --> PopupOeffnen
-    PopupOeffnen : Modal-Overlay\nmit Fehlerliste
-    PopupOeffnen --> BenutzerBestaetigt
-    BenutzerBestaetigt --> PopupSchliessen
-  }
+' Views zu Detail
+Cart --> Detail
+Wish --> Detail
 
-  ErrorPopupAnzeigen --> FormularBereit : "Verstanden"
+' Auth-Flow
+Guard --> Protected
 
-  BuchErstellen --> GraphQLMutation
+' Nach Erstellung
+Protected --> Search
 
-  state GraphQLMutation {
-    [*] --> AuthHeaderSetzen
-    AuthHeaderSetzen : Bearer Token
-    AuthHeaderSetzen --> MutationSenden
-    MutationSenden --> ErfolgAnzeigen : 201 Created
-    MutationSenden --> ISBNKonflikt : ISBN existiert
-    MutationSenden --> ServerFehler : 4xx/5xx
-  }
+' ============================================================================
+' NOTIZEN (kompakt)
+' ============================================================================
 
-  ISBNKonflikt --> NeueISBNGenerieren
-  NeueISBNGenerieren --> ErrorPopupAnzeigen
-  ServerFehler --> ErrorPopupAnzeigen
-
-  state ErfolgAnzeigen <<new>> {
-    [*] --> SuccessPopupOeffnen
-    SuccessPopupOeffnen : Grünes Modal\n"Buch wurde angelegt!"
-    SuccessPopupOeffnen --> AutoRedirect
-    AutoRedirect : Nach 2 Sekunden
-  }
-
-  ErfolgAnzeigen --> Suche : Redirect
-}
-
-state ThemeToggle <<enhanced>> {
-  [*] --> AktuellerTheme
-  AktuellerTheme --> Toggle
-  Toggle --> DarkMode : war Light
-  Toggle --> LightMode : war Dark
-  DarkMode --> LocalStorageSpeichern
-  LightMode --> LocalStorageSpeichern
-  LocalStorageSpeichern --> CSSVariablenUpdate
-  CSSVariablenUpdate --> [*]
-}
-
-Navigation --> ThemeToggle : Theme-Button
-
-note right of Startseite
-  **Features:**
-  - Statistik-Animation
-  - 3 Buch-Carousels
-  - Horizontales Scrolling
-  - Responsive Design
-  - ChangeDetectorRef
+note bottom of Home
+  Statistiken
+  3 Carousels
 end note
 
-note right of BuchDetail
-  **Features:**
-  - Beschreibungs-Sektion
-  - Autor-Biographie
-  - Ähnliche Bücher Carousel
-  - Card-Design mit Gradient
-  - Mobile-Optimierung
-  - ChangeDetectorRef
+note bottom of Detail
+  Cover, Beschreibung
+  Ähnliche Bücher
 end note
 
-note right of WarenkorbService
-  **Features:**
-  - BehaviorSubject State
-  - localStorage Persistenz
-  - Item-Management
-  - Mengen-Verwaltung
-  - Preis-Berechnung
+note bottom of CartSvc
+  Reaktiver State
+  Persistenz
 end note
 
-note right of MerklisteService
-  **Features:**
-  - Toggle-Funktion
-  - localStorage Persistenz
-  - BehaviorSubject State
-  - Synchronisation
+note bottom of Login
+  Keycloak OAuth2
+  Bearer Token
 end note
 
-note right of ThemeToggle
-  **Features:**
-  - Dark/Light Mode
-  - System-Präferenz
-  - localStorage Cache
-  - CSS Custom Properties
-  - Alle Komponenten
-end note
-
-note right of Login
-  **Keycloak Integration:**
-  - OAuth2 Token Flow
-  - Session-Persistenz
-  - Auto-Logout bei
-    Server-Neustart
-  - returnUrl Support
-end note
-
-note right of NeuesBuch
-  **Neu implementiert:**
-  - Auto ISBN-13 Generator
-  - Prüfziffer-Berechnung
-  - Error Popup Modal
-  - Success Popup Modal
-  - Detaillierte Validierung
-  - AuthGuard geschützt
-end note
-
-note right of AuthGuard
-  **Sicherheit:**
-  - canMatch Guard
-  - Token-Validierung
-  - returnUrl Parameter
-  - Automatischer Redirect
+note bottom of Create
+  ISBN Generator
+  Validierung
+  Popups
 end note
 
 @enduml

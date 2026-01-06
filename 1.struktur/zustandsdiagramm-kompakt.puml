@@ -1,0 +1,70 @@
+@startuml Buchhandlung_SPA_Kompakt
+!theme vibrant
+skinparam backgroundColor #F8F9FA
+skinparam state {
+  BackgroundColor #E8F4FD
+  BorderColor #2563EB
+  FontSize 14
+}
+skinparam ArrowColor #374151
+skinparam ArrowThickness 2
+
+title Buchhandlung SPA - Übersicht (Kompakt)
+
+[*] --> Startseite
+
+state "🏠 Startseite" as Startseite {
+  Statistiken : Buch-Statistiken
+  Carousels : Neu | Beliebt | Günstig
+}
+
+state "🔍 Suche" as Suche {
+  Filter : Titel, Art, Rating
+  Ergebnisse : Pagination
+}
+
+state "📖 Buchdetail" as Detail {
+  Info : Cover, Preis, Rating
+  Aktionen : Warenkorb | Merkliste
+}
+
+state "🛒 Warenkorb" as Warenkorb {
+  Items : Menge, Preis
+  Summe : Gesamtpreis
+}
+
+state "❤️ Merkliste" as Merkliste {
+  Favoriten : Gespeicherte Bücher
+}
+
+state "🔐 Login" as Login {
+  Auth : Keycloak OAuth2
+}
+
+state "➕ Neues Buch" as NeuesBuch #FEFCE8 {
+  Formular : ISBN auto-generiert
+  note right : Nur für\neingeloggte User
+}
+
+Startseite --> Suche : Suchen
+Startseite --> Detail : Buch wählen
+Suche --> Detail : Buch wählen
+Detail --> Warenkorb : In Warenkorb
+Detail --> Merkliste : Merken
+Merkliste --> Detail : Details
+Login --> NeuesBuch : Eingeloggt
+NeuesBuch --> Suche : Erstellt
+
+note bottom of Startseite
+  **Einstiegspunkt**
+  Theme-Erkennung
+  Session-Check
+end note
+
+note bottom of Login
+  **Authentifizierung**
+  Token in localStorage
+  Auto-Redirect
+end note
+
+@enduml
