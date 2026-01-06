@@ -115,6 +115,40 @@
           Nur lieferbare Bücher
         </label>
       </div>
+
+      <!-- Sortierung -->
+      <div class="filter-group">
+        <span class="filter-group-label">Sortierung</span>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input
+              type="radio"
+              name="sortierung"
+              [(ngModel)]="formData.sortierung"
+              value=""
+            />
+            Standard
+          </label>
+          <label class="radio-label">
+            <input
+              type="radio"
+              name="sortierung"
+              [(ngModel)]="formData.sortierung"
+              value="preisAsc"
+            />
+            Preis ↑
+          </label>
+          <label class="radio-label">
+            <input
+              type="radio"
+              name="sortierung"
+              [(ngModel)]="formData.sortierung"
+              value="preisDesc"
+            />
+            Preis ↓
+          </label>
+        </div>
+      </div>
     </div>
 
     <!-- Search Button -->

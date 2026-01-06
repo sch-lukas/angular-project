@@ -51,6 +51,11 @@ export const options: Options = {
     port,
     secure: false,
 
+    // Timeout-Einstellungen um hängende Verbindungen zu vermeiden
+    connectionTimeout: 2000,
+    greetingTimeout: 2000,
+    socketTimeout: 2000,
+
     // Googlemail:
     // service: 'gmail',
     // auth: {

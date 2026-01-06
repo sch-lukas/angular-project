@@ -178,7 +178,25 @@ angular-project/
 
 ## 🆕 Neue Features (seit GitHub-Start)
 
-### 1. **Warenkorb-System** 🛒
+### 1. **Erweiterte Buchsuche** 🔍
+
+Umfangreiche Suchseite mit vielen Filtermöglichkeiten:
+
+- **Textsuche**: Titel und ISBN
+- **Filter nach Art**: EPUB, HARDCOVER, PAPERBACK
+- **Rating-Filter**: 1-5 Sterne oder alle
+- **Lieferbarkeits-Filter**: Nur lieferbare Bücher anzeigen
+- **Preis-Sortierung**: Aufsteigend (↑) oder Absteigend (↓)
+- **Paginierung**: Blättern durch große Ergebnislisten
+- GraphQL-basierte Server-Filterung für optimale Performance
+
+**Dateien**:
+
+- `frontend/src/app/components/search.component.ts` (~200 Zeilen)
+- `frontend/src/app/templates/search.component.html` (~280 Zeilen)
+- `frontend/src/app/services/buch-api.service.ts` (erweitert)
+
+### 2. **Warenkorb-System** 🛒
 
 Vollständig implementiertes Shopping Cart mit:
 
@@ -194,7 +212,7 @@ Vollständig implementiertes Shopping Cart mit:
 - `frontend/src/app/services/cart.service.ts` (173 Zeilen)
 - `frontend/src/app/components/cart.component.ts` (467 Zeilen)
 
-### 2. **Merkliste/Wishlist** ❤️
+### 3. **Merkliste/Wishlist** ❤️
 
 Benutzerfreundliche Favoriten-Verwaltung:
 
@@ -209,7 +227,7 @@ Benutzerfreundliche Favoriten-Verwaltung:
 - `frontend/src/app/services/wishlist.service.ts` (156 Zeilen)
 - `frontend/src/app/components/wishlist.component.ts` (295 Zeilen)
 
-### 3. **Startseiten-Carousels** 📚
+### 4. **Startseiten-Carousels** 📚
 
 Drei interaktive Buch-Karussells:
 
@@ -229,7 +247,7 @@ Features:
 - `frontend/src/app/components/book-carousel.component.ts` (361 Zeilen)
 - `frontend/src/app/components/landing-page.component.ts` (407 Zeilen - erweitert)
 
-### 4. **Erweiterte Buch-Detailseite** 📖
+### 5. **Erweiterte Buch-Detailseite** 📖
 
 Komplett überarbeitetes Layout:
 
@@ -244,7 +262,7 @@ Komplett überarbeitetes Layout:
 
 - `frontend/src/app/components/detail.component.ts` (1576 Zeilen - massiv erweitert)
 
-### 5. **Dark/Light Mode** 🌓
+### 6. **Dark/Light Mode** 🌓
 
 Vollständiger Theme-Support:
 
@@ -264,7 +282,7 @@ Vollständiger Theme-Support:
 - `frontend/src/styles.css` (Dark Mode Variablen)
 - Alle Komponenten: `:host-context(.theme-dark)` Styles
 
-### 6. **Dynamische Buch-Cover** 🎨
+### 7. **Dynamische Buch-Cover** 🎨
 
 SVG-basierte Cover-Generierung:
 
@@ -282,7 +300,7 @@ SVG-basierte Cover-Generierung:
 - `frontend/src/assets/cover-generierung/regenerate-covers.ps1` (PowerShell Generator)
 - `frontend/src/assets/covers/*.svg` (159 SVG-Dateien)
 
-### 7. **GraphQL-Erweiterungen** 🔄
+### 8. **GraphQL-Erweiterungen** 🔄
 
 Optimierte API-Abfragen:
 
@@ -296,7 +314,7 @@ Optimierte API-Abfragen:
 - `frontend/src/app/services/graphql-queries.ts` (erweitert)
 - `frontend/src/app/services/buch-api.service.ts` (erweitert)
 
-### 8. **Analytics Dashboard** 📊 (NEU - Januar 2026)
+### 9. **Analytics Dashboard** 📊 (NEU - Januar 2026)
 
 Echtzeit-Überwachung für Administratoren:
 
@@ -316,7 +334,7 @@ Echtzeit-Überwachung für Administratoren:
 - `frontend/src/app/analytics/analytics-dashboard.component.css` (~230 Zeilen)
 - `frontend/src/app/analytics/analytics-websocket.service.ts` (~300 Zeilen)
 
-### 9. **Custom Favicon & Branding** 🔖 (NEU - Januar 2026)
+### 10. **Custom Favicon & Branding** 🔖 (NEU - Januar 2026)
 
 Individuelles Erscheinungsbild im Browser:
 

@@ -33,14 +33,14 @@
 │                                                                                      │
 │    Suchformular (Reactive Form):                                                     │
 │    ┌─────────────────────────────────────────────────────────────────────────────┐  │
-│    │ searchForm = this.fb.group({                                                 │  │
-│    │     titel: [''],              // Freitext-Suche                              │  │
-│    │     isbn: [''],               // ISBN-Suche                                  │  │
-│    │     art: [''],                // DRUCKAUSGABE | KINDLE                       │  │
-│    │     rating: [null],           // 0-5 Sterne                                  │  │
-│    │     lieferbar: [false],       // Nur lieferbare                              │  │
-│    │     schlagwoerter: [[]]       // Multi-Select Checkboxen                     │  │
-│    │ });                                                                          │  │
+│    │ formData = {                                                                 │  │
+│    │     suchtext: '',             // Freitext-Suche (Titel)                      │  │
+│    │     isbn: '',                 // ISBN-Suche                                  │  │
+│    │     art: '',                  // EPUB | HARDCOVER | PAPERBACK                │  │
+│    │     ratingFilter: '',         // 1-5 Sterne                                  │  │
+│    │     nurLieferbar: false,      // Nur lieferbare                              │  │
+│    │     sortierung: '',           // preisAsc | preisDesc                        │  │
+│    │ };                                                                           │  │
 │    └─────────────────────────────────────────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────────────────────────────┘
                                         │
@@ -55,16 +55,15 @@
 │    │  ║  Titel:    [________________________]                                 ║  │  │
 │    │  ║  ISBN:     [________________________]                                 ║  │  │
 │    │  ║                                                                       ║  │  │
-│    │  ║  Art:      ○ Alle  ○ Druckausgabe  ○ Kindle                          ║  │  │
+│    │  ║  Art:      [EPUB / HARDCOVER / PAPERBACK ▼]                           ║  │  │
 │    │  ║                                                                       ║  │  │
-│    │  ║  Rating:   ☆ ☆ ☆ ☆ ☆  (0-5)                                          ║  │  │
-│    │  ║                                                                       ║  │  │
-│    │  ║  Schlagwörter:                                                        ║  │  │
-│    │  ║  ☑ JavaScript  ☐ TypeScript  ☐ Java                                   ║  │  │
+│    │  ║  Rating:   ○ Alle  ○ 1⭐  ○ 2⭐  ○ 3⭐  ○ 4⭐  ○ 5⭐                   ║  │  │
 │    │  ║                                                                       ║  │  │
 │    │  ║  ☐ Nur lieferbare Bücher                                              ║  │  │
 │    │  ║                                                                       ║  │  │
-│    │  ║  [🔍 Suchen]  [✖ Zurücksetzen]                                        ║  │  │
+│    │  ║  Sortierung: ○ Standard  ○ Preis ↑  ○ Preis ↓                         ║  │  │
+│    │  ║                                                                       ║  │  │
+│    │  ║  [🔍 Suchen]                                                          ║  │  │
 │    │  ╚═══════════════════════════════════════════════════════════════════════╝  │  │
 │    └─────────────────────────────────────────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────────────────────────────┘

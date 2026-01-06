@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import {
     BuchApiService,
+    BuchArt,
     BuchItem,
     BuchPage,
 } from '../services/buch-api.service';
@@ -31,9 +32,10 @@ export class SearchComponent implements OnInit {
     formData = {
         suchtext: '',
         isbn: '',
-        art: '',
+        art: '' as '' | BuchArt,
         ratingFilter: '',
         nurLieferbar: false,
+        sortierung: '' as '' | 'preisAsc' | 'preisDesc',
     };
 
     constructor(
@@ -59,9 +61,10 @@ export class SearchComponent implements OnInit {
         size: number;
         titel?: string;
         isbn?: string;
-        art?: string;
+        art?: BuchArt;
         rating?: number;
         lieferbar?: boolean;
+        sortierung?: 'preisAsc' | 'preisDesc';
     } {
         const params: any = {
             page: this.currentPage,
@@ -93,6 +96,11 @@ export class SearchComponent implements OnInit {
         // Lieferbar-Filter
         if (this.formData.nurLieferbar) {
             params.lieferbar = true;
+        }
+
+        // Sortierung
+        if (this.formData.sortierung) {
+            params.sortierung = this.formData.sortierung;
         }
 
         return params;

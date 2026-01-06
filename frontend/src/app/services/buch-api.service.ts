@@ -52,6 +52,8 @@ export interface SearchParams {
     titel?: string;
     isbn?: string;
     rating?: number;
+    art?: BuchArt;
+    lieferbar?: boolean;
     page?: number;
     size?: number;
     sortierung?: 'preisAsc' | 'preisDesc';
@@ -103,6 +105,12 @@ export class BuchApiService {
         }
         if (params?.rating !== undefined && params.rating > 0) {
             suchparameter.rating = params.rating;
+        }
+        if (params?.art) {
+            suchparameter.art = params.art;
+        }
+        if (params?.lieferbar !== undefined) {
+            suchparameter.lieferbar = params.lieferbar;
         }
 
         // GraphQL Query ausführen
