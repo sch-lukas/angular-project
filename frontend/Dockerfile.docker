@@ -1,0 +1,58 @@
+# syntax=docker.io/docker/dockerfile-upstream:1.20.0
+# check=error=true
+
+# =============================================================================
+# Angular SPA Frontend - Multi-Stage Dockerfile (Docker Stack Version)
+# Mit Backend-Proxy Konfiguration
+# =============================================================================
+
+ARG NODE_VERSION=22.12.0
+
+# =============================================================================
+# Stage 1: Build - Angular App kompilieren
+# =============================================================================
+FROM node:${NODE_VERSION}-alpine AS build
+
+WORKDIR /app
+
+# pnpm via npm installieren
+RUN npm install -g pnpm@latest
+
+# Dependency-Dateien kopieren für besseres Caching
+COPY package.json pnpm-lock.yaml* ./
+
+# Dependencies installieren
+RUN pnpm install || pnpm install --no-frozen-lockfile
+
+# Source-Code kopieren
+COPY . .
+
+# Angular App für Production bauen
+RUN pnpm build --configuration=production
+
+# =============================================================================
+# Stage 2: Production - Nginx Webserver mit Backend-Proxy
+# =============================================================================
+FROM nginx:1.27-alpine AS production
+
+# Nginx-Konfiguration für SPA MIT Backend-Proxy
+COPY nginx.docker.conf /etc/nginx/nginx.conf
+
+# Build-Artefakte von Stage 1 kopieren
+COPY --from=build /app/dist/spa-frontend /usr/share/nginx/html
+
+# Nginx läuft als non-root User
+RUN chown -R nginx:nginx /usr/share/nginx/html && \
+    chown -R nginx:nginx /var/cache/nginx && \
+    chown -R nginx:nginx /var/log/nginx && \
+    touch /var/run/nginx.pid && \
+    chown -R nginx:nginx /var/run/nginx.pid
+
+USER nginx
+
+EXPOSE 80
+
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD wget --no-verbose --tries=1 --spider http://localhost:80/ || exit 1
+
+CMD ["nginx", "-g", "daemon off;"]

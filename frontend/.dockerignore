@@ -1,0 +1,51 @@
+# =============================================================================
+# Docker Ignore für Angular Frontend
+# =============================================================================
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build Output (wird im Container neu erstellt)
+dist/
+
+# Angular Cache
+.angular/
+
+# Test Reports
+playwright-report/
+test-results/
+coverage/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment Files (sensible Daten)
+.env
+.env.local
+.env.*.local
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+*.md
+!README.md
+
+# E2E Tests (nicht für Production Build benötigt)
+e2e/
+playwright.config.ts

@@ -4,6 +4,8 @@
 #   .\Start-All.ps1              → Startet alles (DB, Keycloak, Backend, Frontend)
 #   .\Start-All.ps1 -lan         → Startet alles + Frontend im LAN-Modus
 #   .\Start-All.ps1 -tunnel      → Startet alles + Cloudflare Tunnel (Internet-Zugriff)
+#   .\Start-All.ps1 -docker      → Startet alles als Docker-Container
+#   .\Start-All.ps1 -docker -tunnel → Docker-Container + Cloudflare Tunnel
 #   .\Start-All.ps1 -NoFrontend  → Nur Backend-Stack (DB, Keycloak, Backend)
 #
 # Von überall starten:
@@ -12,6 +14,7 @@
 param(
     [switch]$lan,
     [switch]$tunnel,
+    [switch]$docker,
     [switch]$NoFrontend,
     [switch]$NoBrowser
 )
@@ -35,7 +38,11 @@ function Write-Info($message) {
 # Banner
 Write-Host "`n" -NoNewline
 Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Magenta
-if ($tunnel) {
+if ($docker -and $tunnel) {
+    Write-Host "║       🐳 Buchhandlung SPA - DOCKER + TUNNEL Modus         ║" -ForegroundColor Magenta
+} elseif ($docker) {
+    Write-Host "║       🐳 Buchhandlung SPA - DOCKER Modus                  ║" -ForegroundColor Magenta
+} elseif ($tunnel) {
     Write-Host "║       🌐 Buchhandlung SPA - TUNNEL Modus                  ║" -ForegroundColor Magenta
 } elseif ($lan) {
     Write-Host "║       📱 Buchhandlung SPA - LAN Modus                     ║" -ForegroundColor Magenta
@@ -55,6 +62,125 @@ if ($tunnel) {
     }
     Write-Host "`n🔒 SICHERHEIT: Nur Frontend wird exponiert, Backend bleibt lokal!" -ForegroundColor Yellow
 }
+
+# =============================================================================
+# DOCKER-MODUS: Kompletter Stack als Container
+# =============================================================================
+if ($docker) {
+    Write-Step "1/2" "Docker-Stack starten..."
+    $dockerStackCompose = Join-Path $ProjectRoot ".extras\compose\docker-stack"
+
+    # Netzwerk erstellen falls nicht vorhanden
+    docker network create acme-network 2>$null
+
+    # Container starten (baut automatisch nur wenn Images fehlen oder sich geändert haben)
+    Write-Info "Starte Docker-Container..."
+    Start-Process -FilePath "docker" -ArgumentList "compose", "-f", "$dockerStackCompose\compose.yml", "up", "-d" -NoNewWindow -Wait
+    Write-Success "Docker-Stack gestartet"
+
+    # Warte auf Container
+    Write-Step "2/2" "Warte auf Container-Gesundheitschecks..."
+    Start-Sleep -Seconds 10
+
+    # Status prüfen
+    $containers = docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" --filter "name=buchhandlung"
+    Write-Host "`n$containers" -ForegroundColor Gray
+
+    Write-Success "Alle Container gestartet"
+
+    # Zusammenfassung für Docker-Modus
+    Write-Host "`n"
+    Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Green
+    Write-Host "║              🐳 DOCKER Stack gestartet!                   ║" -ForegroundColor Green
+    Write-Host "╠═══════════════════════════════════════════════════════════╣" -ForegroundColor Green
+    Write-Host "║  PostgreSQL:  localhost:5432                              ║" -ForegroundColor Green
+    Write-Host "║  Keycloak:    https://localhost:8843                      ║" -ForegroundColor Green
+    Write-Host "║  Backend:     https://localhost:3000 (Container)          ║" -ForegroundColor Green
+    Write-Host "║  Frontend:    http://localhost:80 (Container)             ║" -ForegroundColor Green
+    Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Green
+
+    # Tunnel starten wenn aktiviert (Docker-Modus)
+    if ($tunnel) {
+        Write-Host "`n"
+        Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
+        Write-Host "║              🌐 Cloudflare Tunnel starten...              ║" -ForegroundColor Cyan
+        Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
+
+        Write-Host "`n⏳ Warte auf Frontend-Container (10 Sek.)..." -ForegroundColor Yellow
+        Start-Sleep -Seconds 10
+
+        # Tunnel auf Port 80 (Frontend-Container)
+        $cloudflared = "$env:USERPROFILE\cloudflared.exe"
+        $tunnelJob = Start-Job -ScriptBlock {
+            param($exe)
+            & $exe tunnel --url http://localhost:80 2>&1
+        } -ArgumentList $cloudflared
+
+        Write-Host "⏳ Warte auf Tunnel-URL..." -ForegroundColor Yellow
+
+        $tunnelUrl = $null
+        $timeout = 30
+        $elapsed = 0
+
+        while ($elapsed -lt $timeout -and -not $tunnelUrl) {
+            Start-Sleep -Seconds 1
+            $elapsed++
+            $output = Receive-Job -Job $tunnelJob -Keep 2>$null
+            if ($output) {
+                foreach ($line in $output) {
+                    if ($line -match "https://[a-z0-9-]+\.trycloudflare\.com") {
+                        $tunnelUrl = $matches[0]
+                        break
+                    }
+                }
+            }
+            Write-Host "." -NoNewline -ForegroundColor Yellow
+        }
+        Write-Host ""
+
+        if ($tunnelUrl) {
+            Write-Host "`n"
+            $urlDisplay = "  🔗 URL: $tunnelUrl"
+            $boxWidth = [Math]::Max(75, $urlDisplay.Length + 4)
+            $horizontalLine = "═" * ($boxWidth - 2)
+            $emptyLine = " " * ($boxWidth - 2)
+
+            Write-Host "╔$horizontalLine╗" -ForegroundColor Green
+            Write-Host "║$(' ' * [Math]::Floor(($boxWidth - 26) / 2))🌐 DOCKER TUNNEL AKTIV!$(' ' * [Math]::Ceiling(($boxWidth - 26) / 2))║" -ForegroundColor Green
+            Write-Host "╠$horizontalLine╣" -ForegroundColor Green
+            Write-Host "║$emptyLine║" -ForegroundColor Green
+
+            $urlPadding = [Math]::Max(0, $boxWidth - 2 - $urlDisplay.Length)
+            Write-Host "║$urlDisplay$(' ' * $urlPadding)║" -ForegroundColor Green
+            Write-Host "║$emptyLine║" -ForegroundColor Green
+
+            $loginLine = "  🔐 Login: admin / CHANGE_ME_DEV_PASSWORD"
+            $loginPadding = $boxWidth - 2 - $loginLine.Length
+            Write-Host "║$loginLine$(' ' * $loginPadding)║" -ForegroundColor Green
+            Write-Host "╚$horizontalLine╝" -ForegroundColor Green
+
+            $tunnelUrl | Set-Clipboard
+            Write-Host "`n📋 URL wurde in die Zwischenablage kopiert!" -ForegroundColor Cyan
+            $tunnelJob.Id | Out-File -FilePath "$ProjectRoot\.tunnel-job-id" -Force
+        }
+    }
+
+    # Browser öffnen
+    if (-not $NoBrowser) {
+        Write-Host "`n⏳ Öffne Browser..." -ForegroundColor Yellow
+        Start-Sleep -Seconds 3
+        Start-Process "http://localhost:80"
+    }
+
+    Write-Host "`n💡 Zum Stoppen: " -NoNewline -ForegroundColor Yellow
+    Write-Host ".\Stop-All.ps1 -docker" -ForegroundColor Cyan
+    Write-Host ""
+    exit 0
+}
+
+# =============================================================================
+# STANDARD-MODUS: Lokale Entwicklung
+# =============================================================================
 
 # Schritt 1: PostgreSQL
 Write-Step "1/4" "PostgreSQL Datenbank starten..."

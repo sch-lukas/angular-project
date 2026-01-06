@@ -1,11 +1,13 @@
 # Stop-All.ps1 - Stoppt den kompletten Entwicklungsstack
 #
 # Verwendung:
-#   .\Stop-All.ps1        → Stoppt alles (Docker Container + Node Prozesse)
+#   .\Stop-All.ps1         → Stoppt alles (Docker Container + Node Prozesse)
 #   .\Stop-All.ps1 -KeepDB → Stoppt nur Node, Docker Container weiterlaufen lassen
+#   .\Stop-All.ps1 -docker → Stoppt den Docker-Stack (Container + Images)
 
 param(
-    [switch]$KeepDB
+    [switch]$KeepDB,
+    [switch]$docker
 )
 
 $ProjectRoot = "C:\software-engeneering\angular-project"
@@ -22,8 +24,53 @@ function Write-Success($message) {
 # Banner
 Write-Host "`n" -NoNewline
 Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Red
-Write-Host "║           🛑 Buchhandlung SPA - Stack stoppen             ║" -ForegroundColor Red
+if ($docker) {
+    Write-Host "║         🐳 Buchhandlung SPA - Docker Stack stoppen        ║" -ForegroundColor Red
+} else {
+    Write-Host "║           🛑 Buchhandlung SPA - Stack stoppen             ║" -ForegroundColor Red
+}
 Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Red
+
+# =============================================================================
+# DOCKER-MODUS: Docker-Stack stoppen
+# =============================================================================
+if ($docker) {
+    # Tunnel beenden
+    $tunnelJobFile = Join-Path $ProjectRoot ".tunnel-job-id"
+    if (Test-Path $tunnelJobFile) {
+        Write-Step "1/2" "Cloudflare Tunnel beenden..."
+        $tunnelJobId = Get-Content $tunnelJobFile
+        $job = Get-Job -Id $tunnelJobId -ErrorAction SilentlyContinue
+        if ($job) {
+            Stop-Job -Job $job -ErrorAction SilentlyContinue
+            Remove-Job -Job $job -Force -ErrorAction SilentlyContinue
+        }
+        Remove-Item $tunnelJobFile -Force
+
+        $cloudflaredProcesses = Get-Process -Name "cloudflared" -ErrorAction SilentlyContinue
+        if ($cloudflaredProcesses) {
+            $cloudflaredProcesses | Stop-Process -Force
+        }
+        Write-Success "Tunnel beendet"
+    }
+
+    Write-Step "2/2" "Docker-Stack stoppen..."
+    $dockerStackCompose = Join-Path $ProjectRoot ".extras\compose\docker-stack"
+
+    Start-Process -FilePath "docker" -ArgumentList "compose", "-f", "$dockerStackCompose\compose.yml", "down" -NoNewWindow -Wait
+    Write-Success "Docker-Stack gestoppt"
+
+    Write-Host "`n"
+    Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Green
+    Write-Host "║              🐳 Docker Stack gestoppt!                    ║" -ForegroundColor Green
+    Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Green
+    Write-Host ""
+    exit 0
+}
+
+# =============================================================================
+# STANDARD-MODUS
+# =============================================================================
 
 # Schritt 0: Tunnel-Job beenden (falls vorhanden)
 $tunnelJobFile = Join-Path $ProjectRoot ".tunnel-job-id"

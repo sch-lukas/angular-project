@@ -1,0 +1,90 @@
+# Copyright (C) 2024 - present
+#
+# Docker Compose für den kompletten Stack (Tunnel-Modus)
+# Frontend und Backend als Container
+#
+# Aufruf:   docker compose up -d
+#           docker compose down
+
+# https://docs.docker.com/compose/compose-file
+
+name: buchhandlung-stack
+
+include:
+  - path: ../postgres/compose.yml
+  - path: ../keycloak/compose.yml
+
+services:
+  # ==========================================================================
+  # Backend (NestJS)
+  # ==========================================================================
+  backend:
+    container_name: buchhandlung-backend
+    image: buchhandlung/backend:2025.10.1
+    build:
+      context: ../../..
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://buch:p@db:5432/buch?schema=buch&sslmode=require
+      - DATABASE_URL_ADMIN=postgresql://postgres:p@db:5432/buch?schema=buch&sslmode=require
+      - KEYCLOAK_SCHEMA=http
+      - KEYCLOAK_HOST=keycloak
+      - KEYCLOAK_PORT=8080
+      - CLIENT_SECRET=__SET_CLIENT_SECRET_IN_ENV__
+    networks:
+      - acme-network
+    depends_on:
+      db:
+        condition: service_healthy
+      keycloak:
+        condition: service_started
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "https://localhost:3000/health",
+          "--no-check-certificate",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # ==========================================================================
+  # Frontend (Angular + Nginx)
+  # ==========================================================================
+  frontend:
+    container_name: buchhandlung-frontend
+    image: buchhandlung/frontend:2025.10.1-docker
+    build:
+      context: ../../../frontend
+      dockerfile: Dockerfile.docker
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - acme-network
+    depends_on:
+      - backend
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://localhost:80/",
+        ]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s

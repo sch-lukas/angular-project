@@ -24,11 +24,13 @@ import {
     TokenValidation,
 } from 'nest-keycloak-connect';
 import { Agent } from 'node:https';
+import process from 'node:process';
 import { config } from './app.js';
 import { env } from './env.js';
 import { httpsOptions } from './https.js';
 
 const { keycloak } = config;
+const { KEYCLOAK_HOST, KEYCLOAK_PORT, KEYCLOAK_SCHEMA } = process.env; // eslint-disable-line n/no-process-env
 
 if (keycloak !== undefined && keycloak !== null) {
     if (
@@ -64,9 +66,15 @@ if (keycloak !== undefined && keycloak !== null) {
     }
 }
 
-const schema = (keycloak?.schema as string | undefined) ?? 'https';
-const host = (keycloak?.host as string | undefined) ?? 'keycloak';
-const port = (keycloak?.port as number | undefined) ?? 8443;
+// Umgebungsvariablen haben Priorität über Konfigurationsdatei
+const schema =
+    KEYCLOAK_SCHEMA ?? (keycloak?.schema as string | undefined) ?? 'https';
+const host =
+    KEYCLOAK_HOST ?? (keycloak?.host as string | undefined) ?? 'keycloak';
+const port =
+    KEYCLOAK_PORT !== undefined
+        ? Number.parseInt(KEYCLOAK_PORT, 10)
+        : ((keycloak?.port as number | undefined) ?? 8443);
 const authServerUrl = `${schema}://${host}:${port}`;
 // Keycloak ist in Sicherheits-Bereich (= realms) unterteilt
 const realm = (keycloak?.realm as string | undefined) ?? 'nest';

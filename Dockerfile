@@ -161,6 +161,9 @@ EOF
 
 WORKDIR /opt/app
 
+# Log-Verzeichnis erstellen für Server-Logs
+RUN mkdir -p /opt/app/log && chown node:node /opt/app/log
+
 USER node
 
 # ADD hat mehr Funktionalitaet als COPY, z.B. auch Download von externen Dateien
