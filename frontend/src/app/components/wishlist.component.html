@@ -13,13 +13,13 @@
 
   <!-- Success Alert -->
   <ngb-alert
-    *ngIf="successMessage"
+    *ngIf="successMessage()"
     type="success"
     [dismissible]="true"
-    (closed)="successMessage = null"
+    (closed)="successMessage.set(null)"
     class="mb-4"
   >
-    {{ successMessage }}
+    {{ successMessage() }}
   </ngb-alert>
 
   <!-- Leere Merkliste -->
@@ -152,7 +152,7 @@
             🗑️ Merkliste leeren
           </button>
           <div class="text-muted">
-            <strong>{{ getTotalItems() }}</strong> Artikel gemerkt
+            <strong>{{ totalItems() }}</strong> Artikel gemerkt
           </div>
         </div>
       </div>

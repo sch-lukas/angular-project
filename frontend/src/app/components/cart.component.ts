@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
@@ -15,13 +15,34 @@ import { CartService } from '../services/cart.service';
     styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-    cartItems$!: Observable<CartItem[]>;
-    successMessage: string | null = null;
+    // Dependency Injection via inject() (Angular v21 Style Guide Empfehlung)
+    private readonly cartService = inject(CartService);
 
-    constructor(private readonly cartService: CartService) {}
+    // Observable für async pipe im Template
+    cartItems$!: Observable<CartItem[]>;
+
+    // Signals für reaktiven State
+    protected readonly successMessage = signal<string | null>(null);
+    private readonly cartItemsSignal = signal<CartItem[]>([]);
+
+    // Computed values für Berechnungen (vermeidet Memory Leaks)
+    protected readonly totalItems = computed(() =>
+        this.cartItemsSignal().reduce((sum, item) => sum + item.quantity, 0),
+    );
+
+    protected readonly totalSavings = computed(() =>
+        this.cartItemsSignal().reduce((sum, item) => {
+            if (item.rabatt && item.rabatt > 0) {
+                return sum + item.price * item.rabatt * item.quantity;
+            }
+            return sum;
+        }, 0),
+    );
 
     ngOnInit(): void {
         this.cartItems$ = this.cartService.getItems();
+        // Signal synchron halten für computed values
+        this.cartItems$.subscribe((items) => this.cartItemsSignal.set(items));
     }
 
     /**
@@ -76,16 +97,7 @@ export class CartComponent implements OnInit {
         return this.cartService.getTotal();
     }
 
-    /**
-     * Gibt die Gesamtanzahl der Artikel zurück
-     */
-    getTotalItems(): number {
-        let total = 0;
-        this.cartItems$.subscribe((items) => {
-            total = items.reduce((sum, item) => sum + item.quantity, 0);
-        });
-        return total;
-    }
+    // getTotalItems() wurde durch computed signal totalItems ersetzt
 
     /**
      * Berechnet den rabattierten Preis für einen Artikel
@@ -101,22 +113,7 @@ export class CartComponent implements OnInit {
         return `${(rabatt * 100).toFixed(0)}%`;
     }
 
-    /**
-     * Berechnet die Gesamtersparnis durch Rabatte
-     */
-    getTotalSavings(): number {
-        let savings = 0;
-        this.cartItems$.subscribe((items) => {
-            savings = items.reduce((sum, item) => {
-                if (item.rabatt && item.rabatt > 0) {
-                    const discount = item.price * item.rabatt * item.quantity;
-                    return sum + discount;
-                }
-                return sum;
-            }, 0);
-        });
-        return savings;
-    }
+    // getTotalSavings() wurde durch computed signal totalSavings ersetzt
 
     /**
      * Konvertiert Art-Enum zu lesbarem Label
@@ -134,9 +131,9 @@ export class CartComponent implements OnInit {
      * Zeigt eine Erfolgs-Nachricht für 3 Sekunden
      */
     private showSuccess(message: string): void {
-        this.successMessage = message;
+        this.successMessage.set(message);
         setTimeout(() => {
-            this.successMessage = null;
+            this.successMessage.set(null);
         }, 3000);
     }
 }

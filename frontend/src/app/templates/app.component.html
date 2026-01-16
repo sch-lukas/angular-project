@@ -1,7 +1,7 @@
 <div
   class="app-shell"
-  [class.theme-dark]="isDarkMode"
-  [class.theme-light]="!isDarkMode"
+  [class.theme-dark]="isDarkMode()"
+  [class.theme-light]="!isDarkMode()"
 >
   <header class="app-header">
     <div class="app-header-left">
@@ -35,7 +35,7 @@
         >
         <!-- Analytics Dashboard nur für Admins -->
         <a
-          *ngIf="isAdmin$ | async"
+          *ngIf="isAdmin()"
           routerLink="/analytics"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
@@ -87,7 +87,7 @@
         </button>
       </nav>
       <button type="button" class="theme-toggle" (click)="toggleDarkMode()">
-        {{ isDarkMode ? 'Dark' : 'Light' }}
+        {{ isDarkMode() ? 'Dark' : 'Light' }}
       </button>
     </div>
   </header>

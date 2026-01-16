@@ -7,6 +7,7 @@ import {
     TemplateRef,
     ViewChild,
     inject,
+    signal,
 } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -24,25 +25,36 @@ import { WishlistService } from '../services/wishlist.service';
     styleUrls: ['../templates/detail.component.css'],
 })
 export class DetailComponent implements OnInit {
+    // Dependency Injection via inject() (Angular v21 Style Guide)
+    private readonly route = inject(ActivatedRoute);
+    private readonly api = inject(BuchApiService);
+    private readonly cdr = inject(ChangeDetectorRef);
+    private readonly modalService = inject(NgbModal);
+    private readonly cartService = inject(CartService);
+    private readonly wishlistService = inject(WishlistService);
+    private readonly authService = inject(AuthService);
+    private readonly analyticsService = inject(AnalyticsWebSocketService);
+
+    // State mit Signals
     buch: BuchItem | null = null;
-    isLoading = true;
-    error: string | null = null;
+    protected readonly isLoading = signal(true);
+    protected readonly error = signal<string | null>(null);
 
     // Empfehlungen / ähnliche Bücher
     related: BuchItem[] = [];
-    relatedLoading = false;
-    relatedError: string | null = null;
+    protected readonly relatedLoading = signal(false);
+    protected readonly relatedError = signal<string | null>(null);
 
     // Warenkorb-Status
-    addToCartSuccess = false;
+    protected readonly addToCartSuccess = signal(false);
 
     // Merkliste-Status
-    addToWishlistSuccess = false;
+    protected readonly addToWishlistSuccess = signal(false);
 
     // Lösch-Status
-    isDeleting = false;
-    deleteSuccess = false;
-    deleteError: string | null = null;
+    protected readonly isDeleting = signal(false);
+    protected readonly deleteSuccess = signal(false);
+    protected readonly deleteError = signal<string | null>(null);
 
     @ViewChild('homepageWarningModal')
     homepageWarningModal!: TemplateRef<any>;
@@ -53,41 +65,29 @@ export class DetailComponent implements OnInit {
     @ViewChild('carouselContainer')
     carouselContainer!: ElementRef<HTMLDivElement>;
 
-    private readonly modalService = inject(NgbModal);
-    private readonly cartService = inject(CartService);
-    private readonly wishlistService = inject(WishlistService);
-    private readonly authService = inject(AuthService);
-    private readonly analyticsService = inject(AnalyticsWebSocketService);
-
-    constructor(
-        private readonly route: ActivatedRoute,
-        private readonly api: BuchApiService,
-        private readonly cdr: ChangeDetectorRef,
-    ) {}
-
     ngOnInit(): void {
         this.route.paramMap.subscribe((params) => {
             const idStr = params.get('id');
             if (!idStr) {
-                this.error = 'Keine ID angegeben';
-                this.isLoading = false;
+                this.error.set('Keine ID angegeben');
+                this.isLoading.set(false);
                 return;
             }
 
             const id = Number.parseInt(idStr, 10);
             if (Number.isNaN(id) || id <= 0) {
-                this.error = `Ungültige ID: ${idStr}`;
-                this.isLoading = false;
+                this.error.set(`Ungültige ID: ${idStr}`);
+                this.isLoading.set(false);
                 return;
             }
 
             // Reset state für endless loop
             this.buch = null;
-            this.isLoading = true;
-            this.error = null;
+            this.isLoading.set(true);
+            this.error.set(null);
             this.related = [];
-            this.relatedLoading = false;
-            this.relatedError = null;
+            this.relatedLoading.set(false);
+            this.relatedError.set(null);
 
             // Scroll nach oben bei Navigation
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -97,15 +97,15 @@ export class DetailComponent implements OnInit {
     }
 
     private loadBuch(id: number): void {
-        this.isLoading = true;
-        this.error = null;
+        this.isLoading.set(true);
+        this.error.set(null);
         this.buch = null;
 
         this.api.getById(id).subscribe({
             next: (buch) => {
                 console.log('Buch geladen:', buch);
                 this.buch = buch;
-                this.isLoading = false;
+                this.isLoading.set(false);
                 this.cdr.detectChanges();
                 // Analytics: Buch-Ansicht tracken
                 if (buch.id && buch.titel?.titel) {
@@ -123,8 +123,10 @@ export class DetailComponent implements OnInit {
                     err?.error?.message ||
                     err?.message ||
                     'Das Buch konnte nicht geladen werden';
-                this.error = `Fehler beim Laden des Buchs (ID ${id}): ${errMsg}`;
-                this.isLoading = false;
+                this.error.set(
+                    `Fehler beim Laden des Buchs (ID ${id}): ${errMsg}`,
+                );
+                this.isLoading.set(false);
                 this.cdr.detectChanges();
             },
         });
@@ -138,8 +140,8 @@ export class DetailComponent implements OnInit {
         art?: 'EPUB' | 'HARDCOVER' | 'PAPERBACK',
     ): void {
         console.log('🔍 loadRelated aufgerufen:', { currentId, art });
-        this.relatedLoading = true;
-        this.relatedError = null;
+        this.relatedLoading.set(true);
+        this.relatedError.set(null);
         this.related = [];
 
         // Lade ähnliche Bücher von der API
@@ -147,7 +149,7 @@ export class DetailComponent implements OnInit {
             next: (books) => {
                 console.log('✅ Ähnliche Bücher geladen:', books);
                 this.related = books;
-                this.relatedLoading = false;
+                this.relatedLoading.set(false);
                 this.cdr.detectChanges();
 
                 // Fallback: Wenn keine ähnlichen Bücher gefunden wurden
@@ -160,9 +162,10 @@ export class DetailComponent implements OnInit {
             },
             error: (err) => {
                 console.error('❌ Fehler beim Laden der Empfehlungen:', err);
-                this.relatedError =
-                    'Empfehlungen konnten nicht geladen werden.';
-                this.relatedLoading = false;
+                this.relatedError.set(
+                    'Empfehlungen konnten nicht geladen werden.',
+                );
+                this.relatedLoading.set(false);
                 this.cdr.detectChanges();
 
                 // Fallback: Zeige Dummy-Daten bei Fehler
@@ -361,11 +364,11 @@ export class DetailComponent implements OnInit {
         this.cartService.addItem(this.buch, 1);
 
         // Zeige Erfolgs-Nachricht
-        this.addToCartSuccess = true;
+        this.addToCartSuccess.set(true);
 
         // Verstecke Nachricht nach 4 Sekunden
         setTimeout(() => {
-            this.addToCartSuccess = false;
+            this.addToCartSuccess.set(false);
         }, 4000);
 
         console.log(
@@ -405,11 +408,11 @@ export class DetailComponent implements OnInit {
                 this.buch.titel?.titel,
             );
         } else {
-            this.addToWishlistSuccess = true;
+            this.addToWishlistSuccess.set(true);
 
             // Verstecke Nachricht nach 4 Sekunden
             setTimeout(() => {
-                this.addToWishlistSuccess = false;
+                this.addToWishlistSuccess.set(false);
             }, 4000);
 
             console.log(
@@ -462,14 +465,14 @@ export class DetailComponent implements OnInit {
             localStorage.getItem('buchspa_token') ? 'VORHANDEN' : 'FEHLT',
         );
 
-        this.isDeleting = true;
-        this.deleteError = null;
+        this.isDeleting.set(true);
+        this.deleteError.set(null);
 
         this.api.delete(id).subscribe({
             next: () => {
                 console.log('✅ Buch erfolgreich gelöscht:', id);
-                this.deleteSuccess = true;
-                this.isDeleting = false;
+                this.deleteSuccess.set(true);
+                this.isDeleting.set(false);
 
                 // Nach 2 Sekunden zur Suche navigieren
                 setTimeout(() => {
@@ -480,10 +483,11 @@ export class DetailComponent implements OnInit {
                 console.error('❌ Fehler beim Löschen:', err);
                 console.error('❌ Status:', err.status);
                 console.error('❌ Error Body:', err.error);
-                this.deleteError =
+                this.deleteError.set(
                     err.error?.message ||
-                    `Fehler ${err.status}: ${err.statusText || 'Beim Löschen des Artikels ist ein Fehler aufgetreten.'}`;
-                this.isDeleting = false;
+                        `Fehler ${err.status}: ${err.statusText || 'Beim Löschen des Artikels ist ein Fehler aufgetreten.'}`,
+                );
+                this.isDeleting.set(false);
             },
         });
     }

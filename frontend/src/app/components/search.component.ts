@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import {
@@ -17,6 +17,10 @@ import {
     styleUrls: ['../templates/search.component.css'],
 })
 export class SearchComponent implements OnInit {
+    // Dependency Injection via inject() (Angular v21 Style Guide Empfehlung)
+    private readonly api = inject(BuchApiService);
+    private readonly cdr = inject(ChangeDetectorRef);
+
     items: BuchItem[] | null = null;
     error: string | null = null;
     isLoading = false;
@@ -37,11 +41,6 @@ export class SearchComponent implements OnInit {
         nurLieferbar: false,
         sortierung: '' as '' | 'preisAsc' | 'preisDesc',
     };
-
-    constructor(
-        private readonly api: BuchApiService,
-        private readonly cdr: ChangeDetectorRef,
-    ) {}
 
     ngOnInit(): void {
         // Initial laden - mit Fehlerbehandlung

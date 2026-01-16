@@ -3,8 +3,8 @@
     <h1>Login</h1>
 
     <!-- Fehlermeldung -->
-    <div *ngIf="loginError" class="alert alert-error">
-      <strong>Fehler:</strong> {{ loginError }}
+    <div *ngIf="loginError()" class="alert alert-error">
+      <strong>Fehler:</strong> {{ loginError() }}
     </div>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -55,9 +55,9 @@
         <button
           type="submit"
           class="btn btn-primary"
-          [disabled]="form.invalid || isSubmitting"
+          [disabled]="form.invalid || isSubmitting()"
         >
-          {{ isSubmitting ? 'Wird angemeldet...' : 'Anmelden' }}
+          {{ isSubmitting() ? 'Wird angemeldet...' : 'Anmelden' }}
         </button>
       </div>
     </form>

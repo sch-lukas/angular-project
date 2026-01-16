@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
@@ -14,13 +14,24 @@ import { WishlistService } from '../services/wishlist.service';
     styleUrls: ['./wishlist.component.css'],
 })
 export class WishlistComponent implements OnInit {
-    wishlistItems$!: Observable<WishlistItem[]>;
-    successMessage: string | null = null;
+    // Dependency Injection via inject() (Angular v21 Style Guide Empfehlung)
+    private readonly wishlistService = inject(WishlistService);
 
-    constructor(private readonly wishlistService: WishlistService) {}
+    wishlistItems$!: Observable<WishlistItem[]>;
+    protected readonly successMessage = signal<string | null>(null);
+    private readonly wishlistItemsSignal = signal<WishlistItem[]>([]);
+
+    // Computed value für Gesamtanzahl (vermeidet Memory Leaks)
+    protected readonly totalItems = computed(
+        () => this.wishlistItemsSignal().length,
+    );
 
     ngOnInit(): void {
         this.wishlistItems$ = this.wishlistService.items$;
+        // Signal synchron halten für computed values
+        this.wishlistItems$.subscribe((items) =>
+            this.wishlistItemsSignal.set(items),
+        );
     }
 
     /**
@@ -41,16 +52,7 @@ export class WishlistComponent implements OnInit {
         }
     }
 
-    /**
-     * Gibt die Gesamtanzahl der gemerkten Artikel zurück
-     */
-    getTotalItems(): number {
-        let total = 0;
-        this.wishlistItems$.subscribe((items) => {
-            total = items.length;
-        });
-        return total;
-    }
+    // getTotalItems() wurde durch computed signal totalItems ersetzt
 
     /**
      * Konvertiert Art-Enum zu lesbarem Label
@@ -75,9 +77,9 @@ export class WishlistComponent implements OnInit {
      * Zeigt eine Erfolgs-Nachricht für 3 Sekunden
      */
     private showSuccess(message: string): void {
-        this.successMessage = message;
+        this.successMessage.set(message);
         setTimeout(() => {
-            this.successMessage = null;
+            this.successMessage.set(null);
         }, 3000);
     }
 }

@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+    ChangeDetectorRef,
+    Component,
+    OnInit,
+    inject,
+    signal,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import {
     BuchApiService,
@@ -16,23 +22,22 @@ import { BookCarouselComponent } from './book-carousel.component';
     styleUrls: ['../templates/landing-page.component.css'],
 })
 export class LandingPageComponent implements OnInit {
+    // Dependency Injection via inject() (Angular v21 Style Guide)
+    private readonly api = inject(BuchApiService);
+    private readonly router = inject(Router);
+    private readonly cdr = inject(ChangeDetectorRef);
+
     stats: BuchStats | null = null;
 
-    // Animierte Werte
-    animatedTotalCount = 0;
-    animatedBestRating = 0;
-    animatedCheapestPrice = 0;
+    // Animierte Werte mit Signals
+    protected readonly animatedTotalCount = signal(0);
+    protected readonly animatedBestRating = signal(0);
+    protected readonly animatedCheapestPrice = signal(0);
 
     // Buchlisten für Carousels
     booksNew: BuchItem[] = [];
     booksPopular: BuchItem[] = [];
     booksRecommended: BuchItem[] = [];
-
-    constructor(
-        private readonly api: BuchApiService,
-        private readonly router: Router,
-        private readonly cdr: ChangeDetectorRef,
-    ) {}
 
     ngOnInit(): void {
         this.loadStats();
@@ -66,10 +71,10 @@ export class LandingPageComponent implements OnInit {
         const totalCountTimer = setInterval(() => {
             currentTotalCount += totalCountStep;
             if (currentTotalCount >= this.stats!.totalCount) {
-                this.animatedTotalCount = this.stats!.totalCount;
+                this.animatedTotalCount.set(this.stats!.totalCount);
                 clearInterval(totalCountTimer);
             } else {
-                this.animatedTotalCount = Math.floor(currentTotalCount);
+                this.animatedTotalCount.set(Math.floor(currentTotalCount));
             }
             this.cdr.detectChanges();
         }, interval);
@@ -82,11 +87,11 @@ export class LandingPageComponent implements OnInit {
             const ratingTimer = setInterval(() => {
                 currentRating += ratingStep;
                 if (currentRating >= this.stats!.bestBook!.rating) {
-                    this.animatedBestRating = this.stats!.bestBook!.rating;
+                    this.animatedBestRating.set(this.stats!.bestBook!.rating);
                     clearInterval(ratingTimer);
                 } else {
-                    this.animatedBestRating = Number.parseFloat(
-                        currentRating.toFixed(1),
+                    this.animatedBestRating.set(
+                        Number.parseFloat(currentRating.toFixed(1)),
                     );
                 }
                 this.cdr.detectChanges();
@@ -101,12 +106,13 @@ export class LandingPageComponent implements OnInit {
             const priceTimer = setInterval(() => {
                 currentPrice += priceStep;
                 if (currentPrice >= this.stats!.cheapestBook!.preis) {
-                    this.animatedCheapestPrice =
-                        this.stats!.cheapestBook!.preis;
+                    this.animatedCheapestPrice.set(
+                        this.stats!.cheapestBook!.preis,
+                    );
                     clearInterval(priceTimer);
                 } else {
-                    this.animatedCheapestPrice = Number.parseFloat(
-                        currentPrice.toFixed(2),
+                    this.animatedCheapestPrice.set(
+                        Number.parseFloat(currentPrice.toFixed(2)),
                     );
                 }
                 this.cdr.detectChanges();

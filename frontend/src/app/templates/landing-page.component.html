@@ -6,7 +6,7 @@
   <div class="stats-container">
     <div class="stat-card">
       <div class="stat-icon">📚</div>
-      <div class="stat-value">{{ animatedTotalCount }}</div>
+      <div class="stat-value">{{ animatedTotalCount() }}</div>
       <div class="stat-label">Bücher im Katalog</div>
     </div>
 
@@ -16,7 +16,7 @@
       (click)="goToBook(stats?.bestBook?.id)"
     >
       <div class="stat-icon">⭐</div>
-      <div class="stat-value">{{ animatedBestRating }}/5</div>
+      <div class="stat-value">{{ animatedBestRating() }}/5</div>
       <div class="stat-label">Bestbewertetes Buch</div>
       <div class="stat-subtitle">
         {{ stats?.bestBook?.titel }}
@@ -30,7 +30,7 @@
     >
       <div class="stat-icon">🏆</div>
       <div class="stat-value">
-        {{ animatedCheapestPrice | number: '1.2-2' }} €
+        {{ animatedCheapestPrice() | number: '1.2-2' }} €
       </div>
       <div class="stat-label">Schwabenpreis</div>
       <div class="stat-subtitle">

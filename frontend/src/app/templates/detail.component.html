@@ -12,7 +12,7 @@
 
   <!-- Ladezustand -->
   <div
-    *ngIf="isLoading"
+    *ngIf="isLoading()"
     class="d-flex justify-content-center my-5"
     style="padding: 80px 0"
   >
@@ -26,32 +26,32 @@
 
   <!-- Fehleranzeige -->
   <ngb-alert
-    *ngIf="error"
+    *ngIf="error()"
     type="danger"
     [dismissible]="true"
-    (closed)="error = null"
+    (closed)="error.set(null)"
   >
-    <strong>⚠ Fehler!</strong> {{ error }}
+    <strong>⚠ Fehler!</strong> {{ error() }}
   </ngb-alert>
 
   <!-- Lösch-Fehleranzeige -->
   <ngb-alert
-    *ngIf="deleteError"
+    *ngIf="deleteError()"
     type="danger"
     [dismissible]="true"
-    (closed)="deleteError = null"
+    (closed)="deleteError.set(null)"
   >
-    <strong>⚠ Fehler beim Löschen!</strong> {{ deleteError }}
+    <strong>⚠ Fehler beim Löschen!</strong> {{ deleteError() }}
   </ngb-alert>
 
   <!-- Lösch-Erfolg -->
-  <ngb-alert *ngIf="deleteSuccess" type="success" [dismissible]="false">
+  <ngb-alert *ngIf="deleteSuccess()" type="success" [dismissible]="false">
     <strong>✅ Erfolgreich gelöscht!</strong> Sie werden zur Suche
     weitergeleitet...
   </ngb-alert>
 
   <!-- Produktseite (Shop-Layout) -->
-  <div *ngIf="buch && !isLoading" class="product-card card shadow">
+  <div *ngIf="buch && !isLoading()" class="product-card card shadow">
     <!-- Titel und Rating über allem -->
     <div class="card-header product-header border-bottom">
       <h1 class="product-title mb-2">
@@ -155,7 +155,7 @@
           <div class="cta-section mb-4">
             <!-- Success Alert -->
             <ngb-alert
-              *ngIf="addToCartSuccess"
+              *ngIf="addToCartSuccess()"
               type="success"
               [dismissible]="false"
               class="mb-3"
@@ -167,7 +167,7 @@
 
             <!-- Wishlist Success Alert -->
             <ngb-alert
-              *ngIf="addToWishlistSuccess"
+              *ngIf="addToWishlistSuccess()"
               type="info"
               [dismissible]="false"
               class="mb-3"
@@ -329,10 +329,10 @@
       type="button"
       class="btn btn-danger"
       (click)="modal.close('confirm')"
-      [disabled]="isDeleting"
+      [disabled]="isDeleting()"
     >
-      <span *ngIf="!isDeleting">✅ Ja, löschen</span>
-      <span *ngIf="isDeleting">
+      <span *ngIf="!isDeleting()">✅ Ja, löschen</span>
+      <span *ngIf="isDeleting()">
         <span
           class="spinner-border spinner-border-sm me-2"
           aria-hidden="true"
@@ -387,7 +387,7 @@
   </h3>
 
   <!-- Lade-Spinner -->
-  <div *ngIf="relatedLoading" class="text-center py-5">
+  <div *ngIf="relatedLoading()" class="text-center py-5">
     <output
       class="spinner-border text-primary"
       style="width: 2rem; height: 2rem"
@@ -399,16 +399,16 @@
 
   <!-- Fehler -->
   <ngb-alert
-    *ngIf="relatedError && !relatedLoading"
+    *ngIf="relatedError() && !relatedLoading()"
     type="warning"
     [dismissible]="true"
-    (closed)="relatedError = null"
+    (closed)="relatedError.set(null)"
   >
-    {{ relatedError }}
+    {{ relatedError() }}
   </ngb-alert>
 
   <!-- Karussell mit Empfehlungen (Amazon-Style Horizontal Scroll) -->
-  <div *ngIf="related.length > 0 && !relatedLoading" class="carousel-wrapper">
+  <div *ngIf="related.length > 0 && !relatedLoading()" class="carousel-wrapper">
     <!-- Linker Pfeil -->
     <button
       class="carousel-arrow carousel-arrow-left"

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import {
     NavigationEnd,
     Router,
@@ -8,7 +8,7 @@ import {
     RouterModule,
     RouterOutlet,
 } from '@angular/router';
-import { Observable, filter, map, take } from 'rxjs';
+import { filter, take } from 'rxjs';
 import { AnalyticsWebSocketService } from './analytics/analytics-websocket.service';
 import { AuthService } from './services/auth.service';
 import { CartService } from './services/cart.service';
@@ -28,38 +28,34 @@ import { WishlistService } from './services/wishlist.service';
     styleUrls: ['./templates/app.component.css'],
 })
 export class AppComponent implements OnInit {
-    isDarkMode: boolean = false;
-    isLoggedIn$ = this.authService.isLoggedIn$;
-    cartItemCount$: Observable<number>;
-    wishlistItemCount$: Observable<number>;
-    isAdmin$: Observable<boolean>;
-
+    // Dependency Injection via inject() (Angular v21 Style Guide)
+    private readonly authService = inject(AuthService);
+    private readonly router = inject(Router);
+    private readonly cartService = inject(CartService);
+    private readonly wishlistService = inject(WishlistService);
     private readonly analyticsService = inject(AnalyticsWebSocketService);
 
-    constructor(
-        private readonly authService: AuthService,
-        private readonly router: Router,
-        private readonly cartService: CartService,
-        private readonly wishlistService: WishlistService,
-    ) {
-        this.cartItemCount$ = this.cartService.getItemCount();
-        this.wishlistItemCount$ = this.wishlistService.getItemCount();
-        // isAdmin$ als Observable basierend auf Login-Status
-        this.isAdmin$ = this.isLoggedIn$.pipe(
-            map(() => this.authService.isAdmin()),
-        );
-    }
+    // State mit Signals
+    protected readonly isDarkMode = signal(false);
+
+    // Observables für async pipe (kompatibel mit bestehenden Services)
+    readonly isLoggedIn$ = this.authService.isLoggedIn$;
+    readonly cartItemCount$ = this.cartService.getItemCount();
+    readonly wishlistItemCount$ = this.wishlistService.getItemCount();
+
+    // Computed für Admin-Status
+    protected readonly isAdmin = computed(() => this.authService.isAdmin());
 
     ngOnInit() {
         // Versuche, den Theme aus localStorage zu lesen
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark' || savedTheme === 'light') {
-            this.isDarkMode = savedTheme === 'dark';
+            this.isDarkMode.set(savedTheme === 'dark');
         } else {
             // Fallback: Nutze Betriebssystem-Präferenz
-            this.isDarkMode = globalThis.matchMedia(
-                '(prefers-color-scheme: dark)',
-            ).matches;
+            this.isDarkMode.set(
+                globalThis.matchMedia('(prefers-color-scheme: dark)').matches,
+            );
         }
 
         // Analytics WebSocket verbinden (als normaler Besucher, nicht Admin)
@@ -113,8 +109,8 @@ export class AppComponent implements OnInit {
     }
 
     toggleDarkMode() {
-        this.isDarkMode = !this.isDarkMode;
-        const theme = this.isDarkMode ? 'dark' : 'light';
+        this.isDarkMode.set(!this.isDarkMode());
+        const theme = this.isDarkMode() ? 'dark' : 'light';
         localStorage.setItem('theme', theme);
     }
 

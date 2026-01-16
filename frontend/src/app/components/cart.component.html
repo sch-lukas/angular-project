@@ -13,13 +13,13 @@
 
   <!-- Success Alert -->
   <ngb-alert
-    *ngIf="successMessage"
+    *ngIf="successMessage()"
     type="success"
     [dismissible]="true"
-    (closed)="successMessage = null"
+    (closed)="successMessage.set(null)"
     class="mb-4"
   >
-    {{ successMessage }}
+    {{ successMessage() }}
   </ngb-alert>
 
   <!-- Leerer Warenkorb -->
@@ -271,18 +271,18 @@
             <h5 class="card-title mb-3">Zusammenfassung</h5>
             <div class="d-flex justify-content-between mb-2">
               <span>Artikel:</span>
-              <span>{{ getTotalItems() }}</span>
+              <span>{{ totalItems() }}</span>
             </div>
             <div
-              *ngIf="getTotalSavings() > 0"
+              *ngIf="totalSavings() > 0"
               class="d-flex justify-content-between mb-2 text-success"
             >
               <span>💰 Ersparnis:</span>
               <span class="fw-semibold"
-                >-{{ getTotalSavings() | number: '1.2-2' }} €</span
+                >-{{ totalSavings() | number: '1.2-2' }} €</span
               >
             </div>
-            <hr *ngIf="getTotalSavings() > 0" class="my-2" />
+            <hr *ngIf="totalSavings() > 0" class="my-2" />
             <div class="d-flex justify-content-between mb-3">
               <span class="fw-bold">Gesamtsumme:</span>
               <span class="fw-bold fs-5 text-primary">

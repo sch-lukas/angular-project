@@ -1,6 +1,12 @@
 /* eslint-disable sonarjs/cognitive-complexity */
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+    ChangeDetectorRef,
+    Component,
+    OnInit,
+    inject,
+    signal,
+} from '@angular/core';
 import {
     FormBuilder,
     FormGroup,
@@ -21,18 +27,17 @@ import {
     styleUrls: ['../templates/new.component.css'],
 })
 export class NewComponent implements OnInit {
-    form!: FormGroup;
-    submitError = '';
-    successMessage = '';
-    isSubmitting = false;
-    generatedIsbn = '';
+    // Dependency Injection via inject() (Angular v21 Style Guide Empfehlung)
+    private readonly fb = inject(FormBuilder);
+    private readonly api = inject(BuchApiService);
+    private readonly router = inject(Router);
+    private readonly cdr = inject(ChangeDetectorRef);
 
-    constructor(
-        private readonly fb: FormBuilder,
-        private readonly api: BuchApiService,
-        private readonly router: Router,
-        private readonly cdr: ChangeDetectorRef,
-    ) {}
+    form!: FormGroup;
+    protected readonly submitError = signal('');
+    protected readonly successMessage = signal('');
+    protected readonly isSubmitting = signal(false);
+    generatedIsbn = '';
 
     ngOnInit(): void {
         // Generiere automatisch eine gültige ISBN
@@ -61,7 +66,7 @@ export class NewComponent implements OnInit {
 
     onSubmit(): void {
         this.form.markAllAsTouched();
-        this.submitError = '';
+        this.submitError.set('');
 
         if (this.form.invalid) {
             // Sammle alle Validierungsfehler
@@ -103,20 +108,21 @@ export class NewComponent implements OnInit {
                 );
             }
 
-            this.submitError =
+            this.submitError.set(
                 errors.length > 0
                     ? 'Folgende Fehler müssen behoben werden:\n• ' +
-                      errors.join('\n• ')
-                    : 'Bitte füllen Sie alle erforderlichen Felder korrekt aus.';
+                          errors.join('\n• ')
+                    : 'Bitte füllen Sie alle erforderlichen Felder korrekt aus.',
+            );
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
             this.cdr.detectChanges();
             return;
         }
 
-        this.isSubmitting = true;
-        this.submitError = '';
-        this.successMessage = '';
+        this.isSubmitting.set(true);
+        this.submitError.set('');
+        this.successMessage.set('');
 
         const payload = this.buildPayload(this.form.value);
         this.submitPayload(payload);
@@ -172,15 +178,15 @@ export class NewComponent implements OnInit {
     private submitPayload(payload: CreateBuchPayload): void {
         this.api.create(payload).subscribe({
             next: () => {
-                this.isSubmitting = false;
-                this.successMessage = 'Buch wurde erfolgreich angelegt!';
+                this.isSubmitting.set(false);
+                this.successMessage.set('Buch wurde erfolgreich angelegt!');
                 this.cdr.detectChanges();
                 setTimeout(() => {
                     this.router.navigate(['/search']);
                 }, 2000);
             },
             error: (err) => {
-                this.isSubmitting = false;
+                this.isSubmitting.set(false);
                 console.error('Fehler beim Anlegen:', err);
 
                 // Extrahiere Fehlermeldung
@@ -201,7 +207,7 @@ export class NewComponent implements OnInit {
                         ' Eine neue ISBN wurde automatisch generiert. Bitte versuchen Sie es erneut.';
                 }
 
-                this.submitError = errorMessage;
+                this.submitError.set(errorMessage);
 
                 // Scroll nach oben, damit der Fehler sichtbar ist
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -211,11 +217,11 @@ export class NewComponent implements OnInit {
     }
 
     closeError(): void {
-        this.submitError = '';
+        this.submitError.set('');
     }
 
     formatErrorHtml(): string {
-        return this.submitError.replaceAll('\n', '<br>');
+        return this.submitError().replaceAll('\n', '<br>');
     }
 
     onCancel(): void {

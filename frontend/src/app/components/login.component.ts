@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import {
     FormBuilder,
     FormGroup,
@@ -17,17 +17,16 @@ import { AuthService } from '../services/auth.service';
     styleUrls: ['../templates/login.component.css'],
 })
 export class LoginComponent implements OnInit {
-    form!: FormGroup;
-    loginError: string | null = null;
-    isSubmitting = false;
-    private returnUrl = '/';
+    // Dependency Injection via inject() (Angular v21 Style Guide Empfehlung)
+    private readonly fb = inject(FormBuilder);
+    private readonly authService = inject(AuthService);
+    private readonly router = inject(Router);
+    private readonly route = inject(ActivatedRoute);
 
-    constructor(
-        private readonly fb: FormBuilder,
-        private readonly authService: AuthService,
-        private readonly router: Router,
-        private readonly route: ActivatedRoute,
-    ) {}
+    form!: FormGroup;
+    protected readonly loginError = signal<string | null>(null);
+    protected readonly isSubmitting = signal(false);
+    private returnUrl = '/';
 
     ngOnInit(): void {
         this.form = this.fb.group({
@@ -48,8 +47,8 @@ export class LoginComponent implements OnInit {
             return;
         }
 
-        this.isSubmitting = true;
-        this.loginError = null;
+        this.isSubmitting.set(true);
+        this.loginError.set(null);
 
         const { username, password } = this.form.value;
 
@@ -60,13 +59,15 @@ export class LoginComponent implements OnInit {
                     this.router.navigate([this.returnUrl]);
                 } else {
                     // Login fehlgeschlagen
-                    this.loginError = result.message || 'Login fehlgeschlagen';
-                    this.isSubmitting = false;
+                    this.loginError.set(
+                        result.message || 'Login fehlgeschlagen',
+                    );
+                    this.isSubmitting.set(false);
                 }
             },
             error: () => {
-                this.loginError = 'Verbindungsfehler zum Server';
-                this.isSubmitting = false;
+                this.loginError.set('Verbindungsfehler zum Server');
+                this.isSubmitting.set(false);
             },
         });
     }

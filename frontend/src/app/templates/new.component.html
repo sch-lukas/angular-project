@@ -2,7 +2,7 @@
   <h1>Neues Buch anlegen</h1>
 
   <!-- Fehler-Popup (Modal-Style) -->
-  <div *ngIf="submitError" class="error-popup-overlay" (click)="closeError()">
+  <div *ngIf="submitError()" class="error-popup-overlay" (click)="closeError()">
     <div class="error-popup" (click)="$event.stopPropagation()">
       <div class="error-popup-header">
         <span class="error-icon">⚠️</span>
@@ -19,27 +19,27 @@
   </div>
 
   <!-- Erfolgs-Popup -->
-  <div *ngIf="successMessage" class="success-popup-overlay">
+  <div *ngIf="successMessage()" class="success-popup-overlay">
     <div class="success-popup">
       <div class="success-popup-header">
         <span class="success-icon">✅</span>
         <strong>Erfolg!</strong>
       </div>
       <div class="success-popup-body">
-        {{ successMessage }}
+        {{ successMessage() }}
       </div>
     </div>
   </div>
 
   <!-- Inline-Fehleranzeige (zusätzlich oben auf der Seite) -->
-  <div *ngIf="submitError" class="alert alert-error">
+  <div *ngIf="submitError()" class="alert alert-error">
     <strong>⚠️ Fehler:</strong>
     <span [innerHTML]="formatErrorHtml()"></span>
   </div>
 
   <!-- Erfolgs-Meldung -->
-  <div *ngIf="successMessage" class="alert alert-success">
-    ✅ {{ successMessage }}
+  <div *ngIf="successMessage()" class="alert alert-success">
+    ✅ {{ successMessage() }}
   </div>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="book-form">
@@ -340,14 +340,14 @@
 
     <!-- Buttons -->
     <div class="form-actions">
-      <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
-        {{ isSubmitting ? 'Wird gespeichert...' : 'Speichern' }}
+      <button type="submit" class="btn btn-primary" [disabled]="isSubmitting()">
+        {{ isSubmitting() ? 'Wird gespeichert...' : 'Speichern' }}
       </button>
       <button
         type="button"
         class="btn btn-secondary"
         (click)="onCancel()"
-        [disabled]="isSubmitting"
+        [disabled]="isSubmitting()"
       >
         Abbrechen
       </button>
