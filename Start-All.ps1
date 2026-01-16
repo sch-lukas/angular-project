@@ -1,4 +1,4 @@
-# Start-All.ps1 - Startet den kompletten Entwicklungsstack
+﻿# Start-All.ps1 - Startet den kompletten Entwicklungsstack
 #
 # Verwendung:
 #   .\Start-All.ps1              → Startet alles (DB, Keycloak, Backend, Frontend)
@@ -19,7 +19,7 @@ param(
     [switch]$NoBrowser
 )
 
-$ProjectRoot = "C:\software-engeneering\angular-project"
+$ProjectRoot = $PSScriptRoot
 
 # Farbige Ausgabe
 function Write-Step($step, $description) {
@@ -184,14 +184,14 @@ if ($docker) {
 
 # Schritt 1: PostgreSQL
 Write-Step "1/4" "PostgreSQL Datenbank starten..."
-$postgresCompose = Join-Path $ProjectRoot ".extras\compose\postgres"
-Start-Process -FilePath "docker" -ArgumentList "compose", "-f", "$postgresCompose\compose.yml", "up", "-d" -NoNewWindow -Wait
+$postgresCompose = Join-Path $ProjectRoot ".extras\compose\postgres\compose-simple.yml"
+& docker compose -f "$postgresCompose" up -d 2>$null
 Write-Success "PostgreSQL gestartet (Port 5432)"
 
 # Schritt 2: Keycloak
 Write-Step "2/4" "Keycloak Auth-Server starten..."
-$keycloakCompose = Join-Path $ProjectRoot ".extras\compose\keycloak"
-Start-Process -FilePath "docker" -ArgumentList "compose", "-f", "$keycloakCompose\compose.yml", "up", "-d" -NoNewWindow -Wait
+$keycloakCompose = Join-Path $ProjectRoot ".extras\compose\keycloak\compose-simple.yml"
+& docker compose -f "$keycloakCompose" up -d 2>$null
 Write-Success "Keycloak gestartet (Port 8843)"
 
 # Warte kurz bis Container laufen
