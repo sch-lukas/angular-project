@@ -3,15 +3,15 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
-import type { WishlistItem } from '../services/wishlist.service';
-import { WishlistService } from '../services/wishlist.service';
+import type { WishlistItem } from '../services/wishlist';
+import { WishlistService } from '../services/wishlist';
 
 @Component({
     selector: 'app-wishlist',
     standalone: true,
     imports: [CommonModule, RouterLink, NgbAlert],
-    templateUrl: './wishlist.component.html',
-    styleUrls: ['./wishlist.component.css'],
+    templateUrl: './wishlist.html',
+    styleUrls: ['./wishlist.css'],
 })
 export class WishlistComponent implements OnInit {
     // Dependency Injection via inject() (Angular v21 Style Guide Empfehlung)

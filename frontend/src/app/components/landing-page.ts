@@ -11,15 +11,15 @@ import {
     BuchApiService,
     type BuchItem,
     type BuchStats,
-} from '../services/buch-api.service';
-import { BookCarouselComponent } from './book-carousel.component';
+} from '../services/buch-api';
+import { BookCarouselComponent } from './book-carousel';
 
 @Component({
     selector: 'app-landing-page',
     standalone: true,
     imports: [CommonModule, BookCarouselComponent],
-    templateUrl: '../templates/landing-page.component.html',
-    styleUrls: ['../templates/landing-page.component.css'],
+    templateUrl: '../templates/landing-page.html',
+    styleUrls: ['../templates/landing-page.css'],
 })
 export class LandingPageComponent implements OnInit {
     // Dependency Injection via inject() (Angular v21 Style Guide)

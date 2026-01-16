@@ -12,8 +12,8 @@
   </div>
 
   <!-- Success Alert -->
+  @if (successMessage()) {
   <ngb-alert
-    *ngIf="successMessage()"
     type="success"
     [dismissible]="true"
     (closed)="successMessage.set(null)"
@@ -21,9 +21,11 @@
   >
     {{ successMessage() }}
   </ngb-alert>
+  }
 
   <!-- Leerer Warenkorb -->
-  <div *ngIf="(cartItems$ | async)?.length === 0" class="text-center py-5">
+  @if ((cartItems$ | async)?.length === 0) {
+  <div class="text-center py-5">
     <div class="mb-4">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -44,9 +46,11 @@
     </p>
     <a routerLink="/search" class="btn btn-primary"> Zur Buchsuche </a>
   </div>
+  }
 
   <!-- Warenkorb-Inhalt -->
-  <div *ngIf="(cartItems$ | async)?.length ?? 0 > 0">
+  @if ((cartItems$ | async)?.length ?? 0 > 0) {
+  <div>
     <!-- Desktop Tabelle -->
     <div class="d-none d-lg-block">
       <div class="card shadow-sm">
@@ -63,52 +67,51 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of cartItems$ | async">
+              @for (item of cartItems$ | async; track item.id) {
+              <tr>
                 <td>
+                  @if (item.coverUrl) {
                   <img
-                    *ngIf="item.coverUrl"
                     [src]="item.coverUrl"
                     [alt]="item.title"
                     class="img-thumbnail"
                     style="width: 60px; height: auto; object-fit: cover"
                   />
+                  } @else {
                   <div
-                    *ngIf="!item.coverUrl"
                     class="bg-light d-flex align-items-center justify-content-center"
                     style="width: 60px; height: 80px; border-radius: 4px"
                   >
                     <span class="text-muted">📚</span>
                   </div>
+                  }
                 </td>
                 <td class="align-middle">
-                  <div class="fw-semibold">
-                    {{ item.title }}
-                  </div>
-                  <div class="text-muted small" *ngIf="item.isbn">
-                    ISBN: {{ item.isbn }}
-                  </div>
-                  <div class="text-muted small" *ngIf="item.art">
+                  <div class="fw-semibold">{{ item.title }}</div>
+                  @if (item.isbn) {
+                  <div class="text-muted small">ISBN: {{ item.isbn }}</div>
+                  } @if (item.art) {
+                  <div class="text-muted small">
                     {{ getArtLabel(item.art) }}
                   </div>
+                  }
                 </td>
                 <td class="align-middle">
-                  <div *ngIf="item.rabatt && item.rabatt > 0">
+                  @if (item.rabatt && item.rabatt > 0) {
+                  <div>
                     <div class="text-muted text-decoration-line-through small">
-                      {{ item.price | number: '1.2-2' }}
-                      €
+                      {{ item.price | number: '1.2-2' }} €
                     </div>
                     <div class="fw-semibold text-success">
-                      {{ getDiscountedPrice(item) | number: '1.2-2' }}
-                      €
+                      {{ getDiscountedPrice(item) | number: '1.2-2' }} €
                       <span class="badge bg-success ms-1"
                         >-{{ formatDiscount(item.rabatt) }}</span
                       >
                     </div>
                   </div>
-                  <div *ngIf="!item.rabatt || item.rabatt <= 0">
-                    {{ item.price | number: '1.2-2' }}
-                    €
-                  </div>
+                  } @else {
+                  <div>{{ item.price | number: '1.2-2' }} €</div>
+                  }
                 </td>
                 <td class="align-middle">
                   <div class="input-group" style="width: 130px">
@@ -139,10 +142,8 @@
                   </div>
                 </td>
                 <td class="align-middle fw-semibold">
-                  {{
-                    getDiscountedPrice(item) * item.quantity | number: '1.2-2'
-                  }}
-                  €
+                  {{ getDiscountedPrice(item) * item.quantity | number: '1.2-2'
+                  }} €
                 </td>
                 <td class="align-middle text-center">
                   <button
@@ -155,6 +156,7 @@
                   </button>
                 </td>
               </tr>
+              }
             </tbody>
           </table>
         </div>
@@ -163,36 +165,35 @@
 
     <!-- Mobile Cards -->
     <div class="d-lg-none">
-      <div *ngFor="let item of cartItems$ | async" class="card mb-3 shadow-sm">
+      @for (item of cartItems$ | async; track item.id) {
+      <div class="card mb-3 shadow-sm">
         <div class="card-body">
           <div class="row g-3">
             <div class="col-4">
+              @if (item.coverUrl) {
               <img
-                *ngIf="item.coverUrl"
                 [src]="item.coverUrl"
                 [alt]="item.title"
                 class="img-fluid rounded"
                 style="width: 100%; height: auto; object-fit: cover"
               />
+              } @else {
               <div
-                *ngIf="!item.coverUrl"
                 class="bg-light d-flex align-items-center justify-content-center rounded"
                 style="width: 100%; height: 150px"
               >
                 <span class="text-muted fs-2">📚</span>
               </div>
+              }
             </div>
             <div class="col-8">
-              <h6 class="card-title mb-2">
-                {{ item.title }}
-              </h6>
-              <p class="text-muted small mb-2" *ngIf="item.isbn">
-                ISBN: {{ item.isbn }}
-              </p>
-              <p class="text-muted small mb-2" *ngIf="item.art">
-                {{ getArtLabel(item.art) }}
-              </p>
-              <div class="mb-2" *ngIf="item.rabatt && item.rabatt > 0">
+              <h6 class="card-title mb-2">{{ item.title }}</h6>
+              @if (item.isbn) {
+              <p class="text-muted small mb-2">ISBN: {{ item.isbn }}</p>
+              } @if (item.art) {
+              <p class="text-muted small mb-2">{{ getArtLabel(item.art) }}</p>
+              } @if (item.rabatt && item.rabatt > 0) {
+              <div class="mb-2">
                 <div class="text-muted text-decoration-line-through small">
                   {{ item.price | number: '1.2-2' }} €
                 </div>
@@ -206,10 +207,12 @@
                 </div>
                 <small class="text-muted">pro Stück</small>
               </div>
-              <p class="mb-2" *ngIf="!item.rabatt || item.rabatt <= 0">
+              } @else {
+              <p class="mb-2">
                 <strong>{{ item.price | number: '1.2-2' }} €</strong>
                 pro Stück
               </p>
+              }
               <div class="input-group mb-2" style="max-width: 130px">
                 <button
                   type="button"
@@ -237,9 +240,8 @@
                 </button>
               </div>
               <p class="fw-bold mb-2">
-                Gesamt:
-                {{ getDiscountedPrice(item) * item.quantity | number: '1.2-2' }}
-                €
+                Gesamt: {{ getDiscountedPrice(item) * item.quantity | number:
+                '1.2-2' }} €
               </p>
               <button
                 type="button"
@@ -252,6 +254,7 @@
           </div>
         </div>
       </div>
+      }
     </div>
 
     <!-- Zusammenfassung & Aktionen -->
@@ -273,16 +276,15 @@
               <span>Artikel:</span>
               <span>{{ totalItems() }}</span>
             </div>
-            <div
-              *ngIf="totalSavings() > 0"
-              class="d-flex justify-content-between mb-2 text-success"
-            >
+            @if (totalSavings() > 0) {
+            <div class="d-flex justify-content-between mb-2 text-success">
               <span>💰 Ersparnis:</span>
               <span class="fw-semibold"
                 >-{{ totalSavings() | number: '1.2-2' }} €</span
               >
             </div>
-            <hr *ngIf="totalSavings() > 0" class="my-2" />
+            <hr class="my-2" />
+            }
             <div class="d-flex justify-content-between mb-3">
               <span class="fw-bold">Gesamtsumme:</span>
               <span class="fw-bold fs-5 text-primary">
@@ -305,4 +307,5 @@
       </div>
     </div>
   </div>
+  }
 </div>

@@ -11,11 +11,8 @@
   </div>
 
   <!-- Ladezustand -->
-  <div
-    *ngIf="isLoading()"
-    class="d-flex justify-content-center my-5"
-    style="padding: 80px 0"
-  >
+  @if (isLoading()) {
+  <div class="d-flex justify-content-center my-5" style="padding: 80px 0">
     <output
       class="spinner-border text-primary"
       style="width: 4rem; height: 4rem"
@@ -23,66 +20,66 @@
       <span class="visually-hidden">Lädt...</span>
     </output>
   </div>
+  }
 
   <!-- Fehleranzeige -->
-  <ngb-alert
-    *ngIf="error()"
-    type="danger"
-    [dismissible]="true"
-    (closed)="error.set(null)"
-  >
+  @if (error()) {
+  <ngb-alert type="danger" [dismissible]="true" (closed)="error.set(null)">
     <strong>⚠ Fehler!</strong> {{ error() }}
   </ngb-alert>
+  }
 
   <!-- Lösch-Fehleranzeige -->
+  @if (deleteError()) {
   <ngb-alert
-    *ngIf="deleteError()"
     type="danger"
     [dismissible]="true"
     (closed)="deleteError.set(null)"
   >
     <strong>⚠ Fehler beim Löschen!</strong> {{ deleteError() }}
   </ngb-alert>
+  }
 
   <!-- Lösch-Erfolg -->
-  <ngb-alert *ngIf="deleteSuccess()" type="success" [dismissible]="false">
+  @if (deleteSuccess()) {
+  <ngb-alert type="success" [dismissible]="false">
     <strong>✅ Erfolgreich gelöscht!</strong> Sie werden zur Suche
     weitergeleitet...
   </ngb-alert>
+  }
 
   <!-- Produktseite (Shop-Layout) -->
-  <div *ngIf="buch && !isLoading()" class="product-card card shadow">
+  @if (buch && !isLoading()) {
+  <div class="product-card card shadow">
     <!-- Titel und Rating über allem -->
     <div class="card-header product-header border-bottom">
-      <h1 class="product-title mb-2">
-        {{ buch.titel?.titel || '–' }}
-      </h1>
-      <p
-        *ngIf="buch.titel?.untertitel"
-        class="product-subtitle mb-2 text-muted"
-      >
+      <h1 class="product-title mb-2">{{ buch.titel?.titel || '–' }}</h1>
+      @if (buch.titel?.untertitel) {
+      <p class="product-subtitle mb-2 text-muted">
         {{ buch.titel?.untertitel }}
       </p>
+      }
       <div class="d-flex gap-2 align-items-center">
+        @if (buch.rating) {
         <span
-          *ngIf="buch.rating"
           class="badge rating-badge"
           [ngClass]="{
-            'bg-success': buch.rating >= 4,
-            'bg-warning text-dark': buch.rating === 3,
-            'bg-secondary': buch.rating < 3,
-          }"
+                'bg-success': buch.rating >= 4,
+                'bg-warning text-dark': buch.rating === 3,
+                'bg-secondary': buch.rating < 3,
+              }"
         >
           ⭐ {{ buch.rating }} / 5
         </span>
+        } @if (isSchwabenpreis()) {
         <span
-          *ngIf="isSchwabenpreis()"
           class="badge bg-danger"
           style="font-size: 0.95rem"
           title="Preis unter 20 EUR mit hohem Rabatt"
         >
           💰 Schnäppchen
         </span>
+        }
       </div>
     </div>
 
@@ -94,9 +91,9 @@
           <div class="cover-container">
             <img
               [src]="
-                getCoverUrl() ||
-                'https://via.placeholder.com/240x340?text=Buch+Cover'
-              "
+                  getCoverUrl() ||
+                  'https://via.placeholder.com/240x340?text=Buch+Cover'
+                "
               [alt]="buch.titel?.titel || 'Buch Cover'"
               class="img-fluid rounded shadow-sm cover-image"
             />
@@ -109,18 +106,14 @@
           <div class="price-section mb-4">
             <div class="d-flex align-items-baseline gap-3">
               <span class="product-price">
-                {{
-                  buch.preis != null
-                    ? (buch.preis | currency: 'EUR' : 'symbol' : '1.2-2')
-                    : '–'
-                }}
+                {{ buch.preis != null ? (buch.preis | currency: 'EUR' : 'symbol'
+                : '1.2-2') : '–' }}
               </span>
-              <span
-                *ngIf="buch.rabatt && buch.rabatt > 0"
-                class="badge bg-danger rabatt-badge"
-              >
+              @if (buch.rabatt && buch.rabatt > 0) {
+              <span class="badge bg-danger rabatt-badge">
                 -{{ buch.rabatt * 100 | number: '1.0-1' }}% Rabatt
               </span>
+              }
             </div>
             <p class="text-muted small mb-0 mt-1">
               inkl. MwSt. zzgl. Versandkosten
@@ -132,30 +125,31 @@
             <span
               class="badge lieferbar-badge"
               [ngClass]="{
-                'bg-success': buch.lieferbar === true,
-                'bg-secondary': buch.lieferbar === false,
-              }"
+                  'bg-success': buch.lieferbar === true,
+                  'bg-secondary': buch.lieferbar === false,
+                }"
             >
               {{ buch.lieferbar ? '✓ Sofort lieferbar' : '⊗ Nicht lieferbar' }}
             </span>
+            @if (buch.art) {
             <span
-              *ngIf="buch.art"
               class="badge ms-2"
               [ngClass]="{
-                'bg-info text-dark': buch.art === 'EPUB',
-                'bg-primary': buch.art === 'HARDCOVER',
-                'bg-secondary': buch.art === 'PAPERBACK',
-              }"
+                    'bg-info text-dark': buch.art === 'EPUB',
+                    'bg-primary': buch.art === 'HARDCOVER',
+                    'bg-secondary': buch.art === 'PAPERBACK',
+                  }"
             >
               {{ buch.art }}
             </span>
+            }
           </div>
 
           <!-- Call-to-Action Buttons -->
           <div class="cta-section mb-4">
             <!-- Success Alert -->
+            @if (addToCartSuccess()) {
             <ngb-alert
-              *ngIf="addToCartSuccess()"
               type="success"
               [dismissible]="false"
               class="mb-3"
@@ -164,10 +158,11 @@
               ✅ Buch wurde zum Warenkorb hinzugefügt!
               <a routerLink="/cart" class="alert-link ms-2">Zum Warenkorb →</a>
             </ngb-alert>
+            }
 
             <!-- Wishlist Success Alert -->
+            @if (addToWishlistSuccess()) {
             <ngb-alert
-              *ngIf="addToWishlistSuccess()"
               type="info"
               [dismissible]="false"
               class="mb-3"
@@ -178,6 +173,7 @@
                 >Zur Merkliste →</a
               >
             </ngb-alert>
+            }
 
             <div class="d-grid gap-2 d-md-flex">
               <button
@@ -192,14 +188,14 @@
                 type="button"
                 class="btn btn-lg"
                 [ngClass]="
-                  isInWishlist() ? 'btn-danger' : 'btn-outline-secondary'
-                "
+                    isInWishlist() ? 'btn-danger' : 'btn-outline-secondary'
+                  "
                 (click)="onToggleWishlist()"
               >
                 {{ isInWishlist() ? '❤️ Gemerkt' : '🤍 Merken' }}
               </button>
+              @if (isAdmin()) {
               <button
-                *ngIf="isAdmin()"
                 type="button"
                 class="btn btn-danger btn-lg"
                 (click)="openDeleteConfirmation()"
@@ -207,6 +203,7 @@
               >
                 🗑️ Artikel löschen
               </button>
+              }
             </div>
           </div>
 
@@ -222,22 +219,22 @@
                 <strong>Erschienen:</strong>
                 {{ buch.datum ? (buch.datum | date: 'dd.MM.yyyy') : '–' }}
               </li>
-              <li
-                *ngIf="buch.schlagwoerter && buch.schlagwoerter.length > 0"
-                class="mb-2"
-              >
+              @if (buch.schlagwoerter && buch.schlagwoerter.length > 0) {
+              <li class="mb-2">
                 <strong>Themen:</strong>
                 <div class="mt-1">
+                  @for (s of buch.schlagwoerter; track s) {
                   <span
-                    *ngFor="let s of buch.schlagwoerter"
                     class="badge bg-light text-dark me-1 mb-1"
                     style="border: 1px solid #dee2e6"
                   >
                     {{ s }}
                   </span>
+                  }
                 </div>
               </li>
-              <li *ngIf="buch.homepage" class="mb-2">
+              } @if (buch.homepage) {
+              <li class="mb-2">
                 <strong>Website:</strong>
                 <button
                   class="btn btn-link btn-sm p-0 ms-2"
@@ -248,12 +245,14 @@
                   <span style="font-size: 0.8rem">↗</span>
                 </button>
               </li>
+              }
             </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
+  }
 </div>
 
 <!-- Modal Template für Homepage-Warnung -->
@@ -331,25 +330,26 @@
       (click)="modal.close('confirm')"
       [disabled]="isDeleting()"
     >
-      <span *ngIf="!isDeleting()">✅ Ja, löschen</span>
-      <span *ngIf="isDeleting()">
+      @if (!isDeleting()) {
+      <span>✅ Ja, löschen</span>
+      } @else {
+      <span>
         <span
           class="spinner-border spinner-border-sm me-2"
           aria-hidden="true"
         ></span>
         Wird gelöscht...
       </span>
+      }
     </button>
   </div>
 </ng-template>
 
 <!-- Buchbeschreibung -->
-<div
-  *ngIf="buch"
-  class="container py-4"
-  style="max-width: 1200px; margin-top: 40px"
->
-  <div class="description-section" *ngIf="buch.beschreibung">
+@if (buch) {
+<div class="container py-4" style="max-width: 1200px; margin-top: 40px">
+  @if (buch.beschreibung) {
+  <div class="description-section">
     <div class="section-header">
       <h4 class="section-title">📖 Über dieses Buch</h4>
     </div>
@@ -357,29 +357,29 @@
       <p class="description-text">{{ buch.beschreibung }}</p>
     </div>
   </div>
+  }
 
   <!-- Autorenbeschreibung -->
-  <div class="author-section" *ngIf="buch.autor || buch.autorBiographie">
+  @if (buch.autor || buch.autorBiographie) {
+  <div class="author-section">
     <div class="section-header">
       <h4 class="section-title">✍️ Über den Autor</h4>
     </div>
     <div class="section-content">
-      <h5 class="author-name" *ngIf="buch.autor">
-        {{ buch.autor }}
-      </h5>
-      <p class="author-bio" *ngIf="buch.autorBiographie">
-        {{ buch.autorBiographie }}
-      </p>
+      @if (buch.autor) {
+      <h5 class="author-name">{{ buch.autor }}</h5>
+      } @if (buch.autorBiographie) {
+      <p class="author-bio">{{ buch.autorBiographie }}</p>
+      }
     </div>
   </div>
+  }
 </div>
+}
 
 <!-- Empfehlungen / Ähnliche Bücher -->
-<div
-  *ngIf="buch"
-  class="container py-4"
-  style="max-width: 1200px; margin-top: 40px"
->
+@if (buch) {
+<div class="container py-4" style="max-width: 1200px; margin-top: 40px">
   <hr class="mb-4" />
   <h3 class="mb-4">
     <span style="margin-right: 8px">💡</span>
@@ -387,7 +387,8 @@
   </h3>
 
   <!-- Lade-Spinner -->
-  <div *ngIf="relatedLoading()" class="text-center py-5">
+  @if (relatedLoading()) {
+  <div class="text-center py-5">
     <output
       class="spinner-border text-primary"
       style="width: 2rem; height: 2rem"
@@ -396,38 +397,43 @@
     </output>
     <p class="text-muted mt-2">Lädt Empfehlungen...</p>
   </div>
+  }
 
   <!-- Fehler -->
+  @if (relatedError() && !relatedLoading()) {
   <ngb-alert
-    *ngIf="relatedError() && !relatedLoading()"
     type="warning"
     [dismissible]="true"
     (closed)="relatedError.set(null)"
   >
     {{ relatedError() }}
   </ngb-alert>
+  }
 
   <!-- Karussell mit Empfehlungen (Amazon-Style Horizontal Scroll) -->
-  <div *ngIf="related.length > 0 && !relatedLoading()" class="carousel-wrapper">
+  @if (related.length > 0 && !relatedLoading()) {
+  <div class="carousel-wrapper">
     <!-- Linker Pfeil -->
+    @if (related.length > 5) {
     <button
       class="carousel-arrow carousel-arrow-left"
       (click)="scrollCarousel('left')"
-      *ngIf="related.length > 5"
     >
       ‹
     </button>
+    }
 
     <!-- Scroll Container -->
     <div class="carousel-scroll-container" #carouselContainer>
       <div class="carousel-items">
-        <div *ngFor="let buch of related" class="carousel-item-card">
-          <a [routerLink]="['/detail', buch.id]" class="item-link">
+        @for (relBuch of related; track relBuch.id) {
+        <div class="carousel-item-card">
+          <a [routerLink]="['/detail', relBuch.id]" class="item-link">
             <!-- Cover -->
             <div class="item-image">
               <img
-                [src]="getRelatedCoverUrl(buch)"
-                [alt]="buch.titel?.titel || 'Buch Cover'"
+                [src]="getRelatedCoverUrl(relBuch)"
+                [alt]="relBuch.titel?.titel || 'Buch Cover'"
                 onerror="
                   this.src =
                     'https://via.placeholder.com/180x260?text=Kein+Cover'
@@ -436,83 +442,77 @@
             </div>
 
             <!-- Titel -->
-            <h6 class="item-title">
-              {{ buch.titel?.titel || '–' }}
-            </h6>
+            <h6 class="item-title">{{ relBuch.titel?.titel || '–' }}</h6>
 
             <!-- Rating -->
-            <div class="item-rating" *ngIf="buch.rating">
+            @if (relBuch.rating) {
+            <div class="item-rating">
               <span class="rating-stars">
-                <span
-                  *ngFor="let star of [1, 2, 3, 4, 5]"
-                  [class.filled]="star <= buch.rating"
-                  >★</span
-                >
+                @for (star of [1, 2, 3, 4, 5]; track star) {
+                <span [class.filled]="star <= relBuch.rating">★</span>
+                }
               </span>
-              <span class="rating-value">{{ buch.rating }}</span>
+              <span class="rating-value">{{ relBuch.rating }}</span>
             </div>
+            }
 
             <!-- Preis -->
             <div class="item-price">
               <span class="price-amount">
-                {{
-                  buch.preis != null
-                    ? (buch.preis | currency: 'EUR' : 'symbol' : '1.2-2')
-                    : '–'
-                }}
+                {{ relBuch.preis != null ? (relBuch.preis | currency: 'EUR' :
+                'symbol' : '1.2-2') : '–' }}
               </span>
-              <span
-                *ngIf="buch.rabatt && buch.rabatt > 0"
-                class="price-discount"
-              >
-                -{{ buch.rabatt * 100 | number: '1.0-0' }}%
+              @if (relBuch.rabatt && relBuch.rabatt > 0) {
+              <span class="price-discount">
+                -{{ relBuch.rabatt * 100 | number: '1.0-0' }}%
               </span>
+              }
             </div>
 
             <!-- Lieferbar -->
-            <div class="item-delivery" *ngIf="buch.lieferbar">
+            @if (relBuch.lieferbar) {
+            <div class="item-delivery">
               <span class="badge bg-success">✓ Lieferbar</span>
             </div>
+            }
           </a>
         </div>
+        }
       </div>
     </div>
 
     <!-- Rechter Pfeil -->
+    @if (related.length > 5) {
     <button
       class="carousel-arrow carousel-arrow-right"
       (click)="scrollCarousel('right')"
-      *ngIf="related.length > 5"
     >
       ›
     </button>
+    }
   </div>
+  }
 
   <!-- Keine Empfehlungen -->
-  <div
-    *ngIf="related.length === 0 && !relatedLoading && !relatedError"
-    class="alert alert-info text-center"
-    role="alert"
-  >
+  @if (related.length === 0 && !relatedLoading() && !relatedError()) {
+  <div class="alert alert-info text-center" role="alert">
     <h5 class="alert-heading">📚 Keine ähnlichen Bücher gefunden</h5>
     <p class="mb-0">
       Leider haben wir aktuell keine weiteren Bücher in der Kategorie "{{
-        buch.art
-      }}" gefunden.
+      buch.art }}" gefunden.
     </p>
     <hr />
     <p class="mb-0 small text-muted">
       Hinweis: Überprüfe die Browser-Console (F12) für Details
     </p>
   </div>
+  }
 </div>
+}
 
 <!-- Produktdetails und weitere Informationen -->
-<div
-  *ngIf="buch"
-  class="container py-4"
-  style="max-width: 1200px; margin-top: 20px"
->
+@if (buch) {
+<div class="container py-4" style="max-width: 1200px; margin-top: 20px">
   <div class="product-card shadow">
     <div class="card-body p-4">
       <!-- Produktdetails -->
@@ -526,22 +526,22 @@
           <strong>Erschienen:</strong>
           {{ buch.datum ? (buch.datum | date: 'dd.MM.yyyy') : '–' }}
         </li>
-        <li
-          *ngIf="buch.schlagwoerter && buch.schlagwoerter.length > 0"
-          class="mb-2"
-        >
+        @if (buch.schlagwoerter && buch.schlagwoerter.length > 0) {
+        <li class="mb-2">
           <strong>Themen:</strong>
           <div class="mt-1">
+            @for (s of buch.schlagwoerter; track s) {
             <span
-              *ngFor="let s of buch.schlagwoerter"
               class="badge bg-light text-dark me-1 mb-1"
               style="border: 1px solid #dee2e6"
             >
               {{ s }}
             </span>
+            }
           </div>
         </li>
-        <li *ngIf="buch.homepage" class="mb-2">
+        } @if (buch.homepage) {
+        <li class="mb-2">
           <strong>Website:</strong>
           <button
             class="btn btn-link btn-sm p-0 ms-2"
@@ -552,6 +552,7 @@
             <span style="font-size: 0.8rem">↗</span>
           </button>
         </li>
+        }
       </ul>
 
       <!-- Zusätzliche technische Details (zweispaltig) -->
@@ -564,14 +565,11 @@
             <dd class="col-sm-7">{{ buch.id || '–' }}</dd>
 
             <dt class="col-sm-5 text-muted">Version</dt>
-            <dd class="col-sm-7">
-              {{ buch.version ?? '–' }}
-            </dd>
+            <dd class="col-sm-7">{{ buch.version ?? '–' }}</dd>
 
             <dt class="col-sm-5 text-muted">Erstellt am</dt>
             <dd class="col-sm-7">
-              {{
-                buch.erzeugt ? (buch.erzeugt | date: 'dd.MM.yyyy HH:mm') : '–'
+              {{ buch.erzeugt ? (buch.erzeugt | date: 'dd.MM.yyyy HH:mm') : '–'
               }}
             </dd>
           </dl>
@@ -580,28 +578,18 @@
           <dl class="row mb-0 small">
             <dt class="col-sm-5 text-muted">Aktualisiert am</dt>
             <dd class="col-sm-7">
-              {{
-                buch.aktualisiert
-                  ? (buch.aktualisiert | date: 'dd.MM.yyyy HH:mm')
-                  : '–'
-              }}
+              {{ buch.aktualisiert ? (buch.aktualisiert | date: 'dd.MM.yyyy
+              HH:mm') : '–' }}
             </dd>
 
-            <dt
-              *ngIf="buch.abbildungen && buch.abbildungen.length > 0"
-              class="col-sm-5 text-muted"
-            >
-              Abbildungen
-            </dt>
-            <dd
-              *ngIf="buch.abbildungen && buch.abbildungen.length > 0"
-              class="col-sm-7"
-            >
-              {{ buch.abbildungen.length }} Datei(en)
-            </dd>
+            @if (buch.abbildungen && buch.abbildungen.length > 0) {
+            <dt class="col-sm-5 text-muted">Abbildungen</dt>
+            <dd class="col-sm-7">{{ buch.abbildungen.length }} Datei(en)</dd>
+            }
           </dl>
         </div>
       </div>
     </div>
   </div>
 </div>
+}

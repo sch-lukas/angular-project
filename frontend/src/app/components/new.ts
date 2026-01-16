@@ -14,17 +14,14 @@ import {
     Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import {
-    BuchApiService,
-    type CreateBuchPayload,
-} from '../services/buch-api.service';
+import { BuchApiService, type CreateBuchPayload } from '../services/buch-api';
 
 @Component({
     selector: 'app-new',
     standalone: true,
     imports: [CommonModule, ReactiveFormsModule],
-    templateUrl: '../templates/new.component.html',
-    styleUrls: ['../templates/new.component.css'],
+    templateUrl: '../templates/new.html',
+    styleUrls: ['../templates/new.css'],
 })
 export class NewComponent implements OnInit {
     // Dependency Injection via inject() (Angular v21 Style Guide Empfehlung)

@@ -9,10 +9,10 @@ import {
     RouterOutlet,
 } from '@angular/router';
 import { filter, take } from 'rxjs';
-import { AnalyticsWebSocketService } from './analytics/analytics-websocket.service';
-import { AuthService } from './services/auth.service';
-import { CartService } from './services/cart.service';
-import { WishlistService } from './services/wishlist.service';
+import { AnalyticsWebSocketService } from './analytics/analytics-websocket';
+import { AuthService } from './services/auth';
+import { CartService } from './services/cart';
+import { WishlistService } from './services/wishlist';
 
 @Component({
     selector: 'app-root',
@@ -24,8 +24,8 @@ import { WishlistService } from './services/wishlist.service';
         RouterLinkActive,
         RouterOutlet,
     ],
-    templateUrl: './templates/app.component.html',
-    styleUrls: ['./templates/app.component.css'],
+    templateUrl: './templates/app.html',
+    styleUrls: ['./templates/app.css'],
 })
 export class AppComponent implements OnInit {
     // Dependency Injection via inject() (Angular v21 Style Guide)

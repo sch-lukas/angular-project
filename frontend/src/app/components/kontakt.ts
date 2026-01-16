@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'app-kontakt',
     standalone: true,
-    templateUrl: './kontakt.component.html',
-    styleUrls: ['./kontakt.component.css'],
+    templateUrl: './kontakt.html',
+    styleUrls: ['./kontakt.css'],
 })
 export class KontaktComponent {}

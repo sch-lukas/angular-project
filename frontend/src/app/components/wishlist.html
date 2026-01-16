@@ -12,8 +12,8 @@
   </div>
 
   <!-- Success Alert -->
+  @if (successMessage()) {
   <ngb-alert
-    *ngIf="successMessage()"
     type="success"
     [dismissible]="true"
     (closed)="successMessage.set(null)"
@@ -21,9 +21,11 @@
   >
     {{ successMessage() }}
   </ngb-alert>
+  }
 
   <!-- Leere Merkliste -->
-  <div *ngIf="(wishlistItems$ | async)?.length === 0" class="text-center py-5">
+  @if ((wishlistItems$ | async)?.length === 0) {
+  <div class="text-center py-5">
     <div class="mb-4">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -45,15 +47,15 @@
     </p>
     <a routerLink="/search" class="btn btn-primary"> Zur Buchsuche </a>
   </div>
+  }
 
   <!-- Merkliste-Inhalt -->
-  <div *ngIf="(wishlistItems$ | async)?.length ?? 0 > 0">
+  @if ((wishlistItems$ | async)?.length ?? 0 > 0) {
+  <div>
     <!-- Desktop Grid -->
     <div class="row g-4">
-      <div
-        *ngFor="let item of wishlistItems$ | async"
-        class="col-12 col-md-6 col-lg-4"
-      >
+      @for (item of wishlistItems$ | async; track item.id) {
+      <div class="col-12 col-md-6 col-lg-4">
         <div class="card h-100 shadow-sm wishlist-card">
           <div class="card-body d-flex flex-column">
             <!-- Cover -->
@@ -62,20 +64,21 @@
                 [routerLink]="['/detail', item.id]"
                 class="text-decoration-none"
               >
+                @if (item.coverUrl) {
                 <img
-                  *ngIf="item.coverUrl"
                   [src]="item.coverUrl"
                   [alt]="item.title"
                   class="img-fluid rounded"
                   style="max-height: 250px; width: auto; object-fit: cover"
                 />
+                } @else {
                 <div
-                  *ngIf="!item.coverUrl"
                   class="bg-light d-flex align-items-center justify-content-center rounded"
                   style="height: 250px"
                 >
                   <span class="text-muted fs-1">📚</span>
                 </div>
+                }
               </a>
             </div>
 
@@ -90,25 +93,24 @@
             </h5>
 
             <!-- ISBN -->
-            <p class="text-muted small mb-2" *ngIf="item.isbn">
-              ISBN: {{ item.isbn }}
-            </p>
+            @if (item.isbn) {
+            <p class="text-muted small mb-2">ISBN: {{ item.isbn }}</p>
+            }
 
             <!-- Art -->
-            <p class="text-muted small mb-2" *ngIf="item.art">
-              {{ getArtLabel(item.art) }}
-            </p>
+            @if (item.art) {
+            <p class="text-muted small mb-2">{{ getArtLabel(item.art) }}</p>
+            }
 
             <!-- Rating -->
-            <div *ngIf="item.rating" class="mb-2">
-              <span
-                *ngFor="let star of getStars(item.rating)"
-                class="text-warning"
-              >
-                ⭐
-              </span>
+            @if (item.rating) {
+            <div class="mb-2">
+              @for (star of getStars(item.rating); track $index) {
+              <span class="text-warning">⭐</span>
+              }
               <span class="text-muted small ms-1"> ({{ item.rating }}/5) </span>
             </div>
+            }
 
             <!-- Preis -->
             <p class="fw-bold text-success mb-3 fs-5">
@@ -138,6 +140,7 @@
           </div>
         </div>
       </div>
+      }
     </div>
 
     <!-- Aktionen -->
@@ -158,4 +161,5 @@
       </div>
     </div>
   </div>
+  }
 </div>

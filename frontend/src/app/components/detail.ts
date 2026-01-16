@@ -13,18 +13,18 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AnalyticsWebSocketService } from '../analytics/analytics-websocket.service';
-import { AuthService } from '../services/auth.service';
-import { BuchApiService, type BuchItem } from '../services/buch-api.service';
-import { CartService } from '../services/cart.service';
-import { WishlistService } from '../services/wishlist.service';
+import { AnalyticsWebSocketService } from '../analytics/analytics-websocket';
+import { AuthService } from '../services/auth';
+import { BuchApiService, type BuchItem } from '../services/buch-api';
+import { CartService } from '../services/cart';
+import { WishlistService } from '../services/wishlist';
 
 @Component({
     selector: 'app-detail',
     standalone: true,
     imports: [CommonModule, RouterLink, NgbAlert],
-    templateUrl: '../templates/detail.component.html',
-    styleUrls: ['../templates/detail.component.css'],
+    templateUrl: '../templates/detail.html',
+    styleUrls: ['../templates/detail.css'],
 })
 export class DetailComponent implements OnInit {
     // Dependency Injection via inject() (Angular v21 Style Guide)

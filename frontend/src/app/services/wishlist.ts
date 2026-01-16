@@ -1,8 +1,8 @@
 import { inject, Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { AnalyticsWebSocketService } from '../analytics/analytics-websocket.service';
-import type { BuchItem } from './buch-api.service';
+import { AnalyticsWebSocketService } from '../analytics/analytics-websocket';
+import type { BuchItem } from './buch-api';
 
 export interface WishlistItem {
     id: number;

@@ -12,18 +12,18 @@ import {
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth';
 import {
     AnalyticsWebSocketService,
     type AnalyticsData,
-} from './analytics-websocket.service';
+} from './analytics-websocket';
 
 @Component({
     selector: 'app-analytics-dashboard',
     standalone: true,
     imports: [CommonModule, RouterModule],
-    templateUrl: './analytics-dashboard.component.html',
-    styleUrls: ['./analytics-dashboard.component.css'],
+    templateUrl: './analytics-dashboard.html',
+    styleUrls: ['./analytics-dashboard.css'],
 })
 export class AnalyticsDashboardComponent implements OnInit, OnDestroy {
     private readonly analyticsService = inject(AnalyticsWebSocketService);

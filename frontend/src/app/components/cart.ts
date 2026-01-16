@@ -12,15 +12,15 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
-import type { CartItem } from '../services/cart.service';
-import { CartService } from '../services/cart.service';
+import type { CartItem } from '../services/cart';
+import { CartService } from '../services/cart';
 
 @Component({
     selector: 'app-cart',
     standalone: true,
     imports: [CommonModule, RouterLink, FormsModule, NgbAlert],
-    templateUrl: './cart.component.html',
-    styleUrls: ['./cart.component.css'],
+    templateUrl: './cart.html',
+    styleUrls: ['./cart.css'],
 })
 export class CartComponent implements OnInit {
     // Dependency Injection via inject() (Angular v21 Style Guide Empfehlung)

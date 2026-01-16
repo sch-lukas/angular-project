@@ -11,25 +11,24 @@
     </div>
 
     <!-- Angular v21: button statt div für Accessibility (WCAG 2.1) -->
+    @if (stats?.bestBook) {
     <button
       type="button"
       class="stat-card clickable"
-      *ngIf="stats?.bestBook"
       (click)="goToBook(stats?.bestBook?.id)"
     >
       <div class="stat-icon">⭐</div>
       <div class="stat-value">{{ animatedBestRating() }}/5</div>
       <div class="stat-label">Bestbewertetes Buch</div>
-      <div class="stat-subtitle">
-        {{ stats?.bestBook?.titel }}
-      </div>
+      <div class="stat-subtitle">{{ stats?.bestBook?.titel }}</div>
     </button>
+    }
 
     <!-- Angular v21: button statt div für Accessibility (WCAG 2.1) -->
+    @if (stats?.cheapestBook) {
     <button
       type="button"
       class="stat-card clickable"
-      *ngIf="stats?.cheapestBook"
       (click)="goToBook(stats?.cheapestBook?.id)"
     >
       <div class="stat-icon">🏆</div>
@@ -37,10 +36,9 @@
         {{ animatedCheapestPrice() | number: '1.2-2' }} €
       </div>
       <div class="stat-label">Schwabenpreis</div>
-      <div class="stat-subtitle">
-        {{ stats?.cheapestBook?.titel }}
-      </div>
+      <div class="stat-subtitle">{{ stats?.cheapestBook?.titel }}</div>
     </button>
+    }
   </div>
 
   <div class="action-container">

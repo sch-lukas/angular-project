@@ -14,14 +14,14 @@ import {
     BuchArt,
     BuchItem,
     BuchPage,
-} from '../services/buch-api.service';
+} from '../services/buch-api';
 
 @Component({
     selector: 'app-search',
     standalone: true,
     imports: [CommonModule, FormsModule, RouterLink],
-    templateUrl: '../templates/search.component.html',
-    styleUrls: ['../templates/search.component.css'],
+    templateUrl: '../templates/search.html',
+    styleUrls: ['../templates/search.css'],
 })
 export class SearchComponent implements OnInit {
     // Dependency Injection via inject() (Angular v21 Style Guide Empfehlung)

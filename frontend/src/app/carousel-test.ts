@@ -6,6 +6,6 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     selector: 'app-carousel-test',
     standalone: true,
     imports: [CommonModule, NgbCarouselModule],
-    templateUrl: './carousel-test.component.html',
+    templateUrl: './carousel-test.html',
 })
 export class CarouselTestComponent {}

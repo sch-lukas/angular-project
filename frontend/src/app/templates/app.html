@@ -26,22 +26,24 @@
           >Suche</a
         >
         <!-- Zeige "Neu" nur für eingeloggte Benutzer -->
+        @if (isLoggedIn$ | async) {
         <a
-          *ngIf="isLoggedIn$ | async"
           routerLink="/new"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
           >Neu</a
         >
+        }
         <!-- Analytics Dashboard nur für Admins -->
+        @if (isAdmin()) {
         <a
-          *ngIf="isAdmin()"
           routerLink="/analytics"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
           class="analytics-link"
           >📊 Analytics</a
         >
+        }
         <!-- Warenkorb mit Badge -->
         <a
           routerLink="/cart"
@@ -49,10 +51,9 @@
           [routerLinkActiveOptions]="{ exact: true }"
           class="cart-link"
         >
-          🛒 Warenkorb
-          <span *ngIf="(cartItemCount$ | async) ?? 0 > 0" class="cart-badge">
-            {{ cartItemCount$ | async }}
-          </span>
+          🛒 Warenkorb @if ((cartItemCount$ | async) ?? 0 > 0) {
+          <span class="cart-badge"> {{ cartItemCount$ | async }} </span>
+          }
         </a>
         <!-- Merkliste mit Badge -->
         <a
@@ -61,30 +62,23 @@
           [routerLinkActiveOptions]="{ exact: true }"
           class="wishlist-link"
         >
-          ❤️ Merkliste
-          <span
-            *ngIf="(wishlistItemCount$ | async) ?? 0 > 0"
-            class="wishlist-badge"
-          >
-            {{ wishlistItemCount$ | async }}
-          </span>
+          ❤️ Merkliste @if ((wishlistItemCount$ | async) ?? 0 > 0) {
+          <span class="wishlist-badge"> {{ wishlistItemCount$ | async }} </span>
+          }
         </a>
         <!-- Zeige Login oder Logout je nach Status -->
+        @if (!(isLoggedIn$ | async)) {
         <a
-          *ngIf="!(isLoggedIn$ | async)"
           routerLink="/login"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
           >Login</a
         >
-        <button
-          *ngIf="isLoggedIn$ | async"
-          type="button"
-          class="logout-btn"
-          (click)="onLogout()"
-        >
+        } @if (isLoggedIn$ | async) {
+        <button type="button" class="logout-btn" (click)="onLogout()">
           Logout
         </button>
+        }
       </nav>
       <button type="button" class="theme-toggle" (click)="toggleDarkMode()">
         {{ isDarkMode() ? 'Dark' : 'Light' }}

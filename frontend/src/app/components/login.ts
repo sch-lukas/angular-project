@@ -7,14 +7,14 @@ import {
     Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth';
 
 @Component({
     selector: 'app-login',
     standalone: true,
     imports: [CommonModule, ReactiveFormsModule],
-    templateUrl: '../templates/login.component.html',
-    styleUrls: ['../templates/login.component.css'],
+    templateUrl: '../templates/login.html',
+    styleUrls: ['../templates/login.css'],
 })
 export class LoginComponent implements OnInit {
     // Dependency Injection via inject() (Angular v21 Style Guide Empfehlung)

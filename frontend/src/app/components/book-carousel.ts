@@ -1,20 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, input, viewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import type { BuchItem } from '../services/buch-api.service';
+import type { BuchItem } from '../services/buch-api';
 
 @Component({
     selector: 'app-book-carousel',
     standalone: true,
     imports: [CommonModule, RouterLink],
-    templateUrl: '../templates/book-carousel.component.html',
-    styleUrls: ['../templates/book-carousel.component.css'],
+    templateUrl: '../templates/book-carousel.html',
+    styleUrls: ['../templates/book-carousel.css'],
 })
 export class BookCarouselComponent {
-    @Input() books: BuchItem[] = [];
+    // Angular v21: input() signal statt @Input() decorator
+    readonly books = input<BuchItem[]>([]);
 
-    @ViewChild('carouselContainer')
-    carouselContainer!: ElementRef<HTMLDivElement>;
+    // Angular v21: viewChild() signal statt @ViewChild() decorator
+    private readonly carouselContainer =
+        viewChild<ElementRef<HTMLDivElement>>('carouselContainer');
 
     /**
      * Gibt die Cover-URL für ein Buch zurück
@@ -38,9 +40,10 @@ export class BookCarouselComponent {
      * Scrollt das Karussell nach links oder rechts
      */
     scrollCarousel(direction: 'left' | 'right'): void {
-        if (!this.carouselContainer) return;
+        const containerRef = this.carouselContainer();
+        if (!containerRef) return;
 
-        const container = this.carouselContainer.nativeElement;
+        const container = containerRef.nativeElement;
         const scrollAmount = 220 * 2; // 2 Items pro Klick (Item width + gap)
 
         if (direction === 'left') {
