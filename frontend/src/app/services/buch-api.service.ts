@@ -238,7 +238,14 @@ export class BuchApiService {
         if (buch.art) input.art = buch.art;
         if (buch.rabatt !== undefined) input.rabatt = buch.rabatt;
         if (buch.lieferbar !== undefined) input.lieferbar = buch.lieferbar;
-        if (buch.datum) input.datum = buch.datum;
+        // Datum zu vollständigem ISO-8601 DateTime konvertieren (Prisma erwartet DateTime, nicht nur Date)
+        if (buch.datum) {
+            const datumStr = buch.datum;
+            // Falls nur "YYYY-MM-DD", dann Zeit anhängen
+            input.datum = datumStr.includes('T')
+                ? datumStr
+                : `${datumStr}T00:00:00.000Z`;
+        }
         if (buch.homepage) input.homepage = buch.homepage;
         if (buch.schlagwoerter) input.schlagwoerter = buch.schlagwoerter;
         if (buch.beschreibung) input.beschreibung = buch.beschreibung;

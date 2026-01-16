@@ -1,4 +1,4 @@
-# Stop-All.ps1 - Stoppt den kompletten Entwicklungsstack
+﻿# Stop-All.ps1 - Stoppt den kompletten Entwicklungsstack
 #
 # Verwendung:
 #   .\Stop-All.ps1         → Stoppt alles (Docker Container + Node Prozesse)
@@ -10,7 +10,7 @@ param(
     [switch]$docker
 )
 
-$ProjectRoot = "C:\software-engeneering\angular-project"
+$ProjectRoot = $PSScriptRoot
 
 function Write-Step($step, $description) {
     Write-Host "`n[$step] " -ForegroundColor Cyan -NoNewline
@@ -150,11 +150,12 @@ if ($ngProcesses) {
 if (-not $KeepDB) {
     Write-Step "4/4" "Docker Container stoppen..."
 
-    $postgresCompose = Join-Path $ProjectRoot ".extras\compose\postgres"
-    $keycloakCompose = Join-Path $ProjectRoot ".extras\compose\keycloak"
+    $postgresCompose = Join-Path $ProjectRoot ".extras\compose\postgres\compose-simple.yml"
+    $keycloakCompose = Join-Path $ProjectRoot ".extras\compose\keycloak\compose-simple.yml"
 
-    Start-Process -FilePath "docker" -ArgumentList "compose", "-f", "$postgresCompose\compose.yml", "stop" -NoNewWindow -Wait
-    Start-Process -FilePath "docker" -ArgumentList "compose", "-f", "$keycloakCompose\compose.yml", "stop" -NoNewWindow -Wait
+    # Verwende & für korrekte Pfad-Behandlung mit Leerzeichen
+    & docker compose -f "$postgresCompose" stop 2>$null
+    & docker compose -f "$keycloakCompose" stop 2>$null
 
     Write-Success "Docker Container gestoppt"
 } else {

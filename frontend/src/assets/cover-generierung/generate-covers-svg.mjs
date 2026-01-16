@@ -175,7 +175,7 @@ async function main() {
         console.log(`✅ ${buecher.length} Bücher gefunden\n`);
 
         // Erstelle Zielordner
-        const coversDir = join(__dirname, '../frontend/src/assets/covers');
+        const coversDir = join(__dirname, '../covers');
         await mkdir(coversDir, { recursive: true });
         console.log(`📁 Zielordner: ${coversDir}\n`);
 
