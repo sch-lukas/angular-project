@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import {
+    Component,
+    computed,
+    DestroyRef,
+    inject,
+    OnInit,
+    signal,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
@@ -17,6 +25,8 @@ import { CartService } from '../services/cart.service';
 export class CartComponent implements OnInit {
     // Dependency Injection via inject() (Angular v21 Style Guide Empfehlung)
     private readonly cartService = inject(CartService);
+    // Angular v21: DestroyRef für automatisches Subscription-Cleanup
+    private readonly destroyRef = inject(DestroyRef);
 
     // Observable für async pipe im Template
     cartItems$!: Observable<CartItem[]>;
@@ -41,8 +51,10 @@ export class CartComponent implements OnInit {
 
     ngOnInit(): void {
         this.cartItems$ = this.cartService.getItems();
-        // Signal synchron halten für computed values
-        this.cartItems$.subscribe((items) => this.cartItemsSignal.set(items));
+        // Angular v21: takeUntilDestroyed() für automatisches Unsubscribe
+        this.cartItems$
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe((items) => this.cartItemsSignal.set(items));
     }
 
     /**

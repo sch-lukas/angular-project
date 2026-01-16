@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { executeGraphQL } from './graphql-client';
 import {
     BUCH_BY_ID_QUERY,
@@ -84,9 +84,14 @@ export interface CreateBuchPayload {
     };
 }
 
+/**
+ * Service für Buch-API-Operationen (Angular v21 Best Practices).
+ * Verwendet inject() statt Constructor-Injection gemäß Angular Style Guide.
+ */
 @Injectable({ providedIn: 'root' })
 export class BuchApiService {
-    constructor(private readonly http: HttpClient) {}
+    // Angular v21: inject() function statt constructor injection
+    private readonly http = inject(HttpClient);
 
     /**
      * Liefert Bücher mit optionalen Such-Parametern via GraphQL

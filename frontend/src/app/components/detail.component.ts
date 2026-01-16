@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
     ChangeDetectorRef,
     Component,
+    DestroyRef,
     ElementRef,
     OnInit,
     TemplateRef,
@@ -9,6 +10,7 @@ import {
     inject,
     signal,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AnalyticsWebSocketService } from '../analytics/analytics-websocket.service';
@@ -34,6 +36,8 @@ export class DetailComponent implements OnInit {
     private readonly wishlistService = inject(WishlistService);
     private readonly authService = inject(AuthService);
     private readonly analyticsService = inject(AnalyticsWebSocketService);
+    // Angular v21: DestroyRef für automatisches Subscription-Cleanup
+    private readonly destroyRef = inject(DestroyRef);
 
     // State mit Signals
     buch: BuchItem | null = null;
@@ -57,43 +61,46 @@ export class DetailComponent implements OnInit {
     protected readonly deleteError = signal<string | null>(null);
 
     @ViewChild('homepageWarningModal')
-    homepageWarningModal!: TemplateRef<any>;
+    homepageWarningModal!: TemplateRef<unknown>;
 
     @ViewChild('deleteConfirmModal')
-    deleteConfirmModal!: TemplateRef<any>;
+    deleteConfirmModal!: TemplateRef<unknown>;
 
     @ViewChild('carouselContainer')
     carouselContainer!: ElementRef<HTMLDivElement>;
 
     ngOnInit(): void {
-        this.route.paramMap.subscribe((params) => {
-            const idStr = params.get('id');
-            if (!idStr) {
-                this.error.set('Keine ID angegeben');
-                this.isLoading.set(false);
-                return;
-            }
+        // Angular v21: takeUntilDestroyed() für automatisches Unsubscribe
+        this.route.paramMap
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe((params) => {
+                const idStr = params.get('id');
+                if (!idStr) {
+                    this.error.set('Keine ID angegeben');
+                    this.isLoading.set(false);
+                    return;
+                }
 
-            const id = Number.parseInt(idStr, 10);
-            if (Number.isNaN(id) || id <= 0) {
-                this.error.set(`Ungültige ID: ${idStr}`);
-                this.isLoading.set(false);
-                return;
-            }
+                const id = Number.parseInt(idStr, 10);
+                if (Number.isNaN(id) || id <= 0) {
+                    this.error.set(`Ungültige ID: ${idStr}`);
+                    this.isLoading.set(false);
+                    return;
+                }
 
-            // Reset state für endless loop
-            this.buch = null;
-            this.isLoading.set(true);
-            this.error.set(null);
-            this.related = [];
-            this.relatedLoading.set(false);
-            this.relatedError.set(null);
+                // Reset state für endless loop
+                this.buch = null;
+                this.isLoading.set(true);
+                this.error.set(null);
+                this.related = [];
+                this.relatedLoading.set(false);
+                this.relatedError.set(null);
 
-            // Scroll nach oben bei Navigation
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+                // Scroll nach oben bei Navigation
+                window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            this.loadBuch(id);
-        });
+                this.loadBuch(id);
+            });
     }
 
     private loadBuch(id: number): void {

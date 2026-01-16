@@ -93,7 +93,17 @@ const bootstrap = async () => {
     // https://docs.nestjs.com/techniques/validation
     // https://docs.nestjs.com/techniques/validation#transform-payload-objects
     // https://docs.nestjs.com/exception-filters
-    app.useGlobalPipes(new ValidationPipe({ transform: true }));
+    // NestJS 11 Best Practices: whitelist + forbidNonWhitelisted für Sicherheit
+    app.useGlobalPipes(
+        new ValidationPipe({
+            transform: true,
+            whitelist: true, // Entfernt nicht-deklarierte Properties aus DTOs
+            forbidNonWhitelisted: true, // Wirft Fehler bei nicht-deklarierten Properties
+            transformOptions: {
+                enableImplicitConversion: true, // Automatische Typkonvertierung
+            },
+        }),
+    );
 
     setupSwagger(app);
 

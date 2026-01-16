@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
+import {
+    ChangeDetectorRef,
+    Component,
+    DestroyRef,
+    OnInit,
+    inject,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import {
@@ -20,6 +27,8 @@ export class SearchComponent implements OnInit {
     // Dependency Injection via inject() (Angular v21 Style Guide Empfehlung)
     private readonly api = inject(BuchApiService);
     private readonly cdr = inject(ChangeDetectorRef);
+    // Angular v21: DestroyRef für automatisches Subscription-Cleanup
+    private readonly destroyRef = inject(DestroyRef);
 
     items: BuchItem[] | null = null;
     error: string | null = null;
@@ -116,16 +125,20 @@ export class SearchComponent implements OnInit {
 
         const params = this.buildSearchParams();
         console.log('Search params:', params);
-        this.api.list(params).subscribe({
-            next: (page: BuchPage) => {
-                console.log('Received page data:', page);
-                this.processPageData(page);
-            },
-            error: (err) => {
-                console.error('Search error:', err);
-                this.handleError(err);
-            },
-        });
+        // Angular v21: takeUntilDestroyed() für automatisches Unsubscribe bei Component-Zerstörung
+        this.api
+            .list(params)
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe({
+                next: (page: BuchPage) => {
+                    console.log('Received page data:', page);
+                    this.processPageData(page);
+                },
+                error: (err) => {
+                    console.error('Search error:', err);
+                    this.handleError(err);
+                },
+            });
     }
 
     private processPageData(page: BuchPage): void {

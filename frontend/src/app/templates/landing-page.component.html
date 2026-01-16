@@ -10,7 +10,9 @@
       <div class="stat-label">Bücher im Katalog</div>
     </div>
 
-    <div
+    <!-- Angular v21: button statt div für Accessibility (WCAG 2.1) -->
+    <button
+      type="button"
       class="stat-card clickable"
       *ngIf="stats?.bestBook"
       (click)="goToBook(stats?.bestBook?.id)"
@@ -21,9 +23,11 @@
       <div class="stat-subtitle">
         {{ stats?.bestBook?.titel }}
       </div>
-    </div>
+    </button>
 
-    <div
+    <!-- Angular v21: button statt div für Accessibility (WCAG 2.1) -->
+    <button
+      type="button"
       class="stat-card clickable"
       *ngIf="stats?.cheapestBook"
       (click)="goToBook(stats?.cheapestBook?.id)"
@@ -36,7 +40,7 @@
       <div class="stat-subtitle">
         {{ stats?.cheapestBook?.titel }}
       </div>
-    </div>
+    </button>
   </div>
 
   <div class="action-container">

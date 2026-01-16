@@ -1,13 +1,27 @@
 <div class="new-book-container">
   <h1>Neues Buch anlegen</h1>
 
-  <!-- Fehler-Popup (Modal-Style) -->
-  <div *ngIf="submitError()" class="error-popup-overlay" (click)="closeError()">
-    <div class="error-popup" (click)="$event.stopPropagation()">
+  <!-- Fehler-Popup (Modal-Style) mit Accessibility (WCAG 2.1) -->
+  <div
+    *ngIf="submitError()"
+    class="error-popup-overlay"
+    (click)="closeError()"
+    (keydown.escape)="closeError()"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="error-dialog-title"
+  >
+    <div
+      class="error-popup"
+      (click)="$event.stopPropagation()"
+      (keydown.escape)="closeError()"
+    >
       <div class="error-popup-header">
         <span class="error-icon">⚠️</span>
-        <strong>Fehler beim Anlegen</strong>
-        <button class="close-btn" (click)="closeError()">×</button>
+        <strong id="error-dialog-title">Fehler beim Anlegen</strong>
+        <button class="close-btn" (click)="closeError()" aria-label="Schließen">
+          ×
+        </button>
       </div>
       <div class="error-popup-body" [innerHTML]="formatErrorHtml()"></div>
       <div class="error-popup-footer">
@@ -94,8 +108,10 @@
 
     <!-- ISBN (automatisch generiert) -->
     <div class="form-group">
-      <label>ISBN-13 (automatisch generiert)</label>
-      <div class="isbn-display">
+      <span id="isbn-label" class="label-text"
+        >ISBN-13 (automatisch generiert)</span
+      >
+      <output class="isbn-display" aria-labelledby="isbn-label">
         <span class="isbn-value">{{ generatedIsbn }}</span>
         <button
           type="button"
@@ -105,7 +121,7 @@
         >
           🔄 Neu
         </button>
-      </div>
+      </output>
       <small class="hint-text"
         >Die ISBN wird automatisch generiert und ist gültig.</small
       >

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
+import { Injectable, computed, inject, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { Observable, catchError, map, of } from 'rxjs';
 
 export interface LoginResult {
     success: boolean;
@@ -20,6 +21,11 @@ interface TokenResponse {
     refresh_expires_in: number;
 }
 
+/**
+ * Authentication Service (Angular v21 Best Practices).
+ * Verwendet Signals statt BehaviorSubject für reaktiven State.
+ * @see https://angular.dev/guide/signals
+ */
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     private readonly http = inject(HttpClient);
@@ -27,24 +33,20 @@ export class AuthService {
     private readonly TOKEN_KEY = 'buchspa_token';
     private readonly SESSION_KEY = 'buchspa_session';
 
-    private readonly authState$ = new BehaviorSubject<AuthState>(
-        this.loadAuthState(),
-    );
+    // Angular v21: Signals für reaktiven State (statt BehaviorSubject)
+    private readonly authState = signal<AuthState>(this.loadAuthState());
 
-    readonly isLoggedIn$: Observable<boolean> = new BehaviorSubject<boolean>(
-        this.loadAuthState().isLoggedIn,
-    );
+    // Computed signals für abgeleiteten State - automatisch reaktiv
+    readonly isLoggedIn = computed(() => this.authState().isLoggedIn);
+    readonly currentUser = computed(() => this.authState().username);
+    readonly isAdmin = computed(() => this.authState().username === 'admin');
+
+    // Observable für Kompatibilität mit bestehendem async pipe Code
+    readonly isLoggedIn$: Observable<boolean> = toObservable(this.isLoggedIn);
 
     constructor() {
         // Server-Session-Check: Logout bei Server-Neustart
         this.checkServerSession();
-
-        // Synchronisiere isLoggedIn$ mit authState$
-        this.authState$.subscribe((state) => {
-            (this.isLoggedIn$ as BehaviorSubject<boolean>).next(
-                state.isLoggedIn,
-            );
-        });
     }
 
     login(username: string, password: string): Observable<LoginResult> {
@@ -60,14 +62,14 @@ export class AuthService {
                 // Server-Session-ID speichern (für Neustart-Erkennung)
                 this.updateServerSession();
 
-                // Auth-State aktualisieren
+                // Auth-State aktualisieren mit signal.set()
                 const newState: AuthState = {
                     isLoggedIn: true,
                     username,
                     token: response.access_token,
                 };
                 this.saveAuthState(newState);
-                this.authState$.next(newState);
+                this.authState.set(newState);
 
                 return { success: true };
             }),
@@ -91,23 +93,15 @@ export class AuthService {
             token: null,
         };
         this.saveAuthState(newState);
-        this.authState$.next(newState);
-    }
-
-    isLoggedIn(): boolean {
-        return this.authState$.value.isLoggedIn;
-    }
-
-    getCurrentUser(): string | null {
-        return this.authState$.value.username;
+        this.authState.set(newState);
     }
 
     /**
-     * Prüft ob der aktuelle Benutzer ein Admin ist
+     * Gibt den aktuellen Benutzernamen zurück (Signal-basiert).
+     * @deprecated Verwende stattdessen das computed signal `currentUser`
      */
-    isAdmin(): boolean {
-        const username = this.authState$.value.username;
-        return username === 'admin';
+    getCurrentUser(): string | null {
+        return this.authState().username;
     }
 
     getToken(): string | null {
@@ -141,7 +135,7 @@ export class AuthService {
      * Prüft Server-Session und loggt bei Neustart automatisch aus
      */
     private checkServerSession(): void {
-        if (!this.authState$.value.isLoggedIn) {
+        if (!this.authState().isLoggedIn) {
             return;
         }
 
@@ -155,7 +149,7 @@ export class AuthService {
         // Prüfe, ob das Token noch gültig ist
         // Wenn Server neu gestartet wurde, wird eine Anfrage mit dem alten Token fehlschlagen
         this.http
-            .get<any>('/health/liveness', {
+            .get<unknown>('/health/liveness', {
                 observe: 'response',
             })
             .pipe(
