@@ -5,7 +5,8 @@
 #
 # Dieses Script richtet ALLES automatisch ein:
 #   ✓ Software-Installation (Node.js, pnpm, Docker, Git, PowerShell 7)
-#   ✓ VS Code Extensions installieren und aktivieren
+#   ✓ VS Code Extensions installieren UND AKTIVIEREN
+#   ✓ VS Code Einstellungen (Material Icon Theme, Formatierung, etc.)
 #   ✓ .env Datei mit korrekter Keycloak-Konfiguration (HTTP Port 8880)
 #   ✓ Docker Container (PostgreSQL, Keycloak)
 #   ✓ Datenbank-Schema und Rolle "buch" erstellen
@@ -101,6 +102,7 @@ function Invoke-SqlCommand {
 
 $VSCodeExtensions = @(
     "aaron-bond.better-comments",
+    "angular.ng-template",
     "apollographql.vscode-apollo",
     "asciidoctor.asciidoctor-vscode",
     "davidanson.vscode-markdownlint",
@@ -115,23 +117,49 @@ $VSCodeExtensions = @(
     "graphql.vscode-graphql-syntax",
     "gruntfuggly.todo-tree",
     "jebbs.plantuml",
+    "johnpapa.vscode-peacock",
     "mechatroner.rainbow-csv",
     "mhutchie.git-graph",
     "mikestead.dotenv",
     "ms-azuretools.vscode-containers",
     "ms-azuretools.vscode-docker",
     "ms-ceintl.vscode-language-pack-de",
+    "ms-playwright.playwright",
     "ms-vscode.powershell",
     "ms-vscode.vscode-typescript-next",
     "pflannery.vscode-versionlens",
     "pkief.material-icon-theme",
     "pmneo.tsimporter",
     "postman.postman-for-vscode",
+    "prisma.prisma",
     "redhat.vscode-yaml",
     "usernamehw.errorlens",
     "vitest.explorer",
     "yoavbls.pretty-ts-errors"
 )
+
+# ════════════════════════════════════════════════════════════════════════════════
+# VS CODE USER SETTINGS (für Material Icon Theme und Peacock)
+# ════════════════════════════════════════════════════════════════════════════════
+
+$VSCodeUserSettings = @'
+{
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.activeIconPack": "nest",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.fontFamily": "'Cascadia Code', 'Fira Code', Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14,
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "files.eol": "\n",
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "npm.packageManager": "pnpm",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.updateImportsOnFileMove.enabled": "always"
+}
+'@
 
 # ════════════════════════════════════════════════════════════════════════════════
 # HAUPTLOGIK
@@ -568,6 +596,59 @@ if (Test-CommandExists "code") {
     } else {
         Write-Info "Alle VS Code Extensions bereits vorhanden"
     }
+
+    # VS Code User Settings aktualisieren (Material Icon Theme aktivieren!)
+    Write-Progress2 "Konfiguriere VS Code Einstellungen..."
+    $vsCodeSettingsPath = Join-Path $env:APPDATA "Code\User\settings.json"
+    $vsCodeSettingsDir = Split-Path $vsCodeSettingsPath -Parent
+
+    if (-not (Test-Path $vsCodeSettingsDir)) {
+        New-Item -ItemType Directory -Path $vsCodeSettingsDir -Force | Out-Null
+    }
+
+    if (Test-Path $vsCodeSettingsPath) {
+        # Bestehende Settings lesen und Material Icon Theme hinzufügen
+        try {
+            $existingSettings = Get-Content $vsCodeSettingsPath -Raw | ConvertFrom-Json -AsHashtable
+        } catch {
+            $existingSettings = @{}
+        }
+
+        # Wichtige Settings setzen (falls noch nicht vorhanden)
+        $settingsToAdd = @{
+            "workbench.iconTheme" = "material-icon-theme"
+            "material-icon-theme.activeIconPack" = "nest"
+            "editor.defaultFormatter" = "esbenp.prettier-vscode"
+            "editor.formatOnSave" = $true
+            "npm.packageManager" = "pnpm"
+            "files.eol" = "`n"
+        }
+
+        $updated = $false
+        foreach ($key in $settingsToAdd.Keys) {
+            if (-not $existingSettings.ContainsKey($key)) {
+                $existingSettings[$key] = $settingsToAdd[$key]
+                $updated = $true
+            }
+        }
+
+        # Icon Theme immer setzen (um sicherzustellen, dass es aktiviert ist)
+        if ($existingSettings["workbench.iconTheme"] -ne "material-icon-theme") {
+            $existingSettings["workbench.iconTheme"] = "material-icon-theme"
+            $updated = $true
+        }
+
+        if ($updated) {
+            $existingSettings | ConvertTo-Json -Depth 10 | Set-Content $vsCodeSettingsPath -Encoding UTF8
+            Write-Success "VS Code User Settings aktualisiert (Material Icon Theme aktiviert)"
+        } else {
+            Write-Info "VS Code Settings bereits konfiguriert"
+        }
+    } else {
+        # Neue Settings-Datei erstellen
+        $VSCodeUserSettings | Out-File -FilePath $vsCodeSettingsPath -Encoding UTF8 -Force
+        Write-Success "VS Code User Settings erstellt (Material Icon Theme aktiviert)"
+    }
 } else {
     Write-Warn "VS Code nicht im PATH - Extensions manuell installieren"
 }
@@ -719,8 +800,8 @@ Write-Host "║  │    Stoppen:    .\Stop-All.ps1                              
 Write-Host "║  │    Tests:      cd frontend; pnpm run test:e2e                   │  ║" -ForegroundColor Green
 Write-Host "║  └─────────────────────────────────────────────────────────────────┘  ║" -ForegroundColor Green
 Write-Host "║                                                                       ║" -ForegroundColor Green
-Write-Host "║  VS Code Tipp: Material Icon Theme aktivieren:                        ║" -ForegroundColor Green
-Write-Host "║    Ctrl+Shift+P → 'File Icon Theme' → 'Material Icon Theme'           ║" -ForegroundColor Green
+Write-Host "║  VS Code: Bitte VS Code NEU STARTEN um alle Änderungen zu sehen!      ║" -ForegroundColor Green
+Write-Host "║    Das Material Icon Theme und alle Extensions sind bereits aktiv.    ║" -ForegroundColor Green
 Write-Host "║                                                                       ║" -ForegroundColor Green
 Write-Host "╚═══════════════════════════════════════════════════════════════════════╝" -ForegroundColor Green
 Write-Host ""
