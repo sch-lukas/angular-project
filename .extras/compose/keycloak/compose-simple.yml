@@ -1,5 +1,5 @@
 # Vereinfachtes Keycloak compose für Windows
-# Verwendet Docker-Volumes statt Bind-Mounts
+# Import-Ordner wird separat gemountet um Volume-Konflikt zu vermeiden
 
 services:
   keycloak:
@@ -8,12 +8,17 @@ services:
       - "8880:8080"
       - "8843:8443"
       - "9990:9000"
-    command: ["start-dev", "--import-realm"]
+    entrypoint: ["/bin/bash", "-c"]
+    command:
+      - |
+        mkdir -p /opt/keycloak/data/import
+        cp /opt/keycloak/import/*.json /opt/keycloak/data/import/ 2>/dev/null || true
+        /opt/keycloak/bin/kc.sh start-dev --import-realm
     volumes:
       - keycloak_data:/opt/keycloak/data
       - type: bind
-        source: ./../../setup-vorlagen/keycloak
-        target: /opt/keycloak/data/import
+        source: ./export
+        target: /opt/keycloak/import
         read_only: true
     environment:
       KEYCLOAK_ADMIN: admin
@@ -26,7 +31,11 @@ services:
     hostname: keycloak
     container_name: keycloak
     healthcheck:
-      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/9000;echo -e 'GET /health/ready HTTP/1.1\r\nhost: http://localhost\r\nConnection: close\r\n\r\n' >&3;if [ $? -eq 0 ]; then exit 0; else exit 1; fi"]
+      test:
+        [
+          "CMD-SHELL",
+          "exec 3<>/dev/tcp/127.0.0.1/9000;echo -e 'GET /health/ready HTTP/1.1\r\nhost: http://localhost\r\nConnection: close\r\n\r\n' >&3;if [ $? -eq 0 ]; then exit 0; else exit 1; fi",
+        ]
       interval: 10s
       timeout: 5s
       start_period: 30s

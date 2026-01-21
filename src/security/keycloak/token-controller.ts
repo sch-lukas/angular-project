@@ -37,6 +37,7 @@ import {
     ApiTags,
     ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
+import { IsOptional, IsString } from 'class-validator';
 import { type Response } from 'express';
 import { Public } from 'nest-keycloak-connect';
 import { paths } from '../../config/paths.js';
@@ -49,10 +50,14 @@ export class TokenData {
     /** Benutzername */
     // https://docs.nestjs.com/openapi/types-and-parameters
     @ApiProperty({ example: 'admin', type: String })
+    @IsString()
+    @IsOptional()
     username: string | undefined;
 
     /** Passwort */
     @ApiProperty({ example: 'p', type: String })
+    @IsString()
+    @IsOptional()
     password: string | undefined;
 }
 
@@ -60,6 +65,8 @@ export class TokenData {
 export class Refresh {
     /** Refresh Token */
     @ApiProperty({ example: 'alg.payload.signature', type: String })
+    @IsString()
+    @IsOptional()
     refresh_token: string | undefined; // eslint-disable-line @typescript-eslint/naming-convention, camelcase
 }
 

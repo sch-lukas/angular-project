@@ -10,24 +10,30 @@ param(
     [switch]$docker
 )
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# KONSOLEN-ENCODING FÜR EMOJI-SUPPORT
+# ═══════════════════════════════════════════════════════════════════════════════
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$OutputEncoding = [System.Text.Encoding]::UTF8
+
 $ProjectRoot = $PSScriptRoot
 
 function Write-Step($step, $description) {
-    Write-Host "`n[$step] " -ForegroundColor Cyan -NoNewline
+    Write-Host "`n⏳ [$step] " -ForegroundColor Cyan -NoNewline
     Write-Host $description -ForegroundColor White
 }
 
 function Write-Success($message) {
-    Write-Host "  ✓ $message" -ForegroundColor Green
+    Write-Host "  ✅ $message" -ForegroundColor Green
 }
 
 # Banner
 Write-Host "`n" -NoNewline
 Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Red
 if ($docker) {
-    Write-Host "║         🐳 Buchhandlung SPA - Docker Stack stoppen        ║" -ForegroundColor Red
+    Write-Host "║       🐳 Buchhandlung SPA - Docker Stack stoppen          ║" -ForegroundColor Red
 } else {
-    Write-Host "║           🛑 Buchhandlung SPA - Stack stoppen             ║" -ForegroundColor Red
+    Write-Host "║           🛑 Buchhandlung SPA - Stack stoppen              ║" -ForegroundColor Red
 }
 Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Red
 
@@ -62,7 +68,7 @@ if ($docker) {
 
     Write-Host "`n"
     Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Green
-    Write-Host "║              🐳 Docker Stack gestoppt!                    ║" -ForegroundColor Green
+    Write-Host "║                ✅ Docker Stack gestoppt!                   ║" -ForegroundColor Green
     Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Green
     Write-Host ""
     exit 0
@@ -165,6 +171,7 @@ if (-not $KeepDB) {
 # Zusammenfassung
 Write-Host "`n"
 Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Green
-Write-Host "║                  ✅ Stack gestoppt!                       ║" -ForegroundColor Green
+Write-Host "║                  ✅ Stack gestoppt!                        ║" -ForegroundColor Green
 Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Green
 Write-Host ""
+
