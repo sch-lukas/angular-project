@@ -19,29 +19,35 @@ param(
     [switch]$NoBrowser
 )
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# KONSOLEN-ENCODING FÜR EMOJI-SUPPORT
+# ═══════════════════════════════════════════════════════════════════════════════
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$OutputEncoding = [System.Text.Encoding]::UTF8
+
 $ProjectRoot = $PSScriptRoot
 
-# Farbige Ausgabe
+# Farbige Ausgabe mit Emojis
 function Write-Step($step, $description) {
-    Write-Host "`n[$step] " -ForegroundColor Cyan -NoNewline
+    Write-Host "`n⏳ [$step] " -ForegroundColor Cyan -NoNewline
     Write-Host $description -ForegroundColor White
 }
 
 function Write-Success($message) {
-    Write-Host "  ✓ $message" -ForegroundColor Green
+    Write-Host "  ✅ $message" -ForegroundColor Green
 }
 
 function Write-Info($message) {
-    Write-Host "  ℹ $message" -ForegroundColor Yellow
+    Write-Host "  ℹ️  $message" -ForegroundColor Yellow
 }
 
 # Banner
 Write-Host "`n" -NoNewline
 Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Magenta
 if ($docker -and $tunnel) {
-    Write-Host "║       🐳 Buchhandlung SPA - DOCKER + TUNNEL Modus         ║" -ForegroundColor Magenta
+    Write-Host "║     🐳🌐 Buchhandlung SPA - Docker+Tunnel                 ║" -ForegroundColor Magenta
 } elseif ($docker) {
-    Write-Host "║       🐳 Buchhandlung SPA - DOCKER Modus                  ║" -ForegroundColor Magenta
+    Write-Host "║       🐳 Buchhandlung SPA - Docker-Modus                  ║" -ForegroundColor Magenta
 } elseif ($tunnel) {
     Write-Host "║       🌐 Buchhandlung SPA - TUNNEL Modus                  ║" -ForegroundColor Magenta
 } elseif ($lan) {
@@ -53,14 +59,42 @@ Write-Host "╚═════════════════════�
 
 # Tunnel-Modus: Prüfe cloudflared
 if ($tunnel) {
-    $cloudflared = "$env:USERPROFILE\cloudflared.exe"
-    if (-not (Test-Path $cloudflared)) {
-        Write-Host "`n❌ cloudflared nicht gefunden!" -ForegroundColor Red
-        Write-Host "   Bitte installieren mit:" -ForegroundColor Yellow
-        Write-Host '   Invoke-WebRequest -Uri "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-windows-amd64.exe" -OutFile "$env:USERPROFILE\cloudflared.exe"' -ForegroundColor Gray
+    # Suche cloudflared an verschiedenen Stellen
+    $cloudflared = $null
+    $possiblePaths = @(
+        "$env:USERPROFILE\cloudflared.exe",
+        "C:\Program Files\Cloudflare\Cloudflared\cloudflared.exe",
+        "C:\Program Files (x86)\Cloudflare\Cloudflared\cloudflared.exe"
+    )
+
+    # Erst im PATH suchen (mit aktualisiertem PATH)
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+    $cloudflaredInPath = Get-Command cloudflared -ErrorAction SilentlyContinue
+    if ($cloudflaredInPath) {
+        $cloudflared = $cloudflaredInPath.Source
+    } else {
+        # Im WinGet-Paket-Ordner suchen
+        $wingetPath = Get-ChildItem "$env:LOCALAPPDATA\Microsoft\WinGet\Packages" -Recurse -Filter "cloudflared.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
+        if ($wingetPath) {
+            $cloudflared = $wingetPath.FullName
+        } else {
+            # Dann in bekannten Pfaden suchen
+            foreach ($path in $possiblePaths) {
+                if (Test-Path $path) {
+                    $cloudflared = $path
+                    break
+                }
+            }
+        }
+    }
+
+    if (-not $cloudflared) {
+        Write-Host "`ncloudflared nicht gefunden!" -ForegroundColor Red
+        Write-Host "   Installieren mit: winget install Cloudflare.cloudflared" -ForegroundColor Yellow
+        Write-Host "   Danach Terminal NEU STARTEN!" -ForegroundColor Yellow
         exit 1
     }
-    Write-Host "`n🔒 SICHERHEIT: Nur Frontend wird exponiert, Backend bleibt lokal!" -ForegroundColor Yellow
+    Write-Host "`nSICHERHEIT: Nur Frontend wird exponiert, Backend bleibt lokal!" -ForegroundColor Yellow
 }
 
 # =============================================================================
@@ -91,7 +125,7 @@ if ($docker) {
     # Zusammenfassung für Docker-Modus
     Write-Host "`n"
     Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Green
-    Write-Host "║              🐳 DOCKER Stack gestartet!                   ║" -ForegroundColor Green
+    Write-Host "║              🐳 DOCKER Stack gestartet!                    ║" -ForegroundColor Green
     Write-Host "╠═══════════════════════════════════════════════════════════╣" -ForegroundColor Green
     Write-Host "║  PostgreSQL:  localhost:5432                              ║" -ForegroundColor Green
     Write-Host "║  Keycloak:    https://localhost:8843                      ║" -ForegroundColor Green
@@ -103,14 +137,14 @@ if ($docker) {
     if ($tunnel) {
         Write-Host "`n"
         Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
-        Write-Host "║              🌐 Cloudflare Tunnel starten...              ║" -ForegroundColor Cyan
+        Write-Host "║              🌐 Cloudflare Tunnel starten...               ║" -ForegroundColor Cyan
         Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
 
         Write-Host "`n⏳ Warte auf Frontend-Container (10 Sek.)..." -ForegroundColor Yellow
         Start-Sleep -Seconds 10
 
         # Tunnel auf Port 80 (Frontend-Container)
-        $cloudflared = "$env:USERPROFILE\cloudflared.exe"
+        # $cloudflared wurde bereits oben beim Tunnel-Check gesetzt
         $tunnelJob = Start-Job -ScriptBlock {
             param($exe)
             & $exe tunnel --url http://localhost:80 2>&1
@@ -167,12 +201,12 @@ if ($docker) {
 
     # Browser öffnen
     if (-not $NoBrowser) {
-        Write-Host "`n⏳ Öffne Browser..." -ForegroundColor Yellow
+        Write-Host "`n>> Öffne Browser..." -ForegroundColor Yellow
         Start-Sleep -Seconds 3
         Start-Process "http://localhost:80"
     }
 
-    Write-Host "`n💡 Zum Stoppen: " -NoNewline -ForegroundColor Yellow
+    Write-Host "`nℹ️  Zum Stoppen: " -NoNewline -ForegroundColor Yellow
     Write-Host ".\Stop-All.ps1 -docker" -ForegroundColor Cyan
     Write-Host ""
     exit 0
@@ -217,7 +251,7 @@ if (-not $NoFrontend) {
         $frontendCmd = "`$host.UI.RawUI.WindowTitle = 'Buchhandlung - Frontend (Angular)'; Set-Location '$frontendPath'; Write-Host '🌐 Frontend Server (TUNNEL-Modus) startet...' -ForegroundColor Cyan; pnpm start:tunnel"
         Write-Info "Tunnel-Modus aktiviert - Host-Check deaktiviert"
     } elseif ($lan) {
-        $frontendCmd = "`$host.UI.RawUI.WindowTitle = 'Buchhandlung - Frontend (Angular)'; Set-Location '$frontendPath'; Write-Host '🌐 Frontend Server (LAN-Modus) startet...' -ForegroundColor Cyan; pnpm start:lan"
+        $frontendCmd = "`$host.UI.RawUI.WindowTitle = 'Buchhandlung - Frontend (Angular)'; Set-Location '$frontendPath'; Write-Host '📱 Frontend Server (LAN-Modus) startet...' -ForegroundColor Cyan; pnpm start:lan"
         Write-Info "LAN-Modus aktiviert - von anderen Geräten erreichbar"
     } else {
         $frontendCmd = "`$host.UI.RawUI.WindowTitle = 'Buchhandlung - Frontend (Angular)'; Set-Location '$frontendPath'; Write-Host '🏠 Frontend Server startet...' -ForegroundColor Cyan; pnpm start"
@@ -232,7 +266,7 @@ if (-not $NoFrontend) {
 # Zusammenfassung
 Write-Host "`n"
 Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Green
-Write-Host "║                    ✅ Stack gestartet!                    ║" -ForegroundColor Green
+Write-Host "║                    ✅ Stack gestartet!                     ║" -ForegroundColor Green
 Write-Host "╠═══════════════════════════════════════════════════════════╣" -ForegroundColor Green
 Write-Host "║  PostgreSQL:  localhost:5432                              ║" -ForegroundColor Green
 Write-Host "║  Keycloak:    https://localhost:8843                      ║" -ForegroundColor Green
@@ -247,7 +281,7 @@ Write-Host "╚═════════════════════�
 if ($lan -and -not $NoFrontend) {
     Write-Host "`n"
     Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
-    Write-Host "║              📱 LAN-Zugriff (andere Geräte)               ║" -ForegroundColor Cyan
+    Write-Host "║             📱 LAN Zugriff (andere Geräte)                ║" -ForegroundColor Cyan
     Write-Host "╠═══════════════════════════════════════════════════════════╣" -ForegroundColor Cyan
 
     # Alle IPv4-Adressen sammeln
@@ -273,7 +307,7 @@ if ($lan -and -not $NoFrontend) {
 
     Write-Host "╠═══════════════════════════════════════════════════════════╣" -ForegroundColor Cyan
     Write-Host "║  💡 Tipp: WLAN-Adresse für Handy im gleichen Netzwerk     ║" -ForegroundColor Cyan
-    Write-Host "║  ⚠️  SSL-Warnung im Browser akzeptieren!                  ║" -ForegroundColor Cyan
+    Write-Host "║  ⚠️  SSL-Warnung im Browser akzeptieren!                   ║" -ForegroundColor Cyan
     Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
 }
 
@@ -281,14 +315,14 @@ if ($lan -and -not $NoFrontend) {
 if ($tunnel -and -not $NoFrontend) {
     Write-Host "`n"
     Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
-    Write-Host "║              🌐 Cloudflare Tunnel starten...              ║" -ForegroundColor Cyan
+    Write-Host "║             🌐 Cloudflare Tunnel starten...                ║" -ForegroundColor Cyan
     Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
 
-    Write-Host "`n⏳ Warte auf Frontend (15 Sek.)..." -ForegroundColor Yellow
+    Write-Host "`n>> Warte auf Frontend (15 Sek.)..." -ForegroundColor Yellow
     Start-Sleep -Seconds 15
 
     # Starte Tunnel als Hintergrund-Job und fange die URL ab
-    $cloudflared = "$env:USERPROFILE\cloudflared.exe"
+    # $cloudflared wurde bereits oben beim Tunnel-Check gesetzt
     $tunnelJob = Start-Job -ScriptBlock {
         param($exe)
         & $exe tunnel --url https://localhost:4200 --no-tls-verify 2>&1
@@ -329,7 +363,7 @@ if ($tunnel -and -not $NoFrontend) {
         $emptyLine = " " * ($boxWidth - 2)
 
         Write-Host "╔$horizontalLine╗" -ForegroundColor Green
-        Write-Host "║$(' ' * [Math]::Floor(($boxWidth - 22) / 2))🌐 TUNNEL AKTIV!$(' ' * [Math]::Ceiling(($boxWidth - 22) / 2))║" -ForegroundColor Green
+        Write-Host "║$(' ' * [Math]::Floor(($boxWidth - 22) / 2))✅ TUNNEL AKTIV!$(' ' * [Math]::Ceiling(($boxWidth - 22) / 2))║" -ForegroundColor Green
         Write-Host "╠$horizontalLine╣" -ForegroundColor Green
         Write-Host "║$emptyLine║" -ForegroundColor Green
 
@@ -342,7 +376,7 @@ if ($tunnel -and -not $NoFrontend) {
         Write-Host "║$loginLine$(' ' * $loginPadding)║" -ForegroundColor Green
         Write-Host "║$emptyLine║" -ForegroundColor Green
 
-        $secLine1 = "  🔒 Sicherheit:"
+        $secLine1 = "  🛡️  Sicherheitshinweise:"
         Write-Host "║$secLine1$(' ' * ($boxWidth - 2 - $secLine1.Length))║" -ForegroundColor Green
         $secLine2 = "     • Nur Frontend ist von außen erreichbar"
         Write-Host "║$secLine2$(' ' * ($boxWidth - 2 - $secLine2.Length))║" -ForegroundColor Green
@@ -352,7 +386,7 @@ if ($tunnel -and -not $NoFrontend) {
         Write-Host "║$secLine4$(' ' * ($boxWidth - 2 - $secLine4.Length))║" -ForegroundColor Green
         Write-Host "║$emptyLine║" -ForegroundColor Green
 
-        $shareLine = "  📋 Diese URL kannst du teilen! (Gültig bis Script-Stopp)"
+        $shareLine = "  📤 Diese URL kannst du teilen! (Gültig bis Script-Stopp)"
         Write-Host "║$shareLine$(' ' * ($boxWidth - 2 - $shareLine.Length))║" -ForegroundColor Green
         Write-Host "║$emptyLine║" -ForegroundColor Green
         Write-Host "╚$horizontalLine╝" -ForegroundColor Green
@@ -368,7 +402,7 @@ if ($tunnel -and -not $NoFrontend) {
         Write-Host "   Prüfe das Tunnel-Fenster für die URL." -ForegroundColor Yellow
     }
 
-    Write-Host "`n💡 Tunnel läuft im Hintergrund. Beenden mit: " -NoNewline -ForegroundColor Yellow
+    Write-Host "`nℹ️  Tunnel läuft im Hintergrund. Beenden mit: " -NoNewline -ForegroundColor Yellow
     Write-Host ".\Stop-All.ps1" -ForegroundColor Cyan
 }
 
@@ -379,6 +413,7 @@ if (-not $NoBrowser -and -not $NoFrontend) {
     Start-Process "https://localhost:4200"
 }
 
-Write-Host "`n💡 Zum Stoppen: " -NoNewline -ForegroundColor Yellow
+Write-Host "`nℹ️  Zum Stoppen: " -NoNewline -ForegroundColor Yellow
 Write-Host ".\Stop-All.ps1" -ForegroundColor Cyan
 Write-Host ""
+

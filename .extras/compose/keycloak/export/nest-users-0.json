@@ -13,9 +13,8 @@
     "credentials" : [ {
       "id" : "325d84d9-5300-48ad-800d-9625ca01f967",
       "type" : "password",
-      "userLabel" : "My password",
-      "createdDate" : 1759844270409,
-      "secretData" : "{\"value\":\"vExRin232YVnmF03XSNPa03YYP+blUXTK3NESjw9Y5g=\",\"salt\":\"2W20AMRGF3vdSb+qsnMwyA==\",\"additionalParameters\":{}}",
+      "createdDate" : 1767469531251,
+      "secretData" : "{\"value\":\"bJo+eujFz7ejlRt5fAxl9R267TeqdZ+enza7BSgW01s=\",\"salt\":\"S2fzD94WSU75Oks6Nb5+lg==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
     } ],
     "disableableCredentialTypes" : [ ],
@@ -39,9 +38,8 @@
     "credentials" : [ {
       "id" : "f44f319c-79af-4882-8941-33836b453e55",
       "type" : "password",
-      "userLabel" : "My password",
-      "createdDate" : 1759844415679,
-      "secretData" : "{\"value\":\"6yblWdaP0RG+7A/1qDgXenZpyy8fiX2smfM2uYSpzmE=\",\"salt\":\"bBlU7fRhzxI3AtV2iOMMrw==\",\"additionalParameters\":{}}",
+      "createdDate" : 1767469531405,
+      "secretData" : "{\"value\":\"5e+IRBm9KqGzfZIXmvozZ471TMo0N1Wm2gdujoA27zU=\",\"salt\":\"SE2JG4+Hm7kaS+pj+6QxfA==\",\"additionalParameters\":{}}",
       "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
     } ],
     "disableableCredentialTypes" : [ ],
