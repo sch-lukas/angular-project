@@ -32,8 +32,10 @@ src/config/resources/tls/**/*.crt
 src/config/resources/tls/**/*.key
 frontend/*.pem
 frontend/*.crt
+frontend/*.cer
 frontend/**/*.pem
 frontend/**/*.crt
+src/config/resources/postgresql/*.cer
 src/beispiele.ts
 src/beispiele-write.ts
 test/bruno/nest/environments
