@@ -83,7 +83,9 @@ const tokenValidation =
     (keycloak?.tokenValidation as TokenValidation | undefined) ??
     (TokenValidation.ONLINE as TokenValidation);
 
-const { CLIENT_SECRET, NODE_ENV } = env;
+const { CLIENT_SECRET, KEYCLOAK_REJECT_UNAUTHORIZED, NODE_ENV } = env;
+const allowInsecureKeycloakTls =
+    NODE_ENV === 'development' && KEYCLOAK_REJECT_UNAUTHORIZED === 'false';
 
 // https://github.com/ferrerojosh/nest-keycloak-connect/blob/master/README.md#nest-keycloak-options
 export const keycloakConnectOptions: KeycloakConnectConfig = {
@@ -96,12 +98,8 @@ export const keycloakConnectOptions: KeycloakConnectConfig = {
     policyEnforcement: PolicyEnforcementMode.PERMISSIVE,
     tokenValidation,
 };
-if (NODE_ENV === 'development') {
-    console.debug('keycloakConnectOptions = %o', keycloakConnectOptions);
-} else {
-    const { secret, ...keycloakConnectOptionsLog } = keycloakConnectOptions;
-    console.debug('keycloakConnectOptions = %o', keycloakConnectOptionsLog);
-}
+const { secret, ...keycloakConnectOptionsLog } = keycloakConnectOptions;
+console.debug('keycloakConnectOptions = %o', keycloakConnectOptionsLog);
 
 /** Pfade für den REST-Client zu Keycloak */
 export const paths = {
@@ -113,7 +111,13 @@ export const paths = {
 /** Agent für Axios für Requests bei selbstsigniertem Zertifikat */
 export const httpsAgent = new Agent({
     requestCert: true,
-    // selbst-signiertes Zertifikat
-    rejectUnauthorized: false,
+    // In Entwicklung kann der TLS-Check explizit via ENV deaktiviert werden.
+    rejectUnauthorized: !allowInsecureKeycloakTls,
     ca: httpsOptions.cert as Buffer | undefined,
 });
+
+if (allowInsecureKeycloakTls) {
+    console.warn(
+        'ACHTUNG: KEYCLOAK_REJECT_UNAUTHORIZED=false ist aktiv (nur für lokale Entwicklung).',
+    );
+}

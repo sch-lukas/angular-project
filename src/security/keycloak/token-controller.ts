@@ -37,7 +37,7 @@ import {
     ApiTags,
     ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 import { type Response } from 'express';
 import { Public } from 'nest-keycloak-connect';
 import { paths } from '../../config/paths.js';
@@ -51,13 +51,13 @@ export class TokenData {
     // https://docs.nestjs.com/openapi/types-and-parameters
     @ApiProperty({ example: 'admin', type: String })
     @IsString()
-    @IsOptional()
+    @IsNotEmpty()
     username: string | undefined;
 
     /** Passwort */
     @ApiProperty({ example: 'p', type: String })
     @IsString()
-    @IsOptional()
+    @IsNotEmpty()
     password: string | undefined;
 }
 
@@ -66,7 +66,7 @@ export class Refresh {
     /** Refresh Token */
     @ApiProperty({ example: 'alg.payload.signature', type: String })
     @IsString()
-    @IsOptional()
+    @IsNotEmpty()
     refresh_token: string | undefined; // eslint-disable-line @typescript-eslint/naming-convention, camelcase
 }
 
@@ -131,7 +131,6 @@ export class TokenController {
     async refresh(@Body() body: Refresh, @Res() res: Response) {
         // eslint-disable-next-line camelcase, @typescript-eslint/naming-convention
         const { refresh_token } = body;
-        this.#logger.debug('refresh: refresh_token=%s', refresh_token);
 
         const result = await this.#keycloakService.refresh(refresh_token);
         if (result === undefined) {

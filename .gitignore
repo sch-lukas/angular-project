@@ -22,7 +22,18 @@ dependencies.svg
 .extras/compose/buch/.env
 .extras/compose/mysql/db_root_password.txt
 .extras/compose/postgres/db_password.txt
+auth.json
+auth.local.json
+.secrets/
 src/config/resources/tls/key.pem
+src/config/resources/tls/certificate.crt
+src/config/resources/tls/**/*.pem
+src/config/resources/tls/**/*.crt
+src/config/resources/tls/**/*.key
+frontend/*.pem
+frontend/*.crt
+frontend/**/*.pem
+frontend/**/*.crt
 src/beispiele.ts
 src/beispiele-write.ts
 test/bruno/nest/environments
@@ -76,6 +87,7 @@ coverage
 .settings/
 .sonarlint
 .extras/compose/buch/.env
+.extras/compose/keycloak/export/*.json
 
 # IDE - VSCode
 .vscode/*

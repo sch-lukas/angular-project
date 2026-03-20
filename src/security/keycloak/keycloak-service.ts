@@ -73,7 +73,6 @@ export class KeycloakService implements KeycloakConnectOptionsFactory {
 
         this.#logger.debug('token: path=%s', paths.accessToken);
         this.#logger.debug('token: headers=%o', this.#headers);
-        this.#logger.debug('token: body=%s', body);
         let response: Response;
         try {
             response = await fetch(accessTokenUrl, {
@@ -100,12 +99,10 @@ export class KeycloakService implements KeycloakConnectOptionsFactory {
 
         const responseBody = await response.json();
         this.#logPayload(responseBody);
-        this.#logger.debug('token: responseBody=%o', responseBody as object);
         return responseBody;
     }
 
     async refresh(refresh_token: string | undefined) {
-        this.#logger.debug('refresh: refresh_token=%s', refresh_token);
         if (refresh_token === undefined) {
             return;
         }
@@ -138,8 +135,6 @@ export class KeycloakService implements KeycloakConnectOptionsFactory {
         }
 
         const responseBody = await response.json();
-
-        this.#logger.debug('refresh: responseBody=%o', responseBody as object);
         return responseBody;
     }
 

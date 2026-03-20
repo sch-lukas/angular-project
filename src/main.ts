@@ -17,7 +17,6 @@
 // NICHT: Enum, Parameter Properties, Namespace
 // https://devblogs.microsoft.com/typescript/a-proposal-for-type-syntax-in-javascript
 
-import process from 'node:process';
 // Modul in JS = Datei
 // Pfad innerhalb von Packages in node_modules ("nicht-relative Imports")
 import {
@@ -56,22 +55,28 @@ const setupSwagger = (app: INestApplication) => {
     SwaggerModule.setup(paths.swagger, app, document, options);
 };
 
-// Promise ab ES 2015, vgl: Future in Java
-// async/await ab ES 2017, vgl: C#
-const bootstrap = async () => {
-    // Der Keycloak-Server verwendet ein selbstsigniertes Zertifikat
-    process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'; // eslint-disable-line n/no-process-env
-
-    // Kein Logging bei Lasttests mit k6 oder locust
-    // HTTPS ist aktiviert, wenn TLS-Zertifikate vorhanden sind
-    // https://expressjs.com/en/advanced/best-practice-security.html#use-tls
-    let options: NestApplicationOptions = {};
-    if (httpsOptions.key && httpsOptions.cert) {
+const createNestOptions = (): NestApplicationOptions => {
+    const options: NestApplicationOptions = {};
+    const hasHttpsKey =
+        typeof httpsOptions.key === 'string' && httpsOptions.key.length > 0;
+    const hasHttpsCert =
+        typeof httpsOptions.cert === 'string' && httpsOptions.cert.length > 0;
+    if (hasHttpsKey && hasHttpsCert) {
         options.httpsOptions = httpsOptions;
     }
     if (logLevel !== 'debug') {
         options.logger = false;
     }
+    return options;
+};
+
+// Promise ab ES 2015, vgl: Future in Java
+// async/await ab ES 2017, vgl: C#
+const bootstrap = async () => {
+    // Kein Logging bei Lasttests mit k6 oder locust
+    // HTTPS ist aktiviert, wenn TLS-Zertifikate vorhanden sind
+    // https://expressjs.com/en/advanced/best-practice-security.html#use-tls
+    const options = createNestOptions();
     const app = await NestFactory.create(AppModule, options); // "Shorthand Properties" ab ES 2015
 
     // Beispiele fuer "Middleware" bei Express:

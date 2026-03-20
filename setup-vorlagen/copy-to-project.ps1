@@ -44,6 +44,33 @@ function Copy-Template {
     }
 }
 
+function Ensure-TlsCertificates {
+    param([string]$Root)
+    $tlsDir = Join-Path $Root "src\config\resources\tls"
+    $keyPath = Join-Path $tlsDir "key.pem"
+    $certPath = Join-Path $tlsDir "certificate.crt"
+
+    if ((Test-Path $keyPath) -and (Test-Path $certPath)) {
+        Write-Host "  ✅ TLS key.pem/certificate.crt - bereits vorhanden" -ForegroundColor Green
+        return
+    }
+
+    if (-not (Test-Path $tlsDir)) {
+        New-Item -ItemType Directory -Path $tlsDir -Force | Out-Null
+    }
+
+    Write-Host "  ⏳ Generiere TLS Zertifikate..." -ForegroundColor Yellow
+    if (Get-Command openssl -ErrorAction SilentlyContinue) {
+        & openssl req -x509 -newkey rsa:4096 -keyout $keyPath -out $certPath -days 365 -nodes -subj "/CN=localhost" | Out-Null
+        Write-Host "  ✅ TLS Zertifikate mit openssl erstellt" -ForegroundColor Green
+        return
+    }
+
+    $tlsDirForDocker = (Resolve-Path $tlsDir).Path -replace '\\', '/'
+    docker run --rm -v "${tlsDirForDocker}:/tls" alpine/openssl req -x509 -newkey rsa:4096 -keyout /tls/key.pem -out /tls/certificate.crt -days 365 -nodes -subj "/CN=localhost" | Out-Null
+    Write-Host "  ✅ TLS Zertifikate mit Docker/openssl erstellt" -ForegroundColor Green
+}
+
 Write-Host "`n📋 Kopiere Dateien...`n" -ForegroundColor White
 
 # .env Datei
@@ -52,16 +79,8 @@ Copy-Template -Source ".env.example" -Destination ".env" -Description ".env (Umg
 # PostgreSQL Passwort
 Copy-Template -Source "db_password.txt.example" -Destination ".extras\compose\postgres\db_password.txt" -Description "db_password.txt (PostgreSQL)"
 
-# TLS Key (nur wenn nicht vorhanden)
-$keyPath = Join-Path $ProjectRoot "src\config\resources\tls\key.pem"
-if (-not (Test-Path $keyPath)) {
-    Write-Host "`n⚠️  TLS key.pem fehlt!" -ForegroundColor Yellow
-    Write-Host "   Generiere mit:" -ForegroundColor Yellow
-    Write-Host "   cd src/config/resources/tls" -ForegroundColor Cyan
-    Write-Host "   openssl req -x509 -newkey rsa:4096 -keyout key.pem -out certificate.crt -days 365 -nodes -subj `"/CN=localhost`"" -ForegroundColor Cyan
-} else {
-    Write-Host "  ✅ TLS key.pem - bereits vorhanden" -ForegroundColor Green
-}
+# TLS Zertifikate
+Ensure-TlsCertificates -Root $ProjectRoot
 
 Write-Host "`n"
 Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Green

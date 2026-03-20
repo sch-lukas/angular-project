@@ -20,7 +20,8 @@
 
 import process from 'node:process';
 
-const { NODE_ENV, CLIENT_SECRET, LOG_LEVEL } = process.env; // eslint-disable-line n/no-process-env
+const { NODE_ENV, CLIENT_SECRET, KEYCLOAK_REJECT_UNAUTHORIZED, LOG_LEVEL } =
+    process.env; // eslint-disable-line n/no-process-env
 
 // "as const" fuer readonly
 // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html#const-assertions
@@ -37,6 +38,7 @@ export const env = {
     // - `test`
     NODE_ENV,
     CLIENT_SECRET,
+    KEYCLOAK_REJECT_UNAUTHORIZED,
     LOG_LEVEL,
 } as const;
 /* eslint-enable @typescript-eslint/naming-convention */

@@ -6,11 +6,81 @@ param(
 $ErrorActionPreference = "Continue"
 $ProjectRoot = $PSScriptRoot
 
+function Get-EnvValue {
+    param([string]$Name, [string]$EnvPath)
+    if (-not (Test-Path $EnvPath)) {
+        return $null
+    }
+    $line = Get-Content $EnvPath | Where-Object { $_ -match "^$Name=" } | Select-Object -First 1
+    if (-not $line) {
+        return $null
+    }
+    return ($line -split '=', 2)[1]
+}
+
+function Set-EnvValue {
+    param([string]$Name, [string]$Value, [string]$EnvPath)
+    if (-not (Test-Path $EnvPath)) {
+        return
+    }
+    $content = Get-Content $EnvPath -Raw
+    if ($content -match "(?m)^$Name=") {
+        $updated = [regex]::Replace($content, "(?m)^$Name=.*$", "$Name=$Value")
+    } else {
+        $updated = "$content`r`n$Name=$Value`r`n"
+    }
+    Set-Content -Path $EnvPath -Value $updated -Encoding UTF8
+}
+
+function Ensure-TlsCertificates {
+    param([string]$Root)
+    $tlsDir = Join-Path $Root "src\config\resources\tls"
+    $keyFile = Join-Path $tlsDir "key.pem"
+    $certFile = Join-Path $tlsDir "certificate.crt"
+
+    if ((Test-Path $keyFile) -and (Test-Path $certFile)) {
+        return
+    }
+
+    if (-not (Test-Path $tlsDir)) {
+        New-Item -ItemType Directory -Path $tlsDir -Force | Out-Null
+    }
+
+    Write-Host "  TLS-Zertifikate fehlen - generiere lokal..." -ForegroundColor Gray
+    if (Get-Command openssl -ErrorAction SilentlyContinue) {
+        & openssl req -x509 -newkey rsa:4096 -keyout $keyFile -out $certFile -days 365 -nodes -subj "/CN=localhost" | Out-Null
+        return
+    }
+
+    $tlsDirForDocker = (Resolve-Path $tlsDir).Path -replace '\\', '/'
+    docker run --rm -v "${tlsDirForDocker}:/tls" alpine/openssl req -x509 -newkey rsa:4096 -keyout /tls/key.pem -out /tls/certificate.crt -days 365 -nodes -subj "/CN=localhost" | Out-Null
+}
+
+function Ensure-KeycloakAdminPassword {
+    param([string]$Root)
+    $envPath = Join-Path $Root ".env"
+    $adminPassword = Get-EnvValue -Name "KEYCLOAK_ADMIN_PASSWORD" -EnvPath $envPath
+
+    if ([string]::IsNullOrWhiteSpace($adminPassword) -or $adminPassword -like "CHANGE_ME*") {
+        $adminPassword = Read-Host "Keycloak Admin Passwort eingeben (wird in .env gespeichert)"
+        if (-not [string]::IsNullOrWhiteSpace($adminPassword)) {
+            Set-EnvValue -Name "KEYCLOAK_ADMIN_PASSWORD" -Value $adminPassword -EnvPath $envPath
+        }
+    }
+
+    if (-not [string]::IsNullOrWhiteSpace($adminPassword)) {
+        $env:KEYCLOAK_ADMIN_PASSWORD = $adminPassword
+    }
+}
+
 Write-Host ""
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host "    Buchhandlung SPA - Start Script    " -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
+
+Ensure-TlsCertificates -Root $ProjectRoot
+Ensure-KeycloakAdminPassword -Root $ProjectRoot
 
 # Pruefe Docker Container
 Write-Host "[1/4] Pruefe Docker Container..." -ForegroundColor Yellow
@@ -83,7 +153,7 @@ Write-Host "========================================" -ForegroundColor Green
 Write-Host ""
 Write-Host "  Backend:  https://localhost:3000" -ForegroundColor White
 Write-Host "  Frontend: http://localhost:4200" -ForegroundColor White
-Write-Host "  Keycloak: http://localhost:8880 (admin/<aus_.env>)" -ForegroundColor White
+Write-Host "  Keycloak: http://localhost:8880 (admin/<aus .env>)" -ForegroundColor White
 Write-Host ""
 Write-Host "  Login: admin / CHANGE_ME_DEV_PASSWORD" -ForegroundColor Cyan
 Write-Host ""

@@ -5,12 +5,24 @@ $ErrorActionPreference = "Stop"
 
 Write-Host "Hole OAuth Token von Keycloak..." -ForegroundColor Cyan
 
+$clientSecret = if ($env:CLIENT_SECRET) {
+    $env:CLIENT_SECRET
+} else {
+    Read-Host "CLIENT_SECRET eingeben"
+}
+
+$appPassword = if ($env:KEYCLOAK_APP_PASSWORD) {
+    $env:KEYCLOAK_APP_PASSWORD
+} else {
+    Read-Host "Keycloak App-Passwort fuer admin eingeben"
+}
+
 $body = @{
     grant_type = "password"
     client_id = "nest-client"
-    client_secret = "__SET_CLIENT_SECRET_IN_ENV__"
+    client_secret = $clientSecret
     username = "admin"
-    password = "CHANGE_ME_DEV_PASSWORD"
+    password = $appPassword
 }
 
 try {

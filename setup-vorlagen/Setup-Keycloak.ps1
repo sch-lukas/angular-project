@@ -11,10 +11,70 @@ $ProjectRoot = Split-Path -Parent $PSScriptRoot
 $KeycloakVolume = "C:\Zimmermann\volumes\keycloak"
 $SetupVorlagen = Join-Path $ProjectRoot "setup-vorlagen\keycloak"
 
+function Get-EnvValue {
+    param([string]$Name, [string]$EnvPath)
+    if (-not (Test-Path $EnvPath)) {
+        return $null
+    }
+    $line = Get-Content $EnvPath | Where-Object { $_ -match "^$Name=" } | Select-Object -First 1
+    if (-not $line) {
+        return $null
+    }
+    return ($line -split '=', 2)[1]
+}
+
+function Set-EnvValue {
+    param([string]$Name, [string]$Value, [string]$EnvPath)
+    if (-not (Test-Path $EnvPath)) {
+        return
+    }
+    $content = Get-Content $EnvPath -Raw
+    if ($content -match "(?m)^$Name=") {
+        $updated = [regex]::Replace($content, "(?m)^$Name=.*$", "$Name=$Value")
+    } else {
+        $updated = "$content`r`n$Name=$Value`r`n"
+    }
+    Set-Content -Path $EnvPath -Value $updated -Encoding UTF8
+}
+
+function Ensure-TlsCertificates {
+    param([string]$Root)
+    $tlsDir = Join-Path $Root "src\config\resources\tls"
+    $keyFile = Join-Path $tlsDir "key.pem"
+    $certFile = Join-Path $tlsDir "certificate.crt"
+
+    if ((Test-Path $keyFile) -and (Test-Path $certFile)) {
+        return
+    }
+
+    if (-not (Test-Path $tlsDir)) {
+        New-Item -ItemType Directory -Path $tlsDir -Force | Out-Null
+    }
+
+    if (Get-Command openssl -ErrorAction SilentlyContinue) {
+        & openssl req -x509 -newkey rsa:4096 -keyout $keyFile -out $certFile -days 365 -nodes -subj "/CN=localhost" | Out-Null
+        return
+    }
+
+    $tlsDirForDocker = (Resolve-Path $tlsDir).Path -replace '\\', '/'
+    docker run --rm -v "${tlsDirForDocker}:/tls" alpine/openssl req -x509 -newkey rsa:4096 -keyout /tls/key.pem -out /tls/certificate.crt -days 365 -nodes -subj "/CN=localhost" | Out-Null
+}
+
 Write-Host "`n"
 Write-Host "╔═══════════════════════════════════════════════════════════╗" -ForegroundColor Cyan
 Write-Host "║           🔐 Keycloak Ersteinrichtung                     ║" -ForegroundColor Cyan
 Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Cyan
+
+$envPath = Join-Path $ProjectRoot ".env"
+$adminPassword = Get-EnvValue -Name "KEYCLOAK_ADMIN_PASSWORD" -EnvPath $envPath
+if ([string]::IsNullOrWhiteSpace($adminPassword) -or $adminPassword -like "CHANGE_ME*") {
+    $adminPassword = Read-Host "Keycloak Admin Passwort eingeben"
+    if (-not [string]::IsNullOrWhiteSpace($adminPassword)) {
+        Set-EnvValue -Name "KEYCLOAK_ADMIN_PASSWORD" -Value $adminPassword -EnvPath $envPath
+    }
+}
+
+Ensure-TlsCertificates -Root $ProjectRoot
 
 # Prüfe ob Keycloak-Volume existiert
 $dataFolder = Join-Path $KeycloakVolume "data\h2"
@@ -62,7 +122,7 @@ if (Test-Path "$tlsSource\key.pem") {
     Copy-Item "$tlsSource\key.pem" "$tlsDest\key.pem" -Force
     Write-Host "  ✅ key.pem kopiert" -ForegroundColor Green
 } else {
-    Write-Host "  ⚠️  key.pem nicht gefunden - muss manuell erstellt werden!" -ForegroundColor Yellow
+    Write-Host "  ❌ key.pem nicht gefunden!" -ForegroundColor Red
 }
 
 Write-Host "`n[3/4] Kopiere Realm-Konfiguration für Import..." -ForegroundColor White
@@ -97,7 +157,7 @@ docker run --rm `
     -v "${KeycloakVolume}/tls/key.pem:/opt/keycloak/conf/key.pem:ro" `
     -v "${KeycloakVolume}/tls/certificate.crt:/opt/keycloak/conf/certificate.crt:ro" `
     -e KC_BOOTSTRAP_ADMIN_USERNAME=admin `
-    -e KC_BOOTSTRAP_ADMIN_PASSWORD=p `
+    -e KC_BOOTSTRAP_ADMIN_PASSWORD=$adminPassword `
     quay.io/keycloak/keycloak:26.4.5-0 `
     import --dir /opt/keycloak/data/import 2>&1 | Out-Null
 
@@ -115,9 +175,8 @@ Write-Host "║                                                           ║" -
 Write-Host "║  Admin-Konsole: https://localhost:8843/admin              ║" -ForegroundColor Green
 Write-Host "║  Realm:         nest                                      ║" -ForegroundColor Green
 Write-Host "║                                                           ║" -ForegroundColor Green
-Write-Host "║  App-Benutzer:                                            ║" -ForegroundColor Green
-Write-Host "║    admin / CHANGE_ME_DEV_PASSWORD   (Administrator-Rolle)              ║" -ForegroundColor Green
-Write-Host "║    user  / CHANGE_ME_DEV_PASSWORD   (Benutzer-Rolle)                   ║" -ForegroundColor Green
+Write-Host "║  Admin-Passwort: siehe KEYCLOAK_ADMIN_PASSWORD in .env   ║" -ForegroundColor Green
+Write-Host "║  App-Passwort:   siehe KEYCLOAK_APP_PASSWORD in .env     ║" -ForegroundColor Green
 Write-Host "║                                                           ║" -ForegroundColor Green
 Write-Host "╚═══════════════════════════════════════════════════════════╝" -ForegroundColor Green
 Write-Host ""
